@@ -1,7 +1,9 @@
 import React from "react";
 import Uploadfile from "./Uploadfile";
+import { useNavigate } from "react-router-dom";
 
 const Document = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex justify-center items-center h-[100vh] w-full">
       <div className="flex justify-center items-center h-[100%] w-full">
@@ -125,11 +127,11 @@ const Document = () => {
           </form>
           <div className="flex justify-between items-center mt-6">
             <div className="flex justify-center">
-              <button className="sign-button">REGISTER</button>
+              <button className="sign-button" onClick={()=>navigate('/')}>REGISTER</button>
             </div>
             <div className="flex items-center gap-2 cursor-pointer">
               <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-              <p className="text-sm cancel underline ">Cancel</p>
+              <p className="text-sm cancel underline" onClick={()=>navigate('/register')}>Cancel</p>
             </div>
           </div>
         </div>

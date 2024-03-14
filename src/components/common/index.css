@@ -1,0 +1,7 @@
+.view{
+ font-size: 12px;    
+}
+.view:hover {
+    color: red;
+    cursor: pointer
+}

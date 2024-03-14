@@ -1,14 +1,50 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import './index.css'
+import Profile from "./Profile";
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+ 
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
   return (
-    <div className='flex justify-between'>
-          <p className='text-2xl font-semibold' style={{ color: "#343C6A" }}>Welcome!</p>
-          <div className='flex gap-8 mr-4'>
-              <img src="./Ellipse 965.svg" alt="profile-image" className='rounded-full w-14 h-14' />
-          </div>
-    </div>
-  )
-}
+    <div className="flex justify-between items-center shadow-xl z-40 h-20 px-6">
+      <img src="./image 2 (2).svg" alt="" className="w-36 h-18 pb-4" />
+      <div className="flex gap-10 mr-4">    
+        <div
+          className="flex items-center px-6 h-12"
+          style={{
+            backgroundColor: "#EEEEEE",
+            width: "35rem",
+            borderRadius: "12px",
+            color: "#8BA3CB",
+          }}
+        >
+          <img src="./image 2 (3).svg" alt="search" className="w-6 h-6" />
+          <input
+            type="text"
+            className="border-none bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
+            placeholder="Search here"
+          />
+        </div>
+        <div>
+          <img src="./image 13.svg" alt="Notification" className="h-12" />
+        </div>
+        <div className="flex gap-2 items-center cursor-pointer"  onClick={openDrawer}>
+        <img
+          src="./Ellipse 1 (1).svg"
+          alt="profile"
+          className="rounded-full w-14 h-12"
+          />
+          <div>
+          <p className="font-semibold">Dave Smith</p>
+          <p className="view">VIEW MORE {`>`}</p>
 
-export default Navbar
+          </div>
+        </div>
+         <Profile closeDrawer={closeDrawer} open={open} />
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

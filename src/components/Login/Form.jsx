@@ -81,11 +81,11 @@ const Form = ({
             </div>
           </>
           <div className="flex justify-center pt-6">
-          <button className="sign-button">SIGN IN</button>
+          <button className="sign-button" onClick={()=>navigate('/transaction')}>SIGN IN</button>
           </div>
         </form>
-        <div className="flex justify-between mt-10">
-          <div className="flex items-center gap-2">
+        <div className="flex justify-between mt-10 ">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={()=>navigate('/help')}>
             <img src="./Mask group (2).svg" alt="" className="w-6 h-6"/>
             <p className="text-sm">Need Help?</p>
           </div>

@@ -5,11 +5,13 @@ import Navbar from "./components/common/Navbar";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex gap-8">
-      <Sidebar />
-      <div className="mt-4 flex-1 mr-4">
-        <Navbar />
-        <div className="m-4">{children}</div>
+    <div className="">
+      <Navbar />
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1 p-6" style={{ backgroundColor: "#EEEEEE" }}>
+          {children}
+        </div>
       </div>
     </div>
   );
