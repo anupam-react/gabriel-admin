@@ -3,9 +3,9 @@ import './index.css'
 import Profile from "./Profile";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
- 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+  
   return (
     <div className="flex justify-between items-center shadow-xl z-40 h-20 px-6">
       <img src="./image 2 (2).svg" alt="" className="w-36 h-18 pb-4" />
