@@ -96,7 +96,7 @@ const Transaction = () => {
           </div>
         </div>
       </div>
-      {/* <ReportPage open={open} setOpen={setOpen} handleOpen={handleOpen} /> */}
+      <ReportPage open={open} setOpen={setOpen} handleOpen={handleOpen} />
     </div>
   );
 };

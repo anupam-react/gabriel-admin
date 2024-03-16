@@ -15,13 +15,14 @@ const Sidebar = () => {
         aria-label="Sidebar"
       >
         <div className="h-full">
-          <ul className="space-y-2 font-medium p-6">
+          <ul className="space-y-4 font-medium p-6">
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover ${
                   activeLink === 0 && "text-[#0070BC]"
-                }`}
+                  }`}
+             
                 onClick={() => handleLinkClick(0)}
               >
                 {activeLink === 0 ? 
@@ -33,8 +34,8 @@ const Sidebar = () => {
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                to="/customer"
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 1 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(1)}
@@ -49,7 +50,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 2 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(2)}
@@ -64,7 +65,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 3 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(3)}
@@ -79,7 +80,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 4 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(4)}
@@ -94,7 +95,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 5 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(5)}
@@ -109,7 +110,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 6 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(6)}
@@ -124,7 +125,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 7 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(7)}
@@ -139,7 +140,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 8 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(8)}
@@ -154,7 +155,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 9 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(9)}
@@ -169,7 +170,7 @@ const Sidebar = () => {
             <li className="pb-4">
               <Link
                 to="/transaction"
-                className={`flex items-center dark:text-white  dark:hover:bg-gray-700 group ${
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 10 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(10)}
