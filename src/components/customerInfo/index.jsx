@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import InfoCard from "./InfoCard";
+import RotaionProgress from "./RotaionProgress";
+import LifeCycleStage from "./LifeCycleStage";
+import Promotion from "./Promotion";
+import { BarChart } from "./BarChart";
+import PaginatedTable from "./PaginatedTable";
 
 const CustomerInfo = () => {
+    const divRef = useRef();
   const customerType = [
     { label: "Frequent Shopper", value: "frequent shopper" },
     { label: "High Spender", value: "high spender" },
@@ -41,7 +47,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
     },
   ];
   return (
-    <div className="px-4">
+    <div className="px-4" ref={divRef}>
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">Customer Information</p>
         <div
@@ -201,6 +207,19 @@ It's calculated by dividing the total number of items sold by the total number o
             />
           </div>
         </div>
+      </div>
+      <div className="flex justify-between my-6">
+      <RotaionProgress />
+      <LifeCycleStage />
+      </div>
+      <div>
+        <Promotion />
+      </div>
+      <div className="my-6">
+        <BarChart />
+      </div>
+      <div>
+        <PaginatedTable  />
       </div>
     </div>
   );
