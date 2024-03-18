@@ -17,7 +17,7 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
         <div>
           <div className="p-8 rounded-md text-black bg-[#F5F5F5] h-[70vh] overflow-auto">
             <div className="flex justify-between">
-              <p className="font-semibold text-black text-xl">
+              <p className="font-semibold text-black text-2xl">
                 Generate Analytics Report
               </p>
               <div className="flex gap-4">
@@ -36,11 +36,11 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
               </div>
             </div>
             <hr className="bg-[#00000099] w-full my-6" />
-            <p className="font-[500]">
+            <p className="font-[600] text-xl">
               Select the Sections which you want to include in the Report
             </p>
-            <label className="containerLogin">
-              Match the Date Range in all Selected Sections
+            <label className="containerLogin font-semibold">
+            Match <span className="px-2 text-[#000000B2]"> the Date Range in all </span>   Selected Sections
               <input
                 type="checkbox"
                 // checked={isChecked}
@@ -60,7 +60,7 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
                       {data?.title}
                     </span>
                     <div className="flex items-center gap-4">
-                      <p className="text-[#000000B2] font-[500]">Date Range</p>
+                      <p className="text-[#000000B2] font-[600]">Date Range</p>
                       <Select />
                     </div>
                   </div>
@@ -87,7 +87,7 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
               onClick={() => setOpen(false)}
             >
               <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-              <p className="text-sm cancel underline">Cancle</p>
+              <p className="text-sm cancel underline">Cancel</p>
             </div>
           </div>
         </div>
