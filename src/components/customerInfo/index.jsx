@@ -1,13 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import InfoCard from "./InfoCard";
 import RotaionProgress from "./RotaionProgress";
 import LifeCycleStage from "./LifeCycleStage";
 import Promotion from "./Promotion";
 import { BarChart } from "./BarChart";
 import PaginatedTable from "./PaginatedTable";
+import Filter from "./Filter";
 
 const CustomerInfo = () => {
-    const divRef = useRef();
+  const [open, setOpen] = useState(false);
+ 
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+ 
   const customerType = [
     { label: "Frequent Shopper", value: "frequent shopper" },
     { label: "High Spender", value: "high spender" },
@@ -47,7 +52,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
     },
   ];
   return (
-    <div className="px-4" ref={divRef}>
+    <div className="px-4">
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">Customer Information</p>
         <div
@@ -67,7 +72,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           />
         </div>
         <div className="flex">
-          <button className="flex items-center gap-2">
+          <button className="flex items-center gap-2" onClick={openDrawer}>
             <img src="./Mask group (8).png" alt="" className="w-5 h-5" />
             <p className="text-[#0070BC] font-semibold">FILTERS</p>
           </button>
@@ -221,6 +226,7 @@ It's calculated by dividing the total number of items sold by the total number o
       <div>
         <PaginatedTable  />
       </div>
+      <Filter closeDrawer={closeDrawer} open={open} />
     </div>
   );
 };
