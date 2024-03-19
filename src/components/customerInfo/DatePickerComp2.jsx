@@ -2,7 +2,7 @@ import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export function DatePickerComp() {
+export function DatePickerComp2() {
    const [startDate, setStartDate] = useState(new Date());
 
   return (
@@ -12,7 +12,7 @@ export function DatePickerComp() {
         toggleCalendarOnIconClick
         dateFormat="dd/MM/yyyy"
         selected={startDate}
-        className='rounded-md shadow border-none'
+        className='rounded-md shadow border-none date'
       onChange={(date) => setStartDate(date)}
     />
     </div>

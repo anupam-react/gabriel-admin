@@ -7,7 +7,7 @@ const Promotion = () => {
   return (
     <div>
       <p className="font-semibold text-xl pb-4">Recommended Promotion type</p>
-          <div className="rounded-lg shadow-md flex flex-col justify-center items-center bg-white p-4 w-96">
+          <div className="rounded-lg shadow-md flex flex-col justify-center items-center bg-white p-4 w-80">
               <p className="font-semibold gap-4">85% of your customers are likely to respond to</p>
        <CircularProgressbar
         value={70}
@@ -15,7 +15,8 @@ const Promotion = () => {
         styles={buildStyles({
           textColor: "black",
           pathColor: "#00B050",
-          trailColor: "gray"
+          trailColor: "gray",
+          width:"200px"
         })}
       />
       </div>
