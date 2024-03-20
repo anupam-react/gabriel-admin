@@ -126,7 +126,7 @@ const PaginatedTable = () => {
         onPageChange={(page) => setCurrentPage(page)}
       />
             <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo}/>
+        {/* <CustomeInfo handleOpen={setOpenInfo}/> */}
       </DialogDefault>
     </>
   );
