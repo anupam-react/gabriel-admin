@@ -4,7 +4,7 @@ import "./index.scss";
 import Pagination from "../common/Pagination";
 import MenuCard from "./MenuCard";
 import { DialogDefault } from "../common/DilogBox";
-import CustomeInfo from "./CustomeInfo";
+// import CustomeInfo from "./CustomeInfo";
 
 const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
