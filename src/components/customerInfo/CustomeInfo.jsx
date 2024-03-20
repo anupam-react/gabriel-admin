@@ -10,7 +10,7 @@ import { DialogDefault } from "../common/DilogBox";
 import Demographic from "./Demographic";
 import Engagement from "./Engagement";
 import Promotions from "./Promotions";
-import Loyality from "./Loyality";
+// import Loyality from "./Loyality";
 const CustomeInfo = ({ handleOpen }) => {
   const [openLoyality , setOpenLoyality] = useState(false)
   const [openDemographic , setOpenDemographic] = useState(false)
@@ -265,7 +265,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           <Demographic handleOpen={setOpenDemographic}/>
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-          <Loyality handleOpen={setOpenLoyality}/>
+          {/* <Loyality handleOpen={setOpenLoyality}/> */}
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
           <Engagement handleOpen={setOpenEngagement}/>
