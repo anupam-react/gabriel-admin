@@ -1,0 +1,210 @@
+import React, { useState } from "react";
+import "./index.scss";
+import InfoHeader from "./InfoHeader";
+import { DialogDefault } from "../common/DilogBox";
+// import ProductDetails from "./ProductDetails";
+
+const Promotions = ({ handleOpen }) => {
+  const [openProduct, setOpenproduct] = useState(false);
+  return (
+    <div className="info-container">
+      <div className="gift-main">
+        <p className="title">Participation in Promotions</p>
+        <img
+          src="./Mask group (2).png"
+          alt=""
+          className="cross-image"
+          onClick={() => handleOpen(false)}
+        />
+      </div>
+      <hr className="hr2" />
+      <InfoHeader />
+
+      <div style={{ paddingTop: "30px", paddingBottom: "20px" }}>
+        <p
+          style={{
+            color: "#0070BC",
+            fontWeight: 600,
+            textTransform: "uppercase",
+          }}
+        >
+          Participation in Promotions
+        </p>
+        <hr className="hr3" style={{ width: "270px" }} />
+      </div>
+      <table className="table2">
+        <thead>
+          <tr>
+            <th>Participation Type</th>
+            <th>Participation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Participation</td>
+            <td>
+              30 Purchases made on discounts –{" "}
+              <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+                {" "}
+                See Transactions
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Coupons</td>
+            <td>
+              Redeemed 30 Coupons –{" "}
+              <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+                {" "}
+                See Transactions
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Featured Deals</td>
+            <td>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./image 711.png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Viewed{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    30 times
+                  </span>
+                  ,<br />
+                  Last view: Yesterday, 10:30 pm
+                </div>
+              </div>
+              <hr className="hr5" />
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./image 711.png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Viewed{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    30 times
+                  </span>
+                  ,<br />
+                  Last view: Yesterday, 10:30 pm
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Make A Saving</td>
+            <td>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./image 711 (1).png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Viewed{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    30 times
+                  </span>
+                  ,<br />
+                  Last view: Yesterday, 10:30 pm
+                </div>
+              </div>
+              <hr className="hr5" />
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./image 711 (1).png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Viewed{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    30 times
+                  </span>
+                  ,<br />
+                  Last view: Yesterday, 10:30 pm
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Buy 1 Get 1 Free Deal</td>
+            <td>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./Group 38188.png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Bought 2 times,
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    see transactions
+                  </span>
+                  .<br />
+                  Last purchase: Yesterday, 2:00 pm
+                </div>
+              </div>
+              <hr className="hr5" />
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+              >
+                <img
+                  src="./Group 38188.png"
+                  alt=""
+                  style={{ cursor: "pointer", width: "180px" }}
+                  onClick={() => setOpenproduct(true)}
+                />
+                <div>
+                  Bought 2 times,
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                  >
+                    see transactions
+                  </span>
+                  .<br />
+                  Last purchase: Yesterday, 2:00 pm
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
+        {/* <ProductDetails handleOpen={setOpenproduct} /> */}
+      </DialogDefault>
+    </div>
+  );
+};
+
+export default Promotions;
