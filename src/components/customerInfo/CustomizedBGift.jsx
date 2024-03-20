@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./index.css";
+import "./index.scss";
 import CatalogueProduct from "./CatalogueProduct";
 import { DialogDefault } from "../common/DilogBox";
 const CustomizedBGift = ({ handleOpen }) => {
