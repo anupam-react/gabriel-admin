@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './index.css'
+import "./index.scss";
 import { DialogDefault } from '../common/DilogBox'
 import BirthDayGift from './BirthDayGift'
 import CustomizedBGift from './CustomizedBGift'

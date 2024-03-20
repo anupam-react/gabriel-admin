@@ -6,7 +6,7 @@ import Promotion from "./Promotion";
 import { BarChart } from "./BarChart";
 import PaginatedTable from "./PaginatedTable";
 import Filter from "./Filter";
-
+import "./index.scss";
 const CustomerInfo = () => {
   const [open, setOpen] = useState(false);
  

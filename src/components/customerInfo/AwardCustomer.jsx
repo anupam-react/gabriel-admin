@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import "./index.css";
+import "./index.scss";
 import { DialogDefault } from '../common/DilogBox';
-import BirthdayOffer from './BirthdayOffer';
 import AwardOffer from './AwardOffer';
 const AwardCustomer = ({handleOpen}) => {
      const [openOffer , setOffer] = useState(false)

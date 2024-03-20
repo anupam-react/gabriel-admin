@@ -1,7 +1,7 @@
 import React from "react";
 import { Drawer, Typography } from "@material-tailwind/react";
 import { DatePickerComp2 } from "./DatePickerComp2";
-
+import "./index.scss";
 const Filter = ({ closeDrawer, open }) => {
   return (
     <React.Fragment>
@@ -38,7 +38,7 @@ const Filter = ({ closeDrawer, open }) => {
           id="countries"
           // value={selectedOption}
           // onChange={handleChange}
-          className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="rounded shadow-md text-gray-900 text-sm  border-none block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option className="font-semibold" value="custom">
             CUSTOM
@@ -101,7 +101,7 @@ const Filter = ({ closeDrawer, open }) => {
             APPLY
           </button>
           <button
-            className="button3"
+            className="button4"
             //   onClick={() => {
             //     setOpenAlert(true);
             //   }}

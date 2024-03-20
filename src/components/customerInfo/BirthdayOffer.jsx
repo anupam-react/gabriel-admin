@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./index.css";
+import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import CustomizedGift from "./CustomizedGift";
 const BirthdayOffer = ({ handleOpen }) => {
@@ -66,7 +66,7 @@ const BirthdayOffer = ({ handleOpen }) => {
             <p>{d?.title}</p>
             <p>:</p>
             <p>{d?.value}</p>
-            <button onClick={d?.handleCLick}>Edit</button>
+            <button className="edit-button" onClick={d?.handleCLick}>Edit</button>
           </div>
         ))}
           </div>

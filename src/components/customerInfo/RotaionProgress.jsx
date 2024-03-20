@@ -3,7 +3,7 @@ import {
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import "./index.css";
+import "./index.scss";
 const RotaionProgress = () => {
   return (
     <div>

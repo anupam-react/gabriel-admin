@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
-
+import "./index.scss";
 const AwardOffer = ({handleOpen}) => {
   const [openCustom, setOpenCustom] = useState(false);
   const [openSuccess, setSuccess] = useState(false);
@@ -59,7 +59,7 @@ const AwardOffer = ({handleOpen}) => {
             <p>{d?.title}</p>
             <p>:</p>
             <p>{d?.value}</p>
-            <button onClick={d?.handleCLick}>Edit</button>
+            <button className="edit-button" onClick={d?.handleCLick}>Edit</button>
           </div>
         ))}
       </div>

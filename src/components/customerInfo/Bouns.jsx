@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
-import "./index.css";
+import "./index.scss";
 const Bouns = ({ handleOpen }) => {
   const [openSuccess, setSuccess] = useState(false);
   return (
