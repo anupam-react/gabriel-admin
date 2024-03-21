@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.scss";
 import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
-// import ProductDetails from "./ProductDetails";
+import ProductDetails from "./ProductDetails";
 
 const Promotions = ({ handleOpen }) => {
   const [openProduct, setOpenproduct] = useState(false);
@@ -201,7 +201,7 @@ const Promotions = ({ handleOpen }) => {
         </tbody>
       </table>
       <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
-        {/* <ProductDetails handleOpen={setOpenproduct} /> */}
+        <ProductDetails handleOpen={setOpenproduct} />
       </DialogDefault>
     </div>
   );
