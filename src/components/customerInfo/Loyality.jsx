@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './index.scss'
 import InfoHeader from './InfoHeader'
-// import LoyalityTab1 from './LoyalityTab1';
+import LoyalityTab1 from './LoyalityTab1';
 import LoyalityTab2 from './LoyalityTab2';
 const Loyality = ({ handleOpen }) => {
       const [activeLink, setActiveLink] = useState(0);
@@ -26,8 +26,7 @@ const Loyality = ({ handleOpen }) => {
               <button className={`${activeLink === 1 ? "activeButton" : ""}`} onClick={() => handleLinkClick(1)}>Stamp System</button>
           </div>
       {activeLink === 1 ?
-        <LoyalityTab2 /> :""
-        // <LoyalityTab1 />
+        <LoyalityTab2 /> : <LoyalityTab1 />
       }
     
     </div>

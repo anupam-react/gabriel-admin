@@ -13,10 +13,6 @@
 .progress-bar::before {
   content: "60%";
 }
-h1,
-p {
-  font-family: Lato;
-}
 
 .table1 {
   width: 100%;
@@ -45,7 +41,6 @@ p {
   width: 100%;
   border-collapse: collapse;
   position: relative;
-  margin: 10px 0px;
   color: #000000b2;
 
   thead tr th {
@@ -63,6 +58,9 @@ p {
     background-color: #fafafa;
     border: 1px solid #dfdfdf;
     text-align: center;
+  }
+  th {
+    // border-radius: 8px 8px 0px 0px;
   }
   td {
     width: 300px;
@@ -118,6 +116,11 @@ p {
   flex-direction: column;
   gap: 10px;
 }
+.button-container3 {
+  display: flex;
+  margin: 10px 0px;
+  gap: 30px;
+}
 .menu-Main {
   position: absolute;
   top: 27%;
@@ -125,9 +128,10 @@ p {
 }
 .menu-Main2 {
   position: absolute;
-  top: 120px;
-  left: -80px;
+  top: 20%;
+  left: 30%;
   z-index: 999;
+  width: 450px;
 }
 .menu-container {
   display: flex;
@@ -459,13 +463,18 @@ p {
   padding: 16px 24px;
   color: black;
   font-weight: 500;
-  height: 90vh;
-  width: 75vw;
+  height: 100vh;
+  width: 100vw;
   overflow: auto;
   background-color: white;
   border: none;
   border-radius: 14px;
-  margin-left: -15vw;
+  margin-left: -30vw;
+}
+@media only screen and (max-width: 1319px) {
+  .info-container {
+    margin-left: -20vw;
+  }
 }
 .hr2 {
   background-color: black;
@@ -484,6 +493,7 @@ p {
   display: flex;
   align-items: center;
   gap: 20px;
+  position: relative;
 }
 .imageContainer {
   position: relative;
@@ -612,6 +622,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #121212;
 }
 .details-title {
   font-size: 22px;
@@ -636,6 +647,7 @@ p {
   color: #121212;
   font-size: 18px;
   width: 400px;
+  margin: 14px 0px;
 }
 .info2 {
   display: flex;
@@ -665,7 +677,7 @@ p {
   justify-content: space-between;
   color: #000000b2;
   .normalButton {
-    width: 130px;
+    width: 200px;
     cursor: pointer;
     color: #000000b2;
     font-weight: 600;
@@ -673,8 +685,18 @@ p {
   .activeButton1 {
     color: #0070bc;
     font-weight: 700;
-    width: 130px;
+    width: 200px;
     cursor: pointer;
+  }
+}
+@media only screen and (max-width: 1240px) {
+  .tabs1-container {
+    .normalButton {
+      width: 180px;
+    }
+    .activeButton1 {
+      width: 180px;
+    }
   }
 }
 .tabs2-container {
@@ -694,15 +716,27 @@ p {
 }
 .dot-image2 {
   position: absolute;
-  top: 20px;
-  right: 25%;
+  top: 10%;
+  right: 5%;
   cursor: pointer;
 }
 .id-link {
   color: #0070bc;
   text-decoration: underline;
+  cursor: pointer;
 }
 .table-flex {
   display: flex;
   gap: 5px;
+}
+.history-table {
+  th,
+  tr {
+    width: 200px;
+    padding: 16px 0px;
+  }
+  td {
+    text-align: center;
+    padding: 14px 0px;
+  }
 }

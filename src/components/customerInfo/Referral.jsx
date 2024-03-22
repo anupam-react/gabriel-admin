@@ -74,6 +74,7 @@ Customer ID :  #98BB212
           </p>
         </div>
       </DialogDefault>
+      
     </div>
   );
 };

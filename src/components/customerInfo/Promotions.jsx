@@ -3,9 +3,11 @@ import "./index.scss";
 import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import ProductDetails from "./ProductDetails";
+import HistoryDetails from "./HistoryDetails";
 
 const Promotions = ({ handleOpen }) => {
   const [openProduct, setOpenproduct] = useState(false);
+  const [openHistory, setOpenHistory] = useState(false);
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -44,7 +46,7 @@ const Promotions = ({ handleOpen }) => {
             <td>Participation</td>
             <td>
               30 Purchases made on discounts –{" "}
-              <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+              <span style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}>
                 {" "}
                 See Transactions
               </span>
@@ -54,7 +56,7 @@ const Promotions = ({ handleOpen }) => {
             <td>Coupons</td>
             <td>
               Redeemed 30 Coupons –{" "}
-              <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+              <span style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}>
                 {" "}
                 See Transactions
               </span>
@@ -75,7 +77,8 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
+                    onClick={()=> setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -96,7 +99,8 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
+                    onClick={()=> setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -121,7 +125,8 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
+                    onClick={()=> setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -142,7 +147,8 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
+                    onClick={()=> setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -167,7 +173,7 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Bought 2 times,
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline", cursor:"pointer" }}
                   >
                     see transactions
                   </span>
@@ -188,7 +194,7 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Bought 2 times,
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
                   >
                     see transactions
                   </span>
@@ -202,6 +208,9 @@ const Promotions = ({ handleOpen }) => {
       </table>
       <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
         <ProductDetails handleOpen={setOpenproduct} />
+      </DialogDefault>
+      <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
+        <HistoryDetails handleOpen={setOpenHistory} />
       </DialogDefault>
     </div>
   );

@@ -11,6 +11,7 @@ import Demographic from "./Demographic";
 import Engagement from "./Engagement";
 import Promotions from "./Promotions";
 import Loyality from "./Loyality";
+// import RefferalActivity from "./RefferalActivity";
 const CustomeInfo = ({ handleOpen }) => {
   const [openLoyality , setOpenLoyality] = useState(false)
   const [openDemographic , setOpenDemographic] = useState(false)
@@ -274,7 +275,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           <Promotions handleOpen={setOpenPromotions}/>
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-          <Promotions handleOpen={setOpenReferral}/>
+          {/* <RefferalActivity handleOpen={setOpenReferral}/> */}
       </DialogDefault>
     </div>
   );

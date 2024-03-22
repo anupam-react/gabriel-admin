@@ -23,13 +23,13 @@ const AwardStamp = ({handleOpen}) => {
         <CatalogueProduct />
       </div>
       <div className="button-group">
-        <button className="button1" onClick={() => setSuccess(true)}>
+        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
           5 Stamps
         </button>
-        <button className="button2" onClick={() => setSuccess(true)}>
+        <button className="button2" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
           10 Stamps
         </button>
-        <button className="button1" onClick={() => setSuccess(true)}>
+        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
           20 Stamps
         </button>
           </div>

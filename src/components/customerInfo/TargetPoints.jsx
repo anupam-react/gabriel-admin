@@ -23,21 +23,21 @@ const TargetPoints = ({handleOpen}) => {
         <CatalogueProduct />
       </div>
       <div className="button-group">
-        <button className="button2" onClick={() => setSuccess(true)}>
-          5 Points
+        <button className="button2" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+          5 Stamps
         </button>
-        <button className="button1" onClick={() => setSuccess(true)}>
-          10 Points
+        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+          10 Stamps
         </button>
-        <button className="button1" onClick={() => setSuccess(true)}>
-          20 Points
+        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+          20 Stamps
         </button>
           </div>
            
       <div className="form-container">
         <div className="input-container">
           <label>Custom Points</label>
-          <input type="text" name="" id="" className="input" placeholder="" value="40 Stamps"/>
+          <input type="text" name="" id="" className="input" placeholder="" value="40 Points"/>
         </div>
         <div className="input-container">
           <label>Custom Message</label>

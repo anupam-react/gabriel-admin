@@ -27,13 +27,18 @@ const IncompleteStamp = () => {
                   position: "relative",
                 }}
               >
-                <img src="./Group 570.png" alt="" />
+                <div style={{
+                  position: "relative",
+                }}>
+                <img src="./Group 570.png" alt=""  />
                 <img
                   src="./Vector (3).png"
                   alt=""
                   className="dot-image2"
                   onClick={() => setOpenMenu(!isOpenMenu)}
                 />
+
+                </div>
                 {isOpenMenu && (
                   <div className="award-menu-main">
                     <AwardMenu />
@@ -55,13 +60,18 @@ const IncompleteStamp = () => {
                   position: "relative",
                 }}
               >
-                <img src="./Group 570.png" alt="" />
+                <div style={{
+                  position: "relative",
+                }}>
+                <img src="./Group 570.png" alt=""  />
                 <img
                   src="./Vector (3).png"
                   alt=""
                   className="dot-image2"
                   onClick={() => setOpenMenu2(!isOpenMenu2)}
                 />
+
+                </div>
                 {isOpenMenu2 && (
                   <div className="award-menu-main">
                     <AwardMenu />
