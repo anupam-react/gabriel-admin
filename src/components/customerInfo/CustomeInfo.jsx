@@ -11,13 +11,19 @@ import Demographic from "./Demographic";
 import Engagement from "./Engagement";
 import Promotions from "./Promotions";
 import Loyality from "./Loyality";
-// import RefferalActivity from "./RefferalActivity";
+import RefferalActivity from "./RefferalActivity";
+import TransactionHistory from "./TransactionHistory";
+// import BookMark from "./BookMark";
+// import Verification from "./Verification";
 const CustomeInfo = ({ handleOpen }) => {
   const [openLoyality , setOpenLoyality] = useState(false)
   const [openDemographic , setOpenDemographic] = useState(false)
   const [openEngagement , setOpenEngagement] = useState(false)
   const [openPromotions , setOpenPromotions] = useState(false)
   const [openReferral , setOpenReferral] = useState(false)
+  const [openTransaction , setOpenTransaction] = useState(false)
+  const [openBookmark , setOpenBookmark] = useState(false)
+  const [openVerification , setOpenVerification] = useState(false)
   const statisticData = [
     {
       title: "Average Spend",
@@ -55,9 +61,9 @@ This metric is crucial for understanding revenue contributions per customer.`,
     { image: "./Ellipse 4.png", title: "Customer Engagement Metrics " ,  openHandler:()=>setOpenEngagement(true) },
     { image: "./Ellipse 4 (1).png", title: "Participation in Promotions", openHandler:()=>setOpenPromotions(true) },
     { image: "./Ellipse 3 (1).png", title: "REFERRAL ACTIVITY", openHandler:()=>setOpenReferral(true) },
-    { image: "./Ellipse 3 (2).png", title: "Customer Transaction History" },
-    { image: "./Ellipse 3 (3).png", title: "Book Marks" },
-    { image: "./Ellipse 3 (4).png", title: "Student VERification" },
+    { image: "./Ellipse 3 (2).png", title: "Customer Transaction History" , openHandler:()=>setOpenTransaction(true)},
+    { image: "./Ellipse 3 (3).png", title: "Book Marks" , openHandler:()=>setOpenBookmark(true)},
+    { image: "./Ellipse 3 (4).png", title: "Student Verification" , openHandler:()=>setOpenVerification(true) },
     { image: "./Ellipse 3 (5).png", title: "Offers" },
     { image: "./Ellipse 3 (6).png", title: "Returns and Exchange" },
   ];
@@ -275,8 +281,17 @@ This metric is crucial for understanding revenue contributions per customer.`,
           <Promotions handleOpen={setOpenPromotions}/>
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-          {/* <RefferalActivity handleOpen={setOpenReferral}/> */}
+          <RefferalActivity handleOpen={setOpenReferral}/>
       </DialogDefault>
+      <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
+          <TransactionHistory handleOpen={setOpenTransaction}/>
+      </DialogDefault>
+      {/* <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
+          <BookMark handleOpen={setOpenBookmark}/>
+      </DialogDefault>
+      <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
+          <Verification handleOpen={setOpenVerification}/>
+      </DialogDefault> */}
     </div>
   );
 };

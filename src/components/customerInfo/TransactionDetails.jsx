@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-const TransactionDetails = ({handleOpen}) => {
+const TransactionDetails = ({handleOpen , isButton= true}) => {
   return (
      <div className='details-container'>
      <p className="details-title">Transaction details</p>
@@ -43,10 +43,10 @@ const TransactionDetails = ({handleOpen}) => {
           <p>No</p>
         </div>
           </div>
-          <div className='button-container3'>
+        {isButton && <div className='button-container3'>
               <button className='menuButton4'>Download Reciept</button>
               <button className='menuButton4'>Share Reciept</button>
-          </div>
+          </div>}
     </div>
   )
 }
