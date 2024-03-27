@@ -13,8 +13,10 @@ import Promotions from "./Promotions";
 import Loyality from "./Loyality";
 import RefferalActivity from "./RefferalActivity";
 import TransactionHistory from "./TransactionHistory";
-// import BookMark from "./BookMark";
-// import Verification from "./Verification";
+import BookMark from "./BookMark";
+import Verification from "./Verification";
+import OffersTable from "./OffersTable";
+import ReturnForm from "./ReturnForm";
 const CustomeInfo = ({ handleOpen }) => {
   const [openLoyality , setOpenLoyality] = useState(false)
   const [openDemographic , setOpenDemographic] = useState(false)
@@ -23,7 +25,9 @@ const CustomeInfo = ({ handleOpen }) => {
   const [openReferral , setOpenReferral] = useState(false)
   const [openTransaction , setOpenTransaction] = useState(false)
   const [openBookmark , setOpenBookmark] = useState(false)
-  const [openVerification , setOpenVerification] = useState(false)
+  const [openVerification, setOpenVerification] = useState(false)
+  const [openOffer , setOpenOffer ] = useState(false)
+  const [openReturn , setOpenReturn ] = useState(false)
   const statisticData = [
     {
       title: "Average Spend",
@@ -64,8 +68,8 @@ This metric is crucial for understanding revenue contributions per customer.`,
     { image: "./Ellipse 3 (2).png", title: "Customer Transaction History" , openHandler:()=>setOpenTransaction(true)},
     { image: "./Ellipse 3 (3).png", title: "Book Marks" , openHandler:()=>setOpenBookmark(true)},
     { image: "./Ellipse 3 (4).png", title: "Student Verification" , openHandler:()=>setOpenVerification(true) },
-    { image: "./Ellipse 3 (5).png", title: "Offers" },
-    { image: "./Ellipse 3 (6).png", title: "Returns and Exchange" },
+    { image: "./Ellipse 3 (5).png", title: "Offers", openHandler:()=>setOpenOffer(true) },
+    { image: "./Ellipse 3 (6).png", title: "Returns and Exchange", openHandler:()=>setOpenReturn(true) },
   ];
   return (
     <div className="info-container">
@@ -286,12 +290,18 @@ This metric is crucial for understanding revenue contributions per customer.`,
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
           <TransactionHistory handleOpen={setOpenTransaction}/>
       </DialogDefault>
-      {/* <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
+      <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
           <BookMark handleOpen={setOpenBookmark}/>
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
           <Verification handleOpen={setOpenVerification}/>
-      </DialogDefault> */}
+      </DialogDefault>
+      <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
+          <OffersTable handleOpen={setOpenOffer}/>
+      </DialogDefault>
+      <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
+          <ReturnForm handleOpen={setOpenReturn}/>
+      </DialogDefault>
     </div>
   );
 };

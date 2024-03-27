@@ -8,10 +8,13 @@ import PaginatedTable from "./PaginatedTable";
 import Filter from "./Filter";
 import "./index.scss";
 const CustomerInfo = () => {
-  const [open, setOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(false)
+   const toggleDrawer = () => {
+        setIsOpen((prevState) => !prevState)
+    }
  
-  const openDrawer = () => setOpen(true);
-  const closeDrawer = () => setOpen(false);
+  const openDrawer = () => setIsOpen(true);
+  const closeDrawer = () => setIsOpen(false);
  
   const customerType = [
     { label: "Frequent Shopper", value: "frequent shopper" },
@@ -226,7 +229,7 @@ It's calculated by dividing the total number of items sold by the total number o
       <div>
         <PaginatedTable  />
       </div>
-      <Filter closeDrawer={closeDrawer} open={open} />
+      <Filter closeDrawer={closeDrawer} open={isOpen} />
     </div>
   );
 };

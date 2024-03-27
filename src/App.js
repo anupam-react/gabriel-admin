@@ -8,6 +8,7 @@ import Help from "./components/Help";
 import Forgot from "./components/Help/Forgot";
 import Transaction from "./components/Transaction.jsx";
 import CustomerInfo from "./components/customerInfo/index.jsx";
+import SalesAnalytics from "./components/SalesAnalytics/index.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/customer" element={<CustomerInfo />} />
+          <Route path="/sales" element={<SalesAnalytics />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

@@ -117,6 +117,13 @@
   padding: 6px 30px;
   border-radius: 10px;
 }
+.menuButton6 {
+  color: white;
+  background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+  padding: 6px 20px;
+  border-radius: 10px;
+  width: 280px;
+}
 .button-container2 {
   display: flex;
   flex-direction: column;
@@ -201,6 +208,19 @@
   justify-content: space-between;
   align-items: center;
 }
+.notification-container {
+  padding: 20px 24px;
+  color: black;
+  font-weight: 500;
+  overflow: auto;
+  font-size: 18px;
+  padding-bottom: 40px;
+}
+.notification-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .cross-image {
   width: 35px;
   cursor: pointer;
@@ -224,17 +244,17 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  // gap: 10px;
+  gap: 4px;
 }
 .input,
 .textarea {
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px 0 gray, 0 6px 20px 0 white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
 }
 .catalogue-container {
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
   padding: 14px;
   margin-top: 5px;
@@ -358,7 +378,7 @@
 .button1,
 .button2 {
   border: 1px solid black;
-  padding: 10px 40px;
+  padding: 10px 50px;
   border-radius: 10px;
   font-weight: 600;
 }
@@ -407,7 +427,7 @@
   box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
   padding-left: 14px;
   display: flex;
-  width: 260px;
+  width: 300px;
   background-color: #f7f7f7;
   /* justify-content: space-around; */
 }
@@ -471,7 +491,7 @@
 }
 .button4 {
   border: 1px solid #fd575b;
-  padding: 10px 40px;
+  padding: 10px 50px;
   border-radius: 10px;
   font-weight: 600;
   color: #fd575b;
@@ -480,8 +500,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 95vh;
-  padding-left: 10px;
+  height: 100vh;
+  padding: 16px 20px;
 }
 .filter-body {
   height: 80vh;
@@ -503,11 +523,16 @@
   background-color: white;
   border: none;
   border-radius: 14px;
-  margin-left: -30vw;
+  margin-left: -5vw;
 }
-@media only screen and (max-width: 1319px) {
+@media only screen and (min-width: 1200px) {
   .info-container {
-    margin-left: -20vw;
+    margin-left: -18vw;
+  }
+}
+@media only screen and (min-width: 1319px) {
+  .info-container {
+    margin-left: -30vw;
   }
 }
 .hr2 {
@@ -826,4 +851,9 @@
   position: absolute;
   bottom: 2%;
   // left: 14%;
+}
+.heading-title {
+  color: #0070bc;
+  text-decoration: underline;
+  padding-top: 14px;
 }

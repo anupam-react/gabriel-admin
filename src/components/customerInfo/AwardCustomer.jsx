@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import "./index.scss";
 import { DialogDefault } from '../common/DilogBox';
 import AwardOffer from './AwardOffer';
-const AwardCustomer = ({handleOpen}) => {
-     const [openOffer , setOffer] = useState(false)
+const AwardCustomer = ({handleOpen , title="Award to a customer after purchase"}) => {
+     const [openOffer , setOpenOffer] = useState(false)
   return (
   <div className="gift-container">
       <div className="gift-main">
-        <p className="title">Award to a customer after purchase</p>
+        <p className="title">{title}</p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -72,10 +72,10 @@ const AwardCustomer = ({handleOpen}) => {
         </div>
           </div>
           <div className="flex-center">
-           <button className="menuButton" onClick={()=> setOffer(true)}>See Promotion preview</button> 
+           <button className="menuButton" onClick={()=> setOpenOffer(true)}>See Promotion preview</button> 
           </div>
-          <DialogDefault open={openOffer} handleOpen={setOffer}>
-            <AwardOffer  handleOpen={setOffer}/>
+          <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
+            <AwardOffer  handleOpen={setOpenOffer}/>
         </DialogDefault>
     </div>
   )
