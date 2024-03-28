@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 
-import "./index.scss";
 import Pagination from "../common/Pagination";
 import MenuCard from "./MenuCard";
 import { DialogDefault } from "../common/DilogBox";
 import CustomeInfo from "./CustomeInfo";
+import "./index.scss";
 
 const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,7 +73,7 @@ const PaginatedTable = () => {
   return (
     <>
       <table className="table1">
-        <thead >
+        <thead>
           <tr>
             <th>Customer</th>
             <th>Date Joined</th>
@@ -85,9 +85,7 @@ const PaginatedTable = () => {
             return (
               <tr>
                 <td>
-                  <div
-                    className="flex items-center justify-center gap-6"
-                  >
+                  <div className="flex items-center justify-center gap-6">
                     <div className="profile-image">
                       <img src="./carbon_user-avatar-filled.png" alt="" />
                       <img
@@ -97,7 +95,9 @@ const PaginatedTable = () => {
                         onClick={() => setOpenMenu(!isOpenMenu)}
                       />
                     </div>
-                    <p className="profileId" onClick={()=>setOpenInfo(true)}>ID:MC12345</p>
+                    <p className="profileId" onClick={() => setOpenInfo(true)}>
+                      ID:MC12345
+                    </p>
                     {isOpenMenu && (
                       <div className="menu-Main">
                         <MenuCard />
@@ -125,8 +125,8 @@ const PaginatedTable = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-            <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo}/>
+      <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
+        <CustomeInfo handleOpen={setOpenInfo} />
       </DialogDefault>
     </>
   );

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
-import ProductDetails from "./ProductDetails";
 import HistoryDetails from "./HistoryDetails";
 import ProductDetails2 from "./ProductDeatils2";
 

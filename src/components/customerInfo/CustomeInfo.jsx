@@ -250,7 +250,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           <div className="basket-container">
           <div style={{display:"flex" , gap:"10px" , alignItems:"center"}}>
             <img src="./image 705.png" alt="" />
-            <p style={{ color: "black", fontWeight: 600, fontSize: "18px", fontWeight:"bold" }}>
+            <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
               Lorem Ipsum
             </p>
           </div>

@@ -32,7 +32,7 @@ const ReturnForm = ({ handleOpen }) => {
       <p className="heading-title">Original Purchase Details</p>
       <div className="form-container">
         <div className="input-container">
-          <label>order number</label>
+          <label>Order number</label>
           <input
             type="text"
             name=""

@@ -1,5 +1,5 @@
 import React from "react";
-import { Drawer, Slider, Typography } from "@material-tailwind/react";
+import { Drawer } from "@material-tailwind/react";
 
 const Profile = ({ closeDrawer, open }) => {
   return (

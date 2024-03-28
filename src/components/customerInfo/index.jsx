@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import InfoCard from "./InfoCard";
 import RotaionProgress from "./RotaionProgress";
 import LifeCycleStage from "./LifeCycleStage";
@@ -8,11 +8,8 @@ import PaginatedTable from "./PaginatedTable";
 import Filter from "./Filter";
 import "./index.scss";
 const CustomerInfo = () => {
-   const [isOpen, setIsOpen] = useState(false)
-   const toggleDrawer = () => {
-        setIsOpen((prevState) => !prevState)
-    }
- 
+  const [isOpen, setIsOpen] = useState(false)
+
   const openDrawer = () => setIsOpen(true);
   const closeDrawer = () => setIsOpen(false);
  
