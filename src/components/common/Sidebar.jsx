@@ -94,7 +94,7 @@ const Sidebar = () => {
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
+                to="/receipt"
                 className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 5 && "text-[#0070BC]"
                 }`}

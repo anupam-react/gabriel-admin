@@ -10,9 +10,14 @@ import Transaction from "./components/Transaction.jsx";
 import CustomerInfo from "./components/customerInfo/index.jsx";
 import SalesAnalytics from "./components/SalesAnalytics/index.jsx";
 import LoyaltyProgram from "./components/LoyaltyProgram/index.jsx";
-// import PointSystemForm from "./components/LoyaltyProgram/PointSystemForm.jsx";
-// import StampSystemForm from "./components/LoyaltyProgram/StampSystemForm.jsx";
-// import StampPreview from "./components/LoyaltyProgram/StampPreview.jsx";
+import PointSystemForm from "./components/LoyaltyProgram/PointSystemForm.jsx";
+import StampSystemForm from "./components/LoyaltyProgram/StampSystemForm.jsx";
+import StampPreview from "./components/LoyaltyProgram/StampPreview.jsx";
+import SavingForm from "./components/LoyaltyProgram/SavingForm.jsx";
+import SavingPreview from "./components/LoyaltyProgram/SavingPreview.jsx";
+import PointForm from "./components/LoyaltyProgram/PointForm.jsx";
+import PointPreview from "./components/LoyaltyProgram/PointPreview.jsx";
+// import DigitalReceipt from "./components/DigitalReceipt/index.jsx";
 
 function App() {
   return (
@@ -23,7 +28,7 @@ function App() {
           <Route path="/customer" element={<CustomerInfo />} />
           <Route path="/sales" element={<SalesAnalytics />} />
           <Route path="/loyalty" element={<LoyaltyProgram />} />
-          {/* <Route path="/loyalty/point-system" element={<PointSystemForm />} />
+          <Route path="/loyalty/point-system" element={<PointSystemForm />} />
           <Route
             path="/loyalty/point-system/review"
             element={<PointSystemForm isReview={true} />}
@@ -36,7 +41,20 @@ function App() {
           <Route
             path="/loyalty/stamp-system/preview"
             element={<StampPreview />}
-          /> */}
+          />
+          <Route path="/loyalty/saving" element={<SavingForm />} />
+          <Route
+            path="/loyalty/saving/review"
+            element={<SavingForm isReview={true} />}
+          />
+          <Route path="/loyalty/saving/preview" element={<SavingPreview />} />
+          <Route path="/loyalty/point" element={<PointForm />} />
+          <Route
+            path="/loyalty/point/review"
+            element={<PointForm isReview={true} />}
+          />
+          <Route path="/loyalty/point/preview" element={<PointPreview />} />
+          {/* <Route path="/receipt" element={<DigitalReceipt />} /> */}
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

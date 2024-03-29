@@ -55,11 +55,11 @@ const LoyaltyProgram = () => {
           <img src="./image 701 (3).png" alt="" />
           <p>Stamp System</p>
       </div>
-        <div className='program-button'>
+        <div className='program-button' onClick={()=> navigate('/loyalty/saving')}> 
           <img src="./image 698 (1).png" alt="" />
           <p>Make a Saving</p>
       </div>
-        <div className='program-button'>
+        <div className='program-button' onClick={()=> navigate('/loyalty/point')}>
           <img src="./image 698 (2).png" alt="" />
           <p>Spent my Point</p>
       </div>

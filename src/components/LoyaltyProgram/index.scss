@@ -76,7 +76,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin: 20px 0px;
+  margin: 16px 0px;
 }
 .loyalty-button1 {
   color: white;
@@ -107,4 +107,10 @@
   text-align: center;
   padding: 40px;
   border-radius: 8px;
+}
+.upload-file {
+  background: linear-gradient(180deg, #00aaea 0%, #0070bc 100%);
+  color: white;
+  padding: 8px 40px;
+  border-radius: 6px;
 }

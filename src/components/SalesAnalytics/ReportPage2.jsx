@@ -16,7 +16,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
           <div className="p-8 rounded-md text-black bg-[#F5F5F5] h-[70vh] overflow-auto">
             <div className="flex justify-between">
               <p className="font-semibold text-black text-xl">
-                Generate Sales Comparison Report
+                Generate Sales Analytics Report
               </p>
               <div className="flex gap-4">
                 <img
