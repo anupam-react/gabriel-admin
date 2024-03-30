@@ -1,0 +1,65 @@
+.inventory-button {
+  color: white;
+  background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  width: 210px;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+}
+.card-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 20px;
+}
+.card-container {
+  background-color: #ffffff;
+  width: 240px;
+  //   height: 240px;
+  padding: 10px;
+  border-radius: 8px;
+}
+.activity {
+  background-color: #0070bc33;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+.dots {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #3bb54a;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0px;
+  img {
+    width: 130px;
+    height: 130px;
+  }
+}
+.text {
+  font-weight: 600;
+  text-align: center;
+}
+.profile-container2 {
+  background-color: #ffffff;
+  width: 280px;
+  padding: 20px 14px;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  border-radius: 10px;
+  z-index: 999;
+}

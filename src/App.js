@@ -17,7 +17,8 @@ import SavingForm from "./components/LoyaltyProgram/SavingForm.jsx";
 import SavingPreview from "./components/LoyaltyProgram/SavingPreview.jsx";
 import PointForm from "./components/LoyaltyProgram/PointForm.jsx";
 import PointPreview from "./components/LoyaltyProgram/PointPreview.jsx";
-// import DigitalReceipt from "./components/DigitalReceipt/index.jsx";
+import DigitalReceipt from "./components/DigitalReceipt/index.jsx";
+import Inventory from "./components/Inventory/index.jsx";
 
 function App() {
   return (
@@ -54,7 +55,8 @@ function App() {
             element={<PointForm isReview={true} />}
           />
           <Route path="/loyalty/point/preview" element={<PointPreview />} />
-          {/* <Route path="/receipt" element={<DigitalReceipt />} /> */}
+          <Route path="/receipt" element={<DigitalReceipt />} />
+          <Route path="/inventory" element={<Inventory />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
