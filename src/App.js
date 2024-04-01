@@ -24,7 +24,7 @@ import AddOutlate from "./components/Inventory/AddOutlate.jsx";
 import ExitingOutlate from "./components/Inventory/ExitingOutlate.jsx";
 import AddOutlate2 from "./components/Inventory/AddOutlate2.jsx";
 import ProductDetails from "./components/Inventory/ProductDetails.jsx";
-import CustomerGift from "./components/Inventory/CustomerGIft.jsx";
+// import CustomerGift from "./components/Inventory/CustomerGIft.jsx";
 
 function App() {
   return (
@@ -74,7 +74,7 @@ function App() {
             path="/inventory/product-details"
             element={<ProductDetails />}
           />
-          <Route path="/inventory/customer-gift" element={<CustomerGift />} />
+          {/* <Route path="/inventory/customer-gift" element={<CustomerGift />} /> */}
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
