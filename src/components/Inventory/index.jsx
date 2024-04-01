@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./index.scss";
 import InventoryCard from "./InventoryCard";
 import InventoryFilter from "./InventoryFilter";
+import { useNavigate } from "react-router-dom";
 const Inventory = () => {
     const [isOpen, setIsOpen] = useState(false);
-       const closeDrawer = () => setIsOpen(false);
+  const closeDrawer = () => setIsOpen(false);
+  const navigate = useNavigate()
   const data = [
     {
       image: "./Rectangle 8765 (3).png",
@@ -75,11 +77,11 @@ const Inventory = () => {
           </button>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="inventory-button">
+          <div className="inventory-button" onClick={()=>navigate('/inventory/add-product')}>
             <img src="./Mask group (11).png" alt="" />
             <p>ADD PRODUCT</p>
           </div>
-          <div className="inventory-button">
+          <div className="inventory-button" onClick={()=>navigate('/inventory/add-outlate')}>
             <img src="./Mask group (11).png" alt="" />
             <p>ADD MORE OUTLETS</p>
           </div>

@@ -19,6 +19,12 @@ import PointForm from "./components/LoyaltyProgram/PointForm.jsx";
 import PointPreview from "./components/LoyaltyProgram/PointPreview.jsx";
 import DigitalReceipt from "./components/DigitalReceipt/index.jsx";
 import Inventory from "./components/Inventory/index.jsx";
+import AddProduct from "./components/Inventory/AddProduct.jsx";
+import AddOutlate from "./components/Inventory/AddOutlate.jsx";
+import ExitingOutlate from "./components/Inventory/ExitingOutlate.jsx";
+import AddOutlate2 from "./components/Inventory/AddOutlate2.jsx";
+import ProductDetails from "./components/Inventory/ProductDetails.jsx";
+import CustomerGift from "./components/Inventory/CustomerGIft.jsx";
 
 function App() {
   return (
@@ -57,6 +63,18 @@ function App() {
           <Route path="/loyalty/point/preview" element={<PointPreview />} />
           <Route path="/receipt" element={<DigitalReceipt />} />
           <Route path="/inventory" element={<Inventory />} />
+          <Route path="/inventory/add-product" element={<AddProduct />} />
+          <Route path="/inventory/add-outlate" element={<AddOutlate />} />
+          <Route
+            path="/inventory/existing-outlate"
+            element={<ExitingOutlate />}
+          />
+          <Route path="/inventory/adding-outlate" element={<AddOutlate2 />} />
+          <Route
+            path="/inventory/product-details"
+            element={<ProductDetails />}
+          />
+          <Route path="/inventory/customer-gift" element={<CustomerGift />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
