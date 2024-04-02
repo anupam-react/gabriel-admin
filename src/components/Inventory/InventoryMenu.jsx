@@ -4,9 +4,8 @@ import { DialogDefault } from "../common/DilogBox";
 import { useNavigate } from "react-router-dom";
 
 const InventoryMenu = ({ setOpenMenu }) => {
-  const [openPromote, setOpenPromote] = useState(false);
+
   const [openProductStatus, setOpenProductStatus] = useState(false);
-  const [openGift, setOpenGift] = useState(false);
   const [openCutomized, setOpenCustomized] = useState(false);
   const [openEditProduct, setOpenEditProduct] = useState(false);
   const [openDeleteProduct, setOpenDeleteProduct] = useState(false);
@@ -33,19 +32,19 @@ const InventoryMenu = ({ setOpenMenu }) => {
 
   return (
     <div className="menu-container">
-      <button className="menuButton7" onClick={() => setOpenPromote(true)}>
+      <button className="menuButton7" onClick={() => navigate("/inventory/promote")}>
         Promote Product
       </button>
       <button className="menuButton7" onClick={handleProductStatus}>
         Share product to Status
       </button>
-      <button className="menuButton7" onClick={() => navigate("/")}>
+      <button className="menuButton7" onClick={() => navigate("/inventory/customer-gift")}>
         Send as Gift to customer
       </button>
-      <button className="menuButton7" onClick={() => {}}>
+      <button className="menuButton7" onClick={() => navigate("/inventory/customized-gift")}>
         Customize and Send to customer
       </button>
-      <button className="menuButton7" onClick={() => setOpenEditProduct(true)}>
+      <button className="menuButton7" onClick={() => navigate("/inventory/edit-product")}>
         Edit Product
       </button>
       <button

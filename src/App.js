@@ -24,7 +24,15 @@ import AddOutlate from "./components/Inventory/AddOutlate.jsx";
 import ExitingOutlate from "./components/Inventory/ExitingOutlate.jsx";
 import AddOutlate2 from "./components/Inventory/AddOutlate2.jsx";
 import ProductDetails from "./components/Inventory/ProductDetails.jsx";
-// import CustomerGift from "./components/Inventory/CustomerGIft.jsx";
+import CustomerGift from "./components/Inventory/CustomerGIft.jsx";
+import GiftPreview from "./components/Inventory/GiftPreview.jsx";
+import Promote from "./components/Inventory/Promote.jsx";
+import ReviewCampaign from "./components/Inventory/ReviewCampaign.jsx";
+import AdPreview from "./components/Inventory/AdPreview.jsx";
+import Payment from "./components/Inventory/Payment.jsx";
+// import CustomizedGift from "./components/Inventory/CustomizedGift.jsx";
+// import CustomizedPreview from "./components/Inventory/CustomizedPreview.jsx";
+// import EditProduct from "./components/Inventory/EditProduct.jsx";
 
 function App() {
   return (
@@ -70,11 +78,32 @@ function App() {
             element={<ExitingOutlate />}
           />
           <Route path="/inventory/adding-outlate" element={<AddOutlate2 />} />
+          {/* <Route path="/inventory/edit-product" element={<EditProduct />} /> */}
           <Route
             path="/inventory/product-details"
             element={<ProductDetails />}
           />
-          {/* <Route path="/inventory/customer-gift" element={<CustomerGift />} /> */}
+          <Route path="/inventory/customer-gift" element={<CustomerGift />} />
+          <Route path="/inventory/preview-gift" element={<GiftPreview />} />
+          {/* <Route
+            path="/inventory/customized-gift"
+            element={<CustomizedGift />}
+          /> */}
+          {/* <Route
+            path="/inventory/customized-preview"
+            element={<CustomizedPreview />}
+          /> */}
+          <Route path="/inventory/promote" element={<Promote />} />
+          <Route
+            path="/inventory/review-campaign"
+            element={<ReviewCampaign />}
+          />
+          <Route path="/inventory/ad-preview" element={<AdPreview />} />
+          <Route
+            path="/inventory/ad-confirm"
+            element={<AdPreview isPay={true} />}
+          />
+          <Route path="/inventory/payment" element={<Payment />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
