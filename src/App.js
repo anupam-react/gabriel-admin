@@ -30,9 +30,12 @@ import Promote from "./components/Inventory/Promote.jsx";
 import ReviewCampaign from "./components/Inventory/ReviewCampaign.jsx";
 import AdPreview from "./components/Inventory/AdPreview.jsx";
 import Payment from "./components/Inventory/Payment.jsx";
-// import CustomizedGift from "./components/Inventory/CustomizedGift.jsx";
-// import CustomizedPreview from "./components/Inventory/CustomizedPreview.jsx";
-// import EditProduct from "./components/Inventory/EditProduct.jsx";
+import CustomizedGift from "./components/Inventory/CustomizedGift.jsx";
+import CustomizedPreview from "./components/Inventory/CustomizedPreview.jsx";
+import EditProduct from "./components/Inventory/EditProduct.jsx";
+import EditProduct2 from "./components/Inventory/EditProduct2.jsx";
+import Comparison from "./components/Comparison/index.jsx";
+import PromoCode from "./components/PromoCode/index.jsx";
 
 function App() {
   return (
@@ -78,21 +81,22 @@ function App() {
             element={<ExitingOutlate />}
           />
           <Route path="/inventory/adding-outlate" element={<AddOutlate2 />} />
-          {/* <Route path="/inventory/edit-product" element={<EditProduct />} /> */}
+          <Route path="/inventory/edit-product" element={<EditProduct />} />
+          <Route path="/inventory/edit-prod" element={<EditProduct2 />} />
           <Route
             path="/inventory/product-details"
             element={<ProductDetails />}
           />
           <Route path="/inventory/customer-gift" element={<CustomerGift />} />
           <Route path="/inventory/preview-gift" element={<GiftPreview />} />
-          {/* <Route
+          <Route
             path="/inventory/customized-gift"
             element={<CustomizedGift />}
-          /> */}
-          {/* <Route
+          />
+          <Route
             path="/inventory/customized-preview"
             element={<CustomizedPreview />}
-          /> */}
+          />
           <Route path="/inventory/promote" element={<Promote />} />
           <Route
             path="/inventory/review-campaign"
@@ -104,6 +108,8 @@ function App() {
             element={<AdPreview isPay={true} />}
           />
           <Route path="/inventory/payment" element={<Payment />} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/promo-code" element={<PromoCode />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

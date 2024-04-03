@@ -21,14 +21,10 @@ const Sidebar = () => {
                 to="/transaction"
                 className={`flex items-center add-hover ${
                   activeLink === 0 && "text-[#0070BC]"
-                  }`}
-             
+                }`}
                 onClick={() => handleLinkClick(0)}
               >
-                {activeLink === 0 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
                 <span className="ms-3">Transaction Data</span>
               </Link>
             </li>
@@ -40,10 +36,11 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(1)}
               >
-                {activeLink === 1 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./radix-icons_avatar.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Customer Information</span>
               </Link>
             </li>
@@ -55,10 +52,11 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(2)}
               >
-                {activeLink === 2 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./icon-park-outline_sales-report.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Sales Analytics</span>
               </Link>
             </li>
@@ -70,10 +68,7 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(3)}
               >
-                {activeLink === 3 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img src="./la_gifts.png" alt="" className="w-6 h-6" />
                 <span className="ms-3">Loyalty Program Management</span>
               </Link>
             </li>
@@ -85,10 +80,7 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(4)}
               >
-                {activeLink === 4 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img src="./nimbus_marketing.png" alt="" className="w-6 h-6" />
                 <span className="ms-3">Marketing Campaign</span>
               </Link>
             </li>
@@ -100,10 +92,11 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(5)}
               >
-                {activeLink === 5 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./akar-icons_reciept.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Digital Receipt</span>
               </Link>
             </li>
@@ -115,40 +108,43 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(6)}
               >
-                {activeLink === 6 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./mingcute_inventory-line.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Inventory Integration</span>
               </Link>
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
+                to="/comparison"
                 className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 7 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(7)}
               >
-                {activeLink === 7 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./ic_round-compare-arrows.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Comparison</span>
               </Link>
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
+                to="/promo-code"
                 className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 8 && "text-[#0070BC]"
                 }`}
                 onClick={() => handleLinkClick(8)}
               >
-                {activeLink === 8 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img
+                  src="./mynaui_percentage-waves.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
                 <span className="ms-3">Promo Code</span>
               </Link>
             </li>
@@ -160,10 +156,7 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(9)}
               >
-                {activeLink === 9 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img src="./carbon_purchase.png" alt="" className="w-6 h-6" />
                 <span className="ms-3">Purchases</span>
               </Link>
             </li>
@@ -175,15 +168,26 @@ const Sidebar = () => {
                 }`}
                 onClick={() => handleLinkClick(10)}
               >
-                {activeLink === 10 ? 
-                  <img src="./Mask group.png" alt="" className="w-5 h-5" /> :
-                    <img src="./Mask group (1).png" alt="" className="w-5 h-5" />
-                }
+                <img src="./bx_map.png" alt="" className="w-6 h-6" />
                 <span className="ms-3">Heat Maps</span>
               </Link>
             </li>
-        
-      
+            <li className="pb-4">
+              <Link
+                to="/transaction"
+                className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
+                  activeLink === 11 && "text-[#0070BC]"
+                }`}
+                onClick={() => handleLinkClick(11)}
+              >
+                <img
+                  src="./fluent_person-feedback-20-regular.png"
+                  alt=""
+                  className="w-6 h-6"
+                />
+                <span className="ms-3">Customer Feedback</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>
