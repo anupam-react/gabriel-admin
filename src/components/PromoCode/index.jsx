@@ -1,12 +1,18 @@
 import React, { useMemo, useState } from "react";
 import Pagination from "../common/Pagination";
 import "./index.scss";
-// import PromoFilter from "./PromoFilter";
+import PromoFilter from "./PromoFilter";
+import CreatePromo from "./CreatePromo";
+import MegaSale from "./MegaSale";
 const PromoCode = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isActive, setActive] = useState(false);
   const [isInactive, setInactive] = useState(false);
+  const [openReactive, setOpenReactive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+  const handleReOpen = () => setOpenReactive(!open);
   let PageSize = 3;
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const closeDrawer = () => setIsOpen(false);
@@ -49,7 +55,7 @@ const PromoCode = () => {
         <div
           className="inventory-button gap-2"
           style={{ width: "220px" }}
-          // onClick={() => navigate("/inventory/add-product")}
+          onClick={() => setOpen(true)}
         >
           <img src="./Mask group (11).png" alt="" />
           <p>CREATE PROMO CODE</p>
@@ -147,7 +153,12 @@ const PromoCode = () => {
                         />
                         {isInactive && (
                           <div className="action-main">
-                            <div className="flex items-center gap-6">
+                            <div
+                              className="flex items-center gap-6 cursor-pointer"
+                              onClick={() => {
+                                setOpenReactive(true);
+                              }}
+                            >
                               <img src="./image 119 (1).png" alt="" />
                               <p>Re-Activate</p>
                             </div>
@@ -169,7 +180,13 @@ const PromoCode = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      {/* {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />} */}
+      {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />}
+      <CreatePromo open={open} setOpen={setOpen} handleOpen={handleOpen} />
+      <MegaSale
+        open={openReactive}
+        setOpen={setOpenReactive}
+        handleOpen={handleReOpen}
+      />
     </div>
   );
 };

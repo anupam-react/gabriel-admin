@@ -150,7 +150,7 @@ const Sidebar = () => {
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
+                to="/purchases"
                 className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 9 && "text-[#0070BC]"
                 }`}
@@ -174,7 +174,7 @@ const Sidebar = () => {
             </li>
             <li className="pb-4">
               <Link
-                to="/transaction"
+                to="/feedback"
                 className={`flex items-center add-hover dark:text-white  dark:hover:bg-gray-700 group ${
                   activeLink === 11 && "text-[#0070BC]"
                 }`}

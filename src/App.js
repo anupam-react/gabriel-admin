@@ -36,6 +36,8 @@ import EditProduct from "./components/Inventory/EditProduct.jsx";
 import EditProduct2 from "./components/Inventory/EditProduct2.jsx";
 import Comparison from "./components/Comparison/index.jsx";
 import PromoCode from "./components/PromoCode/index.jsx";
+import Purchases from "./components/Purchases/index.jsx";
+// import FeedBack from "./components/FeedBack/index.jsx";
 
 function App() {
   return (
@@ -110,6 +112,8 @@ function App() {
           <Route path="/inventory/payment" element={<Payment />} />
           <Route path="/comparison" element={<Comparison />} />
           <Route path="/promo-code" element={<PromoCode />} />
+          <Route path="/purchases" element={<Purchases />} />
+          {/* <Route path="/feedback" element={<FeedBack />} /> */}
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
