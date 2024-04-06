@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
-const CampaignMenu = ({ isLive = false, isPause = false }) => {
+const CampaignMenu = ({
+  isLive = false,
+  isPause = false,
+  isOfferCard = false,
+  isShop,
+}) => {
   const [openPause, setOpenPause] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -12,12 +17,25 @@ const CampaignMenu = ({ isLive = false, isPause = false }) => {
       {isLive ? (
         <div className="campaign-menu-container">
           <p
-            onClick={() => naviagte("/marketing/view")}
+            onClick={() => {
+              isOfferCard
+                ? naviagte("/marketing/offer-view")
+                : naviagte("/marketing/view");
+            }}
             className="cursor-pointer"
           >
             View
           </p>
-          <p>Edit</p>
+          <p
+            className="cursor-pointer"
+            onClick={() => {
+              if (isOfferCard) naviagte("/marketing/edit-marketing");
+              else if (isShop) naviagte("/marketing/edit-shop-marketing");
+              else naviagte("/marketing/edit-followers-marketing");
+            }}
+          >
+            Edit
+          </p>
           {isPause ? (
             <p className="cursor-pointer" onClick={() => setOpenunPause(true)}>
               Un Pause
@@ -30,8 +48,26 @@ const CampaignMenu = ({ isLive = false, isPause = false }) => {
         </div>
       ) : (
         <div className="campaign-menu-container">
-          <p>Manage</p>
-          <p>Edit and Run</p>
+          <p
+            className="cursor-pointer"
+            onClick={() => {
+              isOfferCard
+                ? naviagte("/marketing/offer-view-past")
+                : naviagte("/marketing/view-past");
+            }}
+          >
+            Manage
+          </p>
+          <p
+            className="cursor-pointer"
+            onClick={() => {
+              if (isOfferCard) naviagte("/marketing/edit-marketing");
+              else if (isShop) naviagte("/marketing/edit-shop-marketing");
+              else naviagte("/marketing/edit-followers-marketing");
+            }}
+          >
+            Edit and Run
+          </p>
         </div>
       )}
       <DialogDefault open={openConfirm} handleOpen={setOpenConfirm}>

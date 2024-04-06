@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import CampaignMenu from "./CampaignMenu";
+import { useNavigate } from "react-router-dom";
 const CampaignCard1 = ({
   isButton = false,
   isStar = false,
@@ -11,6 +12,7 @@ const CampaignCard1 = ({
   title,
 }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="campaign-card1-container">
       <div className="card-hearder">
@@ -32,7 +34,9 @@ const CampaignCard1 = ({
           className="menu-dots"
           onClick={() => setOpenMenu(!openMenu)}
         />
-        {openMenu && <CampaignMenu isLive={isLive} isPause={isPause} />}
+        {openMenu && (
+          <CampaignMenu isLive={isLive} isPause={isPause} isOfferCard={true} />
+        )}
         {isGift && (
           <div className="flex justify-end mt-2 items-center gap-2 mr-2">
             <img src="./mdi_gift.png" alt="" />
@@ -46,7 +50,14 @@ const CampaignCard1 = ({
         )}
       </div>
       <p>Expiry Date : 04 Jan 2024, 1:30 am</p>
-      {isButton && <button className="run-again">Run Again</button>}
+      {isButton && (
+        <button
+          className="run-again"
+          onClick={() => navigate("/marketing/review-campaign")}
+        >
+          Run Again
+        </button>
+      )}
       {isPause && (
         <button className="unpause">
           Unpause to continue run your ad campaign

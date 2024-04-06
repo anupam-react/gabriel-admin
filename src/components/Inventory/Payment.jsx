@@ -19,7 +19,7 @@ const Payment = () => {
     }, 2000);
     setTimeout(() => {
       setLive(false);
-      navigate("/inventory");
+      // navigate("/inventory");
     }, 3000);
   };
 

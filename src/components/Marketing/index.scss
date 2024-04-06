@@ -126,3 +126,16 @@
     }
   }
 }
+.live-dots {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #03cc5e;
+}
+.run-agains {
+  background: linear-gradient(180deg, #00aaea 0%, #0070bc 100%);
+  padding: 10px 20px;
+  width: 250px;
+  color: white;
+  border-radius: 10px;
+}

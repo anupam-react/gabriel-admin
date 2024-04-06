@@ -2,7 +2,9 @@ import React from "react";
 import "./index.scss";
 import CampaignCard1 from "./CampaignCard1";
 import CampaignCard2 from "./CampaignCard2";
+import { useNavigate } from "react-router-dom";
 const Marketing = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -11,7 +13,7 @@ const Marketing = () => {
         <div
           className="inventory-button gap-2"
           style={{ width: "280px" }}
-          // onClick={() => setOpen(true)}
+          onClick={() => navigate("/marketing/newCampaign")}
         >
           <img src="./Mask group (13).png" alt="" />
           <p className="text-lg">Set Up New Campaign</p>

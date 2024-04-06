@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import CampaignMenu from "./CampaignMenu";
+import { useNavigate } from "react-router-dom";
 const CampaignCard2 = ({
   isButton = false,
   isPause = false,
@@ -10,6 +11,7 @@ const CampaignCard2 = ({
   title,
 }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="campaign-card1-container">
       <div className="card-hearder">
@@ -55,7 +57,9 @@ const CampaignCard2 = ({
           className="h-fit cursor-pointer"
           onClick={() => setOpenMenu(!openMenu)}
         />
-        {openMenu && <CampaignMenu isLive={isLive} />}
+        {openMenu && (
+          <CampaignMenu isLive={isLive} isOfferCard={false} isShop={isShop} />
+        )}
       </div>
       <p>Follow us Café Nero to see the latesttrends and offers</p>
       <div className="campaign-image">
@@ -75,7 +79,14 @@ const CampaignCard2 = ({
           </div>
         )}
       </div>
-      {isButton && <button className="run-again">Run Again</button>}
+      {isButton && (
+        <button
+          className="run-again"
+          onClick={() => navigate("/marketing/review-campaign")}
+        >
+          Run Again
+        </button>
+      )}
       {isPause && (
         <button className="unpause">
           Unpause to continue run your ad campaign

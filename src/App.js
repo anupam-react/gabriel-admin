@@ -39,7 +39,13 @@ import PromoCode from "./components/PromoCode/index.jsx";
 import Purchases from "./components/Purchases/index.jsx";
 import FeedBack from "./components/FeedBack/index.jsx";
 import Marketing from "./components/Marketing";
-// import ViewProduct from "./components/Marketing/ViewProduct";
+import ViewProduct from "./components/Marketing/ViewProduct";
+import NewCampaign from "./components/Marketing/NewCampaign.jsx";
+import MarketingReviewCampaign from "./components/Marketing/MarketingReviewCampaign.jsx";
+import MarktingAdPreview from "./components/Marketing/MarktingAdPreview.jsx";
+import MarketingEdit from "./components/Marketing/MarketingEdit";
+// import MarketingEdit1 from "./components/Marketing/MarketingEdit1.jsx";
+import MarketingEdit2 from "./components/Marketing/MarketingEdit2.jsx";
 
 function App() {
   return (
@@ -117,7 +123,42 @@ function App() {
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/feedback" element={<FeedBack />} />
           <Route path="/marketing" element={<Marketing />} />
-          {/* <Route path="/marketing/view" element={<ViewProduct />} /> */}
+          <Route
+            path="/marketing/view"
+            element={<ViewProduct isOfferCard={false} />}
+          />
+          <Route
+            path="/marketing/offer-view"
+            element={<ViewProduct isOfferCard={true} />}
+          />
+          {/* <Route
+            path="/marketing/offer-view-past"
+            element={<ViewProduct isOfferCard={true} isPast={true} />}
+          />
+          <Route
+            path="/marketing/view-past"
+            element={<ViewProduct isOfferCard={false} isPast={true} />}
+          /> */}
+          <Route path="/marketing/newCampaign" element={<NewCampaign />} />
+          <Route
+            path="/marketing/review-campaign"
+            element={<MarketingReviewCampaign />}
+          />
+          <Route path="/marketing/ad-preview" element={<MarktingAdPreview />} />
+          <Route
+            path="/marketing/ad-confirm"
+            element={<MarktingAdPreview isPay={true} />}
+          />
+          <Route path="/marketing/payment" element={<Payment />} />
+          <Route path="/marketing/edit-marketing" element={<MarketingEdit />} />
+          {/* <Route
+            path="/marketing/edit-followers-marketing"
+            element={<MarketingEdit1 />}
+          /> */}
+          <Route
+            path="/marketing/edit-shop-marketing"
+            element={<MarketingEdit2 />}
+          />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

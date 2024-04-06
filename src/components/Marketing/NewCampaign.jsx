@@ -1,42 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
-import InventoryCard from "./InventoryCard";
-const Promote = () => {
+const NewCampaign = () => {
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/inventory/review-campaign");
-  };
-
-  const data = {
-    image: "../../Rectangle 8765 (3).png",
-    name: "Butter Croissant",
-  };
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <p className="text-2xl font-bold">Promote Product</p>
-        <div
-          className="flex items-center px-6 h-12"
-          style={{
-            backgroundColor: "#FFFFFF",
-            width: "20rem",
-            borderRadius: "12px",
-            color: "#8BA3CB",
-          }}
-        >
-          <img src="../../image 2 (3).svg" alt="search" className="w-6 h-6" />
-          <input
-            type="text"
-            className="border-none w-48 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
-            placeholder="Search"
-          />
-        </div>
+      <div className=" mb-6">
+        <p className="text-2xl font-bold">Set Up New Campaign</p>
       </div>
       <div className="loyalty-form-container">
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">
-            Select Type Of Campaign You Have To Run{" "}
+            Select type of Campaign You Have To Run{" "}
           </p>
           <select
             id="countries"
@@ -50,9 +25,17 @@ const Promote = () => {
           </select>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Image </p>
-          <div className="image-shadow w-fit">
-            <InventoryCard data={data} />
+          <p className="text-lg font-semibold pb-2">Upload Coupon Image</p>
+          <div className="input-loyalty2">
+            <label
+              for="dropzone-file"
+              className="flex justify-end bg-white  shadow rounded-md w-full "
+            >
+              <div className="upload-file">
+                <p className="text-sm">UPLOAD</p>
+              </div>
+              <input id="dropzone-file" type="file" className="hidden" />
+            </label>
           </div>
         </div>
         <div className="mt-4">
@@ -60,7 +43,7 @@ const Promote = () => {
           <input type="text" className="input-loyalty2" value="50%" />
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Add Expiration date</p>
+          <p className="text-lg font-semibold pb-2">Add Expiration Date</p>
           <input type="text" className="input-loyalty2" value="01-01-2024" />
         </div>
         <div className="mt-4">
@@ -80,7 +63,7 @@ const Promote = () => {
           </select>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Choose Type Of Customers</p>
+          <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
           <select
             id="countries"
             // value={selectedOption}
@@ -91,7 +74,10 @@ const Promote = () => {
               className="font-semibold"
               value="Select specific product attached to Coupon ( Burger)"
             >
-              <p className="">Active</p>
+              <p className="flex items-center gap-3">
+                Active
+                <span className="live-dots"></span>
+              </p>
             </option>
           </select>
         </div>
@@ -126,7 +112,7 @@ const Promote = () => {
           <button
             className="loyalty-button2"
             onClick={() => {
-              navigate("/inventory");
+              navigate("/marketing");
             }}
           >
             Back
@@ -135,7 +121,7 @@ const Promote = () => {
             className="loyalty-button1"
             style={{ width: "150px" }}
             onClick={() => {
-              navigate("/inventory/review-campaign");
+              navigate("/marketing/review-campaign");
             }}
           >
             Next
@@ -146,4 +132,4 @@ const Promote = () => {
   );
 };
 
-export default Promote;
+export default NewCampaign;
