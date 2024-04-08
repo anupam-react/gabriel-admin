@@ -44,8 +44,12 @@ import NewCampaign from "./components/Marketing/NewCampaign.jsx";
 import MarketingReviewCampaign from "./components/Marketing/MarketingReviewCampaign.jsx";
 import MarktingAdPreview from "./components/Marketing/MarktingAdPreview.jsx";
 import MarketingEdit from "./components/Marketing/MarketingEdit";
-// import MarketingEdit1 from "./components/Marketing/MarketingEdit1.jsx";
+import MarketingEdit1 from "./components/Marketing/MarketingEdit1.jsx";
 import MarketingEdit2 from "./components/Marketing/MarketingEdit2.jsx";
+import ShopAdPreview from "./components/Marketing/ShopAdPreview.jsx";
+// import Setting from "./components/Setting/index.jsx";
+// import Notifications from "./components/Setting/Notifications.jsx";
+// import ReportSetting from "./components/Setting/ReportSetting.jsx";
 
 function App() {
   return (
@@ -131,14 +135,14 @@ function App() {
             path="/marketing/offer-view"
             element={<ViewProduct isOfferCard={true} />}
           />
-          {/* <Route
+          <Route
             path="/marketing/offer-view-past"
             element={<ViewProduct isOfferCard={true} isPast={true} />}
           />
           <Route
             path="/marketing/view-past"
             element={<ViewProduct isOfferCard={false} isPast={true} />}
-          /> */}
+          />
           <Route path="/marketing/newCampaign" element={<NewCampaign />} />
           <Route
             path="/marketing/review-campaign"
@@ -151,14 +155,22 @@ function App() {
           />
           <Route path="/marketing/payment" element={<Payment />} />
           <Route path="/marketing/edit-marketing" element={<MarketingEdit />} />
-          {/* <Route
+          <Route
             path="/marketing/edit-followers-marketing"
             element={<MarketingEdit1 />}
-          /> */}
+          />
           <Route
             path="/marketing/edit-shop-marketing"
             element={<MarketingEdit2 />}
           />
+          <Route path="/marketing/shop-ad" element={<ShopAdPreview />} />
+          <Route
+            path="/marketing/shop-campaign"
+            element={<ShopAdPreview isPay={true} />}
+          />
+          {/* <Route path="/setting" element={<Setting />} />
+          <Route path="/setting/notifications" element={<Notifications />} />
+          <Route path="/setting/report" element={<ReportSetting />} /> */}
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
