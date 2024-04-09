@@ -31,7 +31,10 @@ const Profile = ({ closeDrawer, open }) => {
           {/* <hr className="bg-[#00000099] w-full" /> */}
         </div>
         <div className="flex flex-col items-center gap-6">
-          <div className="flex gap-6 cursor-pointer">
+          <div
+            className="flex gap-6 cursor-pointer"
+            onClick={() => navigate("/account")}
+          >
             <img src="./Mask group (4).png" alt="" className="w-6 h-6" />
             <p className=" text-[#000000B2]">Manage Account</p>
           </div>
@@ -42,7 +45,10 @@ const Profile = ({ closeDrawer, open }) => {
             <img src="./Mask group (5).png" alt="" className="w-6 h-6" />
             <p className=" text-[#000000B2]">Change Settings</p>
           </div>
-          <div className="flex gap-6 cursor-pointer">
+          <div
+            className="flex gap-6 cursor-pointer"
+            onClick={() => navigate("/support")}
+          >
             <img src="./Mask group (6).png" alt="" className="w-6 h-6" />
             <p className=" text-[#000000B2]">Support & Help</p>
           </div>

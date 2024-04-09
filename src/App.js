@@ -47,9 +47,12 @@ import MarketingEdit from "./components/Marketing/MarketingEdit";
 import MarketingEdit1 from "./components/Marketing/MarketingEdit1.jsx";
 import MarketingEdit2 from "./components/Marketing/MarketingEdit2.jsx";
 import ShopAdPreview from "./components/Marketing/ShopAdPreview.jsx";
-// import Setting from "./components/Setting/index.jsx";
-// import Notifications from "./components/Setting/Notifications.jsx";
-// import ReportSetting from "./components/Setting/ReportSetting.jsx";
+import Setting from "./components/Setting/index.jsx";
+import Notifications from "./components/Setting/Notifications.jsx";
+import ReportSetting from "./components/Setting/ReportSetting.jsx";
+// import Support from "./components/Setting/Support.jsx";
+import Account from "./components/Setting/Account.jsx";
+// import HeatMaps from "./components/HeatMaps";
 
 function App() {
   return (
@@ -168,9 +171,12 @@ function App() {
             path="/marketing/shop-campaign"
             element={<ShopAdPreview isPay={true} />}
           />
-          {/* <Route path="/setting" element={<Setting />} />
+          <Route path="/setting" element={<Setting />} />
           <Route path="/setting/notifications" element={<Notifications />} />
-          <Route path="/setting/report" element={<ReportSetting />} /> */}
+          <Route path="/setting/report" element={<ReportSetting />} />
+          {/* <Route path="/support" element={<Support />} /> */}
+          <Route path="/account" element={<Account />} />
+          {/* <Route path="/heatmap" element={<HeatMaps />} /> */}
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
