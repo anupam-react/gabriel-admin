@@ -10,6 +10,7 @@ const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
+  const [isActive, setActive] = useState(false);
   let PageSize = 3;
   const data = [
     {
@@ -107,10 +108,27 @@ const PaginatedTable = () => {
                 </td>
                 <td>DD/MM/YYYY</td>
                 <td>
-                  <div className="campaign">
+                  <div className="campaign relative">
                     <img src="./Ellipse 2.png" alt="" />
                     <p>Marketing Campaign</p>
-                    <img src="./Mask group (9).png" alt="" />
+                    <img
+                      src="./Mask group (9).png"
+                      alt=""
+                      className="cursor-pointer"
+                      onClick={() => setActive(!isActive)}
+                    />
+                    {isActive && (
+                      <div className="action-main2">
+                        <div className="flex items-center gap-6">
+                          <img src="./image 119 (4).png" alt="" />
+                          <p>View Details</p>
+                        </div>
+                        <div className="flex items-center gap-6">
+                          <img src="./image 118.png" alt="" />
+                          <p className="text-[#FC0005]">Delete</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </td>
               </tr>

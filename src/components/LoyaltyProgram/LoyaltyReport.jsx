@@ -2,8 +2,10 @@ import React from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select from "../common/Select";
+import { useNavigate } from "react-router-dom";
 
 const LoyaltyReport = ({ open, setOpen, handleOpen }) => {
+  const navigate = useNavigate();
   const reportData = [
     { title: "Total Reedeemed Stamp Vouchers" },
     { title: "Total Reedeemed POINT Vouchers" },
@@ -23,6 +25,7 @@ const LoyaltyReport = ({ open, setOpen, handleOpen }) => {
                   src="./Mask group (7).png"
                   alt=""
                   className="w-6 h-6 cursor-pointer"
+                  onClick={() => navigate("/setting/report")}
                 />
                 <div onClick={() => setOpen(false)}>
                   <img
@@ -38,7 +41,12 @@ const LoyaltyReport = ({ open, setOpen, handleOpen }) => {
               Select the Sections which you want to include in the Report
             </p>
             <label className="containerLogin font-semibold">
-            Match <span className="px-2 text-[#000000B2]"> the Date Range in all </span>   Selected Sections
+              Match{" "}
+              <span className="px-2 text-[#000000B2]">
+                {" "}
+                the Date Range in all{" "}
+              </span>{" "}
+              Selected Sections
               <input
                 type="checkbox"
                 // checked={isChecked}

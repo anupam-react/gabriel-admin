@@ -2,9 +2,14 @@ import React, { useMemo, useState } from "react";
 import Pagination from "../common/Pagination";
 import FeedBackFilter from "./FeedBackFilter";
 import CustomerFeedBack from "./CustomerFeedBack";
+import MenuCard from "../customerInfo/MenuCard";
+import { DialogDefault } from "../common/DilogBox";
+import CustomeInfo from "../customerInfo/CustomeInfo";
 
 const FeedBack = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setOpenMenu] = useState(false);
+  const [isOpenInfo, setOpenInfo] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -71,20 +76,20 @@ const FeedBack = () => {
                             src="./solar_menu-dots-bold (1).png"
                             alt=""
                             className="absolute top-1 right-1 cursor-pointer"
-                            // onClick={() => setOpenMenu(!isOpenMenu)}
+                            onClick={() => setOpenMenu(!isOpenMenu)}
                           />
                         </div>
                         <p
                           className="profileId font-semibold"
-                          //   onClick={() => setOpenInfo(true)}
+                          onClick={() => setOpenInfo(true)}
                         >
                           ID:MC12345
                         </p>
-                        {/* {isOpenMenu && (
+                        {isOpenMenu && (
                           <div className="menu-Main">
                             <MenuCard />
                           </div>
-                        )} */}
+                        )}
                       </div>
                     </td>
                     <td>
@@ -129,6 +134,9 @@ const FeedBack = () => {
       />
       {isOpen && <FeedBackFilter closeDrawer={closeDrawer} open={isOpen} />}
       <CustomerFeedBack open={open} setOpen={setOpen} handleOpen={handleOpen} />
+      <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
+        <CustomeInfo handleOpen={setOpenInfo} />
+      </DialogDefault>
     </div>
   );
 };

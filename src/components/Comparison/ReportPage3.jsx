@@ -2,8 +2,10 @@ import React from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select from "../common/Select";
+import { useNavigate } from "react-router-dom";
 
 const ReportPage3 = ({ open, setOpen, handleOpen }) => {
+  const navigate = useNavigate();
   const reportData = [
     { title: "Sales Report over time" },
     { title: "ROAS vs Campaign Performance Report" },
@@ -23,6 +25,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
                   src="./Mask group (7).png"
                   alt=""
                   className="w-6 h-6 cursor-pointer"
+                  onClick={() => navigate("/setting/report")}
                 />
                 <div onClick={() => setOpen(false)}>
                   <img

@@ -2,8 +2,10 @@ import React from "react";
 import "./index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select from "../common/Select";
+import { useNavigate } from "react-router-dom";
 
 const ReportPage = ({ open, setOpen, handleOpen }) => {
+  const navigate = useNavigate();
   const reportData = [
     { title: "Total Sales Volume" },
     { title: "Transaction Count" },
@@ -17,7 +19,7 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
         <div>
           <div className="p-8 rounded-md text-black bg-[#F5F5F5] h-[70vh] overflow-auto">
             <div className="flex justify-between">
-              <p className="font-semibold text-black text-2xl">
+              <p className="font-semibold text-black text-xl">
                 Generate Analytics Report
               </p>
               <div className="flex gap-4">
@@ -25,6 +27,7 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
                   src="./Mask group (7).png"
                   alt=""
                   className="w-6 h-6 cursor-pointer"
+                  onClick={() => navigate("/setting/report")}
                 />
                 <div onClick={() => setOpen(false)}>
                   <img
@@ -36,11 +39,16 @@ const ReportPage = ({ open, setOpen, handleOpen }) => {
               </div>
             </div>
             <hr className="bg-[#00000099] w-full my-6" />
-            <p className="font-[600] text-xl">
+            <p className="font-[600] text-lg">
               Select the Sections which you want to include in the Report
             </p>
             <label className="containerLogin font-semibold">
-            Match <span className="px-2 text-[#000000B2]"> the Date Range in all </span>   Selected Sections
+              Match{" "}
+              <span className="px-2 text-[#000000B2]">
+                {" "}
+                the Date Range in all{" "}
+              </span>{" "}
+              Selected Sections
               <input
                 type="checkbox"
                 // checked={isChecked}

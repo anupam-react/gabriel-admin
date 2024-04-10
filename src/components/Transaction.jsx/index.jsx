@@ -7,9 +7,11 @@ import Select from "../common/Select";
 import LoyalityCard from "./LoyalityCard";
 import { LineChart } from "./LineChart";
 import ReportPage from "./ReportPage";
+
 const Transaction = () => {
   const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
+  const handleOpen = () => setOpen(!open);
+
   const transactionData = [
     {
       title: "TOTAL SALES VOLUME",
@@ -57,7 +59,7 @@ const Transaction = () => {
           />
         </div>
         <div className="flex">
-          <button className="export flex gap-2" onClick={()=> setOpen(true)}>
+          <button className="export flex gap-2" onClick={() => setOpen(true)}>
             <img src="./Mask group (7).svg" alt="" className="w-5 h-5" />
             <p>REPORT</p>
           </button>

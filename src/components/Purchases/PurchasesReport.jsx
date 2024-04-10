@@ -2,8 +2,10 @@ import React from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select from "../common/Select";
+import { useNavigate } from "react-router-dom";
 
 const PurchasesReport = ({ open, setOpen, handleOpen }) => {
+  const navigate = useNavigate();
   const reportData = [
     { title: "Generate Report of In-app purchase receipt" },
     { title: "Generate Report of  In-Store purchase receipt" },
@@ -22,6 +24,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
                   src="./Mask group (7).png"
                   alt=""
                   className="w-6 h-6 cursor-pointer"
+                  onClick={() => navigate("/setting/report")}
                 />
                 <div onClick={() => setOpen(false)}>
                   <img

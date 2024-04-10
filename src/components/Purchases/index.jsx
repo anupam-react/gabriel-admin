@@ -4,7 +4,7 @@ import PurchaseTable1 from "./PurchaseTable1";
 import PurchaseTable2 from "./PurchaseTable2";
 import PurchasesReport from "./PurchasesReport";
 import PromoFilter from "../PromoCode/PromoFilter";
-
+import "./index.scss";
 const Purchases = () => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -52,15 +52,15 @@ const Purchases = () => {
           </button>
         </div>
       </div>
-      <div className="layality-buttons">
+      <div className="purchases-buttons">
         <button
-          className={`${activeLink === 0 ? "activeButton" : ""}`}
+          className={`${activeLink === 0 ? "activeButton" : "inActitive"}`}
           onClick={() => handleLinkClick(0)}
         >
           In-App Purchases
         </button>
         <button
-          className={`${activeLink === 1 ? "activeButton" : ""}`}
+          className={`${activeLink === 1 ? "activeButton" : "inActitive"}`}
           onClick={() => handleLinkClick(1)}
         >
           In-Store Purchases
