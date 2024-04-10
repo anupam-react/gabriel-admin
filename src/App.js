@@ -50,9 +50,9 @@ import ShopAdPreview from "./components/Marketing/ShopAdPreview.jsx";
 import Setting from "./components/Setting/index.jsx";
 import Notifications from "./components/Setting/Notifications.jsx";
 import ReportSetting from "./components/Setting/ReportSetting.jsx";
-// import Support from "./components/Setting/Support.jsx";
+import Support from "./components/Setting/Support.jsx";
 import Account from "./components/Setting/Account.jsx";
-// import HeatMaps from "./components/HeatMaps";
+import HeatMaps from "./components/HeatMaps";
 
 function App() {
   return (
@@ -174,9 +174,9 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/setting/notifications" element={<Notifications />} />
           <Route path="/setting/report" element={<ReportSetting />} />
-          {/* <Route path="/support" element={<Support />} /> */}
+          <Route path="/support" element={<Support />} />
           <Route path="/account" element={<Account />} />
-          {/* <Route path="/heatmap" element={<HeatMaps />} /> */}
+          <Route path="/heatmap" element={<HeatMaps />} />
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
