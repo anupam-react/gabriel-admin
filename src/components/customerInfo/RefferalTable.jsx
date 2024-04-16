@@ -46,7 +46,7 @@ const RefferalTable = () => {
                 className="menuButton4"
                 onClick={() => setOpenAward(true)}
               >
-                Award Free Bonus
+                Send Referal Reward
               </button>
               <DialogDefault open={openAward} handleOpen={setOpenAward}>
                 <Referral handleOpen={setOpenAward} />

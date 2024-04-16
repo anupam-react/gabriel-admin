@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import Pagination from "../common/Pagination";
 import "./index.scss";
 import PromoFilter from "./PromoFilter";
@@ -7,12 +7,14 @@ import MegaSale from "./MegaSale";
 const PromoCode = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isActive, setActive] = useState(false);
-  const [isInactive, setInactive] = useState(false);
+  const [isActive, setActive] = useState(-1);
+  const [isInactive, setInactive] = useState(-1);
   const [openReactive, setOpenReactive] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const handleReOpen = () => setOpenReactive(!open);
+  const divRef = useRef(null);
+  const divRef2 = useRef(null);
   let PageSize = 3;
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const closeDrawer = () => setIsOpen(false);
@@ -22,6 +24,41 @@ const PromoCode = () => {
     const lastPageIndex = firstPageIndex + PageSize;
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setInactive(-1);
+      }
+    };
+
+    if (isInactive !== -1) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isInactive]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef2.current && !divRef2.current.contains(event.target)) {
+        setActive(-1);
+      }
+    };
+
+    if (isActive !== -1) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isActive]);
 
   return (
     <div>
@@ -75,7 +112,7 @@ const PromoCode = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item) => {
+            {currentTableData.map((item, i) => {
               return (
                 <>
                   <tr>
@@ -105,10 +142,10 @@ const PromoCode = () => {
                         <img
                           src="./Mask group (9).png"
                           alt=""
-                          onClick={() => setActive(!isActive)}
+                          onClick={() => setActive(i)}
                         />
-                        {isActive && (
-                          <div className="action-main">
+                        {isActive === i && (
+                          <div className="action-main" ref={divRef2}>
                             <div className="flex items-center gap-6">
                               <img src="./image 119 (2).png" alt="" />
                               <p>De-Activate</p>
@@ -149,10 +186,10 @@ const PromoCode = () => {
                         <img
                           src="./Mask group (9).png"
                           alt=""
-                          onClick={() => setInactive(!isInactive)}
+                          onClick={() => setInactive(i)}
                         />
-                        {isInactive && (
-                          <div className="action-main">
+                        {isInactive === i && (
+                          <div className="action-main" ref={divRef}>
                             <div
                               className="flex items-center gap-6 cursor-pointer"
                               onClick={() => {

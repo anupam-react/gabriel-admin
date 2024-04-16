@@ -10,7 +10,8 @@ const PaginatedTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = useState(-1);
+
   let PageSize = 3;
   const data = [
     {
@@ -59,17 +60,22 @@ const PaginatedTable = () => {
   const divRef = useRef();
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (divRef.current && !divRef.current.contains(event.target)) {
-        setOpenMenu(false);
+        setActive(-1);
       }
+    };
+
+    if (isActive !== -1) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isActive]);
 
   return (
     <>
@@ -82,7 +88,7 @@ const PaginatedTable = () => {
           </tr>
         </thead>
         <tbody>
-          {currentTableData.map((item) => {
+          {currentTableData.map((item, i) => {
             return (
               <tr>
                 <td>
@@ -115,10 +121,10 @@ const PaginatedTable = () => {
                       src="./Mask group (9).png"
                       alt=""
                       className="cursor-pointer"
-                      onClick={() => setActive(!isActive)}
+                      onClick={() => setActive(i)}
                     />
-                    {isActive && (
-                      <div className="action-main2">
+                    {isActive === i && (
+                      <div className="action-main2 shadow z-[999]" ref={divRef}>
                         <div className="flex items-center gap-6">
                           <img src="./image 119 (4).png" alt="" />
                           <p>View Details</p>

@@ -18,16 +18,16 @@ import Verification from "./Verification";
 import OffersTable from "./OffersTable";
 import ReturnForm from "./ReturnForm";
 const CustomeInfo = ({ handleOpen }) => {
-  const [openLoyality , setOpenLoyality] = useState(false)
-  const [openDemographic , setOpenDemographic] = useState(false)
-  const [openEngagement , setOpenEngagement] = useState(false)
-  const [openPromotions , setOpenPromotions] = useState(false)
-  const [openReferral , setOpenReferral] = useState(false)
-  const [openTransaction , setOpenTransaction] = useState(false)
-  const [openBookmark , setOpenBookmark] = useState(false)
-  const [openVerification, setOpenVerification] = useState(false)
-  const [openOffer , setOpenOffer ] = useState(false)
-  const [openReturn , setOpenReturn ] = useState(false)
+  const [openLoyality, setOpenLoyality] = useState(false);
+  const [openDemographic, setOpenDemographic] = useState(false);
+  const [openEngagement, setOpenEngagement] = useState(false);
+  const [openPromotions, setOpenPromotions] = useState(false);
+  const [openReferral, setOpenReferral] = useState(false);
+  const [openTransaction, setOpenTransaction] = useState(false);
+  const [openBookmark, setOpenBookmark] = useState(false);
+  const [openVerification, setOpenVerification] = useState(false);
+  const [openOffer, setOpenOffer] = useState(false);
+  const [openReturn, setOpenReturn] = useState(false);
   const statisticData = [
     {
       title: "Average Spend",
@@ -59,17 +59,53 @@ This metric is crucial for understanding revenue contributions per customer.`,
     {
       image: "./carbon_user-avatar-filled (1).png",
       title: "CUSTOMER DEMOGRAPHIC",
-      openHandler:()=>setOpenDemographic(true)
+      openHandler: () => setOpenDemographic(true),
     },
-    { image: "./Ellipse 3.png", title: "CUSTOMER LOYALITY PROGRAM" , openHandler:()=>setOpenLoyality(true) },
-    { image: "./Ellipse 4.png", title: "Customer Engagement Metrics " ,  openHandler:()=>setOpenEngagement(true) },
-    { image: "./Ellipse 4 (1).png", title: "Participation in Promotions", openHandler:()=>setOpenPromotions(true) },
-    { image: "./Ellipse 3 (1).png", title: "REFERRAL ACTIVITY", openHandler:()=>setOpenReferral(true) },
-    { image: "./Ellipse 3 (2).png", title: "Customer Transaction History" , openHandler:()=>setOpenTransaction(true)},
-    { image: "./Ellipse 3 (3).png", title: "Book Marks" , openHandler:()=>setOpenBookmark(true)},
-    { image: "./Ellipse 3 (4).png", title: "Student Verification" , openHandler:()=>setOpenVerification(true) },
-    { image: "./Ellipse 3 (5).png", title: "Offers", openHandler:()=>setOpenOffer(true) },
-    { image: "./Ellipse 3 (6).png", title: "Returns and Exchange", openHandler:()=>setOpenReturn(true) },
+    {
+      image: "./Ellipse 3.png",
+      title: "CUSTOMER LOYALITY PROGRAM",
+      openHandler: () => setOpenLoyality(true),
+    },
+    {
+      image: "./Ellipse 4.png",
+      title: "Customer Engagement Metrics ",
+      openHandler: () => setOpenEngagement(true),
+    },
+    {
+      image: "./Ellipse 4 (1).png",
+      title: "Participation in Promotions",
+      openHandler: () => setOpenPromotions(true),
+    },
+    {
+      image: "./Ellipse 3 (1).png",
+      title: "REFERRAL ACTIVITY",
+      openHandler: () => setOpenReferral(true),
+    },
+    {
+      image: "./Ellipse 3 (2).png",
+      title: "Customer Transaction History",
+      openHandler: () => setOpenTransaction(true),
+    },
+    {
+      image: "./Ellipse 3 (3).png",
+      title: "Book Marks",
+      openHandler: () => setOpenBookmark(true),
+    },
+    {
+      image: "./Ellipse 3 (4).png",
+      title: "Student Verification",
+      openHandler: () => setOpenVerification(true),
+    },
+    {
+      image: "./Ellipse 3 (5).png",
+      title: "Offers",
+      openHandler: () => setOpenOffer(true),
+    },
+    {
+      image: "./Ellipse 3 (6).png",
+      title: "Returns and Exchange",
+      openHandler: () => setOpenReturn(true),
+    },
   ];
   return (
     <div className="info-container">
@@ -92,18 +128,18 @@ This metric is crucial for understanding revenue contributions per customer.`,
         <p className="text-2xl font-[600] pb-4" style={{ color: "black" }}>
           Statistics
         </p>
-        <div className="flex gap-6">
+        <div className="flex gap-10">
           {statisticData?.map((data, i) => (
             <InfoCard data={data} />
           ))}
         </div>
       </div>
-      <div className="pt-4 flex gap-4">
+      <div className="pt-4 flex justify-between gap-6">
         <div>
           <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
             Points System
           </p>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col">
             <InfoCard
               data={{
                 title: "Total  Points Earned",
@@ -199,7 +235,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
         {data?.map((d, i) => (
           <div className="status-info" key={i} onClick={d?.openHandler}>
             <img src={d?.image} alt="" />
-            <p>{d?.title}</p>
+            <p className="uppercase">{d?.title}</p>
           </div>
         ))}
       </div>
@@ -248,59 +284,66 @@ This metric is crucial for understanding revenue contributions per customer.`,
             Basket Analysis
           </p>
           <div className="basket-container">
-          <div style={{display:"flex" , gap:"10px" , alignItems:"center"}}>
-            <img src="./image 705.png" alt="" />
-            <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-              Lorem Ipsum
-            </p>
-          </div>
             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <p style={{color:"#FEA82F", fontSize:"18px" , fontWeight:"bold"}}>+</p>
               <img src="./image 705.png" alt="" />
-            <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-             Lorem Ipsum
-            </p>
-          </div>
+              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
+                Lorem Ipsum
+              </p>
+            </div>
             <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-               <p style={{color:"#FEA82F", fontSize:"18px"}}>+</p>
-            <img src="./image 705.png" alt="" />
-            <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-            Lorem Ipsum
-            </p>
-          </div>
-
+              <p
+                style={{
+                  color: "#FEA82F",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                +
+              </p>
+              <img src="./image 705.png" alt="" />
+              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
+                Lorem Ipsum
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <p style={{ color: "#FEA82F", fontSize: "18px" }}>+</p>
+              <img src="./image 705.png" alt="" />
+              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
+                Lorem Ipsum
+              </p>
+            </div>
           </div>
         </div>
       </div>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-          <Demographic handleOpen={setOpenDemographic}/>
+        <Demographic handleOpen={setOpenDemographic} />
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-          <Loyality handleOpen={setOpenLoyality}/>
+        <Loyality handleOpen={setOpenLoyality} />
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
-          <Engagement handleOpen={setOpenEngagement}/>
+        <Engagement handleOpen={setOpenEngagement} />
       </DialogDefault>
       <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
-          <Promotions handleOpen={setOpenPromotions}/>
+        <Promotions handleOpen={setOpenPromotions} />
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-          <RefferalActivity handleOpen={setOpenReferral}/>
+        <RefferalActivity handleOpen={setOpenReferral} />
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-          <TransactionHistory handleOpen={setOpenTransaction}/>
+        <TransactionHistory handleOpen={setOpenTransaction} />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-          <BookMark handleOpen={setOpenBookmark}/>
+        <BookMark handleOpen={setOpenBookmark} />
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
-          <Verification handleOpen={setOpenVerification}/>
+        <Verification handleOpen={setOpenVerification} />
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-          <OffersTable handleOpen={setOpenOffer}/>
+        <OffersTable handleOpen={setOpenOffer} />
       </DialogDefault>
       <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
-          <ReturnForm handleOpen={setOpenReturn}/>
+        <ReturnForm handleOpen={setOpenReturn} />
       </DialogDefault>
     </div>
   );

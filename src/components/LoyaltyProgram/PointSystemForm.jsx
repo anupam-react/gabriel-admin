@@ -12,7 +12,7 @@ const PointSystemForm = ({ isReview = false }) => {
       </p>
       <div className="loyalty-form-container">
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Item Bought</p>
+          <p className="text-lg font-semibold pb-2">Choose Product Category</p>
           <select
             id="countries"
             // value={selectedOption}

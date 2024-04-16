@@ -171,15 +171,21 @@ const RegisterForm1 = ({
                 id="countries"
                 className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                <option disabled selected>Categories</option>
+                <option disabled selected>
+                  Categories
+                </option>
                 {categoryOptions?.map((data, i) => (
                   <>
-                    <option key={i} value={data?.value}>{data?.option}</option>
-                  </>  
+                    <option key={i} value={data?.value}>
+                      {data?.option}
+                    </option>
+                  </>
                 ))}
               </select>
             </div>
-            <p className="text-xl font-bold text-center">Select Sub-Categories</p>
+            <p className="text-xl font-bold text-center">
+              Select Sub-Categories
+            </p>
             <p className="text-sm text-center">
               Please provide the following Information to Continue!
             </p>
@@ -188,12 +194,19 @@ const RegisterForm1 = ({
                 id="countries"
                 className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                <option selected disabled>subcategories</option>
+                <option selected disabled>
+                  subcategories
+                </option>
                 {subCategoryOptions?.map((data, i) => (
                   <>
-                    <option className="font-semibold"  key={i} value={data?.value}>{data?.option}</option>
+                    <option
+                      className="font-semibold"
+                      key={i}
+                      value={data?.value}
+                    >
+                      {data?.option}
+                    </option>
                   </>
-                  
                 ))}
               </select>
             </div>
@@ -201,11 +214,19 @@ const RegisterForm1 = ({
         </form>
         <div className="flex justify-between items-center mt-6">
           <div className="flex justify-center">
-            <button className="sign-button" onClick={()=>navigate('/documents')}>CONTINUE</button>
+            <button
+              className="sign-button"
+              onClick={() => navigate("/documents")}
+            >
+              CONTINUE
+            </button>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer" onClick={()=>navigate('/')}>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
             <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-            <p className="text-sm cancel underline" >Cancel</p>
+            <p className="text-sm cancel underline">Cancel</p>
           </div>
         </div>
       </div>

@@ -1,22 +1,39 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import Pagination from "../common/Pagination";
 import "./index.scss";
 import ReceiptFilter from "./ReceiptFilter";
 const DigitalReceipt = () => {
   const [isOpen, setIsOpen] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [isOpenMenu , setMenuOpen] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isOpenMenu, setMenuOpen] = useState(-1);
+  const divRef = useRef(null);
   let PageSize = 5;
-  const data = [
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-    ];
-     const closeDrawer = () => setIsOpen(false);
+  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const closeDrawer = () => setIsOpen(false);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        setMenuOpen(-1);
+      }
+    };
+
+    if (isOpenMenu !== -1) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpenMenu]);
 
   return (
     <div>
@@ -61,32 +78,40 @@ const DigitalReceipt = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item) => {
+            {currentTableData.map((item, i) => {
               return (
                 <tr>
                   <td className="text-[#000000B2]">Lorem Ipsum Title</td>
-                  <td>DD/MM/YYYY <span className="text-[#0070BC]">(6:30 AM)</span></td>
-                      <td>
-                          <div className="flex items-center gap-6">
-                              <img src="./Ellipse 2 (1).png" alt="" />
-                              <p className="text-[#000000B2]">Lorem Ipsum</p>
-                          </div>
+                  <td>
+                    DD/MM/YYYY <span className="text-[#0070BC]">(6:30 AM)</span>
+                  </td>
+                  <td>
+                    <div className="flex justify-center items-center gap-6">
+                      <img src="./Ellipse 2 (1).png" alt="" />
+                      <p className="text-[#000000B2]">Lorem Ipsum</p>
+                    </div>
                   </td>
                   <td>PDF</td>
                   <td>11 Mb</td>
                   <td>
                     <div className="action">
-                              <img src="./Mask group (9).png" alt="" onClick={()=>setMenuOpen(!isOpenMenu)}/>
-                              {isOpenMenu && <div className="action-main">
-                                  <div className="flex gap-6">
-                                      <img src="./image 119.png" alt="" />
-                                      <p>View</p>
-                                  </div>
-                                  <div className="flex gap-6">
-                                      <img src="./image 674.png" alt="" />
-                                      <p>Download</p>
-                                  </div>
-                              </div>}
+                      <img
+                        src="./Mask group (9).png"
+                        alt=""
+                        onClick={() => setMenuOpen(i)}
+                      />
+                      {isOpenMenu === i && (
+                        <div className="action-main shadow" ref={divRef}>
+                          <div className="flex gap-6">
+                            <img src="./image 119.png" alt="" />
+                            <p>View</p>
+                          </div>
+                          <div className="flex gap-6">
+                            <img src="./image 674.png" alt="" />
+                            <p>Download</p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -101,8 +126,8 @@ const DigitalReceipt = () => {
         totalCount={data.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
-          />
-         {isOpen && <ReceiptFilter closeDrawer={closeDrawer} open={isOpen}/>}
+      />
+      {isOpen && <ReceiptFilter closeDrawer={closeDrawer} open={isOpen} />}
     </div>
   );
 };

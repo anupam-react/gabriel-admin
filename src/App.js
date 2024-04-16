@@ -53,6 +53,7 @@ import ReportSetting from "./components/Setting/ReportSetting.jsx";
 import Support from "./components/Setting/Support.jsx";
 import Account from "./components/Setting/Account.jsx";
 import HeatMaps from "./components/HeatMaps";
+import Initialpage from "./components/common/Initialpage.jsx";
 
 function App() {
   return (
@@ -178,7 +179,8 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/heatmap" element={<HeatMaps />} />
         </Route>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Initialpage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/documents" element={<Document />} />
         <Route path="/help" element={<Help />} />

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
+import { DialogDefault } from "../common/DilogBox";
+import HistoryDetails from "./HistoryDetails";
 
 const Engagement = ({ handleOpen }) => {
+  const [openTransaction, setOpenTransaction] = useState(false);
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -72,9 +75,13 @@ const Engagement = ({ handleOpen }) => {
         </thead>
         <tbody>
           <tr>
-            <td>
-              <div style={{ color: "#121212B2" }}>
-                <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+            <td className="">
+              <div className="-mt-[150px]" style={{ color: "#121212B2" }}>
+                <span
+                  style={{ color: "#0070BC", textDecoration: "underline" }}
+                  className="cursor-pointer"
+                  onClick={() => setOpenTransaction(true)}
+                >
                   4 visits
                 </span>{" "}
                 a month
@@ -84,56 +91,75 @@ const Engagement = ({ handleOpen }) => {
             </td>
             <td>
               <div style={{ color: "#121212B2" }}>
-                <span style={{ color: "#0070BC", textDecoration: "underline" }}>
+                <span
+                  style={{ color: "#0070BC", textDecoration: "underline" }}
+                  className="cursor-pointer"
+                  onClick={() => setOpenTransaction(true)}
+                >
                   4 visits
                 </span>{" "}
                 a month
                 <br />
                 Last visit : Today, 10:30 pm
               </div>
-              <div style={{ paddingTop: "20px" , display:"flex" , flexDirection:"column", gap:'10px' }}>
-                  <div style={{ color: "#121212B2" }}>
-                    (1): Café Nero, Manchester Spinning Fields,
-                    <br />
-                    M4 2AJ –{" "}
-                    <span
-                      style={{ color: "#0070BC", textDecoration: "underline" }}
-                    >
-                      2 visits
-                    </span>
-                    .<br />
-                    Last visit to a store: Today, 10:30
-                  </div>
-                  <div style={{ color: "#121212B2" }}>
-                    (2): Café Nero, Manchester Spinning Fields,
-                    <br />
-                    M4 2AJ –{" "}
-                    <span
-                      style={{ color: "#0070BC", textDecoration: "underline" }}
-                    >
-                      2 visits
-                    </span>
-                    .<br />
-                    Last visit to a store: Today, 10:30
-                  </div>
-                  <div style={{ color: "#121212B2" }}>
-                    (3): Café Nero, Manchester Spinning Fields,
-                    <br />
-                    M4 2AJ –{" "}
-                    <span
-                      style={{ color: "#0070BC", textDecoration: "underline" }}
-                    >
-                      2 visits
-                    </span>
-                    .<br />
-                    Last visit to a store: Today, 10:30
-                  </div>
-             
+              <div
+                style={{
+                  paddingTop: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                <div style={{ color: "#121212B2" }}>
+                  (1): Café Nero, Manchester Spinning Fields,
+                  <br />
+                  M4 2AJ –{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    className="cursor-pointer"
+                    onClick={() => setOpenTransaction(true)}
+                  >
+                    2 visits
+                  </span>
+                  .<br />
+                  Last visit to a store: Today, 10:30
+                </div>
+                <div style={{ color: "#121212B2" }}>
+                  (2): Café Nero, Manchester Spinning Fields,
+                  <br />
+                  M4 2AJ –{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    className="cursor-pointer"
+                    onClick={() => setOpenTransaction(true)}
+                  >
+                    2 visits
+                  </span>
+                  .<br />
+                  Last visit to a store: Today, 10:30
+                </div>
+                <div style={{ color: "#121212B2" }}>
+                  (3): Café Nero, Manchester Spinning Fields,
+                  <br />
+                  M4 2AJ –{" "}
+                  <span
+                    style={{ color: "#0070BC", textDecoration: "underline" }}
+                    className="cursor-pointer"
+                    onClick={() => setOpenTransaction(true)}
+                  >
+                    2 visits
+                  </span>
+                  .<br />
+                  Last visit to a store: Today, 10:30
+                </div>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+      <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
+        <HistoryDetails handleOpen={setOpenTransaction} />
+      </DialogDefault>
     </div>
   );
 };

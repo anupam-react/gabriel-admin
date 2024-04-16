@@ -54,7 +54,7 @@ const Demographic = ({ handleOpen }) => {
             <td>
               <div style={{ color: "#000000B2" }}>Student</div>
             </td>
-            <td>
+            <td className="flex justify-center items-center">
               <div className="buttonContainer2">
                 <button
                   className="button3"

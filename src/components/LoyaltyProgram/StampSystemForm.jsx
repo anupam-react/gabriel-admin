@@ -3,17 +3,18 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 
 const StampSystemForm = ({ isReview = false }) => {
-
   const navigate = useNavigate();
 
   return (
     <div>
       <p className="loyalty-form-header">
-        {!isReview ? " Attach Stamp System to your products" : "Stamp System Preview"}
+        {!isReview
+          ? " Attach Stamp System to your products"
+          : "Stamp System Preview"}
       </p>
       <div className="loyalty-form-container">
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Item Bought</p>
+          <p className="text-lg font-semibold pb-2">Choose Product Category</p>
           <select
             id="countries"
             // value={selectedOption}
@@ -51,15 +52,19 @@ const StampSystemForm = ({ isReview = false }) => {
             className="input-loyalty2"
           >
             <option className="font-semibold" value="custom">
-             5, 6, 7,8,9, 10  (In Dropdown)
+              5, 6, 7,8,9, 10 (In Dropdown)
             </option>
           </select>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">
-           Description
-          </p>
-          <textarea className="input-loyalty2" value="Buy 9 Drinks, Get the 10th one free" name="" id="" rows="3"></textarea>
+          <p className="text-lg font-semibold pb-2">Description</p>
+          <textarea
+            className="input-loyalty2"
+            value="Buy 9 Drinks, Get the 10th one free"
+            name=""
+            id=""
+            rows="3"
+          ></textarea>
         </div>
         <div className="loyalty-button-container">
           <button
@@ -84,7 +89,6 @@ const StampSystemForm = ({ isReview = false }) => {
           </button>
         </div>
       </div>
- 
     </div>
   );
 };

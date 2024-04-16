@@ -65,7 +65,7 @@ const Help = () => {
           </form>
           <div
             className="flex items-center justify-center gap-2 cursor-pointer mt-6"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
           >
             <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
             <p className="text-sm cancel underline">Go Back</p>

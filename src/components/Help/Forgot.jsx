@@ -1,20 +1,34 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import LinkSuccess from "./LinkSuccess";
 
 const Forgot = () => {
-    const navigate = useNavigate();
+  const [isSuccess, setIsSuccess] = useState(false);
+  const navigate = useNavigate();
+  const handleLink = () => {
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 3000);
+  };
   return (
-  <div className="flex justify-center items-center h-[100vh] w-full">
-      <div className="flex justify-center items-center h-[100%] w-full">
-        <div className="w-1/3 px-4 bg-white border border-gray-200 rounded shadow-xl sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-          <div className="flex flex-col items-center mb-10  gap-2">
-            <img src="./image 2 (2).svg" alt="" className="w-36 h-18 pb-4" />
-            <p className="font-bold text-2xl">Forgot Password</p>
-            <p className="text-gray-500 text-center">
-             Please  Enter your User ID here & we’ll email you a link
-to reset your password!
-            </p>
-          </div>
+    <>
+      {!isSuccess ? (
+        <div className="flex justify-center items-center h-[100vh] w-full">
+          <div className="flex justify-center items-center h-[100%] w-full">
+            <div className="w-1/3 px-4 bg-white border border-gray-200 rounded shadow-xl sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700">
+              <div className="flex flex-col items-center mb-10  gap-2">
+                <img
+                  src="./image 2 (2).svg"
+                  alt=""
+                  className="w-36 h-18 pb-4"
+                />
+                <p className="font-bold text-2xl">Forgot Password</p>
+                <p className="text-gray-500 text-center">
+                  Please Enter your User ID here & we’ll email you a link to
+                  reset your password!
+                </p>
+              </div>
               <div className="relative">
                 <img
                   src="./Mask group.svg"
@@ -32,19 +46,33 @@ to reset your password!
                   // value={password}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
-                  </div>
-                   <div className="flex justify-center pt-6">
-          <button className="sign-button" onClick={()=>navigate('/dashboard')}>SEND LINK</button>
-                  </div>
-                  <p className='text-center underline py-6 cursor-pointer' style={{color:"#0070BC"}}>Didn’t received any link?</p>
-          <div className="flex items-center justify-center gap-2 cursor-pointer mt-6" onClick={()=>navigate('/help')}>
-            <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-            <p className="text-sm cancel underline" >Go Back</p>
+              </div>
+              <div className="flex justify-center pt-6">
+                <button className="sign-button" onClick={handleLink}>
+                  SEND LINK
+                </button>
+              </div>
+              <p
+                className="text-center underline py-6 cursor-pointer"
+                style={{ color: "#0070BC" }}
+              >
+                Didn’t received any link?
+              </p>
+              <div
+                className="flex items-center justify-center gap-2 cursor-pointer mt-6"
+                onClick={() => navigate("/help")}
+              >
+                <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
+                <p className="text-sm cancel underline">Go Back</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
+      ) : (
+        <LinkSuccess />
+      )}
+    </>
+  );
+};
 
-export default Forgot
+export default Forgot;

@@ -43,30 +43,47 @@ const Promotions = ({ handleOpen }) => {
         </thead>
         <tbody>
           <tr>
-            <td>Participation</td>
-            <td>
+            <td style={{ width: "100px" }}>Participation</td>
+            <td style={{ textAlign: "left", paddingLeft: "50px" }}>
               30 Purchases made on discounts –{" "}
-              <span style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}>
+              <span
+                style={{
+                  color: "#0070BC",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
                 {" "}
                 See Transactions
               </span>
             </td>
           </tr>
           <tr>
-            <td>Coupons</td>
-            <td>
+            <td style={{ width: "100px" }}>Coupons</td>
+            <td style={{ textAlign: "left", paddingLeft: "50px" }}>
               Redeemed 30 Coupons –{" "}
-              <span style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}>
+              <span
+                style={{
+                  color: "#0070BC",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
                 {" "}
                 See Transactions
               </span>
             </td>
           </tr>
           <tr>
-            <td>Featured Deals</td>
+            <td style={{ width: "100px" }}>Featured Deals</td>
             <td>
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./image 711.png"
@@ -77,8 +94,12 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
-                    onClick={()=> setOpenHistory(true)}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -88,7 +109,12 @@ const Promotions = ({ handleOpen }) => {
               </div>
               <hr className="hr5" />
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./image 711.png"
@@ -99,8 +125,12 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
-                    onClick={()=> setOpenHistory(true)}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -111,10 +141,15 @@ const Promotions = ({ handleOpen }) => {
             </td>
           </tr>
           <tr>
-            <td>Make A Saving</td>
+            <td style={{ width: "100px" }}>Make A Saving</td>
             <td>
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./image 711 (1).png"
@@ -125,8 +160,12 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
-                    onClick={()=> setOpenHistory(true)}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -136,7 +175,12 @@ const Promotions = ({ handleOpen }) => {
               </div>
               <hr className="hr5" />
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./image 711 (1).png"
@@ -147,8 +191,12 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Viewed{" "}
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
-                    onClick={()=> setOpenHistory(true)}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setOpenHistory(true)}
                   >
                     30 times
                   </span>
@@ -159,10 +207,15 @@ const Promotions = ({ handleOpen }) => {
             </td>
           </tr>
           <tr>
-            <td>Buy 1 Get 1 Free Deal</td>
+            <td style={{ width: "100px" }}>Buy 1 Get 1 Free Deal</td>
             <td>
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./Group 38188.png"
@@ -173,7 +226,11 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Bought 2 times,
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline", cursor:"pointer" }}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                   >
                     see transactions
                   </span>
@@ -183,7 +240,12 @@ const Promotions = ({ handleOpen }) => {
               </div>
               <hr className="hr5" />
               <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginLeft: "40px",
+                }}
               >
                 <img
                   src="./Group 38188.png"
@@ -194,7 +256,11 @@ const Promotions = ({ handleOpen }) => {
                 <div>
                   Bought 2 times,
                   <span
-                    style={{ color: "#0070BC", textDecoration: "underline" , cursor:"pointer" }}
+                    style={{
+                      color: "#0070BC",
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    }}
                   >
                     see transactions
                   </span>

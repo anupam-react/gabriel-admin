@@ -57,19 +57,26 @@ const RefferalActivity = ({ handleOpen }) => {
               </div>
             </td>
             <td>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
-              >
+              <div className="flex justify-center items-center gap-6">
                 <div>
-                  <p style={{ color: "#000000", fontWeight: 600 }}>Donut</p>
+                  <p
+                    className="pb-2"
+                    style={{ color: "#000000", fontWeight: 600 }}
+                  >
+                    Donut
+                  </p>
                   <img
                     src="./image 713 (1).png"
                     alt=""
-                    style={{ cursor: "pointer", width: "180px" }}
-                      onClick={() => setOpenproduct(true)}
+                    style={{
+                      cursor: "pointer",
+                      width: "120px",
+                      height: "100px",
+                    }}
+                    onClick={() => setOpenproduct(true)}
                   />
                 </div>
-                <div>
+                <div className="mt-6">
                   09/12/2023,11:00 am <br />
                   <span
                     className="id-link"
@@ -82,21 +89,26 @@ const RefferalActivity = ({ handleOpen }) => {
               </div>
             </td>
             <td>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
-              >
+              <div className="flex justify-center items-center gap-6">
                 <div>
-                  <p style={{ color: "#000000", fontWeight: 600 }}>
+                  <p
+                    className="pb-2"
+                    style={{ color: "#000000", fontWeight: 600 }}
+                  >
                     Free Donut
                   </p>
                   <img
                     src="./image 713 (1).png"
                     alt=""
-                    style={{ cursor: "pointer", width: "180px" }}
-                      onClick={() => setOpenproduct(true)}
+                    style={{
+                      cursor: "pointer",
+                      width: "120px",
+                      height: "100px",
+                    }}
+                    onClick={() => setOpenproduct(true)}
                   />
                 </div>
-                <div>
+                <div className="mt-6">
                   <span style={{ color: "#FEA82F" }}>Unclaimed</span> <br />
                   09/12/2023,11:00 am
                 </div>
@@ -116,19 +128,26 @@ const RefferalActivity = ({ handleOpen }) => {
               </div>
             </td>
             <td>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
-              >
+              <div className="flex justify-center items-center gap-6">
                 <div>
-                  <p style={{ color: "#000000", fontWeight: 600 }}>Coffee</p>
+                  <p
+                    className="pb-2"
+                    style={{ color: "#000000", fontWeight: 600 }}
+                  >
+                    Coffee
+                  </p>
                   <img
                     src="./image 713 (2).png"
                     alt=""
-                    style={{ cursor: "pointer", width: "180px" }}
-                      onClick={() => setOpenproduct(true)}
+                    style={{
+                      cursor: "pointer",
+                      width: "120px",
+                      height: "100px",
+                    }}
+                    onClick={() => setOpenproduct(true)}
                   />
                 </div>
-                <div>
+                <div className="mt-6">
                   09/12/2023,11:00 am <br />
                   <span
                     className="id-link"
@@ -141,21 +160,26 @@ const RefferalActivity = ({ handleOpen }) => {
               </div>
             </td>
             <td>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "20px" }}
-              >
+              <div className="flex justify-center items-center gap-6">
                 <div>
-                  <p style={{ color: "#000000", fontWeight: 600 }}>
+                  <p
+                    className="pb-2"
+                    style={{ color: "#000000", fontWeight: 600 }}
+                  >
                     Free Coffee
                   </p>
                   <img
                     src="./image 713 (2).png"
                     alt=""
-                    style={{ cursor: "pointer", width: "180px" }}
-                      onClick={() => setOpenproduct(true)}
+                    style={{
+                      cursor: "pointer",
+                      width: "120px",
+                      height: "100px",
+                    }}
+                    onClick={() => setOpenproduct(true)}
                   />
                 </div>
-                <div>
+                <div className="mt-6">
                   <span style={{ color: "#3BB54A" }}>claimed</span> <br />
                   09/12/2023,11:00 am <br />
                   <span

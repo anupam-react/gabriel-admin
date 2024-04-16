@@ -60,6 +60,37 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                   <DatePickerComp2 />
                 </div>
               </div>
+              <div className="mt-4 mb-[60px]">
+                <p className="text-lg font-semibold pb-4">
+                  Size Range{" "}
+                  <span className="text-[#000000B2] text-[14px]">
+                    {" "}
+                    ( in Mb )
+                  </span>
+                </p>
+                <div class="relative mb-6">
+                  <label for="labels-range-input" className="sr-only">
+                    Labels range
+                  </label>
+                  {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
+                  <Slider color="blue" defaultValue={50} />
+                  <span className="text-sm text-[#000000] dark:text-gray-400 absolute start-0 -bottom-8">
+                    0
+                  </span>
+                  <span className="text-sm text-[#000000] dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    5 Mb
+                  </span>
+                  <span className="text-sm text-[#000000] dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    10Mb
+                  </span>
+                  <span className="text-sm text-[#000000] dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    20Mb
+                  </span>
+                  <span className="text-sm text-[#000000] dark:text-gray-400 absolute end-0 -bottom-8">
+                    +30Mb
+                  </span>
+                </div>
+              </div>
               <p className="joint-date">Document Type</p>
               <div className="checkbox-container">
                 <div className="checkbox-filter">
@@ -107,34 +138,7 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                   </label>
                 </div>
               </div>
-              <div className="mt-4">
-                <p className="text-lg font-semibold pb-4">
-                  Size Range{" "}
-                  <span className="text-[#000000B2]"> ( in Mb )</span>
-                </p>
-                <div class="relative mb-6">
-                  <label for="labels-range-input" className="sr-only">
-                    Labels range
-                  </label>
-                  {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
-                  <Slider color="blue" defaultValue={50} />
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
-                    0
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-                    5 Mb
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-                    10Mb
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-                    20Mb
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-                    +30Mb
-                  </span>
-                </div>
-              </div>
+
               <div className="mt-12">
                 <p className="text-lg font-semibold pb-4">Uploaded By</p>
                 <div className="flex items-center px-6 h-12 input-loyalty">
