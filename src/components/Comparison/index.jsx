@@ -57,14 +57,14 @@ const Comparison = () => {
           </div>
         </div>
       </div>
-      <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
+      <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-10">
         <div className="flex justify-between items-center w-full">
           <Select />
         </div>
         <p className="text-[#0070BC] font-semibold text-xl uppercase">
           Sales Comparison (Compare Sales)
         </p>
-        <div className="w-full">
+        <div className="w-[600px]">
           <BarChart3 />
         </div>
       </div>

@@ -3,6 +3,35 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 const NewCampaign = () => {
   const navigate = useNavigate();
+
+  const CampaignOptions = [
+    { label: "Percentage Discount", value: "Percentage Discount" },
+    { label: "Coupon", value: "Coupon" },
+    { label: "Create An Offer", value: "Create An Offer" },
+    { label: "Buy 1 Get 1 Free", value: "Buy 1 Get 1 Free" },
+    { label: "Featured Deals", value: "Featured Deals" },
+    { label: "Get More Followers", value: "Get More Followers" },
+    { label: "Get More Shop Visitors", value: "Get More Shop Visitors" },
+  ];
+  const useOptions = [
+    {
+      label: "Select specific product attached to Coupon ( Burger)",
+      value: "Select specific product attached to Coupon ( Burger)",
+    },
+    {
+      label:
+        "Select Product Categories To Apply Coupon(Burger, Coke, Dounts , Pizza",
+      value:
+        "Select Product Categories To Apply Coupon(Burger, Coke, Dounts , Pizza",
+    },
+  ];
+  const CustomerOptions = [
+    { label: "Active", value: "Active" },
+    { label: "New", value: "New" },
+    { label: "Slipping", value: "Slipping" },
+    { label: "Churn", value: "Churn" },
+    { label: "Specific Customer", value: "Specific Customer" },
+  ];
   return (
     <div>
       <div className=" mb-6">
@@ -19,9 +48,24 @@ const NewCampaign = () => {
             // onChange={handleChange}
             className="input-loyalty2"
           >
-            <option className="font-semibold" value="Percentage Dicount">
+            <option
+              className="font-semibold"
+              disabled
+              value="Percentage Dicount"
+            >
               Add Discount Value
             </option>
+            {CampaignOptions?.map((data, i) => (
+              <>
+                <option
+                  className="font-semibold text-black"
+                  key={i}
+                  value={data?.value}
+                >
+                  {data?.label}
+                </option>
+              </>
+            ))}
           </select>
         </div>
         <div className="mt-4">
@@ -54,12 +98,17 @@ const NewCampaign = () => {
             // onChange={handleChange}
             className="input-loyalty2"
           >
-            <option
-              className="font-semibold"
-              value="Select specific product attached to Coupon ( Burger)"
-            >
-              Select specific product attached to Coupon ( Burger)
-            </option>
+            {useOptions?.map((data, i) => (
+              <>
+                <option
+                  className="font-semibold text-black"
+                  key={i}
+                  value={data?.value}
+                >
+                  {data?.label}
+                </option>
+              </>
+            ))}
           </select>
         </div>
         <div className="mt-4">
@@ -70,15 +119,17 @@ const NewCampaign = () => {
             // onChange={handleChange}
             className="input-loyalty2"
           >
-            <option
-              className="font-semibold"
-              value="Select specific product attached to Coupon ( Burger)"
-            >
-              <p className="flex items-center gap-3">
-                Active
-                <span className="live-dots"></span>
-              </p>
-            </option>
+            {CustomerOptions?.map((data, i) => (
+              <>
+                <option
+                  className="font-semibold text-black"
+                  key={i}
+                  value={data?.value}
+                >
+                  {data?.label}
+                </option>
+              </>
+            ))}
           </select>
         </div>
         <div className="mt-4">

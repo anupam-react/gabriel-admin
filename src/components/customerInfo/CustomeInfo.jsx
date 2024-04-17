@@ -139,7 +139,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
             Points System
           </p>
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-4">
             <InfoCard
               data={{
                 title: "Total  Points Earned",

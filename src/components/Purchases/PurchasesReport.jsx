@@ -36,10 +36,10 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
               </div>
             </div>
             <hr className="bg-[#00000099] w-full my-6" />
-            <p className="font-[600] text-lg">
+            <p className="font-[600] text-[16px]">
               Select the Sections which you want to include in the Report
             </p>
-            <label className="containerLogin font-semibold">
+            <label className="containerLogin font-semibold text-[14px]">
               Match{" "}
               <span className="px-2 text-[#000000B2]">
                 {" "}

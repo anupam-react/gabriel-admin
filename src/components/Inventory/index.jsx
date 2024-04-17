@@ -4,9 +4,9 @@ import InventoryCard from "./InventoryCard";
 import InventoryFilter from "./InventoryFilter";
 import { useNavigate } from "react-router-dom";
 const Inventory = () => {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const closeDrawer = () => setIsOpen(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const data = [
     {
       image: "./Rectangle 8765 (3).png",
@@ -48,40 +48,50 @@ const Inventory = () => {
       price: "£115",
       name: "Salted Caramel Frozen coffee",
     },
-
   ];
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <p className="text-2xl font-bold">Inventory</p>
-        <div
-          className="flex items-center px-6 h-12"
-          style={{
-            backgroundColor: "#FFFFFF",
-            width: "20rem",
-            borderRadius: "12px",
-            color: "#8BA3CB",
-          }}
-        >
-          <img src="./image 2 (3).svg" alt="search" className="w-6 h-6" />
-          <input
-            type="text"
-            className="border-none w-48 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
-            placeholder="Search "
-          />
-        </div>
-        <div className="flex">
-          <button className="flex items-center gap-2"  onClick={() => setIsOpen(true)}>
-            <img src="./Mask group (8).png" alt="" className="w-5 h-5" />
-            <p className="text-[#0070BC] font-semibold">FILTERS</p>
-          </button>
+      <div className="flex justify-between  items-start gap-10">
+        <div className="flex justify-between items-center flex-1 gap-10">
+          <p className="text-2xl font-bold">Inventory</p>
+          <div
+            className="flex items-center px-6 h-12"
+            style={{
+              backgroundColor: "#FFFFFF",
+              width: "20rem",
+              borderRadius: "12px",
+              color: "#8BA3CB",
+            }}
+          >
+            <img src="./image 2 (3).svg" alt="search" className="w-6 h-6" />
+            <input
+              type="text"
+              className="border-none w-48 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
+              placeholder="Search "
+            />
+          </div>
+          <div className="flex">
+            <button
+              className="flex items-center gap-2"
+              onClick={() => setIsOpen(true)}
+            >
+              <img src="./Mask group (8).png" alt="" className="w-5 h-5" />
+              <p className="text-[#0070BC] font-semibold">FILTERS</p>
+            </button>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="inventory-button" onClick={()=>navigate('/inventory/add-product')}>
+          <div
+            className="inventory-button"
+            onClick={() => navigate("/inventory/add-product")}
+          >
             <img src="./Mask group (11).png" alt="" />
             <p>ADD PRODUCT</p>
           </div>
-          <div className="inventory-button" onClick={()=>navigate('/inventory/add-outlate')}>
+          <div
+            className="inventory-button"
+            onClick={() => navigate("/inventory/add-outlate")}
+          >
             <img src="./Mask group (11).png" alt="" />
             <p>ADD MORE OUTLETS</p>
           </div>
@@ -109,15 +119,12 @@ const Inventory = () => {
           </option>
         </select>
       </div>
-          <div className="card-main">
-              {
-                  data?.map((d, i) => (
-                      
-                      <InventoryCard data={d} />
-                  ))
-              }
-          </div>
-               {isOpen && <InventoryFilter closeDrawer={closeDrawer} open={isOpen}/>}
+      <div className="card-main">
+        {data?.map((d, i) => (
+          <InventoryCard data={d} />
+        ))}
+      </div>
+      {isOpen && <InventoryFilter closeDrawer={closeDrawer} open={isOpen} />}
     </div>
   );
 };

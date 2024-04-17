@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 const EditProduct2 = () => {
   const [openSuccess, setSuccess] = useState(false);
- 
+
   const navigate = useNavigate();
   const handleSubmit = () => {
     setSuccess(true);
     setTimeout(() => {
       setSuccess(false);
-      navigate('/inventory')
+      navigate("/inventory");
     }, 1000);
   };
   return (
@@ -43,18 +43,16 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Butter Croissant"
             />
-         
           </div>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Decription</p>
+          <p className="text-lg font-semibold pb-2">Product Description</p>
           <div className="flex gap-4">
             <input
               type="text"
               className="input-loyalty2"
               value="Butter Croissant"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -65,7 +63,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Nuts, Egg, Milk, Soya, Wheat etc"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -76,7 +73,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Small 364 Kcal, Medium 447 Kcal, Large 549 Kcal. Adults need around 2000 kcal per day"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -93,7 +89,6 @@ const EditProduct2 = () => {
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-         
           </div>
         </div>
         <div className="mt-4">
@@ -109,7 +104,6 @@ const EditProduct2 = () => {
                 Shopping
               </option>
             </select>
-         
           </div>
         </div>
         <div className="mt-4">
@@ -125,7 +119,6 @@ const EditProduct2 = () => {
                 Food & Beverages
               </option>
             </select>
-         
           </div>
         </div>
         <div className="mt-4">
@@ -136,14 +129,12 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter SKU or Choose N/A"
             />
-         
           </div>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Price</p>
           <div className="flex gap-4">
             <input type="text" className="input-loyalty2" value=" £50" />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -154,7 +145,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Quantity or Choose N/A, e.g30, 40 or N/A etc"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -165,14 +155,12 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Weight or Enter NA"
             />
-         
           </div>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Brand Name</p>
           <div className="flex gap-4">
             <input type="text" className="input-loyalty2" value="Dunkins" />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -183,7 +171,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Shipping information or choose N/A"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -194,7 +181,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Return Policy or Choose N/A"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -205,7 +191,6 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Product colour or choose N/A"
             />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -216,17 +201,15 @@ const EditProduct2 = () => {
               className="input-loyalty2"
               value="Enter Product Size or choose NA"
             />
-         
           </div>
         </div>
         <div className="mt-4">
           <div className="flex gap-1">
-            <p className="text-lg font-semibold pb-2" >Available Online </p>
+            <p className="text-lg font-semibold pb-2">Available Online </p>
             <p className="dots"></p>
           </div>
           <div className="flex gap-4">
             <input type="text" className="input-loyalty2" value="Yes/No" />
-         
           </div>
         </div>
         <div className="mt-4">
@@ -236,13 +219,11 @@ const EditProduct2 = () => {
           </div>
           <div className="flex gap-4">
             <input type="text" className="input-loyalty2" value="Yes/No" />
-         
           </div>
         </div>
         <div className="mt-4">
           <div className="flex gap-1">
             <p className="text-lg font-semibold pb-2">Search Keywords</p>
-          
           </div>
           <div className="flex">
             <textarea
@@ -254,8 +235,8 @@ const EditProduct2 = () => {
             />
           </div>
         </div>
-        
-           <div className="loyalty-button-container">
+
+        <div className="loyalty-button-container">
           <button
             className="loyalty-button2"
             onClick={() => {
@@ -277,11 +258,10 @@ const EditProduct2 = () => {
         <div className="alert">
           <img src="../Vector (2).png" alt="" />
           <p className="text-center text-lg">
-           Product successfully sent to customer Gift Folder'
+            Product successfully sent to customer Gift Folder'
           </p>
         </div>
       </DialogDefault>
-  
     </div>
   );
 };

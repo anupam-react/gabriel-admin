@@ -62,7 +62,7 @@ const PromoCode = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-6">
         <p className="text-2xl font-bold">Promo Code</p>
         <div
           className="flex items-center px-6 h-12"

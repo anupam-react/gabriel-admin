@@ -66,30 +66,30 @@ const PromoFilter = ({ closeDrawer, open }) => {
 
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Amount</p>
-                <div class="relative mb-6">
+                <div class="relative mb-10">
                   <label for="labels-range-input" className="sr-only">
                     Labels range
                   </label>
                   {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
                   <Slider color="blue" defaultValue={50} />
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-8">
                     0
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
                     £100
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
                     £500
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
                     £1,000
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute end-0 -bottom-8">
                     £5,000
                   </span>
                 </div>
               </div>
-              <div className="calender" style={{ marginTop: "40px" }}>
+              <div className="calender" style={{ marginTop: "60px" }}>
                 <div>
                   <p>Min.</p>
                   <DatePickerComp2 />

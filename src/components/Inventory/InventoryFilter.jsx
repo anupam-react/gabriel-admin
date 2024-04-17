@@ -69,24 +69,24 @@ const InventoryFilter = ({ closeDrawer, open }) => {
                   </label>
                   {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
                   <Slider color="blue" defaultValue={50} />
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-9">
                     £0
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
                     £500
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
                     £1,000
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
                     £5,000
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute end-0 -bottom-9">
                     £10,000
                   </span>
                 </div>
               </div>
-              <div className="mt-12">
+              <div className="mt-[60px]">
                 <p className="text-lg font-semibold pb-4">Category</p>
                 <div className="flex items-center px-6 h-12 input-loyalty">
                   <img
@@ -102,7 +102,7 @@ const InventoryFilter = ({ closeDrawer, open }) => {
                   <p>Lorem Ipsum</p>
                   <img src="./image 675.png" alt="search" className="w-6 h-6" />
                 </div>
-                <div className="flex gap-4 items-center px-6 h-12 input-loyalty">
+                <div className="flex gap-4 items-center pl-6 h-12 input-loyalty">
                   <p>Lorem Ipsum</p>
                   <img src="./image 675.png" alt="search" className="w-6 h-6" />
                 </div>
@@ -114,7 +114,7 @@ const InventoryFilter = ({ closeDrawer, open }) => {
                 <img src="./Mask group (10).png" alt="" className="w-7 h-7" />
                 <p className="font-semibold text-lg">ADD</p>
               </div>
-                 <div className="mt-8">
+              <div className="mt-8">
                 <p className="text-lg font-semibold pb-4">Stock Availibiity</p>
                 <div className="relative mb-8">
                   <label for="labels-range-input" className="sr-only">
@@ -122,20 +122,20 @@ const InventoryFilter = ({ closeDrawer, open }) => {
                   </label>
                   {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
                   <Slider color="blue" defaultValue={50} />
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-9">
                     0%
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
                     20%
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-                   50%
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
+                    50%
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">
-                   80%
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-9">
+                    80%
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-                  100%
+                  <span className="text-sm text-black dark:text-gray-400 absolute end-0 -bottom-9">
+                    100%
                   </span>
                 </div>
               </div>

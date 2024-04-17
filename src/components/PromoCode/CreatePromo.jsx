@@ -1,8 +1,6 @@
 import React from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
-import Select from "../common/Select";
-import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
 import { DatePickerComp } from "../common/DatePickerComp";
 
 const CreatePromo = ({ open, setOpen, handleOpen }) => {
@@ -10,6 +8,12 @@ const CreatePromo = ({ open, setOpen, handleOpen }) => {
     { title: "Sales Report over time" },
     { title: "ROAS vs Campaign Performance Report" },
     { title: "Product Performance Comparison Report" },
+  ];
+
+  const discountOptions = [
+    { label: "Buy One Get One Free", value: "Buy One Get One Free" },
+    { label: "Flat Amount Discount", value: "Flat Amount Discount" },
+    { label: "Percentage Off", value: "Percentage Off" },
   ];
   return (
     <div>
@@ -70,9 +74,20 @@ const CreatePromo = ({ open, setOpen, handleOpen }) => {
                   // onChange={handleChange}
                   className="rounded shadow-md text-[#000000B2] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option value="pdf" className="font-semibold">
+                  <option value="pdf" disabled className="font-semibold mb-2">
                     Select Discount Type
                   </option>
+                  {discountOptions?.map((data, i) => (
+                    <>
+                      <option
+                        className="font-semibold text-black mb-2"
+                        key={i}
+                        value={data?.value}
+                      >
+                        {data?.label}
+                      </option>
+                    </>
+                  ))}
                 </select>
               </div>
             </div>

@@ -47,7 +47,7 @@ const EditProduct = () => {
           </div>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Decription</p>
+          <p className="text-lg font-semibold pb-2">Product Description</p>
           <div className="flex gap-4">
             <input
               type="text"

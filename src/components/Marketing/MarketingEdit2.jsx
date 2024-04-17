@@ -56,26 +56,20 @@ const MarketingEdit2 = () => {
     },
 
     {
-      title: "Product Catregory",
+      title: "Product Category",
       value: "Hot Drinks",
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
-      title: "Expriy Date",
+      title: "Expiry Date",
       value: "25-jan-2024",
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
-    {
-      title: "Product Catregory",
-      value: "Hot Drinks",
-      handleCLick: () => {
-        navigate("/marketing/newCampaign");
-      },
-    },
+
     {
       title: "Campaign Cost",
       value: "£1",

@@ -81,7 +81,7 @@ const MarketingEdit = () => {
       },
     },
     {
-      title: "Product Catregory",
+      title: "Product Category",
       value: "Hot Drinks",
       handleCLick: () => {
         navigate("/marketing/newCampaign");

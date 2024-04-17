@@ -6,7 +6,7 @@ import InventoryCard from "./InventoryCard";
 const CustomerGift = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-     navigate('/inventory/preview-gift')
+    navigate("/inventory/preview-gift");
   };
 
   const data = {
@@ -14,6 +14,18 @@ const CustomerGift = () => {
     price: "£5",
     name: "Butter Croissant",
   };
+  const useOptions = [
+    {
+      label: "Select specific product attached to Coupon ( Burger)",
+      value: "Select specific product attached to Coupon ( Burger)",
+    },
+    {
+      label:
+        "Select Product Categories To Apply Coupon(Burger, Coke, Dounts , Pizza",
+      value:
+        "Select Product Categories To Apply Coupon(Burger, Coke, Dounts , Pizza",
+    },
+  ];
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -79,12 +91,17 @@ const CustomerGift = () => {
             // onChange={handleChange}
             className="input-loyalty2"
           >
-            <option
-              className="font-semibold"
-              value="Select specific product attached to Coupon ( Burger)"
-            >
-              Shopping
-            </option>
+            {useOptions?.map((data, i) => (
+              <>
+                <option
+                  className="font-semibold text-black"
+                  key={i}
+                  value={data?.value}
+                >
+                  {data?.label}
+                </option>
+              </>
+            ))}
           </select>
         </div>
         <div className="my-4">
@@ -97,7 +114,6 @@ const CustomerGift = () => {
           </button>
         </div>
       </div>
-   
     </div>
   );
 };
