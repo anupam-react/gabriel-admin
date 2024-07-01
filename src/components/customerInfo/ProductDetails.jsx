@@ -11,27 +11,35 @@ const ProductDetails = ({handleOpen}) => {
           onClick={() => handleOpen(false)}
       />
       <img src="./image 711.png" alt="" className='details-image' />
+      <hr className='my-4 bg-[#A2A2A2] w-full'/>
       <div className='details-info'>
         <div className='info2'>
-          <p>Product</p>
+          <p>Product <span className='pl-4'>:</span></p>
+  
           <p>Dunkins  Coffee</p>
         </div>
         <div className='info2'>
-          <p>Price</p>
+          <p>Price <span className='pl-4'>:</span></p>
+       
           <p>£200</p>
         </div>
         <div className='info2'>
-          <p>Date</p>
+          <p>Date <span className='pl-4'>:</span></p>
+         
           <p>10/12/2023</p>
         </div>
         <div className='info2'>
-          <p>Available in store </p>
-          <p style={{color:"#00B050"}}>Yes</p>
+          <p>Available in store <span className='pl-4'>:</span></p>
+         
+          <div style={{background:"#00B050"}} className='w-[20px] h-[20px] rounded-full'></div>
         </div>
         <div className='info2'>
-          <p>Available in online </p>
-          <p>NO</p>
+          <p>Available in online <span className='pl-4'>:</span></p>
+          
+          <div style={{background:"#D9D9D9"}} className='w-[20px] h-[20px] rounded-full'></div>
         </div>
+        <button className="menuButton" onClick={() => handleOpen(false)}>BACK</button>
+
       </div>
     </div>
   )

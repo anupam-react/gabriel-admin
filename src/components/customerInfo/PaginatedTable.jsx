@@ -84,15 +84,15 @@ const PaginatedTable = () => {
           <tr>
             <th>Customer</th>
             <th>Date Joined</th>
-            <th>Referral Source</th>
+           
           </tr>
         </thead>
         <tbody>
           {currentTableData.map((item, i) => {
             return (
               <tr>
-                <td>
-                  <div className="flex items-center justify-center gap-6">
+                <td className="">
+                  <div className="flex items-center gap-6 ml-4 my-2">
                     <div className="profile-image">
                       <img src="./carbon_user-avatar-filled.png" alt="" />
                       <img
@@ -102,9 +102,15 @@ const PaginatedTable = () => {
                         onClick={() => setOpenMenu(!isOpenMenu)}
                       />
                     </div>
+                    <div className="flex flex-col gap-1 font-[500]">
+                    <p className="profileId" onClick={() => setOpenInfo(true)}>
+                    Vijay Mahar
+                    </p>
                     <p className="profileId" onClick={() => setOpenInfo(true)}>
                       ID:MC12345
                     </p>
+
+                    </div>
                     {isOpenMenu && (
                       <div className="menu-Main">
                         <MenuCard />
@@ -113,30 +119,7 @@ const PaginatedTable = () => {
                   </div>
                 </td>
                 <td>DD/MM/YYYY</td>
-                <td>
-                  <div className="campaign relative">
-                    <img src="./Ellipse 2.png" alt="" />
-                    <p>Marketing Campaign</p>
-                    <img
-                      src="./Mask group (9).png"
-                      alt=""
-                      className="cursor-pointer"
-                      onClick={() => setActive(i)}
-                    />
-                    {isActive === i && (
-                      <div className="action-main2 shadow z-[999]" ref={divRef}>
-                        <div className="flex items-center gap-6">
-                          <img src="./image 119 (4).png" alt="" />
-                          <p>View Details</p>
-                        </div>
-                        <div className="flex items-center gap-6">
-                          <img src="./image 118.png" alt="" />
-                          <p className="text-[#FC0005]">Delete</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </td>
+               
               </tr>
             );
           })}

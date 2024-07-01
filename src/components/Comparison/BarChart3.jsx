@@ -21,14 +21,7 @@ ChartJS.register(
 
 const labels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
+
 
 export const data = {
   labels,
@@ -42,5 +35,35 @@ export const data = {
 };
 
 export function BarChart3() {
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "DAYS OF WEEK",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Total Sales",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false,
+        position: "bottom"
+      }
+    }
+  };
   return <Bar options={options} data={data} />;
 }

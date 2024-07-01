@@ -40,8 +40,17 @@ const Filter = ({ closeDrawer, open }) => {
               id="countries"
               // value={selectedOption}
               // onChange={handleChange}
-              className="rounded shadow-md text-gray-900 text-sm  border-none block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="rounded shadow-md text-gray-900 text-sm border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
+              <option className="font-semibold" value="custom">
+                WEEKLY
+              </option>
+              <option className="font-semibold" value="custom">
+              MONTHLY
+              </option>
+              <option className="font-semibold" value="custom">
+              YEARLY
+              </option>
               <option className="font-semibold" value="custom">
                 CUSTOM
               </option>
@@ -80,17 +89,7 @@ const Filter = ({ closeDrawer, open }) => {
                   <span class="checkmark"></span>
                 </label>
               </div>
-              <div className="checkbox-filter">
-                <label className="checkbox1 text1 ">
-                  Refer & Earn
-                  <input
-                    type="checkbox"
-                    // checked={isChecked}
-                    // onChange={handleCheckboxChange}
-                  />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
+          
             </div>
           </div>
           <div className="button-container">

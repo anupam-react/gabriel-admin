@@ -168,7 +168,7 @@ const ReportSetting = () => {
               </label>
               <div className="flex flex-col gap-4">
                 <span className="font-semibold text-black dark:text-gray-300 ">
-                  Maximum Failed Transactions
+                Maximum Number Of Transaction Crossed
                 </span>
                 <div className="flex items-center gap-4">
                   <input

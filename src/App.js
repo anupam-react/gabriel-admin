@@ -54,6 +54,7 @@ import Support from "./components/Setting/Support.jsx";
 import Account from "./components/Setting/Account.jsx";
 import HeatMaps from "./components/HeatMaps";
 import Initialpage from "./components/common/Initialpage.jsx";
+import Communications from "./components/Setting/Communications.jsx";
 
 function App() {
   return (
@@ -175,6 +176,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/setting/notifications" element={<Notifications />} />
           <Route path="/setting/report" element={<ReportSetting />} />
+          <Route path="/setting/communication" element={<Communications />} />
           <Route path="/support" element={<Support />} />
           <Route path="/account" element={<Account />} />
           <Route path="/heatmap" element={<HeatMaps />} />

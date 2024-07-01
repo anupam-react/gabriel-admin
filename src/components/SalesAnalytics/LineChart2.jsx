@@ -22,15 +22,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' ,
-    },
-  
-  },
-};
+
 
 const labels = ['BEVERAGES', 'SHOES', 'PHONES', 'ELECTRONICS', 'FOOD'];
 
@@ -59,5 +51,35 @@ export const data = {
 };
 
 export function LineChart2() {
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "SUB-Categories",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "SALES",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false,
+        position: "bottom"
+      }
+    }
+  };
   return <Line options={options} data={data} />;
 }

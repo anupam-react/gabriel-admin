@@ -6,6 +6,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
   labels: ['Active 60%', 'New 4%', 'Churn 2%', 'Slipping 10%',],
+
+  
+  
   datasets: [
     {
       label: '# of Votes',
@@ -27,11 +30,19 @@ export const data = {
   ],
 };
 const LifeCycleStage = () => {
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom"
+      }
+    }
+  };
     return (
         <div>
             <p className="font-semibold text-xl pb-4">Life Cycle Stage</p>
                 <div className="rounded-lg shadow-md flex justify-center items-center bg-white p-4 w-80">
-                <Doughnut data={data} />
+                <Doughnut data={data} options={options}/>
                 </div>
             </div>
   )

@@ -78,7 +78,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           </button>
         </div>
       </div>
-      <div className="flex gap-6 mt-8">
+      {/* <div className="flex gap-6 mt-8">
         <select
           id="countries"
           // value={selectedOption}
@@ -107,7 +107,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
             </>
           ))}
         </select>
-      </div>
+      </div> */}
       <div className="mt-8">
         <p className="text-2xl font-[500] pb-4">Statistics</p>
         <div className="flex gap-6">

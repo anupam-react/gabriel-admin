@@ -21,14 +21,6 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
 
 const labels = [
   "COUPONS",
@@ -56,5 +48,35 @@ export const data = {
 };
 
 export function LineChart4() {
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Campaign Type",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Return on Ads Spend (ROAS)",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false,
+        position: "bottom"
+      }
+    }
+  };
   return <Line options={options} data={data} />;
 }

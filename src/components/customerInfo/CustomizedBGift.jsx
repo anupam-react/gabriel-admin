@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./index.scss";
 import CatalogueProduct from "./CatalogueProduct";
 import { DialogDefault } from "../common/DilogBox";
-const CustomizedBGift = ({ handleOpen }) => {
-  const [openAlert, setOpenAlert] = useState(false);
+import BirthdayOffer from "./BirthdayOffer";
+const CustomizedBGift = ({ handleOpen }) => { 
+  const [openOffer, setOffer] = useState(false);
   return (
     <div className="gift-container">
       <div className="gift-main">
-        <p className="title">Send Birthday Gift</p>
+        <p className="title">Send Customized Birthday Offer</p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -23,14 +24,25 @@ const CustomizedBGift = ({ handleOpen }) => {
         <CatalogueProduct />
       </div>
       <div className="form-container">
-        <div className="input-container">
-          <label>Add your Customized Product</label>
-          <input type="text" name="" id="" className="input" placeholder="" />
-        </div>
-        <div className="input-container">
-          <label>Header Text</label>
-          <input type="text" name="" id="" className="input" placeholder="" />
-        </div>
+      <div className="input-container">
+          <label>Upload photo/product</label>
+         <div className="flex  w-full">
+             <label
+               for="dropzone-file"
+               className="flex justify-end bg-white  shadow rounded-md w-full "
+             >
+               <div
+                 className="flex py-2 px-4 rounded-md text-white gap-2"
+                 style={{ backgroundColor: "#00AAEA" }}
+               >
+                 <p className="text-sm">UPLOAD</p>
+               </div>
+               <input id="dropzone-file" type="file" className="hidden" />
+             </label>
+           </div>
+           </div>
+   
+       
         <div className="input-container">
           <label>Description</label>
           <textarea
@@ -42,48 +54,33 @@ const CustomizedBGift = ({ handleOpen }) => {
           />
         </div>
 
+    
         <div className="input-container">
-          <label>Expiry Date</label>
-          <input type="text" name="" id="" className="input" placeholder="" />
+          <label>Enter Birthday Meassage!</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            className="input"
+            placeholder="Happy Birthday !!"
+          />
         </div>
-        <div className="input-container">
-          <label>Price Rate</label>
-          <input type="text" name="" id="" className="input" placeholder="" />
-        </div>
-
-        <div className="input-container">
-          <label>Terms & Conditions</label>
-          <input type="text" name="" id="" className="input" placeholder="" />
-        </div>
+  
       </div>
       <div className="flex-center">
         <button
           className="menuButton"
           onClick={() => {
-            setOpenAlert(true);
+            setOffer(true);
           }}
         >
-          SUBMIT
+          Save & Next
         </button>
       </div>
-      <DialogDefault open={openAlert} handleOpen={setOpenAlert}>
-        <div className="success-alert">
-          <div className="cross-image2">
-            <img
-              src="./Mask group (2).png"
-              alt=""
-              className=""
-              onClick={() => {
-                setOpenAlert(false);
-              }}
-            />
-          </div>
-          <p>
-            Your customize Birthday gift has been successfully sent to Customer
-            ID : #98BB212
-          </p>
-        </div>
-      </DialogDefault>
+      
+      <DialogDefault open={openOffer} handleOpen={setOffer}>
+  <BirthdayOffer handleOpen={setOffer} isOffer={true}/>
+    </DialogDefault>
     </div>
   );
 };

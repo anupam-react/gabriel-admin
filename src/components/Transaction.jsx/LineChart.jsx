@@ -22,14 +22,36 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
+
+const options = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Customers",
+        color: "#000000",
+        font: {
+          size: 16
+        }
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: "Sales",
+        color: "#000000",
+        font: {
+          size: 16
+        }
+      }
+    }
+  },
   plugins: {
     legend: {
-      position: 'top' ,
-    },
-  
-  },
+      display: true,
+      position: "bottom"
+    }
+  }
 };
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];

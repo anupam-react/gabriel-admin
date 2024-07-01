@@ -21,14 +21,7 @@ ChartJS.register(
 
 const labels = ["Hot Chocolate", "Coffee", "Wine", "Tea", "Cake"];
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
+
 
 export const data = {
   labels,
@@ -42,5 +35,35 @@ export const data = {
 };
 
 export function BarChart4() {
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Product Subcategories",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Total Sales",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false,
+        position: "bottom"
+      }
+    }
+  };
   return <Bar options={options} data={data} />;
 }

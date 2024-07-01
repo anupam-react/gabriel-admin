@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import AwardOffer from "./AwardOffer";
+import CatalogueProduct from "./CatalogueProduct";
 const AwardCustomer = ({
   handleOpen,
-  title = "Award to a customer after purchase",
+  title = "Send Target Promotions",
 }) => {
   const [openOffer, setOpenOffer] = useState(false);
   const promotionOptions = [
@@ -51,6 +52,10 @@ const AwardCustomer = ({
             ))}
           </select>
         </div>
+        <div className="catalogue">
+      <label>Select Product from catalogue</label>
+      <CatalogueProduct />
+    </div>
         <div className="input-container">
           <label>Upload photo/product</label>
           <div className="flex  w-full">
@@ -101,6 +106,10 @@ const AwardCustomer = ({
         </div>
         <div className="input-container">
           <label>Choose Reward Value</label>
+          <input type="text" name="" id="" className="input" placeholder="" />
+        </div>
+        <div className="input-container">
+          <label>Add Expiration Date</label>
           <input type="text" name="" id="" className="input" placeholder="" />
         </div>
       </div>

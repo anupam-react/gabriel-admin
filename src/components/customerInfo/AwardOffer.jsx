@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import "./index.scss";
+import PromotionPreview from "./PromotionPreview";
 const AwardOffer = ({handleOpen}) => {
   const [openCustom, setOpenCustom] = useState(false);
   const [openSuccess, setSuccess] = useState(false);
@@ -34,11 +35,18 @@ const AwardOffer = ({handleOpen}) => {
         setOpenCustom(true);
       },
     },
+    {
+      title: "Expiration Date",
+      value: "01-10-24",
+      handleCLick: () => {
+        setOpenCustom(true);
+      },
+    },
   ];
   return (
     <div className="gift-container">
       <div className="gift-main">
-        <p className="title">Birthday Offer ( Preview )</p>
+        <p className="title">Send Target Promotons</p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -64,16 +72,13 @@ const AwardOffer = ({handleOpen}) => {
         ))}
       </div>
       <button className="menuButton" onClick={() => setSuccess(true)}>
-        Send to Customer Offer folder
+      See Promotion Preview
       </button>
       <DialogDefault open={openCustom} handleOpen={setOpenCustom}>
         <AwardCustomer handleOpen={setOpenCustom} />
       </DialogDefault>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-        <div className="alert">
-          <img src="./Vector (2).png" alt="" />
-          <p>Successfully !!!! Sent to customer offer folder</p>
-        </div>
+        <PromotionPreview  handleOpen={setSuccess}/>
       </DialogDefault>
     </div>
   );

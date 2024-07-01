@@ -23,15 +23,7 @@ ChartJS.register(
 
 const labels = ['OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12', ];
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-   
-  },
-};
+
 
 export const data = {
   labels,
@@ -45,5 +37,35 @@ export const data = {
 };
 
 export function BarChart2() {
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "OUTLETS",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "PERCENTAGES",
+          color: "#000000",
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
+    // plugins: {
+    //   legend: {
+    //     display: true,
+    //     position: "top"
+    //   }
+    // }
+  };
   return <Bar options={options} data={data} />;
 }

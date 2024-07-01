@@ -146,8 +146,8 @@
 }
 .menu-Main {
   position: absolute;
-  top: 27%;
-  left: 16%;
+  top: 30%;
+  left: 10%;
 }
 .menu-Main2 {
   position: absolute;
@@ -155,6 +155,13 @@
   left: 30%;
   z-index: 999;
   width: 450px;
+}
+.viewProd{
+  box-shadow: 0 4px 8px 0 gray, 0 6px 20px 0 white;
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 .menu-container {
   display: flex;

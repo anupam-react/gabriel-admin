@@ -23,15 +23,37 @@ ChartJS.register(
 
 const labels = ['6:00 AM ', '7:00 AM ', '8:00 AM ', '9:00 AM ', '10:00 AM ', '11:00 AM ', '12:00 AM', '1:00 AM', '2:00 AM', '3:00 AM'];
 
-export const options = {
-  responsive: true,
+const options = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Time of the Day",
+        color: "#000000",
+        font: {
+          size: 16
+        }
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: "Transaction",
+        color: "#000000",
+        font: {
+          size: 16
+        }
+      }
+    }
+  },
   plugins: {
     legend: {
-      position: 'top',
-    },
-   
-  },
+      display: true,
+      position: "top"
+    }
+  }
 };
+
 
 export const data = {
   labels,

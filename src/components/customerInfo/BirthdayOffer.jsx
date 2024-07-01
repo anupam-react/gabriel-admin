@@ -1,51 +1,27 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
-import CustomizedGift from "./CustomizedGift";
-const BirthdayOffer = ({ handleOpen }) => {
-  const [openCustom, setOpenCustom] = useState(false);
+
+import BirthdayOfferPreview from "./BirthdayOfferPreview";
+import BirthdayGiftPreview from "./BirthdayGiftPreview";
+const BirthdayOffer = ({ handleOpen, isOffer = false }) => {
   const [openSuccess, setSuccess] = useState(false);
   const data = [
     {
-      title: "Campaign Type",
-      value: "Percentage DIscount",
-      handleCLick: () => {
-        setOpenCustom(true);
-      },
-    },
-    {
       title: "Decription",
       value: "70% discount Birthday special",
-      handleCLick: () => {
-        setOpenCustom(true);
-      },
     },
     {
       title: "Birthday Message",
       value: "Happy Birthday !!",
-      handleCLick: () => {
-        setOpenCustom(true);
-      },
-    },
-    {
-      title: "Reward Type",
-      value: "Points",
-      handleCLick: () => {
-        setOpenCustom(true);
-      },
-    },
-    {
-      title: "Reward Value",
-      value: "70%",
-      handleCLick: () => {
-        setOpenCustom(true);
-      },
     },
   ];
   return (
     <div className="gift-container">
       <div className="gift-main">
-        <p className="title">Birthday Offer ( Preview )</p>
+        <p className="title">
+          {isOffer ? "Birthday Offer ( Review )" : "Birthday Gift ( Review )"}
+        </p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -66,22 +42,28 @@ const BirthdayOffer = ({ handleOpen }) => {
             <p>{d?.title}</p>
             <p>:</p>
             <p>{d?.value}</p>
-            <button className="edit-button" onClick={d?.handleCLick}>Edit</button>
+            <button
+              className="edit-button"
+              onClick={() => {
+                handleOpen(false);
+              }}
+            >
+              Edit
+            </button>
           </div>
         ))}
-          </div>
-           <button className="menuButton" onClick={()=> setSuccess(true)}>Send to Customer Offer folder</button>
-           <DialogDefault open={openCustom} handleOpen={setOpenCustom}>
-            <CustomizedGift  handleOpen={setOpenCustom}/>
-        </DialogDefault>
-           <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-              <div className="alert">
-                  <img src="./Vector (2).png" alt="" />
-                  <p>Successfully !!!!
-Sent to customer offer folder</p>
+      </div>
+      <button className="menuButton4" onClick={() => setSuccess(true)}>
+   {isOffer ? "See Offer Preview" :  "See Customer Gift Preview"}
+      </button>
 
-            </div>
-        </DialogDefault>
+      <DialogDefault open={openSuccess} handleOpen={setSuccess}>
+        {isOffer ? (
+          <BirthdayOfferPreview handleOpen={setSuccess} />
+        ) : (
+          <BirthdayGiftPreview handleOpen={setSuccess} />
+        )}
+      </DialogDefault>
     </div>
   );
 };
