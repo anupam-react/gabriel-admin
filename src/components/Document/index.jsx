@@ -31,23 +31,23 @@ const Document = () => {
                   ></div>
                 </div>
                 <p className="font-bold text-2xl">Upload Documents!</p>
-                <p className="text-gray-500">
+                <p className="text-[#000000B2] text-center">
                   Please provide the following Documents to register your
                   Account!
                 </p>
               </div>
               <form
-                className="space-y-4 h-64 p-4 overflow-auto bg-gray-100"
+                className="space-y-10 h-64 p-4 overflow-auto"
                 action="#"
               >
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-8">
                   <p className="font-bold text-sm" style={{ color: "#0070BC" }}>
                     BUSINESS REGISTRATION & LICENSING
                   </p>
-                  <Uploadfile text="Business License" />
+                  <Uploadfile text="Business License (if any)" />
                   <Uploadfile text="Certificate of Incorporation" />
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-8">
                   <p className="font-bold text-sm" style={{ color: "#0070BC" }}>
                     IDENTITY VERIFICATION
                   </p>
@@ -55,7 +55,7 @@ const Document = () => {
                   <Uploadfile text="Proof of Address" />
                 </div>
 
-                <div className="flex flex-col gap-4">
+                {/* <div className="flex flex-col gap-4">
                   <p className="font-bold text-sm" style={{ color: "#0070BC" }}>
                     FINANCIAL INFORMATION
                   </p>
@@ -140,7 +140,7 @@ const Document = () => {
                     REFERENCE DOCUMENT
                   </p>
                   <Uploadfile text="Business References" />
-                </div>
+                </div> */}
               </form>
               <div className="flex justify-between items-center mt-6">
                 <div className="flex justify-center">

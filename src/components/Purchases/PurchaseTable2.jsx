@@ -1,9 +1,15 @@
 import React, { useMemo, useState } from "react";
 import Pagination from "../common/Pagination";
+import { DialogDefault } from "../common/DilogBox";
+import CustomeInfo from "../customerInfo/CustomeInfo";
+import MenuCard from "../customerInfo/MenuCard";
+import TransactionDetails from "../customerInfo/TransactionDetails";
 
 const PurchaseTable2 = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isOpenMenu, setMenuOpen] = useState(false);
+  const [isOpenMenu, setOpenMenu] = useState(false);
+  const [isOpenInfo, setOpenInfo] = useState(false);
+  const [isOpenTrans, setOpenTrans] = useState(false);
   let PageSize = 5;
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -27,17 +33,41 @@ const PurchaseTable2 = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData?.map((item) => {
+            {currentTableData?.map((item , i) => {
               return (
                 <tr>
-                  <td>
-                    <div className="flex justify-center items-center gap-6">
-                      <img src="./Ellipse 2 (1).png" alt="" />
-                      <p className="text-[#000000B2]">Lorem Ipsum</p>
-                    </div>
-                  </td>
+                   <td>
+                      <div className="flex items-center justify-center gap-6">
+                        <div className="profile-image">
+                          <img src="./carbon_user-avatar-filled.png" alt="" />
+                          <img
+                            src="./solar_menu-dots-bold (1).png"
+                            alt=""
+                            className="absolute top-1 right-1 cursor-pointer"
+                            onClick={() => {
+                              if(isOpenMenu === i)  setOpenMenu(-1)
+                                else setOpenMenu(i)
+                              }}
+                          />
+                        </div>
+                        
+                        <p
+                          className="profileId font-semibold text-left text-[#000000B2]"
+                          onClick={() => setOpenInfo(true)}
+                         
+                        >
+                          <p>Jhon Deo</p>
+                          ID:MC12345
+                        </p>
+                        {isOpenMenu === i && (
+                          <div className="menu-Main">
+                            <MenuCard />
+                          </div>
+                        )}
+                      </div>
+                    </td>
                   <td className="font-semibold text-xl"> £700</td>
-                  <td className="font-semibold text-[#000000B2]">ABCD12345</td>
+                  <td onClick={()=> setOpenTrans(true)} className="font-semibold text-[#0070BC] underline cursor-pointer">EFGH67890</td>
 
                   <td>
                     DD/MM/YYYY <span className="text-[#0070BC]">(6:30 AM)</span>
@@ -50,12 +80,12 @@ const PurchaseTable2 = () => {
                         className="h-10 w-10"
                       />
                       <div>
-                        <p className="font-semibold">DUNKIN’</p>
+                        <p className="font-semibold text-left">DUNKIN’</p>
                         <p className="text-[#000000B2]">Sweet Donuts</p>
                       </div>
                     </div>
                   </td>
-                  <td className="font-semibold text-[#000000B2]">ABCD12345</td>
+                  <td className="font-semibold text-[#000000B2]">#EFGH67890</td>
                 </tr>
               );
             })}
@@ -69,6 +99,12 @@ const PurchaseTable2 = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
+       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
+        <CustomeInfo handleOpen={setOpenInfo} />
+      </DialogDefault>
+      <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
+        <TransactionDetails handleOpen={setOpenTrans} />
+      </DialogDefault>
     </div>
   );
 };

@@ -326,6 +326,24 @@
     background-color: transparent;
   }
 }
+.cardContainer2 {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ffc200;
+  border-radius: 16px;
+  p {
+    color: white;
+    text-align: center;
+  }
+  img {
+    background-color: transparent;
+  }
+}
+
 .footer-Main {
   display: flex;
   flex-direction: column;
@@ -704,7 +722,7 @@
   color: #121212;
 }
 .details-title {
-  font-size: 22px;
+  font-size: 28px;
   color: black;
   font-weight: bold;
 }
@@ -727,9 +745,8 @@
 .details-info {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  color: #121212;
-  font-size: 18px;
+  gap: 5px;
+  font-size: 20px;
   width: 400px;
   margin: 14px 0px;
 }

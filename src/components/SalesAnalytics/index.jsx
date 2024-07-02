@@ -95,7 +95,7 @@ const SalesAnalytics = () => {
           <BarChart2 />
         </div>
       </div>
-      <div className="flex justify-between gap-6">
+      <div className="w-[50vw]">
         <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6 flex-1">
           <div className="flex justify-between items-center w-full">
             <p className="text-[#0070BC] font-semibold text-xl ">
@@ -107,9 +107,9 @@ const SalesAnalytics = () => {
             <LineChart3 />
           </div>
         </div>
-        <div className="h-full">
+        {/* <div className="h-full">
           <TransactionCard data={data2} />
-        </div>
+        </div> */}
       </div>
       <ReportPage2 open={open} setOpen={setOpen} handleOpen={handleOpen} />
     </div>

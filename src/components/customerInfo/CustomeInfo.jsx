@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import InfoHeader from "./InfoHeader";
 import InfoCard from "./InfoCard";
@@ -17,6 +17,8 @@ import BookMark from "./BookMark";
 import Verification from "./Verification";
 import OffersTable from "./OffersTable";
 import ReturnForm from "./ReturnForm";
+import MenuCard4 from "./MenuCard4";
+import ProductDetails from "./ProductDetails";
 const CustomeInfo = ({ handleOpen }) => {
   const [openLoyality, setOpenLoyality] = useState(false);
   const [openDemographic, setOpenDemographic] = useState(false);
@@ -28,6 +30,9 @@ const CustomeInfo = ({ handleOpen }) => {
   const [openVerification, setOpenVerification] = useState(false);
   const [openOffer, setOpenOffer] = useState(false);
   const [openReturn, setOpenReturn] = useState(false);
+  const [isView , setView] = useState(false)
+  const [isOpenProd , setOpenProd] = useState(false)
+
   const statisticData = [
     {
       title: "Average Spend",
@@ -53,6 +58,23 @@ It helps assess customer spending habits and business performance.`,
 It's calculated by dividing the total revenue from sales by the number of customers.
 
 This metric is crucial for understanding revenue contributions per customer.`,
+    },
+  ];
+  const mostViewProd = [
+    {
+      title: "Coffee",
+
+      image: "./Group 527.png",
+    },
+    {
+      title: "Donuts",
+
+      image: "./Group 528.png",
+    },
+    {
+      title: "Coffee",
+
+      image: "./Group 527.png",
     },
   ];
   const data = [
@@ -107,6 +129,25 @@ This metric is crucial for understanding revenue contributions per customer.`,
       openHandler: () => setOpenReturn(true),
     },
   ];
+
+  const divRef = useRef(null);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (divRef.current && !divRef.current.contains(event.target)) {
+  //       setView(-1);
+  //     }
+  //   };
+
+  //   if (isView !== -1) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   }
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isView]);
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -244,18 +285,32 @@ This metric is crucial for understanding revenue contributions per customer.`,
           Most Viewed Products
         </p>
         <div className="most-view">
-          <div className="">
-            <img src="./Group 527.png" alt="" />
-            <p>Coffee</p>
+          {mostViewProd?.map((d, i)=>(
+          <div className="" key={i}>
+            <div className="relative">
+
+            <img src={d?.image} alt="" className="cursor-pointer" onClick={()=> setOpenProd(true)}/>
+            <img
+              src="../Group (9).png"
+              alt=""
+              className="absolute top-[30px] right-[40px] cursor-pointer"
+              onClick={()=>{
+                if(isView === i) setView(-1)
+                else setView(i)
+              }}
+            />
+             {isView === i && (
+                      <div className="absolute top-[50px] right-[40px] cursor-pointer" ref={divRef}>
+                     {/* <p className="viewProd text-[14px]">View Product</p> */}
+                     <MenuCard4 />
+                      </div>
+                    )}
+            </div>
+            <p>{d?.title}</p>
           </div>
-          <div>
-            <img src="./Group 528.png" alt="" />
-            <p>Donuts</p>
-          </div>
-          <div>
-            <img src="./Group 527.png" alt="" />
-            <p>Coffee</p>
-          </div>
+
+          ))}
+     
         </div>
       </div>
       <div className="progress-rotation">
@@ -278,7 +333,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           </div>
         </div>
       </div>
-      <div style={{ color: "black", margin: "30px 0px" }}>
+      {/* <div style={{ color: "black", margin: "30px 0px" }}>
         <div className="basket">
           <p style={{ color: "#000000B2", paddingBottom: "10px" }}>
             Basket Analysis
@@ -314,7 +369,10 @@ This metric is crucial for understanding revenue contributions per customer.`,
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
+        <ProductDetails handleOpen={setOpenProd} />
+      </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
         <Demographic handleOpen={setOpenDemographic} />
       </DialogDefault>

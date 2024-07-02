@@ -28,6 +28,15 @@ const RegisterForm1 = ({
     console.log(error);
   };
   const navigate = useNavigate();
+  const countryOptions = [
+    { option: "UK", value: "UK" },
+    { option: "CANADA", value: "CANADA" },
+    { option: "AUSTRALIA", value: "AUSTRALIA" },
+    { option: "LONDON", value: "LONDON" },
+    { option: "DUBAI", value: "DUBAI" },
+    { option: "USA", value: "USA" },
+   
+  ];
   const categoryOptions = [
     { option: "Shopping & Fashion", value: "shopping" },
     { option: "Food and Drink", value: "food" },
@@ -90,6 +99,30 @@ const RegisterForm1 = ({
               />
             </div>
 
+            <div className="relative">
+              <img
+                src="./Vector (38).png"
+                alt=""
+                className="w-6 h-6 absolute top-2 left-2"
+              />
+              <div className="custom-select">
+              <select
+                id="countries"
+                className="rounded shadow-md  pl-10  text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option disabled selected>
+                Choose Country
+                </option>
+                {countryOptions?.map((data, i) => (
+                  <>
+                    <option key={i} value={data?.value}>
+                      {data?.option}
+                    </option>
+                  </>
+                ))}
+              </select>
+            </div>
+            </div>
             <div className="relative">
               <img
                 src="./image 32.svg"
@@ -162,7 +195,7 @@ const RegisterForm1 = ({
                 // onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <p className="text-xl font-bold text-center">Select Categories</p>
+            <p className="text-xl font-bold text-center">Business Categories</p>
             <p className="text-sm text-center">
               Please provide the following Information to Continue!
             </p>

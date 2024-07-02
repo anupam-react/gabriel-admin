@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import BirthdayOffer from "./BirthdayOffer";
 import CatalogueProduct from "./CatalogueProduct";
 import ProductDetails from "./ProductDetails";
-const InventoryProduct = ({ handleOpen }) => {
+const InventoryProduct = ({ handleOpen , isProdInfo = false }) => {
   const [isView , setView] = useState()
   const [openDetails , setDetails] = useState()
   const [isSelect , setSelect] = useState(-1)
@@ -17,6 +17,24 @@ const InventoryProduct = ({ handleOpen }) => {
      {id:6, image:"./img/image 713 (1).png" , name:"Donuts"},
 
     ]
+    const divRef = useRef(null);
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (divRef.current && !divRef.current.contains(event.target)) {
+          setView(-1);
+        }
+      };
+  
+      if (isView !== -1) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
+  
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isView]);
 
   return (
    
@@ -53,7 +71,7 @@ const InventoryProduct = ({ handleOpen }) => {
         </div>
       <div className="catalogue-flex flex-wrap catalogue-container">
         {product?.map((d, i)=>(
-        <div className="catelogue-main" key={i} onClick={()=> setSelect(i)}>
+        <div className="catelogue-main"  key={i} onClick={()=> setSelect(i)}>
           <div className="relative">
             <img src={d?.image} alt="" className={isSelect === i  ? "border-4 rounded-xl  border-[#FE903C]" :"" }/>
             <img
@@ -63,7 +81,7 @@ const InventoryProduct = ({ handleOpen }) => {
               onClick={()=> setView(i)}
             />
              {isView === i && (
-                      <div className="menu-Main"  onClick={()=> setDetails(true)}>
+                      <div className="absolute top-8 right-2 cursor-pointer" ref={divRef}  onClick={()=> setDetails(true)}>
                      <p className="viewProd text-[14px]">View Product</p>
                       </div>
                     )}
@@ -85,7 +103,7 @@ const InventoryProduct = ({ handleOpen }) => {
           handleOpen(false);
         }}
       >
-        Select Product
+      {isProdInfo ? "Back" : "Select Product"}
       </button>
     </div>
     <DialogDefault open={openDetails} handleOpen={setDetails}>

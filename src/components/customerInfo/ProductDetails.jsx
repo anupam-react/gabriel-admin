@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./index.scss";
+import { DialogDefault } from '../common/DilogBox';
+import InventoryProduct from './InventoryProduct';
 const ProductDetails = ({handleOpen}) => {
+  const [openProduct, setProduct] = useState(false);
   return (
     <div className='details-container'>
      <p className="details-title">Product Details</p>
@@ -10,7 +13,7 @@ const ProductDetails = ({handleOpen}) => {
           className="cross-image2"
           onClick={() => handleOpen(false)}
       />
-      <img src="./image 711.png" alt="" className='details-image' />
+      <img src="./image 713 (1).png" alt="" className='details-image' onClick={()=>setProduct(true)} />
       <hr className='my-4 bg-[#A2A2A2] w-full'/>
       <div className='details-info'>
         <div className='info2'>
@@ -41,6 +44,9 @@ const ProductDetails = ({handleOpen}) => {
         <button className="menuButton" onClick={() => handleOpen(false)}>BACK</button>
 
       </div>
+      <DialogDefault open={openProduct} handleOpen={setProduct}>
+            <InventoryProduct isProdInfo={true} handleOpen={setProduct}/> 
+        </DialogDefault>
     </div>
   )
 }

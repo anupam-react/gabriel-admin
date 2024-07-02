@@ -29,13 +29,13 @@ const InfoHeader = () => {
           <p>ID : MC12345</p>
         </div>
       </div>
-      <div className="header-profile">
+      {/* <div className="header-profile">
         <img src="./image 696.png" alt="" className="image2" />
         <div>
           <p>Referral Source</p>
           <p>Marketing Campaign</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

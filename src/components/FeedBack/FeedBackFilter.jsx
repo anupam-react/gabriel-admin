@@ -58,7 +58,7 @@ const FeedBackFilter = ({ closeDrawer, open }) => {
                   <DatePickerComp2 />
                 </div>
               </div>
-              <p className="joint-date mt-[40px]">Feedback Type</p>
+              {/* <p className="joint-date mt-[40px]">Feedback Type</p>
               <div className="checkbox-container">
                 <div className="checkbox-filter">
                   <label className="checkbox1 text1 ">
@@ -263,7 +263,7 @@ const FeedBackFilter = ({ closeDrawer, open }) => {
                     <span class="checkmark"></span>
                   </label>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="button-container">
@@ -277,6 +277,7 @@ const FeedBackFilter = ({ closeDrawer, open }) => {
             </button>
             <button
               className="button4"
+              onClick={closeDrawer}
               //   onClick={() => {
               //     setOpenAlert(true);
               //   }}

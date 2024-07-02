@@ -64,9 +64,8 @@ const FeedBack = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item) => {
+            {currentTableData.map((item , i) => {
               return (
-                <>
                   <tr>
                     <td>
                       <div className="flex items-center justify-center gap-6">
@@ -76,16 +75,22 @@ const FeedBack = () => {
                             src="./solar_menu-dots-bold (1).png"
                             alt=""
                             className="absolute top-1 right-1 cursor-pointer"
-                            onClick={() => setOpenMenu(!isOpenMenu)}
+                            onClick={() => {
+                              if(isOpenMenu === i)  setOpenMenu(-1)
+                                else setOpenMenu(i)
+                              }}
                           />
                         </div>
+                        
                         <p
-                          className="profileId font-semibold"
+                          className="profileId font-semibold text-left text-[#000000B2]"
                           onClick={() => setOpenInfo(true)}
+                         
                         >
+                          <p>Jhon Deo</p>
                           ID:MC12345
                         </p>
-                        {isOpenMenu && (
+                        {isOpenMenu === i && (
                           <div className="menu-Main">
                             <MenuCard />
                           </div>
@@ -106,7 +111,7 @@ const FeedBack = () => {
                     </td>
 
                     <td className="text-sm w-[300px] ">
-                      <p className="font-bold pb-2">Lorem Ipsum Heading!</p>
+                      <p className="font-bold pb-2 text-left">Lorem Ipsum Heading!</p>
                       <p className=" text-[#00000099] text-left">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Pellentesque efficitur eu magna et malesuada. Null.....
@@ -119,7 +124,6 @@ const FeedBack = () => {
                       </p>
                     </td>
                   </tr>
-                </>
               );
             })}
           </tbody>

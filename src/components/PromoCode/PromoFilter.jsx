@@ -49,6 +49,15 @@ const PromoFilter = ({ closeDrawer, open }) => {
                   className="input-loyalty"
                 >
                   <option className="font-semibold" value="custom">
+                    WEEKLY
+                  </option>
+                  <option className="font-semibold" value="custom">
+                    MONTHLY
+                  </option>
+                  <option className="font-semibold" value="custom">
+                    YEARLY
+                  </option>
+                  <option className="font-semibold" value="custom">
                     CUSTOM
                   </option>
                 </select>
@@ -126,13 +135,13 @@ const PromoFilter = ({ closeDrawer, open }) => {
                 {openRetailer && <SelectRetailer />}
                 {openItem && <SelectItem />}
               </div>
-              <div
+              {/* <div
                 className="mt-6 cursor-pointer flex justify-center items-center gap-3 rounded-lg py-2 border border-[#0070BC] text-[#0070BC]"
                 // onClick={() => setOpenProfile(!openProfile)}
               >
                 <img src="./Mask group (10).png" alt="" className="w-7 h-7" />
                 <p className="font-semibold text-lg">ADD</p>
-              </div>
+              </div> */}
 
               {/* {openProfile && <AddProfile />} */}
             </div>
@@ -148,9 +157,7 @@ const PromoFilter = ({ closeDrawer, open }) => {
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+              onClick={closeDrawer}
             >
               RESET
             </button>

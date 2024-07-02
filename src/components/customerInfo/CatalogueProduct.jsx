@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 
 import InventoryProduct from "./InventoryProduct";
@@ -9,12 +9,31 @@ const CatalogueProduct = () => {
   const [openView , setOpenView] = useState()
   const [isSelect , setSelect] = useState()
   const [openDetails , setDetails] = useState()
+  const divRef = useRef(null);
   const product = [
     {id:1, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
      {id:1, image:"./img/image 713 (1).png" , name:"Donuts"},
      {id:1, image:"./img/image 713 (2).png" , name:"Oreo Coffee"},
      {id:1, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
     ]
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (divRef.current && !divRef.current.contains(event.target)) {
+          setView(-1);
+        }
+      };
+  
+      if (isView !== -1) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
+  
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isView]);
   return (
     <div className="catalogue-container">
       <p className="view-all cursor-pointer" onClick={()=> setOpenView(true)} >View All</p>
@@ -30,7 +49,7 @@ const CatalogueProduct = () => {
               onClick={()=> setView(i)}
             />
              {isView === i && (
-                      <div className="menu-Main" onClick={()=> setDetails(true)}>
+                      <div className="absolute top-8 right-2 cursor-pointer" ref={divRef} onClick={()=> setDetails(true)}>
                      <p className="viewProd text-[14px]">View Product</p>
                       </div>
                     )}
