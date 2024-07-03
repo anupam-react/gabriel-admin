@@ -11,10 +11,10 @@ const CatalogueProduct = () => {
   const [openDetails , setDetails] = useState()
   const divRef = useRef(null);
   const product = [
-    {id:1, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
-     {id:1, image:"./img/image 713 (1).png" , name:"Donuts"},
-     {id:1, image:"./img/image 713 (2).png" , name:"Oreo Coffee"},
-     {id:1, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
+    {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
+     {id:1, image:"../img/image 713 (1).png" , name:"Donuts"},
+     {id:1, image:"../img/image 713 (2).png" , name:"Oreo Coffee"},
+     {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
     ]
 
     useEffect(() => {

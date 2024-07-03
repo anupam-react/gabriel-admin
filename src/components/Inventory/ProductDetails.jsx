@@ -6,11 +6,11 @@ const ProductDetails = () => {
   return (
     <div>
        <div className="flex justify-between items-center mb-6">
-        <p className="text-2xl font-bold">Product Detail</p>
+        <p className="text-2xl font-bold">Product Details</p>
         <div
                   className="inventory-button2"
                   style={{width:"150px"}}
-          onClick={() => navigate("/inventory/existing-outlate")}
+          onClick={() => navigate("/inventory")}
         >
           <img src="../../Mask group (12).png" alt="" className='w-6 h-6'/>
           <p>BACK</p>

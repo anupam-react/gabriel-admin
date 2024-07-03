@@ -107,22 +107,9 @@ const MarketingEdit = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">Edit Campaign</p>
-        <div
-          className="flex items-center px-6 h-12"
-          style={{
-            backgroundColor: "#FFFFFF",
-            width: "20rem",
-            borderRadius: "12px",
-            color: "#8BA3CB",
-          }}
-        >
-          <img src="../../image 2 (3).svg" alt="search" className="w-6 h-6" />
-          <input
-            type="text"
-            className="border-none w-48 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
-            placeholder="Search"
-          />
-        </div>
+      <button className="back" onClick={()=> navigate("/marketing")}> 
+        <img src="../back.png" alt="" />
+        Back</button>
       </div>
       <div className="loyalty-form-container">
         <div className="mt-4">

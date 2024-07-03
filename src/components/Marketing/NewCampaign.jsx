@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import CatalogueProduct from "../customerInfo/CatalogueProduct";
 const NewCampaign = () => {
   const navigate = useNavigate();
 
@@ -68,6 +69,11 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+        <div className="catalogue mt-4">
+        <p className="text-lg font-semibold pb-2">Upload Product From Inventory</p>
+
+      <CatalogueProduct />
+    </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Upload Coupon Image</p>
           <div className="input-loyalty2">

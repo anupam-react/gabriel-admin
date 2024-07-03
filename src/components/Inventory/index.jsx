@@ -5,6 +5,7 @@ import InventoryFilter from "./InventoryFilter";
 import { useNavigate } from "react-router-dom";
 const Inventory = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openAddProd, setOpenAddProd] = useState(false);
   const closeDrawer = () => setIsOpen(false);
   const navigate = useNavigate();
   const data = [
@@ -80,10 +81,10 @@ const Inventory = () => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 relative">
           <div
             className="inventory-button"
-            onClick={() => navigate("/inventory/add-product")}
+            onClick={() => setOpenAddProd(!openAddProd)}
           >
             <img src="./Mask group (11).png" alt="" />
             <p>ADD PRODUCT</p>
@@ -95,6 +96,24 @@ const Inventory = () => {
             <img src="./Mask group (11).png" alt="" />
             <p>ADD MORE OUTLETS</p>
           </div>
+          {openAddProd && (
+            <div className="addprod-button absolute top-[60px]">
+              <div
+                className="flex gap-4 justify-between items-center"
+                onClick={() => navigate("/inventory/add-product")}
+              >
+                <img src="./Mask group (11).png" alt="" />
+                <p>SINGLE PRODUCT</p>
+              </div>
+              <div
+                className="flex justify-between gap-4 items-center"
+                onClick={() => navigate("/inventory/add-multi-product")}
+              >
+                <img src="./Mask group (11).png" alt="" />
+                <p className="">MULTIPE PRODUCTS</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex gap-6">

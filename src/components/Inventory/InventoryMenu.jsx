@@ -35,9 +35,9 @@ const InventoryMenu = ({ setOpenMenu }) => {
       <button className="menuButton7" onClick={() => navigate("/inventory/promote")}>
         Promote Product
       </button>
-      <button className="menuButton7" onClick={handleProductStatus}>
+      {/* <button className="menuButton7" onClick={handleProductStatus}>
         Share product to Status
-      </button>
+      </button> */}
       <button className="menuButton7" onClick={() => navigate("/inventory/customer-gift")}>
         Send as Gift to customer
       </button>
@@ -89,8 +89,8 @@ const InventoryMenu = ({ setOpenMenu }) => {
       <DialogDefault open={openDeleteConfirm} handleOpen={setOpenDeleteConfirm}>
         <div className="alert">
           <img src="../Vector (2).png" alt="" />
-          <p className="text-center text-lg">
-            Product successfully sent to customer Gift Folder'
+          <p className="text-center text-lg font-bold">
+            Product Deleted
           </p>
         </div>
       </DialogDefault>

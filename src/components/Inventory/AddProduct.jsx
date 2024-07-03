@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import Select from "react-select";
 const AddProduct = () => {
   const [openSuccess, setSuccess] = useState(false);
   const [openSuccess1, setSuccess1] = useState(false);
@@ -16,8 +17,16 @@ const AddProduct = () => {
     }, 2000);
     setTimeout(() => {
       setSuccess1(false);
+      navigate('/inventory')
     }, 3000);
   };
+  const options = [
+    { value: 'Outlet -  01', label: 'Outlet -  01' },
+    { value: 'Outlet -  02', label: 'Outlet -  02' },
+    { value: 'Outlet -  03', label: 'Outlet -  03' },
+    { value: 'Outlet -  04', label: 'Outlet -  04' },
+    { value: 'Outlet -  05', label: 'Outlet -  05' },
+  ]
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -40,6 +49,19 @@ const AddProduct = () => {
         </div>
       </div>
       <div className="loyalty-form-container h-[80vh] overflow-auto">
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Select Outlet</p>
+           <Select
+    // defaultValue={[colourOptions[2], colourOptions[3]]}
+    isMulti
+    name="colors"
+    options={options}
+    className="basic-multi-select"
+    classNamePrefix="select"
+    placeholder="Ex : Outlet - 01 , Outlet - 02"
+  />
+
+        </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Name</p>
           <input
@@ -273,7 +295,7 @@ here: dunkin.co.uk/allergens"
         <div className="alert">
           <img src="../../Vector (2).png" alt="" />
           <p className="text-center text-lg">
-            Congratulations! your inventory is now Live
+            Congratulations! Your inventory is now Live
           </p>
         </div>
       </DialogDefault>

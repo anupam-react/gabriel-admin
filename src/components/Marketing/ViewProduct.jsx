@@ -8,7 +8,13 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
   const navigate = useNavigate();
   return (
     <div>
+      <div className="flex justify-between">
       <p className="text-2xl font-bold">Live Campaign View</p>
+      <button className="back" onClick={()=> navigate("/marketing")}> 
+        <img src="../back.png" alt="" />
+        Back</button>
+
+      </div>
       <div className="campaign-view-container">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold">Ad preview</p>

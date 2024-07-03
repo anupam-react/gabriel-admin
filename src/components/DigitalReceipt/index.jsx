@@ -2,13 +2,87 @@ import React, { useMemo, useState, useRef, useEffect } from "react";
 import Pagination from "../common/Pagination";
 import "./index.scss";
 import ReceiptFilter from "./ReceiptFilter";
+import MenuCard from "../customerInfo/MenuCard";
+import { DialogDefault } from "../common/DilogBox";
+import CustomeInfo from "../customerInfo/CustomeInfo";
+import TransactionDetails from "../customerInfo/TransactionDetails";
 const DigitalReceipt = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setMenuOpen] = useState(-1);
+  const [isMenuOpen, setOpenMenu] = useState(false);
+  const [isOpenInfo, setOpenInfo] = useState(false);
+  const [isDownload, setDownload] = useState(false);
+  const [isOpenTrans, setOpenTrans] = useState(false);
   const divRef = useRef(null);
   let PageSize = 5;
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const data = [
+    {
+      Product: "Donut",
+      Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+       Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+    {
+      Product: "Donut",
+     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
+      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
+      Type: "PDF",
+      Size: "11 Mb",
+
+    },
+
+  ];
   const closeDrawer = () => setIsOpen(false);
 
   const currentTableData = useMemo(() => {
@@ -80,16 +154,40 @@ const DigitalReceipt = () => {
           <tbody>
             {currentTableData.map((item, i) => {
               return (
-                <tr>
-                  <td className="text-[#000000B2]">Lorem Ipsum Title</td>
+                <tr key={i}>
+                  <td className="text-[#000000B2]">{item?.Product}</td>
                   <td>
-                    DD/MM/YYYY <span className="text-[#0070BC]">(6:30 AM)</span>
+                    {item?.Transaction?.date} <span className="text-[#0070BC] font-[500]">{item?.Transaction?.time}</span>
                   </td>
                   <td>
-                    <div className="flex justify-center items-center gap-6">
-                      <img src="./Ellipse 2 (1).png" alt="" />
-                      <p className="text-[#000000B2]">Lorem Ipsum</p>
-                    </div>
+                  <div className="flex items-center justify-center gap-6 relative">
+                        <div className="profile-image">
+                          <img src="./carbon_user-avatar-filled.png" alt="" />
+                          <img
+                            src="./solar_menu-dots-bold (1).png"
+                            alt=""
+                            className="absolute top-1 right-1 cursor-pointer"
+                            onClick={() => {
+                              if(isMenuOpen === i)  setOpenMenu(-1)
+                                else setOpenMenu(i)
+                              }}
+                          />
+                        </div>
+                        {isMenuOpen === i && (
+                          <div className="absolute top-0 z-20 -right-[180px]">
+                            <MenuCard />
+                          </div>
+                        )}
+                        <p
+                          className="cursor-pointer font-semibold text-left text-black"
+                          onClick={() => setOpenInfo(true)}
+                         
+                        >
+                          <p>Jhon Deo</p>
+                          ID:MC12345
+                        </p>
+                        
+                      </div>
                   </td>
                   <td>PDF</td>
                   <td>11 Mb</td>
@@ -102,11 +200,11 @@ const DigitalReceipt = () => {
                       />
                       {isOpenMenu === i && (
                         <div className="action-main shadow" ref={divRef}>
-                          <div className="flex gap-6">
+                          <div className="flex gap-6" onClick={()=>setOpenTrans(true)}>
                             <img src="./image 119.png" alt="" />
                             <p>View</p>
                           </div>
-                          <div className="flex gap-6">
+                          <div className="flex gap-6" onClick={()=> setDownload(true)}>
                             <img src="./image 674.png" alt="" />
                             <p>Download</p>
                           </div>
@@ -128,6 +226,20 @@ const DigitalReceipt = () => {
         onPageChange={(page) => setCurrentPage(page)}
       />
       {isOpen && <ReceiptFilter closeDrawer={closeDrawer} open={isOpen} />}
+      <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
+        <CustomeInfo handleOpen={setOpenInfo} />
+      </DialogDefault>
+      <DialogDefault open={isDownload} handleOpen={setDownload}>
+      <div className="alert">
+          <img src="../Vector (2).png" alt="" />
+          <p className="text-center text-[24px] font-bold">
+          Receipt Downloaded
+          </p>
+        </div>
+      </DialogDefault>
+      <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
+        <TransactionDetails handleOpen={setOpenTrans} />
+      </DialogDefault>
     </div>
   );
 };

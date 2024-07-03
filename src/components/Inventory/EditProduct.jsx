@@ -255,8 +255,14 @@ const EditProduct = () => {
             <button className="edit-botton1 ml-4" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
           </div>
         </div>
-        
-        <div className="loyalty-button-container">
+        <div className="my-4 flex justify-between">
+          <button
+            className="border border-black px-10 py-2 rounded-md font-[500]"
+          
+            onClick={()=> navigate('/inventory')}
+          >
+            Back
+          </button>
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
@@ -265,12 +271,21 @@ const EditProduct = () => {
             Submit
           </button>
         </div>
+        {/* <div className="loyalty-button-container">
+          <button
+            className="loyalty-button1"
+            style={{ width: "150px" }}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div> */}
       </div>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
         <div className="alert">
           <img src="../Vector (2).png" alt="" />
           <p className="text-center text-lg">
-           Product successfully sent to customer Gift Folder'
+          Product Edited successfully
           </p>
         </div>
       </DialogDefault>

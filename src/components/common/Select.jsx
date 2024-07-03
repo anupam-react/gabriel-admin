@@ -60,11 +60,12 @@ const Select = () => {
             <DatePickerComp />
             <DatePickerComp />
           </div>
+         
           <div className="flex justify-center items-center gap-10 mt-8">
             <button className="sign-button w-48">SAVE</button>
             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setOpen(false)}>
               <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-              <p className="text-sm cancel underline">Cancle</p>
+              <p className="text-sm cancel underline">Cancel</p>
             </div>
           </div>
         </div>

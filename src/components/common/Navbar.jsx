@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './index.css'
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
@@ -27,7 +28,9 @@ const Navbar = () => {
           />
         </div>
         <div>
+          <Link to="notification">
           <img src="./image 13.svg" alt="Notification" className="h-12" />
+          </Link>
         </div>
         <div className="flex gap-2 items-center cursor-pointer"  onClick={openDrawer}>
         <img

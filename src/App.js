@@ -55,6 +55,8 @@ import Account from "./components/Setting/Account.jsx";
 import HeatMaps from "./components/HeatMaps";
 import Initialpage from "./components/common/Initialpage.jsx";
 import Communications from "./components/Setting/Communications.jsx";
+import Notification from "./components/Notification/index.jsx";
+import AddMultipleProduct from "./components/Inventory/AddMultipleProduct.jsx";
 
 function App() {
   return (
@@ -94,12 +96,13 @@ function App() {
           <Route path="/receipt" element={<DigitalReceipt />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory/add-product" element={<AddProduct />} />
-          <Route path="/inventory/add-outlate" element={<AddOutlate />} />
+          <Route path="/inventory/add-multi-product" element={<AddMultipleProduct />} />
+          <Route path="/inventory/add-outlate" element={<AddOutlate2 />} />
           <Route
             path="/inventory/existing-outlate"
             element={<ExitingOutlate />}
           />
-          <Route path="/inventory/adding-outlate" element={<AddOutlate2 />} />
+          {/* <Route path="/inventory/adding-outlate" element={<AddOutlate2 />} /> */}
           <Route path="/inventory/edit-product" element={<EditProduct />} />
           <Route path="/inventory/edit-prod" element={<EditProduct2 />} />
           <Route
@@ -180,6 +183,7 @@ function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/account" element={<Account />} />
           <Route path="/heatmap" element={<HeatMaps />} />
+          <Route path="/notification" element={<Notification />} />
         </Route>
         <Route path="/" element={<Initialpage />} />
         <Route path="/login" element={<Login />} />

@@ -9,8 +9,8 @@ const CatalogueProduct2 = () => {
   const [isSelect , setSelect] = useState()
   const [openDetails , setDetails] = useState()
   const product = [
-    {id:1, image:"./Frame 38302.png" , name:"Buy 9 Hot Drinks , Get 1 Free"},
-     {id:1, image:"./Frame 38302.png" , name:"Buy 5 Porridges , Get 1 Free"},
+    {id:1, image:"../Frame 38302.png" , name:"Buy 9 Hot Drinks , Get 1 Free"},
+     {id:1, image:"../Frame 38302.png" , name:"Buy 5 Porridges , Get 1 Free"},
 
     ]
   return (

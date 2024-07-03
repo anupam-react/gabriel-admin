@@ -83,7 +83,14 @@ const CustomizedGift = () => {
           <p className="text-lg font-semibold pb-2">New Amount</p>
           <input type="text" className="input-loyalty2" value="£450.00" />
         </div>
-        <div className="my-4">
+        <div className="my-4 flex justify-between">
+          <button
+            className="border border-black px-10 py-2 rounded-md font-[500]"
+          
+            onClick={()=> navigate('/inventory')}
+          >
+            Back
+          </button>
           <button
             className="loyalty-button1"
             style={{ width: "300px" }}
@@ -92,6 +99,7 @@ const CustomizedGift = () => {
             Send  To Customer Offer  Folder
           </button>
         </div>
+     
       </div>
    
     </div>

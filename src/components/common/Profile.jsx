@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Drawer } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { DialogDefault } from "./DilogBox";
 const Profile = ({ closeDrawer, open }) => {
+  const [openUploadImage, setUploadImage] = useState(false);
   const navigate = useNavigate();
   return (
     <React.Fragment>
@@ -19,14 +21,17 @@ const Profile = ({ closeDrawer, open }) => {
           />
         </div>
         <div className="flex flex-col items-center mb-6">
-          <img src="./Ellipse 1 (1).svg" alt="" className="w-20 h-20 mb-4" />
+          <div className="relative">
+          <img src="./Ellipse 1 (1).svg" alt="" className="w-[120px] h-[120px] mb-4 rounded-full" />
+            <img src="../tabler_edit.png" alt="" className="absolute bottom-4 right-2 cursor-pointer" onClick={()=> setUploadImage(true)} />
+          </div>
           <p className="font-semibold pb-2">Dave Smith</p>
           <p className="text-sm">
             <span className="text-[#0070BC]">USER ID</span> - ABC2345
           </p>
           <div className="flex gap-2 cursor-pointer my-4">
             <img src="./Mask group (3).png" alt="" className="w-5 h-5" />
-            <p className="text-[#FD575B]">SIGN OUT</p>
+            <p className="text-[#FD575B]" onClick={()=> navigate('/login')}>SIGN OUT</p>
           </div>
           {/* <hr className="bg-[#00000099] w-full" /> */}
         </div>
@@ -52,6 +57,24 @@ const Profile = ({ closeDrawer, open }) => {
             <img src="./Mask group (6).png" alt="" className="w-6 h-6" />
             <p className=" text-[#000000B2]">Support & Help</p>
           </div>
+        <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
+        <div className="p-6">
+            <div className="flex justify-center items-center">
+                <img src="../Vector (40).png" alt="" className="cursor-pointer" onClick={()=>setUploadImage(false)}/>
+            </div>
+            <div className="flex justify-around mt-4">
+            <div className="flex gap-2 cursor-pointer"  onClick={()=>setUploadImage(false)}>
+                <img src="../Vector (41).png" alt="" />
+                <p className="underline text-black font-[500]">Browse Image</p>
+            </div>
+            <div className="flex gap-2 cursor-pointer"  onClick={()=>setUploadImage(false)}>
+                <img src="../solar_gallery-bold.png" alt="" />
+                <p className="underline text-black font-[500]">Open Gallery</p>
+            </div>
+
+            </div>
+        </div>
+      </DialogDefault>
         </div>
       </Drawer>
     </React.Fragment>

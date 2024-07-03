@@ -9,12 +9,12 @@ const InventoryProduct = ({ handleOpen , isProdInfo = false }) => {
   const [openDetails , setDetails] = useState()
   const [isSelect , setSelect] = useState(-1)
   const product = [
-    {id:1, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
-     {id:2, image:"./img/image 713 (1).png" , name:"Donuts"},
-     {id:3, image:"./img/image 713 (2).png" , name:"Oreo Coffee"},
-     {id:4, image:"./img/image 711.png" , name:"Chai Oatmilk latte"},
-    {id:5, image:"./img/image 713 (2).png" , name:"Chai Oatmilk latte"},
-     {id:6, image:"./img/image 713 (1).png" , name:"Donuts"},
+    {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
+     {id:2, image:"../img/image 713 (1).png" , name:"Donuts"},
+     {id:3, image:"../img/image 713 (2).png" , name:"Oreo Coffee"},
+     {id:4, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
+    {id:5, image:"../img/image 713 (2).png" , name:"Chai Oatmilk latte"},
+     {id:6, image:"../img/image 713 (1).png" , name:"Donuts"},
 
     ]
     const divRef = useRef(null);

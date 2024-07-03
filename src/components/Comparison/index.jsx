@@ -6,6 +6,7 @@ import { LineChart4 } from "./LineChart4";
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
 
+
 const Comparison = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -76,8 +77,23 @@ const Comparison = () => {
             // onChange={handleChange}
             className="rounded shadow-md bg-[#EEEEEE80] text-[#000000B2] font-semibold text-sm  border-none block w-[300px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option className="font-semibold">Lorem Ipsum</option>
+            <option className="font-semibold">ALL</option>
+            <option className="font-semibold">CREATE AN OFFER</option>
+            <option className="font-semibold">PERCENTAGE DISCOUNT</option>
+            <option className="font-semibold" selected>COUPONS</option>
+            <option className="font-semibold">BUY 1 GET 1 FREE</option>
           </select>
+          <div className="flex gap-4">
+            <p className="text-[#000000B2]">From :</p>
+          <DatePickerComp />
+          </div>
+        </div>
+        <div className="flex justify-between items-center w-full">
+        <Select />
+          <div className="flex gap-4">
+            <p className="text-[#000000B2]">To :</p>
+          <DatePickerComp />
+          </div>
         </div>
         <div className="w-full">
           <LineChart4 />
@@ -85,14 +101,8 @@ const Comparison = () => {
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
         <div className="flex justify-between items-center w-full">
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
-            className="rounded shadow-md bg-[#EEEEEE80] text-[#000000B2] font-semibold text-sm  border-none block w-[250px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option className="font-semibold">This Month</option>
-          </select>
+        <Select />
+         
           <select
             id="countries"
             // value={selectedOption}

@@ -9,10 +9,10 @@ const AddOutlate2 = () => {
         <p className="text-2xl font-bold">Adding  Outlet</p>
         <div
           className="inventory-button2"
-          onClick={() => navigate("/inventory/add-product")}
+          onClick={() => navigate("/inventory")}
         >
-          <img src="../../Mask group (11).png" alt="" />
-          <p>ADD OUTLET</p>
+          <img src="../../back.png" alt="" />
+          <p className="font-bold">Back</p>
         </div>
       </div>
       <div className="loyalty-form-container">
@@ -94,7 +94,7 @@ const AddOutlate2 = () => {
           </select>
         </div>
       <div className="flex justify-center my-4">
-        <button className="inventory-button2" onClick={()=> navigate('/inventory') }>SAVE</button>
+        <button className="inventory-button2" onClick={()=> navigate('/inventory/add-product') }>SAVE</button>
         </div>
       </div>
     </div>

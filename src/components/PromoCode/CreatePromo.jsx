@@ -3,7 +3,7 @@ import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import { DatePickerComp } from "../common/DatePickerComp";
 
-const CreatePromo = ({ open, setOpen, handleOpen }) => {
+const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
   const reportData = [
     { title: "Sales Report over time" },
     { title: "ROAS vs Campaign Performance Report" },
@@ -24,7 +24,7 @@ const CreatePromo = ({ open, setOpen, handleOpen }) => {
               <div className="flex items-center gap-4">
                 <img src="./image 681.png" alt="" />
                 <p className="font-semibold text-black text-lg">
-                  Create Promo Code
+               { edit ? "Edit Promo Code" :  "Create Promo Code"}
                 </p>
               </div>
 
@@ -221,14 +221,15 @@ const CreatePromo = ({ open, setOpen, handleOpen }) => {
           </div>
           <div className="flex justify-center items-center gap-10 my-8">
             <button className="sign-button w-48" onClick={() => setOpen(false)}>
-              CREATE
+            { edit ? "UPDATE" :  "CREATE"}
+              
             </button>
             <div
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => setOpen(false)}
             >
               <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
-              <p className="text-sm cancel underline">Cancel</p>
+              <p className="text-[24px] cancel underline">Cancel</p>
             </div>
           </div>
         </div>

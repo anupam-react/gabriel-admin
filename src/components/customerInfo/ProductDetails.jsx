@@ -8,12 +8,12 @@ const ProductDetails = ({handleOpen}) => {
     <div className='details-container'>
      <p className="details-title">Product Details</p>
         <img
-          src="./Mask group (2).png"
+          src="../Mask group (2).png"
           alt=""
           className="cross-image2"
           onClick={() => handleOpen(false)}
       />
-      <img src="./image 713 (1).png" alt="" className='details-image' onClick={()=>setProduct(true)} />
+      <img src="../image 713 (1).png" alt="" className='details-image' onClick={()=>setProduct(true)} />
       <hr className='my-4 bg-[#A2A2A2] w-full'/>
       <div className='details-info'>
         <div className='info2'>

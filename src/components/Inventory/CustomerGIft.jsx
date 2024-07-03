@@ -104,7 +104,14 @@ const CustomerGift = () => {
             ))}
           </select>
         </div>
-        <div className="my-4">
+        <div className="my-4 flex justify-between">
+          <button
+            className="border border-black px-10 py-2 rounded-md font-[500]"
+          
+            onClick={()=> navigate('/inventory')}
+          >
+            Back
+          </button>
           <button
             className="loyalty-button1"
             style={{ width: "300px" }}

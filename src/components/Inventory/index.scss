@@ -11,6 +11,20 @@
   cursor: pointer;
   font-size: 14px;
 }
+.addprod-button {
+  color: white;
+  background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  align-items: center;
+  width: 210px;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
 .inventory-button2 {
   color: white;
   background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
@@ -252,3 +266,12 @@
   border-radius: 8px;
   height: fit-content;
 }
+
+.upload-bttn{
+  background: linear-gradient(180deg, #00AAEA 0%, #0070BC 100%);
+  padding: 5px 30px;
+  color: white;
+  border-radius: 5px;
+
+}
+

@@ -14,6 +14,9 @@ const ShopAdPreview = ({ isPay = false }) => {
         <p className="text-2xl font-bold">
           {isPay ? "Run Campaign" : "DIscount Ad Preview"}
         </p>
+        <button className="back" onClick={()=> navigate("/marketing")}> 
+        <img src="../back.png" alt="" />
+        Back</button>
       </div>
       <div className="ad-container">
         <p className="text-[#121212] font-semibold text-xl pb-4">
