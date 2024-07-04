@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import CatalogueProduct from "./CatalogueProduct";
-import InvitationPreview from "./InvitationPreview";
-const Referral = ({ handleOpen }) => {
+import ReferalDetails from "./ReferalDetails";
+const Referal = ({ handleOpen }) => {
   const [openAlert, setOpenAlert] = useState(false);
+  const [isActive, setActive] = useState(1);
   return (
     <div className="gift-container">
       <div className="gift-main">
-        <p className="title">Invitation Link</p>
+        <p className="title">Referral Reward</p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -74,7 +75,54 @@ const Referral = ({ handleOpen }) => {
             value="12-08-24"
           />
         </div>
+        <div>
+          <p>Type Of Reward</p>
+      <div className="flex gap-4 mb-4">
+        <button className={isActive === 1 ? "button2" : "button1"} onClick={()=>setActive(1)}>
+        Points
+        </button>
+        <button className={isActive === 2 ? "button2" : "button1"} onClick={()=>setActive(2)}>
+        Stamps
+        </button>
       </div>
+    {isActive === 1 ?  <div className="button-group">
+        <button className="button2">
+          50 Points
+        </button>
+        <button className="button1">
+          200 Points
+        </button>
+        <button className="button1">
+          300 Points
+        </button>
+      </div> : 
+      <div className="button-group">
+        <button className="button2">
+          5 Stamps
+        </button>
+        <button className="button1">
+          20 Stamps
+        </button>
+        <button className="button1">
+          30 Stamps
+        </button>
+      </div>
+      
+      }
+        </div>
+        <div className="input-container">
+          <label>Custom Points</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            className="input"
+            placeholder=""
+            value="1000 Points"
+          />
+        </div>
+      </div>
+
       <div className="flex-center">
         <button
           className="menuButton"
@@ -82,15 +130,14 @@ const Referral = ({ handleOpen }) => {
             setOpenAlert(true);
           }}
         >
-         See Invitation Review
+         See Referral Reward Review
         </button>
       </div>
       <DialogDefault open={openAlert} handleOpen={setOpenAlert}>
-      <InvitationPreview handleOpen={setOpenAlert}/>
-      </DialogDefault>
-      
+      <ReferalDetails handleOpen={setOpenAlert}/>
+      </DialogDefault>  
     </div>
   );
 };
 
-export default Referral;
+export default Referal;

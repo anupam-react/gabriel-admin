@@ -1,12 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import CatalogueProduct from "../customerInfo/CatalogueProduct";
 const SavingForm = ({ isReview = false }) => {
   const navigate = useNavigate();
   return (
     <div>
-          <p className="loyalty-form-header">{!isReview ? "Make a Saving" : "Make a Saving Review"}</p>
+    <p className="loyalty-form-header">{!isReview ? "Make a Saving" : "Make a Saving Review"}</p>
       <div className="loyalty-form-container">
+    {!isReview &&  <div className="catalogue mt-4">
+        <p className="text-lg font-semibold pb-2">Select Product from catalogue</p>
+      <CatalogueProduct />
+    </div>}
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Upload product photo</p>
           <div className="input-loyalty2">

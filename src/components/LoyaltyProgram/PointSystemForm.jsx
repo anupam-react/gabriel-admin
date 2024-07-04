@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
-const PointSystemForm = ({ isReview = false }) => {
+const PointSystemForm = () => {
   const [openSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
   return (
@@ -43,9 +43,8 @@ const PointSystemForm = ({ isReview = false }) => {
           <button
             className="loyalty-button2"
             onClick={() => {
-              !isReview
-                ? navigate("/loyalty")
-                : navigate("/loyalty/point-system");
+             navigate("/loyalty")
+       
             }}
           >
             Back
@@ -53,12 +52,14 @@ const PointSystemForm = ({ isReview = false }) => {
           <button
             className="loyalty-button1"
             onClick={() => {
-              !isReview
-                ? navigate("/loyalty/point-system/review")
-                : setSuccess(true);
+          
+              setSuccess(true);
+              setTimeout(()=> {
+                navigate("/loyalty")
+              }, 1000)
             }}
           >
-            {!isReview ? "See Spend My Points review" : "Attach Point System"}
+           Attach Point System
           </button>
         </div>
       </div>
@@ -66,8 +67,7 @@ const PointSystemForm = ({ isReview = false }) => {
         <div className="alert2">
           <img src="../../Vector (2).png" alt="" />
           <p>
-            Point System is now attachedto your products. Yourcustomers can now
-            pay andearn points.
+          Point System is now attached to your products. Your customers can now pay and earn points.
           </p>
         </div>
       </DialogDefault>

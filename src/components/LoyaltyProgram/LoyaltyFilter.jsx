@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
+import { Slider } from "@material-tailwind/react";
 const LoyaltyFilter = ({ closeDrawer, open }) => {
+  const [isActive, setActive] = useState(1);
   return (
     <React.Fragment>
       <Drawer
@@ -10,10 +13,10 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
         onClose={closeDrawer}
         direction="right"
         className="bla bla bla"
-        size={350}
+        size={400}
       >
         <div className="filterContainer">
-          <div className="filter-body">
+          <div className="filter-body no-scrollbar">
             <div className="mb-6 flex items-center justify-between">
               <div onClick={closeDrawer}>
                 <img
@@ -50,6 +53,93 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
                 <p className="text-lg font-semibold pb-4">Points Earned</p>
                 <input type="text" className="input-loyalty" value="300" />
               </div>
+              <div className="filterbutton-group mt-4">
+                <button
+                  className={isActive === 1 ? "button2" : "button1"}
+                  onClick={() => setActive(1)}
+                >
+                  Point System
+                </button>
+                <button
+                  className={isActive === 2 ? "button2" : "button1"}
+                  onClick={() => setActive(2)}
+                >
+                  Stamp System
+                </button>
+                <button
+                  className={isActive === 3 ? "button2" : "button1"}
+                  onClick={() => setActive(3)}
+                >
+                  Make a Saving
+                </button>
+                <button
+                  className={isActive === 4 ? "button2" : "button1"}
+                  onClick={() => setActive(4)}
+                >
+                  Spent my Points
+                </button>
+              </div>
+              <div className="mt-4">
+                <p className="text-lg font-semibold pb-4">Categories</p>
+                <select
+                  id="countries"
+                  // value={selectedOption}
+                  // onChange={handleChange}
+                  className="input-loyalty"
+                >
+                  <option className="font-semibold" value="custom">
+                    Beverages
+                  </option>
+                </select>
+              </div>
+              <div className="mt-4">
+                <p className="text-lg font-semibold pb-4">Sub Categories</p>
+                <select
+                  id="countries"
+                  // value={selectedOption}
+                  // onChange={handleChange}
+                  className="input-loyalty"
+                >
+                  <option className="font-semibold" value="custom">
+                    Coffee, Burger , etc..
+                  </option>
+                </select>
+              </div>
+              <div className="mt-4">
+                <p className="text-lg font-semibold pb-4">Amount</p>
+                <div class="relative mb-10">
+                  <label for="labels-range-input" className="sr-only">
+                    Labels range
+                  </label>
+                  {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
+                  <Slider color="blue" defaultValue={50} />
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-8">
+                    0
+                  </span>
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    £100
+                  </span>
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    £500
+                  </span>
+                  <span className="text-sm text-black dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                    £1,000
+                  </span>
+                  <span className="text-sm text-black dark:text-gray-400 absolute end-0 -bottom-8">
+                    £5,000
+                  </span>
+                </div>
+              </div>
+              <div className="calender" style={{ marginTop: "60px" }}>
+                <div>
+                  <p>Min.</p>
+                  <DatePickerComp2 />
+                </div>
+                <div>
+                  <p>Max.</p>
+                  <DatePickerComp2 />
+                </div>
+              </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Date Range</p>
                 <select
@@ -59,50 +149,28 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
                   className="input-loyalty"
                 >
                   <option className="font-semibold" value="custom">
-                    INSTORE
+                    WEEKLY
                   </option>
-                </select>
-              </div>
-              <div className="mt-4">
-                <p className="text-lg font-semibold pb-4">Type of Earned</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
                   <option className="font-semibold" value="custom">
-                    TRANSACTION
+                    MONTHLY
+                  </option>
+                  <option className="font-semibold" value="custom">
+                    YEARLY
+                  </option>
+                  <option className="font-semibold" value="custom">
+                    CUSTOM
                   </option>
                 </select>
               </div>
-              <div className="mt-4">
-                <p className="text-lg font-semibold pb-4">Sent to</p>
-                <div className="flex items-center px-6 h-12 input-loyalty">
-                  <img
-                    src="./image 2 (3).svg"
-                    alt="search"
-                    className="w-6 h-6"
-                  />
-                  <input type="text" className="search" placeholder="Search" />
+              <div className="calender">
+                <div>
+                  <p>From</p>
+                  <DatePickerComp2 />
                 </div>
-              </div>
-              <div className="mt-4">
-                <div className="flex justify-between items-center px-6 h-12 input-loyalty">
-                  <div className="flex gap-6">
-                    <img
-                      src="./Ellipse 11.png"
-                      alt="search"
-                      className="w-6 h-6"
-                    />
-                    <p>Lorem Ipsum</p>
-                  </div>
-                  <img src="./image 675.png" alt="search" className="w-6 h-6" />
+                <div>
+                  <p>To</p>
+                  <DatePickerComp2 />
                 </div>
-              </div>
-              <div className="mt-6 cursor-pointer flex justify-center items-center gap-3 rounded-lg py-2 border border-[#0070BC] text-[#0070BC]">
-                <img src="./Mask group (10).png" alt="" className="w-7 h-7" />
-                <p className="font-semibold text-lg">ADD</p>
               </div>
             </div>
           </div>
@@ -117,9 +185,7 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+              onClick={closeDrawer}
             >
               RESET
             </button>

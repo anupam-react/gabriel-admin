@@ -114,3 +114,21 @@
   padding: 8px 40px;
   border-radius: 6px;
 }
+.filterbutton-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  
+  .button1,
+  .button2 {
+    border: 1px solid black;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .button2 {
+    color: white;
+    background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+    border: none;
+  }
+}

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
-const PromotionPreview = ({handleOpen, isPay = false }) => {
+const ReferalPreview = ({handleOpen}) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
   return (
     <div className="gift-container">
         <div className="gift-main">
-        <p className="title">Send Target Promotons</p>
+        <p className="title">Referral Reward Invitation Link</p>
         <img
           src="./Mask group (2).png"
           alt=""
@@ -23,7 +23,7 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
       <div className="ad-container">
        
       <div className="flex flex-col gap-3 items-center">
-        <p className="text-[#121212] text-[20px] font-semibold">Percentage Discount</p>
+        <p className="text-[#121212] text-[20px] font-semibold">Referral Reward</p>
       
       <div className="cardContainer">
         <img src="../image 710.jpg" alt="" />
@@ -39,24 +39,34 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
               </div>
             </div>
       </div>
-        
+      <p className="text-[#00000080] text-left font-[600] w-[270px]">Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
+          <p className="text-[#0070BC] w-[270px]">http://Www.Moneychat.com//Slice/refferalvoucher</p>
             <button
               className="loyalty-button1 mt-6"
-              style={{ width: "fit-content" , width:"300px" }}
+              style={{ width: "fit-content" }}
               onClick={()=>{
-                isPay ? navigate("/marketing/payment") :  setSuccess(true)
+                setSuccess(true)
+                setTimeout(()=>{
+                  setSuccess(false) 
+                },[1000])
               }}
             >
-              {isPay ? "Pay £1" : "Send to Customer’s Offer Folder"}
+             Send to Customer’s Offer Folder
             </button>
    
         </div>
+      
       </div>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-        <PromotionPreview isPay={true} handleOpen={setSuccess} />
+      <div className="alert">
+          <img src="../Vector (2).png" alt="" />
+          <p className="text-center text-lg">
+          Successfully Sent to customer’s Offer Folder
+          </p>
+        </div>
       </DialogDefault>
     </div>
   );
 };
 
-export default PromotionPreview;
+export default ReferalPreview;

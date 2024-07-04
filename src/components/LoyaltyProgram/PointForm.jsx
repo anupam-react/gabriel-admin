@@ -1,12 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
-const PointForm = ({ isReview = false }) => {
+import CatalogueProduct from "../customerInfo/CatalogueProduct";
+const PointForm = () => {
   const navigate = useNavigate();
   return (
     <div>
-          <p className="loyalty-form-header">{!isReview ? "Spent My Points" : "Spent My Points (Review )"}</p>
+      <p className="loyalty-form-header">Spent My Points</p>
       <div className="loyalty-form-container">
+        <div className="catalogue mt-4">
+          <p className="text-lg font-semibold pb-2">
+            Select Product from catalogue
+          </p>
+          <CatalogueProduct />
+        </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Upload product photo</p>
           <div className="input-loyalty2">
@@ -23,11 +30,7 @@ const PointForm = ({ isReview = false }) => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Name</p>
-          <input
-            type="text"
-            className="input-loyalty2"
-            value="Fruit"
-          />
+          <input type="text" className="input-loyalty2" value="Fruit" />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Description</p>
@@ -68,9 +71,7 @@ const PointForm = ({ isReview = false }) => {
           <button
             className="loyalty-button2"
             onClick={() => {
-              !isReview
-                ? navigate("/loyalty")
-                : navigate("/loyalty/point");
+              navigate("/loyalty");
             }}
           >
             Back
@@ -78,12 +79,10 @@ const PointForm = ({ isReview = false }) => {
           <button
             className="loyalty-button1"
             onClick={() => {
-              !isReview
-                ? navigate("/loyalty/point/review")
-                : navigate("/loyalty/point/preview");
+              navigate("/loyalty/point/preview");
             }}
           >
-            {!isReview ? "See Spend My Points Review" : "See Spend My Points Preview"}
+            See Spend My Points Review
           </button>
         </div>
       </div>

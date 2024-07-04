@@ -73,6 +73,18 @@
   padding: 8px 30px 8px 50px;
   color: "#0070BC";
 }
+.addstaf{
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
+  width: 50vw;
+}
+.new-input{
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
+  border-radius: 10px;
+  width: 400px;
+  border: none;
+  padding: 8px 30px 8px 50px;
+  color: "#0070BC";
+}
 .account-add-button {
   display: flex;
   gap: 20px;
@@ -86,4 +98,11 @@
   cursor: pointer;
   border-radius: 8px;
   margin: 40px 0px;
+}
+.add {
+  background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  height: fit-content;
 }

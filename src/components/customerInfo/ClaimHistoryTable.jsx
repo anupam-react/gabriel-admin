@@ -19,7 +19,7 @@ const ClaimHistoryTable = () => {
         <tbody>
           <tr>
             <td>
-              <p>£15</p>
+              <p>1500 Pts</p>
             </td>
             <td>30/11/2023</td>
             <td>
@@ -42,7 +42,7 @@ const ClaimHistoryTable = () => {
           </tr>
           <tr>
             <td>
-              <p>£15</p>
+              <p>4000 Pts</p>
             </td>
             <td>30/11/2023</td>
             <td>

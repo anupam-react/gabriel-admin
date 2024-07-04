@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import "./index.scss";
-import CatalogueProduct2 from "./CatalogueProduct2";
+
 const BounsPreview = ({ handleOpen }) => {
   const [openSuccess, setSuccess] = useState(false);
   return (

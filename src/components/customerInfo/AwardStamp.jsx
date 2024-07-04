@@ -5,7 +5,7 @@ import CatalogueProduct from './CatalogueProduct';
 const AwardStamp = ({handleOpen}) => {
     const [openSuccess, setSuccess] = useState(false);
   return (
- <div className="gift-container">
+ <div className="px-[24px] py-[16px] text-[black] font-[600]" >
       <div className="gift-main">
         <p className="title">Award Stamps</p>
         <img
@@ -18,18 +18,18 @@ const AwardStamp = ({handleOpen}) => {
         />
       </div>
           <hr className="hr" />
-           <div className="catalogue2">
+           {/* <div className="catalogue2">
            <label>Select Product from catalogue</label>
         <CatalogueProduct />
-      </div>
+      </div> */}
       <div className="button-group">
-        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+        <button className="button1" style={{fontSize:"18px"}}>
           5 Stamps
         </button>
-        <button className="button2" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+        <button className="button2" style={{fontSize:"18px"}}>
           10 Stamps
         </button>
-        <button className="button1" style={{fontSize:"18px"}} onClick={() => setSuccess(true)}>
+        <button className="button1" style={{fontSize:"18px"}}>
           20 Stamps
         </button>
           </div>
@@ -53,12 +53,17 @@ const AwardStamp = ({handleOpen}) => {
         </div>
       </div>
       <div className="flex-center">
-        <button className="menuButton" onClick={() => setSuccess(true)}>
+        <button className="menuButton" onClick={() => {
+          setSuccess(true)
+          setTimeout(()=>{
+            setSuccess(false)
+          },2000)
+          }}>
           SEND NOTIFICATION
         </button>
       </div>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-         <div className="success-alert">
+         <div className="p-6 ">
           <div className="cross-image2">
             <img
               src="./Mask group (2).png"
@@ -66,12 +71,16 @@ const AwardStamp = ({handleOpen}) => {
               className=""
               onClick={() => {
                 setSuccess(false);
+              
               }}
             />
           </div>
-          <p>
-        Your Stamps  to a customer after purchase has been sent to
-Customer ID :  #98BB212
+          <div className='flex justify-center '>
+          <img src="./2fa7832afa749ffa404629da1ede8820.gif" alt="" className='w-[120px]' />
+
+          </div>
+          <p className='text-center text-black text-[28px] font-[500]'>
+          Stamps successfully awarded to the customer
           </p>
         </div>
       </DialogDefault>

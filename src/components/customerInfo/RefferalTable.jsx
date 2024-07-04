@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Referral from "./Referral";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
+import Referal from "./Referal";
 
 const RefferalTable = () => {
   const [openAward, setOpenAward] = useState(false);
@@ -49,7 +49,7 @@ const RefferalTable = () => {
                 Send Referal Reward
               </button>
               <DialogDefault open={openAward} handleOpen={setOpenAward}>
-                <Referral handleOpen={setOpenAward} />
+                <Referal handleOpen={setOpenAward} />
               </DialogDefault>
               <DialogDefault
                 open={openTransaction}

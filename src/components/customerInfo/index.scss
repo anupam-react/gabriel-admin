@@ -76,6 +76,25 @@
     border-bottom-right-radius: 8px;
   }
 }
+.table3 {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+  color: #000000b2;
+
+  th, td {
+    padding: 8px;
+    overflow-wrap: break-word;
+    background-color: #fafafa;
+    border: 1px solid #dfdfdf;
+    text-align: center;
+  }
+
+  td {
+    width: 300px;
+  }
+
+}
 
 .pagination-bar {
   width: 100%;
@@ -268,6 +287,7 @@
 .textarea {
   border: none;
   border-radius: 8px;
+ padding: 10px;
   box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
 }
 .catalogue-container {
@@ -415,7 +435,7 @@
 .button1,
 .button2 {
   border: 1px solid black;
-  padding: 10px 50px;
+  padding: 8px 40px;
   border-radius: 10px;
   font-weight: 600;
 }
@@ -906,4 +926,8 @@
   padding: 14px 20px;
   width: 200px;
   color: #000000b2;
+}
+.trans-header{
+  background: linear-gradient(180deg, #00AAEA 0%, #0070BC 100%);
+ border-radius: 7px;
 }

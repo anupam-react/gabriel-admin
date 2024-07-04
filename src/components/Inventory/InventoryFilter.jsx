@@ -17,7 +17,7 @@ const InventoryFilter = ({ closeDrawer, open }) => {
         size={400}
       >
         <div className="filterContainer">
-          <div className="filter-body">
+          <div className="filter-body no-scrollbar">
             <div className="mb-6 flex items-center justify-between">
               <div onClick={closeDrawer}>
                 <img
@@ -154,9 +154,7 @@ const InventoryFilter = ({ closeDrawer, open }) => {
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+              onClick={closeDrawer}
             >
               RESET
             </button>

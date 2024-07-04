@@ -55,12 +55,7 @@ const Transaction = () => {
                 >
                   Send Target Point Promotions
                 </button>
-                <DialogDefault open={openAward} handleOpen={setOpenAward}>
-                  <Bouns handleOpen={setOpenAward} />
-                </DialogDefault>
-                <DialogDefault open={openPoint} handleOpen={setOpenPoint}>
-                  <AwardCustomer handleOpen={setOpenPoint} />
-                </DialogDefault>
+               
               </div>
             </td>
           </tr>
@@ -100,23 +95,18 @@ const Transaction = () => {
                 >
                   Send Target Point Promotions
                 </button>
-                <DialogDefault open={openAward} handleOpen={setOpenAward}>
-                  <Bouns handleOpen={setOpenAward} />
-                </DialogDefault>
-                <DialogDefault open={openPoint} handleOpen={setOpenPoint}>
-                  <AwardCustomer handleOpen={setOpenPoint} />
-                </DialogDefault>
-                <DialogDefault
-                  open={openTransaction}
-                  handleOpen={setOpenTransaction}
-                >
-                  <TransactionDetails handleOpen={setOpenTransaction} />
-                </DialogDefault>
+                
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+      <DialogDefault open={openAward} handleOpen={setOpenAward}>
+                  <Bouns handleOpen={setOpenAward} />
+                </DialogDefault>
+                <DialogDefault open={openPoint} handleOpen={setOpenPoint}>
+                  <AwardCustomer handleOpen={setOpenPoint} />
+                </DialogDefault>
     </div>
   );
 };

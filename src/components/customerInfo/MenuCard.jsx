@@ -5,7 +5,8 @@ import BirthDayGift from './BirthDayGift'
 import CustomizedBGift from './CustomizedBGift'
 import AwardCustomer from './AwardCustomer'
 import Bouns from './Bouns'
-import Referral from './Referral'
+
+import Invitation from './Invitation';
 const MenuCard = () => {
     const [openGift , setOpenGift] = useState(false)
     const [openOffer , setOpenOffer] = useState(false)
@@ -32,7 +33,7 @@ const MenuCard = () => {
             <Bouns  handleOpen={setOpenBonus}/>
         </DialogDefault>
           <DialogDefault open={openEvent} handleOpen={setOpenEvent}>
-            <Referral  handleOpen={setOpenEvent}/>
+            <Invitation  handleOpen={setOpenEvent}/>
         </DialogDefault>
     </div>
   )

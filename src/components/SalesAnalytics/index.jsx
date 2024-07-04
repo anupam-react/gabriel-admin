@@ -5,16 +5,22 @@ import Select from "../common/Select";
 import { BarChart2 } from "./BarChart2";
 import { LineChart3 } from "./LineChart3";
 import ReportPage2 from "./ReportPage2";
+import { useNavigate } from "react-router-dom";
+import Loader from "../Login/Loader";
 
 const SalesAnalytics = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
-  const data2 = {
-    title: "RETURN ON SALES",
-    image: "./image 51 (2).png",
-    amount: "90%",
-    footerTitle: "LOREM IPSUM",
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLoader = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      navigate("/transaction");
+    }, 2000);
   };
+
   const transactionData = [
     {
       title: "TOTAL REVENUE",
@@ -36,6 +42,8 @@ const SalesAnalytics = () => {
     },
   ];
   return (
+    <>
+   {!isLoading ? 
     <div>
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">Sales Analytics</p>
@@ -43,6 +51,7 @@ const SalesAnalytics = () => {
           src="./Mask group (6).svg"
           alt=""
           className="h-8 w-8 cursor-pointer"
+          onClick={handleLoader}
         />
         <div
           className="flex items-center px-6 h-12"
@@ -113,6 +122,10 @@ const SalesAnalytics = () => {
       </div>
       <ReportPage2 open={open} setOpen={setOpen} handleOpen={handleOpen} />
     </div>
+  :
+  <Loader />
+  }
+    </>
   );
 };
 

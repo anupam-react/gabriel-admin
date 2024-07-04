@@ -11,35 +11,35 @@ const AwardOffer = ({handleOpen}) => {
       title: "Campaign Type",
       value: "Percentage DIscount",
       handleCLick: () => {
-        setOpenCustom(true);
+         handleOpen(false);
       },
     },
     {
       title: "Decription",
       value: "70% discount Birthday special",
       handleCLick: () => {
-        setOpenCustom(true);
+         handleOpen(false);
       },
     },
     {
       title: "Reward Type",
       value: "Points",
       handleCLick: () => {
-        setOpenCustom(true);
+         handleOpen(false);
       },
     },
     {
       title: "Reward Value",
       value: "70%",
       handleCLick: () => {
-        setOpenCustom(true);
+         handleOpen(false);
       },
     },
     {
       title: "Expiration Date",
       value: "01-10-24",
       handleCLick: () => {
-        setOpenCustom(true);
+         handleOpen(false);
       },
     },
   ];

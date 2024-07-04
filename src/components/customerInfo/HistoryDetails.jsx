@@ -53,7 +53,7 @@ const HistoryDetails = ({ handleOpen }) => {
         </tbody>
       </table>
       <hr style={{ width: "100%" }} />
-        <button className="menuButton4" style={{margin:"20px 0px" , width:"180px"}}>Done</button>
+        <button className="menuButton4" onClick={() => handleOpen(false)} style={{margin:"20px 0px" , width:"180px"}}>Done</button>
     </div>
   );
 };

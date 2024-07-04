@@ -30,6 +30,7 @@ const Verification = ({ handleOpen }) => {
         <thead>
           <tr>
             <th>Student ID</th>
+            <th>Educational Institution</th>
             <th>Status</th>
             <th>Date</th>
             <th>Notification</th>
@@ -45,10 +46,15 @@ const Verification = ({ handleOpen }) => {
             </td>
             <td>
               {" "}
-              <span className="id-link" style={{ color: "#3BB54A" }}>
+              <span className="text-[#121212] font-[500]" >
+              University Of Manchester
+              </span>{" "}
+
+            </td>
+            <td>
+            <span className="id-link" style={{ color: "#3BB54A" }}>
                 Verified
               </span>{" "}
-              <br />
             </td>
             <td>18/12/2023</td>
             <td>
@@ -61,7 +67,7 @@ const Verification = ({ handleOpen }) => {
               </button>
             </td>
           </tr>
-          <tr>
+          {/* <tr>
             <td>
               <div className="flex justify-center">
                 <img src="./carbon_user-avatar-filled (2).png" alt="" />
@@ -110,7 +116,7 @@ const Verification = ({ handleOpen }) => {
                 Send a push notification note
               </button>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
       <DialogDefault open={openPromotion} handleOpen={setOpenPromotion}>

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import LoyalityCard from "./LoyalityCard";
+import { useNavigate } from "react-router-dom";
 const SavingPreview = () => {
   const [openSuccess, setSuccess] = useState(false);
+  const navigate = useNavigate();
   return (
     <div>
       <p className="loyalty-form-header">Make a Saving Preview</p>
@@ -12,7 +14,12 @@ const SavingPreview = () => {
           image="../../Frame 38308 (3).png"
           text="Get 12 for the price of 9 donuts for £15 "
         />
-        <button className="loyalty-button1" onClick={() => setSuccess(true)}>
+        <button className="loyalty-button1" onClick={() =>{ 
+          setSuccess(true)
+          setTimeout(()=> {
+            navigate("/loyalty")
+          }, 1000)
+          }}>
          Add to Make a Saving
         </button>
       </div>

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import LoyalityCard from "./LoyalityCard";
+import { useNavigate } from "react-router-dom";
 const PointPreview = () => {
   const [openSuccess, setSuccess] = useState(false);
+  const navigate = useNavigate();
   return (
     <div>
       <p className="loyalty-form-header">Spent My Points (Preview )</p>
@@ -12,7 +14,12 @@ const PointPreview = () => {
           image="../../Frame 38308 (2).png"
           text="Chocolate"
         />
-        <button className="loyalty-button1" onClick={() => setSuccess(true)}>
+        <button className="loyalty-button1" onClick={() =>{ 
+          setSuccess(true)
+          setTimeout(()=> {
+            navigate("/loyalty")
+          }, 1000)
+          }}>
         Add to Spend My Point
         </button>
       </div>
