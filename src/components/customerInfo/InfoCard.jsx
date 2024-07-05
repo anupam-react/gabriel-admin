@@ -22,7 +22,7 @@ const InfoCard = ({ data }) => {
         </div>
       </div>
       <DialogDefault open={open} handleOpen={handleOpen}>
-        <div className="bg-[#0070BC] p-4 text-white rounded-md text-2xl">
+        <div className="bg-[#0070BC] p-6 text-white rounded-md text-2xl">
           {data?.text}
         </div>
       </DialogDefault>

@@ -73,9 +73,19 @@
   padding: 8px 30px 8px 50px;
   color: "#0070BC";
 }
+.report-input {
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 20px 8px 20px;
+  color: "#0070BC";
+}
 .addstaf{
   box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
   width: 50vw;
+}
+.addEmp{
+  box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
 }
 .new-input{
   box-shadow: 0 4px 8px 0 gray, 0 6px 10px 0 white;
@@ -102,6 +112,18 @@
 .add {
   background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
   padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.back2 {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
+ padding: 10px;
+  width: 200px;
   color: white;
   border-radius: 10px;
   height: fit-content;

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import { DialogDefault } from "../common/DilogBox";
 const ReportSetting = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [isAddEmp, setAddEmp] = useState(false);
+  const [openAddEmp, setOpenAddEmp] = useState(false);
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -17,12 +20,18 @@ const ReportSetting = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <p className="text-[#0070BC] font-semibold">
-        <span className="cursor-pointer" onClick={() => navigate("/setting")}>
-          Settings {">"}{" "}
-        </span>
-        <span className="text-[#000000] text-lg">Report Settings</span>{" "}
-      </p>
+      <div className="flex justify-between items-center mb-6">
+        <p className="text-[#0070BC] font-semibold">
+          <span className="cursor-pointer" onClick={() => navigate("/setting")}>
+            Settings {">"}{" "}
+          </span>
+          <span className="text-[#000000] text-lg">Report Settings</span>{" "}
+        </p>
+        <button className="back" onClick={() => navigate("/setting")}>
+          <img src="../back.png" alt="" />
+          Back
+        </button>
+      </div>
       <div className="notificationConatiner">
         <p className="text-[#0070BC] font-semibold">MANUAL REPORT GENERATION</p>
         <div>
@@ -148,7 +157,10 @@ const ReportSetting = () => {
                 className="w-5 h-5"
               />
             </div>
-            <div className="flex items-center gap-4">
+            <div
+              className="flex items-center gap-4 cursor-pointer"
+              onClick={() => setOpenAddEmp(true)}
+            >
               <img src="../Mask group (15).png" alt="" className="w-6 h-6" />
               <p className="text-[#0070BC] font-semibold">ADD</p>
             </div>
@@ -168,7 +180,7 @@ const ReportSetting = () => {
               </label>
               <div className="flex flex-col gap-4">
                 <span className="font-semibold text-black dark:text-gray-300 ">
-                Maximum Number Of Transaction Crossed
+                  Maximum Number Of Transaction Crossed
                 </span>
                 <div className="flex items-center gap-4">
                   <input
@@ -203,7 +215,110 @@ const ReportSetting = () => {
             </div>
           </div>
         </div>
+        <div className="flex justify-center">
+          <button
+            className="back2 text-center"
+            onClick={() => navigate("/setting")}
+          >
+            SAVE
+          </button>
+        </div>
       </div>
+
+      <DialogDefault open={openAddEmp} handleOpen={setOpenAddEmp}>
+        <div className="p-6 w-[500px]">
+          <p className="text-center text-[#0070BC] font-[600]">
+            ADD AN EMPLOYEE WHO YOU WANT TO RECEIVE DAILY BUSINESS PERFORMANCE
+            REPORT
+          </p>
+          <div className="cross-image2">
+            <img
+              src="../Mask group (2).png"
+              alt=""
+              className=""
+              onClick={() => {
+                setOpenAddEmp(false);
+              }}
+            />
+          </div>
+          <p className="text-[#000000B2] text-[18px] font-[500] pb-2 mt-6">
+            Add Employee
+          </p>
+          <div className="relative w-full mb-6">
+            <input
+              id="countries"
+              //   value={selectedOption}
+              //   onChange={handleChange}
+              className="report-input w-full"
+              placeholder="Search Employee"
+            />
+
+            <img
+              src="../Arrow 6.png"
+              onClick={() => setAddEmp(!isAddEmp)}
+              alt=""
+              className="absolute top-3 right-2 cursor-pointer"
+            />
+            {isAddEmp && (
+              <div className="addEmp bg-[white] flex flex-col gap-2  rounded-md p-4">
+                <div className="flex items-center gap-2">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[20px] h-[20px] rounded-full "
+                  />
+                  <p> JhonDeo , </p>
+                  <p>Id :3456789.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[20px] h-[20px] rounded-full "
+                  />
+                  <p> JhonDeo , </p>
+                  <p>Id :3456789.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[20px] h-[20px] rounded-full "
+                  />
+                  <p> JhonDeo , </p>
+                  <p>Id :3456789.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[20px] h-[20px] rounded-full "
+                  />
+                  <p> JhonDeo , </p>
+                  <p>Id :3456789.</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[20px] h-[20px] rounded-full "
+                  />
+                  <p> JhonDeo , </p>
+                  <p>Id :3456789.</p>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="back2 text-center"
+              onClick={() => setOpenAddEmp(false)}
+            >
+              ADD
+            </button>
+          </div>
+        </div>
+      </DialogDefault>
     </div>
   );
 };

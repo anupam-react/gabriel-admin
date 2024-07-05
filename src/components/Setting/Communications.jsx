@@ -5,12 +5,18 @@ const Communications = () => {
   const navigate = useNavigate();
   return (
     <div>
+      <div className="flex justify-between items-center mb-6">
       <p className="text-[#0070BC] font-semibold">
         <span className="cursor-pointer" onClick={() => navigate("/setting")}>
           Settings {">"}{" "}
         </span>
         <span className="text-[#000000] text-lg">Communications</span>{" "}
       </p>
+        <button className="back" onClick={() => navigate("/setting")}>
+          <img src="../back.png" alt="" />
+          Back
+        </button>
+      </div>
       <div className="notificationConatiner">
        
         <div className="text-black ">
@@ -29,6 +35,14 @@ const Communications = () => {
               Email
             </label>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <button
+            className="back2 text-center"
+            onClick={() => navigate("/setting")}
+          >
+            SAVE
+          </button>
         </div>
       </div>
     </div>

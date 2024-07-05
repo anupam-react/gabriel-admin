@@ -32,9 +32,7 @@ export const options = {
   plugins: {
     legend: {
       position: "right",
-    },
-    title: {
-      display: true,
+      display: false
     },
   },
 };
@@ -51,6 +49,7 @@ export const data = {
       backgroundColor: "#0096DB",
     },
   ],
+  
 };
 
 export function BarChart() {
@@ -58,7 +57,7 @@ export function BarChart() {
     <div>
       <p className="font-semibold text-xl pb-4">Favourite Time of the Day:</p>
       <div className="rounded-lg shadow-md flex flex-col justify-center items-center bg-white p-4 w-[700px]">
-        <Bar options={options} data={data} />;
+        <Bar options={options} data={data} />
       </div>
     </div>
   );

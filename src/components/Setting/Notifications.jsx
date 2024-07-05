@@ -5,12 +5,19 @@ const Notifications = () => {
   const navigate = useNavigate();
   return (
     <div>
+     
+      <div className="flex justify-between items-center mb-6">
       <p className="text-[#0070BC] font-semibold">
         <span className="cursor-pointer" onClick={() => navigate("/setting")}>
           Settings {">"}{" "}
         </span>
         <span className="text-[#000000] text-lg">Notifications & Alerts</span>{" "}
       </p>
+        <button className="back" onClick={() => navigate("/setting")}>
+          <img src="../back.png" alt="" />
+          Back
+        </button>
+      </div>
       <div className="notificationConatiner">
         <div>
           <p className="text-[#0070BC] text-[20px] font-semibold pb-[20px]">
@@ -48,6 +55,14 @@ const Notifications = () => {
               Email
             </label>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <button
+            className="back2 text-center"
+            onClick={() => navigate("/setting")}
+          >
+            SAVE
+          </button>
         </div>
       </div>
     </div>

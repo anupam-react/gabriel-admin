@@ -56,7 +56,7 @@ const CampaignCard1 = ({
             </div>
           )}
         </div>
-        <p>Expiry Date : 04 Jan 2024, 1:30 am</p>
+        <p className="text-center font-[500]">Expiry Date : 04 Jan 2024, 1:30 am</p>
         {isButton && (
           <button
             className="run-again"

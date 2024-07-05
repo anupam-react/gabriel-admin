@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
 const ReturnForm = ({ handleOpen }) => {
+  const [isAddEmp, setAddEmp] = useState(false);
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -115,10 +116,7 @@ const ReturnForm = ({ handleOpen }) => {
       <p className="heading-title">Reason for Return or Exchange</p>
       <div className="form-container">
         <div className="input-container">
-          <label>
-            Specific reason (defective, wrong size/colour, not as described,
-            change of mind, etc.)
-          </label>
+          <label>Type of Product</label>
           <input
             type="text"
             name=""
@@ -129,7 +127,7 @@ const ReturnForm = ({ handleOpen }) => {
           />
         </div>
         <div className="input-container">
-          <label>Product ID</label>
+          <label>Condition of Product</label>
           <input
             type="text"
             name=""
@@ -151,9 +149,7 @@ const ReturnForm = ({ handleOpen }) => {
           />
         </div>
         <div className="input-container">
-          <label>
-            If the product is defective, a detailed description of the issue.
-          </label>
+          <label>Reason for Return</label>
           <input
             type="text"
             name=""
@@ -166,18 +162,18 @@ const ReturnForm = ({ handleOpen }) => {
       </div>
       <p className="heading-title">Return Policy Verification</p>
       <div className="form-container">
-        <div className="input-container">
-          <label>
-            Checking the product against the company’s return policy{" "}
-          </label>
+        <div>
           <input
-            type="text"
+            type="checkbox"
             name=""
             id=""
             value="Requirement"
-            className="input"
+            className="mr-4"
             placeholder=""
           />
+          <label>
+            Checking the product against the company’s return policy
+          </label>
         </div>
       </div>
       <p className="heading-title">Method of Refund or Exchange</p>
@@ -217,10 +213,21 @@ const ReturnForm = ({ handleOpen }) => {
             type="text"
             name=""
             id=""
-            value="Same as Original"
+            value=""
             className="input"
             placeholder=""
           />
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            name=""
+            id=""
+            value="Requirement"
+            className="mr-4"
+            placeholder=""
+          />
+          <label>Same as Original</label>
         </div>
         <div className="input-container">
           <label>
@@ -231,7 +238,7 @@ const ReturnForm = ({ handleOpen }) => {
             type="text"
             name=""
             id=""
-            value="Mail"
+            value="************"
             className="input"
             placeholder=""
           />
@@ -245,15 +252,63 @@ const ReturnForm = ({ handleOpen }) => {
           <label>
             Name or ID of the employee processing the return or exchange
           </label>
-          <input
-            type="text"
-            name=""
-            id=""
-            value="(Lorem ipsum)"
-            className="input"
-            placeholder=""
-          />
+          <div className="relative w-full">
+            <input
+              type="text"
+              name=""
+              id=""
+              value="(Lorem ipsum)"
+              className="input w-full"
+              placeholder=""
+            />
+            <p
+              className="absolute top-2 right-6 text-[#0070BC] underline cursor-pointer"
+              onClick={() => setAddEmp(true)}
+            >
+              Edit
+            </p>
+          </div>
+          {isAddEmp && (
+            <div
+              className="addstaf bg-[white] flex flex-col gap-2  rounded-md p-4"
+              style={{ width: "100%" }}
+            >
+              <div
+                className="cursor-pointer text-gray-500"
+                onClick={() => setAddEmp(false)}
+              >
+                123 (larm)
+              </div>
+              <div
+                className="cursor-pointer text-gray-500"
+                onClick={() => setAddEmp(false)}
+              >
+                123 (larm)
+              </div>
+              <div
+                className="cursor-pointer text-gray-500"
+                onClick={() => setAddEmp(false)}
+              >
+                123 (larm)
+              </div>
+              <div
+                className="cursor-pointer text-gray-500"
+                onClick={() => setAddEmp(false)}
+              >
+                123 (larm)
+              </div>
+              <div
+                className="cursor-pointer text-gray-500"
+                onClick={() => setAddEmp(false)}
+              >
+                123 (larm)
+              </div>
+            </div>
+          )}
         </div>
+      </div>
+      <div className="flex justify-center my-6">
+        <button className="menuButton3"  onClick={() => handleOpen(false)}>DONE</button>
       </div>
     </div>
   );

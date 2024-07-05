@@ -60,12 +60,12 @@ export function BarChart2() {
         }
       }
     },
-    // plugins: {
-    //   legend: {
-    //     display: true,
-    //     position: "top"
-    //   }
-    // }
+    plugins: {
+      legend: {
+        display: false,
+        position: "top"
+      }
+    }
   };
   return <Bar options={options} data={data} />;
 }

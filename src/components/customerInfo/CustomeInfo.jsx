@@ -38,13 +38,11 @@ const CustomeInfo = ({ handleOpen }) => {
       title: "Average Spend",
       image: "./image 701.png",
       amount: "5,000",
-      showInfo: true,
     },
     {
       title: "Average Basket Size",
       image: "./image 700 (1).png",
       amount: "£300",
-      showInfo: true,
       text: `Customer Average Transaction Value (ATV) is a metric that measures the average amount spent per transaction by customers with a business, calculated by dividing total sales revenue by the number of transactions within a specific time frame. 
 It helps assess customer spending habits and business performance.`,
     },
@@ -53,11 +51,8 @@ It helps assess customer spending habits and business performance.`,
       image: "./image 700.png",
       amount: "5,000",
       showInfo: true,
-      text: `Customer average total spend is a metric indicating how much a customer spends over a specific period.
- 
-It's calculated by dividing the total revenue from sales by the number of customers.
-
-This metric is crucial for understanding revenue contributions per customer.`,
+      text: `Customer Lifetime Value (CLV) is a metric that estimates the total revenue a business can expect from a single customer account throughout the business relationship. 
+It factors in the revenue generated from a customer, the duration of the relationship, and the costs associated with serving the customer..`,
     },
   ];
   const mostViewProd = [

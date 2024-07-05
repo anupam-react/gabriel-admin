@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import "./index.scss";
+import { useNavigate } from "react-router-dom";
+import { DialogDefault } from "../common/DilogBox";
 const Account = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isAddEmp , setAddEmp] = useState(false)
+  const [openAddEmp, setOpenAddEmp] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+  const navigate = useNavigate()
   return (
     <div>
       <div className="flex justify-between items-center">
         <p className="text-xl font-semibold">Account Details</p>
+        <div className="flex gap-8">
         <div className="account-status-Main">
           <p className="text-[#000000B2]">STATUS - </p>
           <div className="account-status">
             <p className="dot"></p>
             <p className="text-[#3BB54A]">ACTIVE</p>
           </div>
+        </div>
+        <button className="back" onClick={()=> navigate("/transaction")}> 
+        <img src="../back.png" alt="" />
+        Back</button>
+
         </div>
       </div>
       <div className="supportContainer">
@@ -69,10 +80,51 @@ const Account = () => {
               <option className="font-semibold">Security Question</option>
             </select>
           </div>
-          <div className="account-input flex justify-between">
-            <p>Commission Structure</p>
-            <p>1 %</p>
+          <div className="relative w-[50vw]">
+            <img
+              src="./image 54.svg"
+              alt=""
+              className="w-5 h-5 absolute top-2 left-4"
+            />
+            <input
+              id="countries"
+              //   value={selectedOption}
+              //   onChange={handleChange}
+              className="account-input"
+              placeholder="Add Your Staff/ Employee"
+            />
+ 
+           <img src="../Arrow 6.png" onClick={()=>setAddEmp(!isAddEmp)} alt="" className="absolute top-3 right-2 cursor-pointer"/>
+          {isAddEmp && <div className="addstaf bg-[white] flex flex-col gap-2  rounded-md p-4">
+            <div className="flex items-center gap-2">
+              <img src="" alt="" className="w-[20px] h-[20px] rounded-full " />
+              <p> JhonDeo , </p>
+              <p>Id :3456789.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="" alt="" className="w-[20px] h-[20px] rounded-full " />
+              <p> JhonDeo , </p>
+              <p>Id :3456789.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="" alt="" className="w-[20px] h-[20px] rounded-full " />
+              <p> JhonDeo , </p>
+              <p>Id :3456789.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="" alt="" className="w-[20px] h-[20px] rounded-full " />
+              <p> JhonDeo , </p>
+              <p>Id :3456789.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="" alt="" className="w-[20px] h-[20px] rounded-full " />
+              <p> JhonDeo , </p>
+              <p>Id :3456789.</p>
+            </div>
+    <button className="back" style={{width:"140px"}} onClick={()=>setOpenAddEmp(true)}>ADD NEW</button>
+           </div>}
           </div>
+          
         </div>
         <p className="pt-4 text-black">Contacts</p>
         <div className="flex flex-col gap-4">
@@ -287,7 +339,7 @@ const Account = () => {
               type="name"
               name="name"
               id="name"
-              placeholder="Tax Identification Number"
+              placeholder="VAT REG. No"
               className="account-input"
               required
               // value={name}
@@ -434,7 +486,7 @@ const Account = () => {
                   // onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="relative">
+              {/* <div className="relative">
                 <img
                   src="./image 57.png"
                   alt=""
@@ -448,7 +500,7 @@ const Account = () => {
                 >
                   <option className="font-semibold">Account Type</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
@@ -502,6 +554,115 @@ const Account = () => {
           <p>ADD NEW PAYMENT METHOD</p>
         </div>
       </div>
+      <DialogDefault open={openAddEmp} handleOpen={setOpenAddEmp}>
+        <div className="p-4">
+        <p className="text-[#0070BC] text-[20px] font-semibold pb-6">ADD NEW EMPLOYEE</p>
+        <div className="flex flex-col gap-4">
+          <div className="relative">
+            <img
+              src="./image 54.svg"
+              alt=""
+              className="w-5 h-6 absolute top-2 left-4"
+            />
+            <input
+              type="name"
+              name="name"
+              id="name"
+              placeholder="First Name"
+              className="new-input"
+              required
+              // value={name}
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <img
+              src="./image 54.svg"
+              alt=""
+              className="w-5 h-6 absolute top-2 left-4"
+            />
+            <input
+              type="text"
+              name="Last Name"
+              id="Last Name"
+              placeholder="Last Name"
+              className="new-input"
+              required
+              // value={password}
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <img
+              src="./image 56.png"
+              alt=""
+              className="w-5 h-5 absolute top-2 left-4"
+            />
+            <select
+              id="countries"
+              //   value={selectedOption}
+              //   onChange={handleChange}
+              className="new-input"
+            >
+              <option className="font-semibold">Role</option>
+            </select>
+          </div>
+          <div className="relative">
+            <img
+              src="./image 54.svg"
+              alt=""
+              className="w-5 h-6 absolute top-2 left-4"
+            />
+            <input
+              type="text"
+              name="Last Name"
+              id="Last Name"
+              placeholder="Employee ID"
+              className="new-input"
+              required
+              // value={password}
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <img
+              src="./image 33.svg"
+              alt=""
+              className="w-5 h-6 absolute top-2 left-4"
+            />
+            <input
+              type="text"
+              name="Email"
+              id="Email"
+              placeholder="Email"
+              className="new-input"
+              required
+              // value={password}
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <img
+              src="./image 32.svg"
+              alt=""
+              className="w-5 h-6 absolute top-2 left-4"
+            />
+            <input
+              type="text"
+              name="Contact"
+              id="Contact"
+              placeholder="Contact"
+              className="new-input"
+              required
+              // value={password}
+              // onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          
+        </div>
+        <button className="add mt-4 text-center" style={{width:"140px"}} onClick={()=>setOpenAddEmp(false)}>ADD</button>
+        </div>
+      </DialogDefault>
     </div>
   );
 };

@@ -4,10 +4,15 @@ import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import ProductDetails from "./ProductDetails";
 import HistoryDetails from "./HistoryDetails";
+import TransactionCupon from "./TransactionCupon";
+import TransactionDiscount from "./TransactionDiscount";
+import ProductDetails3 from "./ProductDetails3";
 
 const Promotions = ({ handleOpen }) => {
   const [openProduct, setOpenproduct] = useState(false);
   const [openHistory, setOpenHistory] = useState(false);
+  const [openCupon, setOpenCupon] = useState(false);
+  const [openDiscount, setOpenDiscount] = useState(false);
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -52,6 +57,7 @@ const Promotions = ({ handleOpen }) => {
                   textDecoration: "underline",
                   cursor: "pointer",
                 }}
+                onClick={()=>setOpenDiscount(true)}
               >
                 {" "}
                 See Transactions
@@ -68,6 +74,7 @@ const Promotions = ({ handleOpen }) => {
                   textDecoration: "underline",
                   cursor: "pointer",
                 }}
+                onClick={()=>setOpenCupon(true)}
               >
                 {" "}
                 See Transactions
@@ -273,10 +280,16 @@ const Promotions = ({ handleOpen }) => {
         </tbody>
       </table>
       <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
-        <ProductDetails handleOpen={setOpenproduct} />
+        <ProductDetails3 handleOpen={setOpenproduct} />
       </DialogDefault>
       <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
         <HistoryDetails handleOpen={setOpenHistory} />
+      </DialogDefault>
+      <DialogDefault open={openCupon} handleOpen={setOpenCupon}>
+        <TransactionCupon handleOpen={setOpenCupon} />
+      </DialogDefault>
+      <DialogDefault open={openDiscount} handleOpen={setOpenDiscount}>
+        <TransactionDiscount handleOpen={setOpenDiscount} />
       </DialogDefault>
     </div>
   );
