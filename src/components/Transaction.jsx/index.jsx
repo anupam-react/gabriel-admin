@@ -8,12 +8,26 @@ import LoyalityCard from "./LoyalityCard";
 import { LineChart } from "./LineChart";
 import ReportPage from "./ReportPage";
 import TransactionFilter from "./TransactionFilter";
+import useTransaction from "../../hooks/useTransaction";
 
 const Transaction = () => {
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const closeDrawer = () => setIsOpen(false);
   const handleOpen = () => setOpen(!open);
+
+  const { salesVolume , getTransactionSaleVolume } = useTransaction()
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [openCustom, setOpenCustom] = useState(false);
+  
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+    getTransactionSaleVolume(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom(true);
+    }
+  };
 
   const transactionData = [
     {
@@ -76,7 +90,7 @@ const Transaction = () => {
       </div>
       <div className="flex justify-between my-6">
         {transactionData?.map((data, i) => (
-          <TransactionCard data={data} />
+          <TransactionCard data={data} selectedOption={selectedOption}  handleChange={handleChange} open={openCustom} setOpen={setOpenCustom}/>
         ))}
       </div>
       <div className="flex gap-4">
@@ -86,7 +100,6 @@ const Transaction = () => {
             <p className="text-[#0070BC] font-semibold text-lg ">
               TIME BASED ANALYTICS
             </p>
-            <Select />
           </div>
           <div className="w-[650px] h-[350px]">
             <BarChart />

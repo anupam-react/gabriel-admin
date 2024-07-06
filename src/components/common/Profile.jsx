@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Drawer } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "./DilogBox";
-const Profile = ({ closeDrawer, open }) => {
+const Profile = ({ closeDrawer, open , data }) => {
   const [openUploadImage, setUploadImage] = useState(false);
   const navigate = useNavigate();
   return (
@@ -22,16 +22,18 @@ const Profile = ({ closeDrawer, open }) => {
         </div>
         <div className="flex flex-col items-center mb-6">
           <div className="relative">
-          <img src="./Ellipse 1 (1).svg" alt="" className="w-[120px] h-[120px] mb-4 rounded-full" />
+          <img src={data?.image} alt="" className="w-[120px] h-[120px] mb-4 rounded-full" />
             <img src="../tabler_edit.png" alt="" className="absolute bottom-4 right-2 cursor-pointer" onClick={()=> setUploadImage(true)} />
           </div>
-          <p className="font-semibold pb-2">Dave Smith</p>
+          <p className="font-semibold pb-2">{data?.fullName}</p>
           <p className="text-sm">
-            <span className="text-[#0070BC]">USER ID</span> - ABC2345
+            <span className="text-[#0070BC]">USER ID</span> - {data?._id}
           </p>
           <div className="flex gap-2 cursor-pointer my-4">
             <img src="./Mask group (3).png" alt="" className="w-5 h-5" />
-            <p className="text-[#FD575B]" onClick={()=> navigate('/login')}>SIGN OUT</p>
+            <p className="text-[#FD575B]" onClick={()=>{ 
+              sessionStorage.removeItem("token")
+              navigate('/login')}}>SIGN OUT</p>
           </div>
           {/* <hr className="bg-[#00000099] w-full" /> */}
         </div>

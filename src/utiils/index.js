@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// Base_url = https://gabriel-backend.vercel.app/
+
 export const fetchApiData = async (url) => {
   let token = sessionStorage.getItem("token");
   const headers = {

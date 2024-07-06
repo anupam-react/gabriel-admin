@@ -2,35 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 import { useState } from "react";
 import Loader from "./Loader";
-const Form = ({
-  isLogin,
-  userName,
-  setUserName,
-  email,
-  setEmail,
-  phone,
-  setPhone,
-  password,
-  setPassword,
-  confirmPassword,
-  setConfirmPassword,
-  showPassword,
-  showCpassword,
-  isChecked,
-  handleCheckboxChange,
-  handleRegister,
-  togglePasswordVisibility,
-  toggleCPasswordVisibility,
-}) => {
-  const [isLoading, setIsLoading] = useState(false);
+import useLogin from "../../hooks/useLogin";
+const Form = () => {
+  const {  
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isLoading,
+    handleLogin} = useLogin()  
+  
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      navigate("/transaction");
-    }, 3000);
-  };
   return (
     <>
       {!isLoading ? (
@@ -55,13 +38,13 @@ const Form = ({
                     <input
                       type="text"
                       name="email"
-                      id="password"
+                      id="email"
                       style={{ color: "#0070BC" }}
                       placeholder="USER ID"
                       className="rounded shadow-md border-none text-sm block w-full pl-10 p-2.5 "
                       required
-                      // value={password}
-                      // onChange={(e) => setPassword(e.target.value)}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -80,8 +63,8 @@ const Form = ({
                     placeholder="PASSWORD"
                     className="rounded shadow-md border-none text-sm block  w-full pl-10 p-2.5 "
                     required
-                    // value={password}
-                    // onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </>

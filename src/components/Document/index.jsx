@@ -2,16 +2,78 @@ import React, { useState } from "react";
 import Uploadfile from "./Uploadfile";
 import { useNavigate } from "react-router-dom";
 import VerifySuccess from "./VerifySuccess";
+import useDocument from "../../hooks/useDocument";
+import axios from "axios";
+import { successToast } from "../Toast";
 
 const Document = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
+  const {
+    businessLicense,
+    setBusinessLicense,
+    certificateOfInCorporation,
+    setCertificateOfInCorporation,
+    ownerOperatorId,
+    setOwnerOperatorId,
+    proofOfAddress,
+    setProofOfAddress,
+    isSuccess,
+    handleDocuments,
+  } = useDocument();
+
   const navigate = useNavigate();
-  const handleDocument = () => {
-    setIsSuccess(true);
-    setTimeout(() => {
-      navigate("/login");
-    }, 3000);
+
+  const handleFileInputChange1 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully")
+    setBusinessLicense(data?.data?.data);
   };
+
+  const handleFileInputChange2 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    console.log(data?.data)
+    successToast("Image Uplaod Successfully")
+    setCertificateOfInCorporation(data?.data?.data);
+  };
+
+  const handleFileInputChange3 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully")
+    setOwnerOperatorId(data?.data?.data);
+  };
+  const handleFileInputChange4 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully")
+    setProofOfAddress(data?.data?.data);
+  };
+
   return (
     <>
       {!isSuccess ? (
@@ -36,23 +98,25 @@ const Document = () => {
                   Account!
                 </p>
               </div>
-              <form
-                className="space-y-10 h-64 p-4 overflow-auto"
-                action="#"
-              >
+              <form className="space-y-10 h-64 p-4 overflow-auto" action="#">
                 <div className="flex flex-col gap-8">
                   <p className="font-bold text-sm" style={{ color: "#0070BC" }}>
                     BUSINESS REGISTRATION & LICENSING
                   </p>
-                  <Uploadfile text="Business License (if any)" />
-                  <Uploadfile text="Certificate of Incorporation" />
+                  <Uploadfile
+                    text="Business License (if any)"
+                    id="file1"
+                    image={businessLicense}
+                    handleFileInputChange={handleFileInputChange1}
+                  />
+                  <Uploadfile  id="file2"  image={certificateOfInCorporation} text="Certificate of Incorporation"  handleFileInputChange={handleFileInputChange2}/>
                 </div>
                 <div className="flex flex-col gap-8">
                   <p className="font-bold text-sm" style={{ color: "#0070BC" }}>
                     IDENTITY VERIFICATION
                   </p>
-                  <Uploadfile text="Owner/Operator ID" />
-                  <Uploadfile text="Proof of Address" />
+                  <Uploadfile id="file3" image={ownerOperatorId} text="Owner/Operator ID"  handleFileInputChange={handleFileInputChange3}/>
+                  <Uploadfile id="file4" image={proofOfAddress} text="Proof of Address"  handleFileInputChange={handleFileInputChange4}/>
                 </div>
 
                 {/* <div className="flex flex-col gap-4">
@@ -144,7 +208,7 @@ const Document = () => {
               </form>
               <div className="flex justify-between items-center mt-6">
                 <div className="flex justify-center">
-                  <button className="sign-button" onClick={handleDocument}>
+                  <button className="sign-button" onClick={handleDocuments}>
                     REGISTER
                   </button>
                 </div>

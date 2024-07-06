@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './index.css'
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
-const Navbar = () => {
+const Navbar = ({data}) => {
   const [open, setOpen] = useState(false);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
@@ -34,17 +34,17 @@ const Navbar = () => {
         </div>
         <div className="flex gap-2 items-center cursor-pointer"  onClick={openDrawer}>
         <img
-          src="./Ellipse 1 (1).svg"
+          src={data?.image}
           alt="profile"
           className="rounded-full w-14 h-12"
           />
           <div>
-          <p className="font-semibold">Dave Smith</p>
+          <p className="font-semibold">{data?.fullName}</p>
           <p className="view">VIEW MORE {`>`}</p>
 
           </div>
         </div>
-         <Profile closeDrawer={closeDrawer} open={open} />
+         <Profile closeDrawer={closeDrawer} open={open} data={data}/>
       </div>
     </div>
   );

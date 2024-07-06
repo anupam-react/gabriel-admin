@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "../common/Select";
 
-const TransactionCard = ({ data }) => {
+const TransactionCard = ({ data, selectedOption, handleChange, open, setOpen }) => {
+
   return (
     <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-6 px-4 w-[24vw]">
       <p className="text-[#0070BC] text-[20px] font-semibold">{data?.title}</p>
       <div className="mb-3">
-        <Select />
+        <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen}/>
       </div>
       <div className="flex items-center gap-4">
         <img src={data?.image} alt="" />

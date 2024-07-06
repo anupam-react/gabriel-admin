@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LinkSuccess from "./LinkSuccess";
+import useRegister from "../../hooks/useRegister";
 
 const Forgot = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
+ const {isSuccess,   email,
+  setEmail, handleForgetPassword } = useRegister()
   const navigate = useNavigate();
-  const handleLink = () => {
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 3000);
-  };
+ 
   return (
     <>
       {!isSuccess ? (
@@ -38,17 +35,17 @@ const Forgot = () => {
                 <input
                   type="text"
                   name="email"
-                  id="password"
+                  id="email"
                   style={{ color: "#0070BC" }}
-                  placeholder="USER ID"
+                  placeholder="EMAIL"
                   className="rounded shadow-md border-none text-sm block w-full pl-14 p-2.5 "
                   required
-                  // value={password}
-                  // onChange={(e) => setPassword(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="flex justify-center pt-6">
-                <button className="sign-button" onClick={handleLink}>
+                <button className="sign-button" onClick={handleForgetPassword}>
                   SEND LINK
                 </button>
               </div>

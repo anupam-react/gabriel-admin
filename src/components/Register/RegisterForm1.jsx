@@ -1,32 +1,34 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
-const RegisterForm1 = ({
-  isLogin,
-  userName,
-  setUserName,
+import useRegister from "../../hooks/useRegister";
+import Select from "react-select";
+import { useState } from "react";
+const RegisterForm1 = () => {
+ const { 
+  name,
+  setName,
   email,
   setEmail,
-  phone,
-  setPhone,
   password,
   setPassword,
-  confirmPassword,
+  phone,
+  setPhone,
+  country,
+  setCountry,
+  categoryId,
+  setCategoryId,
+  subCategoryId, 
+  setSubCategoryId,
+  category,
+  subcategory,
+  selectedCat, 
   setConfirmPassword,
-  showPassword,
-  showCpassword,
-  isChecked,
-  handleCheckboxChange,
-  handleLogin,
+  confirmPassword,
   handleRegister,
-  togglePasswordVisibility,
-  toggleCPasswordVisibility,
-}) => {
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
+  handleCategory
+} = useRegister()
+const [selectedSubCat, setSubCat] = useState(null);
+
   const navigate = useNavigate();
   const countryOptions = [
     { option: "UK", value: "UK" },
@@ -37,28 +39,28 @@ const RegisterForm1 = ({
     { option: "USA", value: "USA" },
    
   ];
-  const categoryOptions = [
-    { option: "Shopping & Fashion", value: "shopping" },
-    { option: "Food and Drink", value: "food" },
-    { option: "Arts & Entertainment", value: "arts" },
-    { option: "Finance & Banking", value: "finance" },
-    { option: "Fitness", value: "fitness" },
-    { option: "Health & Beauty", value: "health" },
-    { option: "Travel & Hotels", value: "travel" },
-  ];
-  const subCategoryOptions = [
-    { option: "Electronics", value: "electronics" },
-    { option: "Home and Garden", value: "home" },
-    { option: "Sporting Goods", value: "sports" },
-    { option: "Books and Stationery", value: "books" },
-    { option: "Jewellery", value: "jewellery" },
-    { option: "Pet Supplies", value: "pet" },
-    { option: "Furniture", value: "furniture" },
-    { option: "Books & Comic Book Shops", value: "shops" },
-    { option: "Speciality Food Stores", value: "food" },
-    { option: "Boutique Wine and Spirits", value: "wine" },
-    { option: "Craft and Hobby Store", value: "hobby" },
-  ];
+  // const categoryOptions = [
+  //   { option: "Shopping & Fashion", value: "shopping" },
+  //   { option: "Food and Drink", value: "food" },
+  //   { option: "Arts & Entertainment", value: "arts" },
+  //   { option: "Finance & Banking", value: "finance" },
+  //   { option: "Fitness", value: "fitness" },
+  //   { option: "Health & Beauty", value: "health" },
+  //   { option: "Travel & Hotels", value: "travel" },
+  // ];
+  // const subCategoryOptions = [
+  //   { option: "Electronics", value: "electronics" },
+  //   { option: "Home and Garden", value: "home" },
+  //   { option: "Sporting Goods", value: "sports" },
+  //   { option: "Books and Stationery", value: "books" },
+  //   { option: "Jewellery", value: "jewellery" },
+  //   { option: "Pet Supplies", value: "pet" },
+  //   { option: "Furniture", value: "furniture" },
+  //   { option: "Books & Comic Book Shops", value: "shops" },
+  //   { option: "Speciality Food Stores", value: "food" },
+  //   { option: "Boutique Wine and Spirits", value: "wine" },
+  //   { option: "Craft and Hobby Store", value: "hobby" },
+  // ];
   return (
     <div className="flex justify-center items-center h-[100vh] w-full">
       <div className="w-2/6 px-4 bg-white border z-50 border-gray-200 rounded shadow-xl sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -94,8 +96,8 @@ const RegisterForm1 = ({
                 placeholder="Full Name"
                 className="rounded shadow-md border-none text-sm block w-full pl-10 p-2.5 "
                 required
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -108,6 +110,8 @@ const RegisterForm1 = ({
               <div className="custom-select">
               <select
                 id="countries"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
                 className="rounded shadow-md  pl-10  text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option disabled selected>
@@ -137,8 +141,8 @@ const RegisterForm1 = ({
                 placeholder="Contact Number"
                 className="rounded shadow-md border-none text-sm block  w-full pl-10 p-2.5 "
                 required
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className="relative">
@@ -155,8 +159,8 @@ const RegisterForm1 = ({
                 placeholder="Email Address"
                 className="rounded shadow-md border-none text-sm block  w-full pl-10 p-2.5 "
                 required
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="relative">
@@ -173,8 +177,8 @@ const RegisterForm1 = ({
                 placeholder="New Password"
                 className="rounded shadow-md border-none text-sm block  w-full pl-10 p-2.5 "
                 required
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="relative">
@@ -191,8 +195,8 @@ const RegisterForm1 = ({
                 placeholder="Re - Enter Password"
                 className="rounded shadow-md border-none text-sm block  w-full pl-10 p-2.5 "
                 required
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <p className="text-xl font-bold text-center">Business Categories</p>
@@ -200,21 +204,34 @@ const RegisterForm1 = ({
               Please provide the following Information to Continue!
             </p>
             <div className="custom-select">
-              <select
+              {/* <select
                 id="countries"
+                onChange={handleCategory}
+                value={categoryId}
                 className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option disabled selected>
                   Categories
                 </option>
-                {categoryOptions?.map((data, i) => (
+                {category?.map((data, i) => (
                   <>
-                    <option key={i} value={data?.value}>
-                      {data?.option}
+                    <option key={i} value={data?._id}>
+                      {data?.name}
                     </option>
                   </>
                 ))}
-              </select>
+              </select> */}
+                <Select
+                        className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        styles={{ width: "20px" }}
+                        value={selectedCat}
+                        options={category?.map(user => ({
+                          value: user._id,
+                          label: user?.name
+                        }))}
+                        defaultValue={category?.[0]?._id}
+                        onChange={handleCategory}
+                    />
             </div>
             <p className="text-xl font-bold text-center">
               Select Sub-Categories
@@ -223,25 +240,20 @@ const RegisterForm1 = ({
               Please provide the following Information to Continue!
             </p>
             <div className="custom-select">
-              <select
-                id="countries"
-                className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option selected disabled>
-                  subcategories
-                </option>
-                {subCategoryOptions?.map((data, i) => (
-                  <>
-                    <option
-                      className="font-semibold"
-                      key={i}
-                      value={data?.value}
-                    >
-                      {data?.option}
-                    </option>
-                  </>
-                ))}
-              </select>
+               <Select
+                        className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        styles={{ width: "20px" }}
+                        value={selectedSubCat}
+                        options={subcategory?.map(user => ({
+                          value: user._id,
+                          label: user?.name
+                        }))}
+                        defaultValue={subcategory?.[0]?._id}
+                        onChange={(e) => {
+                          setSubCat(e)
+                          setSubCategoryId(e.value)
+                        }}
+                    />
             </div>
           </>
         </form>
@@ -249,7 +261,8 @@ const RegisterForm1 = ({
           <div className="flex justify-center">
             <button
               className="sign-button"
-              onClick={() => navigate("/documents")}
+              type="submit"
+              onClick={handleRegister}
             >
               CONTINUE
             </button>

@@ -2,24 +2,18 @@ import React, { useState } from "react";
 import { DialogDefault } from "./DilogBox";
 import { DatePickerComp } from "./DatePickerComp";
 
-const Select = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+const Select = ({selectedOption , handleChange , open , setOpen }) => {
+  
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
-    if (event.target.value === "custom") {
-      setOpen(true);
-    }
-  };
 
   const handleOpen = () => setOpen(!open);
 
   const MonthOptions = [
-    { label: "THIS WEEK", value: "week" },
+    { label: "ALL TIME", value: "All" },
+    { label: "THIS WEEK", value: "weekly" },
     { label: "THIS MONTH", value: "month" },
     { label: "CUSTOM", value: "custom" },
-    { label: "ALL TIME", value: "all" },
+   
   ];
 
   return (
