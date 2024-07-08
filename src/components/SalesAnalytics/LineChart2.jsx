@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -22,35 +21,7 @@ ChartJS.register(
   Legend
 );
 
-
-
-const labels = ['BEVERAGES', 'SHOES', 'PHONES', 'ELECTRONICS', 'FOOD'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'SALES',
-      data: [100, 200, 300 , 500 , 400],
-      borderColor: '#FEA82F',
-      backgroundColor: '#FEA82F',
-    },
-    {
-      label: 'OLD CUSTOMERS',
-      data: [100, 300, 500, 400 , 200],
-      borderColor: '#0070BC',
-      backgroundColor: '#0070BC',
-    },
-    {
-      label: 'OLD CUSTOMERS',
-      data: [100, 400, 200, 300 , 500],
-      borderColor: '#FD575B',
-      backgroundColor: '#FD575B',
-    },
-  ],
-};
-
-export function LineChart2() {
+export function LineChart2({ data }) {
   const options = {
     scales: {
       x: {
@@ -59,9 +30,9 @@ export function LineChart2() {
           text: "SUB-Categories",
           color: "#000000",
           font: {
-            size: 16
-          }
-        }
+            size: 16,
+          },
+        },
       },
       y: {
         title: {
@@ -69,17 +40,42 @@ export function LineChart2() {
           text: "SALES",
           color: "#000000",
           font: {
-            size: 16
-          }
-        }
-      }
+            size: 16,
+          },
+        },
+      },
     },
     plugins: {
       legend: {
         display: false,
-        position: "bottom"
-      }
-    }
+        position: "bottom",
+      },
+    },
   };
-  return <Line options={options} data={data} />;
+  const labels = ["BEVERAGES", "SHOES", "PHONES", "ELECTRONICS", "FOOD"];
+
+  const dataset = {
+    labels,
+    datasets: [
+      {
+        label: "SALES",
+        data: [100, 200, 300, 500, 400],
+        borderColor: "#FEA82F",
+        backgroundColor: "#FEA82F",
+      },
+      {
+        label: "OLD CUSTOMERS",
+        data: [100, 300, 500, 400, 200],
+        borderColor: "#0070BC",
+        backgroundColor: "#0070BC",
+      },
+      {
+        label: "OLD CUSTOMERS",
+        data: [100, 400, 200, 300, 500],
+        borderColor: "#FD575B",
+        backgroundColor: "#FD575B",
+      },
+    ],
+  };
+  return <Line options={options} data={dataset} />;
 }

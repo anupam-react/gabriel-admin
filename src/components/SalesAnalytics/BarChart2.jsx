@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -20,22 +19,6 @@ ChartJS.register(
   Legend
 );
 
-
-const labels = ['OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12','OUTLET #12', ];
-
-
-
-export const data = {
-  labels,
-  datasets: [
-      {
-      label: 'OUTLETS ',
-      data:[100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0] ,
-      backgroundColor:'#FEA82F'
-    },
-  ],
-};
-
 export function BarChart2() {
   const options = {
     scales: {
@@ -45,9 +28,9 @@ export function BarChart2() {
           text: "OUTLETS",
           color: "#000000",
           font: {
-            size: 16
-          }
-        }
+            size: 16,
+          },
+        },
       },
       y: {
         title: {
@@ -55,17 +38,40 @@ export function BarChart2() {
           text: "PERCENTAGES",
           color: "#000000",
           font: {
-            size: 16
-          }
-        }
-      }
+            size: 16,
+          },
+        },
+      },
     },
     plugins: {
       legend: {
         display: false,
-        position: "top"
-      }
-    }
+        position: "top",
+      },
+    },
   };
-  return <Bar options={options} data={data} />;
+  const labels = [
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+    "OUTLET #12",
+  ];
+
+  const dataset = {
+    labels,
+    datasets: [
+      {
+        label: "OUTLETS ",
+        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
+        backgroundColor: "#FEA82F",
+      },
+    ],
+  };
+  return <Bar options={options} data={dataset} />;
 }

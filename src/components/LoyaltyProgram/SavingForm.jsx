@@ -2,23 +2,52 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import CatalogueProduct from "../customerInfo/CatalogueProduct";
+import useOutlate from "../../hooks/useOutlate";
+import useSaving from "../../hooks/useSaving";
+import Select from "react-select";
 const SavingForm = ({ isReview = false }) => {
+  const { outlate } = useOutlate();
+  const {
+    description,
+    setDescription,
+    title,
+    setTitle,
+    image,
+    setImage,
+    termAndCondition,
+    setTermAndCondition,
+    price,
+    setPrice,
+    setProductId,
+    selectedOutlate,
+    handleOutlate,
+    handleMySaving,
+  } = useSaving();
   const navigate = useNavigate();
+
   return (
     <div>
-    <p className="loyalty-form-header">{!isReview ? "Make a Saving" : "Make a Saving Review"}</p>
+      <p className="loyalty-form-header">
+        {!isReview ? "Make a Saving" : "Make a Saving Review"}
+      </p>
       <div className="loyalty-form-container">
-    {!isReview &&  <div className="catalogue mt-4">
-        <p className="text-lg font-semibold pb-2">Select Product from catalogue</p>
-      <CatalogueProduct />
-    </div>}
+        {!isReview && (
+          <div className="catalogue mt-4">
+            <p className="text-lg font-semibold pb-2">
+              Select Product from catalogue
+            </p>
+            <CatalogueProduct setProductId={setProductId}/>
+          </div>
+        )}
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Upload product photo</p>
           <div className="input-loyalty2">
             <label
               for="dropzone-file"
               className="flex justify-end bg-white  shadow rounded-md w-full "
+              onChange={(event)=> setImage(event.target.files[0])}
             >
+              {image?.name}
               <div className="upload-file">
                 <p className="text-sm">UPLOAD</p>
               </div>
@@ -31,14 +60,16 @@ const SavingForm = ({ isReview = false }) => {
           <input
             type="text"
             className="input-loyalty2"
-            value="Get 12 for the price of 9 donuts"
+            value={title}
+            onChange={(e)=> setTitle(e.target.value)}
           />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            value="Buy any Box of 12 donuts for £21.15A voucher will be added to the Wallet uponpurchase. The voucher is valid for 7 days from thedate of issue. The vouchers can be redeemedacross all Café Elite Stores"
+            value={description}
+            onChange={(e)=> setDescription(e.target.value)}
             name=""
             id=""
             rows="3"
@@ -46,49 +77,50 @@ const SavingForm = ({ isReview = false }) => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Price</p>
-          <input type="text" className="input-loyalty2" value="£21.15" />
+          <input type="text" className="input-loyalty2"   value={price}
+            onChange={(e)=> setPrice(e.target.value)}/>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose outlet</p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+
+           <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              All Outlets
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedOutlate}
+            options={outlate?.docs?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={outlate?.docs?.[0]?._id}
+            onChange={handleOutlate}
+            placeholder=""
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">T&Cs</p>
           <input
             type="text"
             className="input-loyalty2"
-            value="Subject to availability"
+            value={termAndCondition}
+            onChange={(e)=> setTermAndCondition(e.target.value)}
           />
         </div>
         <div className="loyalty-button-container">
           <button
             className="loyalty-button2"
             onClick={() => {
-              !isReview
-                ? navigate("/loyalty")
-                : navigate("/loyalty/saving");
+              !isReview ? navigate("/loyalty") : navigate("/loyalty/saving");
             }}
           >
             Back
           </button>
           <button
             className="loyalty-button1"
-            onClick={() => {
-              !isReview
-                ? navigate("/loyalty/saving/review")
-                : navigate("/loyalty/saving/preview");
-            }}
+            onClick={handleMySaving}
           >
-            {!isReview ? "See Make a Saving review" : "See Make a Saving Preview"}
+            {!isReview
+              ? "See Make a Saving review"
+              : "See Make a Saving Preview"}
           </button>
         </div>
       </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchApiData } from "../utiils";
-import { successToast, warnToast } from "../components/Toast";
+import {  warnToast } from "../components/Toast";
 
 const useRegister = () => {
   const [name, setName] = useState("");

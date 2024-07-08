@@ -3,19 +3,21 @@ import { DialogDefault } from "../common/DilogBox";
 
 import InventoryProduct from "./InventoryProduct";
 import ProductDetails from "./ProductDetails";
+import useProduct from "../../hooks/useProduct";
 
-const CatalogueProduct = () => {
+const CatalogueProduct = ({setProductId}) => {
+  const { product } = useProduct()
   const [isView , setView] = useState()
   const [openView , setOpenView] = useState()
   const [isSelect , setSelect] = useState()
   const [openDetails , setDetails] = useState()
   const divRef = useRef(null);
-  const product = [
-    {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
-     {id:1, image:"../img/image 713 (1).png" , name:"Donuts"},
-     {id:1, image:"../img/image 713 (2).png" , name:"Oreo Coffee"},
-     {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
-    ]
+  // const product = [
+  //   {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
+  //    {id:1, image:"../img/image 713 (1).png" , name:"Donuts"},
+  //    {id:1, image:"../img/image 713 (2).png" , name:"Oreo Coffee"},
+  //    {id:1, image:"../img/image 711.png" , name:"Chai Oatmilk latte"},
+  //   ]
 
     useEffect(() => {
       const handleClickOutside = (event) => {
@@ -37,9 +39,12 @@ const CatalogueProduct = () => {
   return (
     <div className="catalogue-container">
       <p className="view-all cursor-pointer" onClick={()=> setOpenView(true)} >View All</p>
-      <div className="catalogue-flex">
-        {product?.map((d, i)=>(
-        <div className="catelogue-main" key={i} onClick={()=> setSelect(i)}>
+      <div className="catalogue-flex ">
+        {product?.docs?.map((d, i)=>(
+        <div className="catelogue-main" key={i} onClick={()=> {
+          setProductId(d?._id)
+          setSelect(i)
+          }}>
           <div className="relative">
             <img src={d?.image} alt="" className={isSelect === i  ? "border-4 rounded-xl  border-[#FE903C]" :"" }/>
             <img

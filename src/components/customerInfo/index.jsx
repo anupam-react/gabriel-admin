@@ -7,7 +7,13 @@ import { BarChart } from "./BarChart";
 import PaginatedTable from "./PaginatedTable";
 import Filter from "./Filter";
 import "./index.scss";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
 const CustomerInfo = () => {
+  const {  
+    dashboard,
+    customer,
+    customerInfo
+  } = useCusomerInfo()
   const [isOpen, setIsOpen] = useState(false)
 
   const openDrawer = () => setIsOpen(true);

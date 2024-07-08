@@ -21,7 +21,7 @@ ChartJS.register(
 );
 
 
-const labels = ['6:00 AM ', '7:00 AM ', '8:00 AM ', '9:00 AM ', '10:00 AM ', '11:00 AM ', '12:00 AM', '1:00 AM', '2:00 AM', '3:00 AM'];
+
 
 const options = {
   scales: {
@@ -55,17 +55,20 @@ const options = {
 };
 
 
-export const data = {
-  labels,
-  datasets: [
-      {
-      label: 'Transaction',
-      data:[400, 340,470,500,800,900,400,500,800,900,400] ,
-      backgroundColor:'#FD575B'
-    },
-  ],
-};
 
-export function BarChart() {
-  return <Bar options={options} data={data} />;
+
+export function BarChart({data}) {
+  console.log(data)
+  const labels = data?.map((data)=> data?.time);
+const dataset = {
+  labels,
+    datasets: [
+        {
+        label: 'Transaction',
+        data: data?.map((data)=> data?.amount) ,
+        backgroundColor:'#FD575B'
+      },
+    ],
+  };
+  return <Bar options={options} data={dataset} />;
 }

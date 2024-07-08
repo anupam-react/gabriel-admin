@@ -204,23 +204,7 @@ const [selectedSubCat, setSubCat] = useState(null);
               Please provide the following Information to Continue!
             </p>
             <div className="custom-select">
-              {/* <select
-                id="countries"
-                onChange={handleCategory}
-                value={categoryId}
-                className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option disabled selected>
-                  Categories
-                </option>
-                {category?.map((data, i) => (
-                  <>
-                    <option key={i} value={data?._id}>
-                      {data?.name}
-                    </option>
-                  </>
-                ))}
-              </select> */}
+              
                 <Select
                         className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         styles={{ width: "20px" }}

@@ -11,42 +11,110 @@ import TransactionFilter from "./TransactionFilter";
 import useTransaction from "../../hooks/useTransaction";
 
 const Transaction = () => {
+  const {     
+    salesVolume,
+    transactionCount,
+    averageTransaction,
+    topSellingItems,
+    timeBaseAnalytics,
+    getTransactionSaleVolume,
+    getTransactionCount,
+    getAverageTransactionValue,
+    getTopSellingItems,
+    getTimeBaseAnalytics } = useTransaction()
+
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const closeDrawer = () => setIsOpen(false);
   const handleOpen = () => setOpen(!open);
 
-  const { salesVolume , getTransactionSaleVolume } = useTransaction()
+  console.log(  salesVolume,
+    transactionCount,
+    averageTransaction,
+    topSellingItems,
+    timeBaseAnalytics
+  )
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const [openCustom, setOpenCustom] = useState(false);
+
+  const [selectedOption1, setSelectedOption1] = useState("");
+  const [selectedOption2, setSelectedOption2] = useState("");
+  const [selectedOption3, setSelectedOption3] = useState("");
+  const [selectedOption4, setSelectedOption4] = useState("");
+  const [selectedOption5, setSelectedOption5] = useState("");
+  const [openCustom1, setOpenCustom1] = useState(false);
+  const [openCustom2, setOpenCustom2] = useState(false);
+  const [openCustom3, setOpenCustom3] = useState(false);
+  const [openCustom4, setOpenCustom4] = useState(false);
+  const [openCustom5, setOpenCustom5] = useState(false);
   
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleChange1 = (event) => {
+    setSelectedOption1(event.target.value);
     getTransactionSaleVolume(event.target.value)
     if (event.target.value === "custom") {
-      setOpenCustom(true);
+      setOpenCustom1(true);
     }
   };
+  const handleChange2 = (event) => {
+    setSelectedOption2(event.target.value);
+    getTransactionCount(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom2(true);
+    }
+  };
+  const handleChange3 = (event) => {
+    setSelectedOption3(event.target.value);
+    getAverageTransactionValue(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom3(true);
+    }
+  };
+  const handleChange4 = (event) => {
+    setSelectedOption4(event.target.value);
+    getTopSellingItems(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom4(true);
+    }
+  };
+  const handleChange5 = (event) => {
+    setSelectedOption5(event.target.value);
+    getTimeBaseAnalytics(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom5(true);
+    }
+  };
+
+
 
   const transactionData = [
     {
       title: "TOTAL SALES VOLUME",
       image: "./image 50.png",
-      amount: 5000,
+      amount: salesVolume,
       footerTitle: "TOTAL SALES PROCESSED",
+      handleChange: handleChange1,
+      selectedOption: selectedOption1,
+      openCustom: openCustom1,
+      setOpenCustom: setOpenCustom1
     },
     {
       title: "TRANSACTION COUNT",
       image: "./image 51.png",
-      amount: 5000,
+      amount: transactionCount,
       footerTitle: "INDIVIDUAL TRANSACTION PROCESSED",
+      handleChange: handleChange2,
+      selectedOption: selectedOption2,
+      openCustom: openCustom2,
+      setOpenCustom: setOpenCustom2
     },
     {
       title: "AVERAGE TRANSACTION VALUE",
       image: "./image 52.png",
-      amount: 5000,
+      amount: averageTransaction,
       footerTitle: "SPENT PER TRANSACTION",
+      handleChange: handleChange3,
+      selectedOption: selectedOption3,
+      openCustom: openCustom3,
+      setOpenCustom: setOpenCustom3
     },
   ];
 
@@ -90,19 +158,22 @@ const Transaction = () => {
       </div>
       <div className="flex justify-between my-6">
         {transactionData?.map((data, i) => (
-          <TransactionCard data={data} selectedOption={selectedOption}  handleChange={handleChange} open={openCustom} setOpen={setOpenCustom}/>
+          <TransactionCard data={data} selectedOption={data?.selectedOption}  handleChange={data?.handleChange} open={data?.openCustom} setOpen={data?.setOpenCustom}/>
         ))}
       </div>
       <div className="flex gap-4">
-        <SellingCard />
+        <SellingCard selectedOption={selectedOption4}  handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
         <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-3 py-4 px-4 flex-1">
           <div className="flex justify-between items-center w-full">
+          <div className="flex justify-between items-center w-full">
             <p className="text-[#0070BC] font-semibold text-lg ">
-              TIME BASED ANALYTICS
+            TIME BASED ANALYTICS
             </p>
+            <Select selectedOption={selectedOption5}  handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
+          </div>
           </div>
           <div className="w-[650px] h-[350px]">
-            <BarChart />
+            <BarChart data={timeBaseAnalytics}/>
           </div>
         </div>
       </div>

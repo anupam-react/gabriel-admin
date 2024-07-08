@@ -7,12 +7,69 @@ import { LineChart3 } from "./LineChart3";
 import ReportPage2 from "./ReportPage2";
 import { useNavigate } from "react-router-dom";
 import Loader from "../Login/Loader";
+import useSales from "../../hooks/useSales";
+import useTransaction from "../../hooks/useTransaction";
 
 const SalesAnalytics = () => {
+  const {
+    saleCategory,
+    saleLocation,
+    saleTrendOver,
+    getSaleByCategory,
+    getSaleByLocation,
+    getSaleTrendOverTime
+  } = useSales()
+
+  const {   
+    averageTransaction,  
+    getAverageTransactionValue,
+ } = useTransaction()
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [selectedOption1, setSelectedOption1] = useState("");
+  const [selectedOption2, setSelectedOption2] = useState("");
+  const [selectedOption3, setSelectedOption3] = useState("");
+  const [selectedOption4, setSelectedOption4] = useState("");
+  const [selectedOption5, setSelectedOption5] = useState("");
+  const [openCustom1, setOpenCustom1] = useState(false);
+  const [openCustom2, setOpenCustom2] = useState(false);
+  const [openCustom3, setOpenCustom3] = useState(false);
+  const [openCustom4, setOpenCustom4] = useState(false);
+  const [openCustom5, setOpenCustom5] = useState(false);
+  
+  const handleChange1 = (event) => {
+    setSelectedOption1(event.target.value);
+    getSaleByCategory(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom1(true);
+    }
+  };
+  const handleChange2 = (event) => {
+    setSelectedOption2(event.target.value);
+    getSaleByLocation(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom2(true);
+    }
+  };
+  const handleChange3 = (event) => {
+    setSelectedOption3(event.target.value);
+    getSaleTrendOverTime(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom3(true);
+    }
+  };
+  const handleChange4 = (event) => {
+    setSelectedOption4(event.target.value);
+    getAverageTransactionValue(event.target.value)
+    if (event.target.value === "custom") {
+      setOpenCustom4(true);
+    }
+  };
+
+
 
   const handleLoader = () => {
     setIsLoading(true);
@@ -37,10 +94,15 @@ const SalesAnalytics = () => {
     {
       title: "AVERAGE TRANSACTION VALUE",
       image: "./image 52.png",
-      amount: 5000,
+      amount: averageTransaction,
       footerTitle: "SPENT PER TRANSACTION",
+      handleChange: handleChange4,
+      selectedOption: selectedOption4,
+      openCustom: openCustom4,
+      setOpenCustom: setOpenCustom4
     },
   ];
+
   return (
     <>
    {!isLoading ? 
@@ -53,7 +115,7 @@ const SalesAnalytics = () => {
           className="h-8 w-8 cursor-pointer"
           onClick={handleLoader}
         />
-        <div
+        {/* <div
           className="flex items-center px-6 h-12"
           style={{
             backgroundColor: "#FFFF",
@@ -68,7 +130,7 @@ const SalesAnalytics = () => {
             className="border-none w-80 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search in Transaction Data"
           />
-        </div>
+        </div> */}
         <div className="flex">
           <button className="export flex gap-2" onClick={() => setOpen(true)}>
             <img src="./Mask group (7).svg" alt="" className="w-5 h-5" />
@@ -86,10 +148,10 @@ const SalesAnalytics = () => {
           <p className="text-[#0070BC] font-semibold text-xl ">
             SALES BY CATEGORY / DEPARTMENT
           </p>
-          <Select />
+          <Select selectedOption={selectedOption1}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
         </div>
         <div className="w-full">
-          <LineChart2 />
+          <LineChart2 data={saleCategory} />
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6 my-6">
@@ -98,10 +160,10 @@ const SalesAnalytics = () => {
             SALES BY LOCATION <span className="text-[#000000B2]">( Total</span>{" "}
             <span className="text-[#000000] font-semibold">57 OUTLETS )</span>
           </p>
-          <Select />
+          <Select selectedOption={selectedOption2}  handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
         </div>
         <div className="w-full">
-          <BarChart2 />
+          <BarChart2 data={saleCategory}/>
         </div>
       </div>
       <div className="w-[50vw]">
@@ -110,10 +172,10 @@ const SalesAnalytics = () => {
             <p className="text-[#0070BC] font-semibold text-xl ">
               SALES TREND OVER TIME
             </p>
-            <Select />
+            <Select selectedOption={selectedOption3}  handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
           </div>
           <div className="w-full h-full">
-            <LineChart3 />
+            <LineChart3 data={saleTrendOver}/>
           </div>
         </div>
         {/* <div className="h-full">

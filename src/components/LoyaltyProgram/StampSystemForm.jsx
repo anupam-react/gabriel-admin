@@ -1,66 +1,102 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+import useStamp from "../../hooks/useStamp";
 
-const StampSystemForm = ({ isReview = false }) => {
+const StampSystemForm = () => {
+  const {
+    description,
+    setDescription,
+    totalNoOfStamps,
+    setTotalNoOfStamps,
+    categoryId,
+    setCategoryId,
+    subCategoryId,
+    setSubCategoryId,
+    category,
+    subcategory,
+    selectedCat,
+    handleCategory,
+    handleStamp,
+  } = useStamp();
   const navigate = useNavigate();
+  const [selectedSubCat, setSubCat] = useState(null);
+  const [noOfStamp, setNoOfStamp] = useState(null);
+
+  const stampOptions = [
+    { label: "5", value: "5" },
+    { label: "6", value: "6" },
+    { label: "7", value: "7" },
+    { label: "8", value: "8" },
+    { label: "9", value: "9" },
+    { label: "10", value: "10" },
+   
+  ];
 
   return (
     <div>
       <p className="loyalty-form-header">
-        {!isReview
-          ? " Attach Stamp System to your products"
-          : "Stamp System Preview"}
+        Attach Stamp System to your products
+         
       </p>
       <div className="loyalty-form-container">
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Product Category</p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              Beverages
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">
             Choose Product sub-category
           </p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              Coffees , Milkshakes ,Hot Chocolate (In dropdown)
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedSubCat}
+            options={subcategory?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={subcategory?.[0]?._id}
+            onChange={(e) => {
+              setSubCat(e);
+              setSubCategoryId(e.value);
+            }}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">
             Total No. of stamps to collect before reward
           </p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              5, 6, 7,8,9, 10 (In Dropdown)
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={noOfStamp}
+            options={stampOptions}
+            defaultValue={stampOptions?.[0]?.value}
+            onChange={(e) => {
+              setNoOfStamp(e);
+              setTotalNoOfStamps(e.value);
+            }}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            value="Buy 9 Drinks, Get the 10th one free"
+            onChange={(e)=>setDescription(e.target.value)}
+            value={description}
             name=""
             id=""
             rows="3"
@@ -69,23 +105,14 @@ const StampSystemForm = ({ isReview = false }) => {
         <div className="loyalty-button-container">
           <button
             className="loyalty-button2"
-            onClick={() => {
-              !isReview
-                ? navigate("/loyalty")
-                : navigate("/loyalty/stamp-system");
-            }}
-          >
+            onClick={() =>  navigate("/loyalty")}>
             Back
           </button>
           <button
             className="loyalty-button1"
-            onClick={() => {
-              !isReview
-                ? navigate("/loyalty/stamp-system/review")
-                : navigate("/loyalty/stamp-system/preview");
-            }}
+            onClick={handleStamp}
           >
-            {!isReview ? "See Stamp System review" : "See Stamp System Preview"}
+          See Stamp System review
           </button>
         </div>
       </div>
