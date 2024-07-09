@@ -1,18 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useProduct from "../../hooks/useProduct";
+import Select from "react-select";
+import useOutlate from "../../hooks/useOutlate";
 const EditProduct = () => {
-  const [openSuccess, setSuccess] = useState(false);
- 
+  const {   name, setName,
+    image, setImage,
+    description, setDescription,
+    allergens, setAllergens,
+    nutrition, setNutrition,
+    sku, setSku,
+    price, setPrice,
+    brand, setBrand,
+    quantity, setQuantity,
+    shippingInfo, setShippingInfo,
+    returnPolicy, setReturnPolicy,
+    productColor, setProductColor,
+    productSize, setProductSize,
+    online, setOnline,
+    inStore, setInStore,
+    keywords, setKeywords,
+    dimension, setDimension,
+    setSubCategoryId,
+    selectedSubCat, setSubCat,
+    openSuccess, setSuccess,
+    handleOutlate,
+    handleCategory,
+    category,
+    subcategory,
+    selectedOutlate,
+    selectedCat,
+    productInfo,
+    getProductById,
+    handleUpdateProduct} = useProduct()
+    const {outlate} = useOutlate()
+
+
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-      navigate('/inventory')
-    }, 1000);
-  };
+
+  const {id} = useParams()
+
+  useEffect(() => {
+   getProductById(id)
+  }, [id])
+  
+  
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -36,260 +70,268 @@ const EditProduct = () => {
       </div>
       <div className="loyalty-form-container h-[80vh] overflow-auto">
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Name</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Butter Croissant"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <p className="text-lg font-semibold pb-2">Select Outlet</p>
+          <Select
+            isMulti
+            name="colors"
+            className="basic-multi-select"
+            classNamePrefix="select"
+            value={selectedOutlate}
+            options={outlate?.docs?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={outlate?.docs?.[0]?._id}
+            onChange={handleOutlate}
+            placeholder="Ex : Outlet - 01 , Outlet - 02"
+          />
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Description</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Butter Croissant"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <p className="text-lg font-semibold pb-2">Product Name</p>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={name || productInfo?.name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Product Decription</p>
+          <textarea
+            className="input-loyalty2"
+            value={description || productInfo?.description}
+            onChange={(e) => setDescription(e.target.value)}
+            name=""
+            id=""
+            rows="3"
+          ></textarea>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Allergens</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Nuts, Egg, Milk, Soya, Wheat etc"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <textarea
+            className="input-loyalty2"
+            value={allergens || productInfo?.allergens}
+            onChange={(e) => setAllergens(e.target.value)}
+            name=""
+            id=""
+            rows="3"
+          ></textarea>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Nutrition</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Small 364 Kcal, Medium 447 Kcal, Large 549 Kcal. Adults need around 2000 kcal per day"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <textarea
+            className="input-loyalty2"
+            value={nutrition || productInfo?.nutrition}
+            onChange={(e) => setNutrition(e.target.value)}
+            name=""
+            id=""
+            rows="3"
+          ></textarea>
         </div>
+
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Product Images</p>
-          <div className="flex gap-4">
-            <div className="input-loyalty2">
-              <label
-                for="dropzone-file"
-                className="flex justify-end bg-white w-full "
-              >
-                <div className="upload-file h-11 text-center">
-                  <p className="text-sm ">UPLOAD</p>
-                </div>
-                <input id="dropzone-file" type="file" className="hidden" />
-              </label>
-            </div>
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
+          <p className="text-lg font-semibold pb-2">Upload Product Image</p>
+          <div className="input-loyalty2">
+            <label
+              for="dropzone-file"
+              className="flex justify-end bg-white  shadow rounded-md w-full "
+              onChange={(event) => setImage(event.target.files[0])}
+            >
+              {image?.name}
+              <div className="upload-file">
+                <p className="text-sm">UPLOAD</p>
+              </div>
+              <input id="dropzone-file" type="file" className="hidden" />
+            </label>
           </div>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Category</p>
-          <div className="flex gap-4">
-            <select
-              id="countries"
-              // value={selectedOption}
-              // onChange={handleChange}
-              className="input-loyalty2"
-            >
-              <option className="font-semibold" value="custom">
-                Shopping
-              </option>
-            </select>
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <Select
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Sub- Category</p>
-          <div className="flex gap-4">
-            <select
-              id="countries"
-              // value={selectedOption}
-              // onChange={handleChange}
-              className="input-loyalty2"
-            >
-              <option className="font-semibold" value="custom">
-                Food & Beverages
-              </option>
-            </select>
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <Select
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedSubCat}
+            options={subcategory?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={subcategory?.[0]?._id}
+            onChange={(e) => {
+              setSubCat(e);
+              setSubCategoryId(e.value);
+            }}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">SKU</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter SKU or Choose N/A"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={sku || productInfo?.sku}
+            onChange={(e) => setSku(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Price</p>
-          <div className="flex gap-4">
-            <input type="text" className="input-loyalty2" value=" £50" />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={price || productInfo?.price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Quantity Available</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Quantity or Choose N/A, e.g30, 40 or N/A etc"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={quantity || productInfo?.quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Dimensions and Weight</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Weight or Enter NA"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={dimension || productInfo?.dimension}
+            onChange={(e) => setDimension(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Brand Name</p>
-          <div className="flex gap-4">
-            <input type="text" className="input-loyalty2" value="Dunkins" />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={brand || productInfo?.brand}
+            onChange={(e) => setBrand(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Shipping Information</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Shipping information or choose N/A"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={shippingInfo || productInfo?.shippingInfo}
+            onChange={(e) => setShippingInfo(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Return Policy</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Return Policy or Choose N/A"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={returnPolicy || productInfo?.returnPolicy}
+            onChange={(e) => setReturnPolicy(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Color</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Product colour or choose N/A"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={productColor || productInfo?.productColor}
+            onChange={(e) => setProductColor(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Size</p>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              className="input-loyalty2"
-              value="Enter Product Size or choose NA"
-            />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <input
+            type="text"
+            className="input-loyalty2"
+            value={productSize || productInfo?.productSize}
+            onChange={(e) => setProductSize(e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <div className="flex gap-1">
             <p className="text-lg font-semibold pb-2">Available Online </p>
             <p className="dots"></p>
           </div>
-          <div className="flex gap-4">
-            <input type="text" className="input-loyalty2" value="Yes/No" />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <select
+            id="countries"
+            value={online || productInfo?.online}
+            onChange={(e) => setOnline(e.target.value)}
+            className="input-loyalty2"
+          >
+            <option className="font-semibold" value="yes">
+              Yes
+            </option>
+            <option className="font-semibold" value="no">
+              No
+            </option>
+          </select>
         </div>
         <div className="mt-4">
           <div className="flex gap-1">
             <p className="text-lg font-semibold pb-2">Available Instore</p>
             <p className="dots"></p>
           </div>
-          <div className="flex gap-4">
-            <input type="text" className="input-loyalty2" value="Yes/No" />
-              <button className="edit-botton1" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <select
+            id="countries"
+            value={inStore || productInfo?.inStore}
+            onChange={(e) => setInStore(e.target.value)}
+            className="input-loyalty2"
+          >
+            <option className="font-semibold" value="yes">
+              Yes
+            </option>
+            <option className="font-semibold" value="no">
+              No
+            </option>
+          </select>
         </div>
         <div className="mt-4">
-          <div className="flex gap-1">
-            <p className="text-lg font-semibold pb-2">Search Keywords</p>
-          
-          </div>
-          <div className="flex">
-            <textarea
-              className="input-loyalty2"
-              value="Add search keywords which will make it easy to find your product when customers search for it in the app"
-              name=""
-              id=""
-              rows="3"
-            />
-            <button className="edit-botton1 ml-4" onClick={()=> navigate('/inventory/edit-prod')}>Edit</button>
-          </div>
+          <p className="text-lg font-semibold pb-2">Search Keywords</p>
+          <textarea
+            className="input-loyalty2"
+            value={keywords || productInfo?.keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            name=""
+            id=""
+            rows="3"
+          ></textarea>
         </div>
-        <div className="my-4 flex justify-between">
+        <div className="loyalty-button-container">
           <button
-            className="border border-black px-10 py-2 rounded-md font-[500]"
-          
-            onClick={()=> navigate('/inventory')}
+            className="loyalty-button2"
+            onClick={() => {
+              navigate("/inventory");
+            }}
           >
             Back
           </button>
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={handleSubmit}
+            onClick={handleUpdateProduct}
           >
             Submit
           </button>
         </div>
-        {/* <div className="loyalty-button-container">
-          <button
-            className="loyalty-button1"
-            style={{ width: "150px" }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div> */}
       </div>
+
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
         <div className="alert">
           <img src="../Vector (2).png" alt="" />
-          <p className="text-center text-lg">
-          Product Edited successfully
-          </p>
+          <p className="text-center text-lg">Product Edited successfully</p>
         </div>
       </DialogDefault>
-  
     </div>
   );
 };

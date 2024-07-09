@@ -8,11 +8,8 @@ const StampSystemForm = () => {
   const {
     description,
     setDescription,
-    totalNoOfStamps,
     setTotalNoOfStamps,
-    categoryId,
     setCategoryId,
-    subCategoryId,
     setSubCategoryId,
     category,
     subcategory,

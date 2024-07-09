@@ -3,9 +3,13 @@ import "./index.scss";
 import InventoryCard from "./InventoryCard";
 import InventoryFilter from "./InventoryFilter";
 import { useNavigate } from "react-router-dom";
+import useProduct from "../../hooks/useProduct";
 const Inventory = () => {
+  const { product }= useProduct()
+  
   const [isOpen, setIsOpen] = useState(false);
   const [openAddProd, setOpenAddProd] = useState(false);
+
   const closeDrawer = () => setIsOpen(false);
   const navigate = useNavigate();
   const data = [
@@ -139,8 +143,8 @@ const Inventory = () => {
         </select>
       </div>
       <div className="card-main">
-        {data?.map((d, i) => (
-          <InventoryCard data={d} />
+        {product?.docs?.map((d, i) => (
+          <InventoryCard data={d} key={i}/>
         ))}
       </div>
       {isOpen && <InventoryFilter closeDrawer={closeDrawer} open={isOpen} />}

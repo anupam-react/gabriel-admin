@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import { useNavigate } from "react-router-dom";
+import { deleteApiData } from "../../utiils";
 
-const InventoryMenu = ({ setOpenMenu }) => {
+const InventoryMenu = ({ setOpenMenu , id }) => {
 
   const [openProductStatus, setOpenProductStatus] = useState(false);
-  const [openCutomized, setOpenCustomized] = useState(false);
-  const [openEditProduct, setOpenEditProduct] = useState(false);
   const [openDeleteProduct, setOpenDeleteProduct] = useState(false);
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [openHighlights, setOpenHighlights] = useState(false);
   const navigate = useNavigate();
 
   const handleDelete = () => {
+    deleteApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/removeProduct/${id}`)
     setOpenDeleteConfirm(true);
     setTimeout(() => {
       setOpenMenu(false);
@@ -44,7 +44,7 @@ const InventoryMenu = ({ setOpenMenu }) => {
       <button className="menuButton7" onClick={() => navigate("/inventory/customized-gift")}>
         Customize and Send to customer
       </button>
-      <button className="menuButton7" onClick={() => navigate("/inventory/edit-product")}>
+      <button className="menuButton7" onClick={() => navigate(`/inventory/edit-product/${id}`)}>
         Edit Product
       </button>
       <button

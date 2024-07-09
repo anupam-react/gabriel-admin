@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import CatalogueProduct from "../customerInfo/CatalogueProduct";
+import usePoints from "../../hooks/usePoints";
+import useOutlate from "../../hooks/useOutlate";
+import Select from "react-select";
 const PointForm = () => {
-  const navigate = useNavigate();
+  const { outlate } = useOutlate();
+  const {
+    description,
+    setDescription,
+    title,
+    setTitle,
+    image,
+    setImage,
+    termAndCondition,
+    setTermAndCondition,
+    noOfPoint, setNoOfPoint,
+    setProductId,
+    selectedOutlate,
+    handleOutlate,
+    handleMyPoints,
+  } = usePoints();
+
+  const navigate = useNavigate()
+
   return (
     <div>
       <p className="loyalty-form-header">Spent My Points</p>
@@ -12,7 +33,7 @@ const PointForm = () => {
           <p className="text-lg font-semibold pb-2">
             Select Product from catalogue
           </p>
-          <CatalogueProduct />
+          <CatalogueProduct  setProductId={setProductId}/>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Upload product photo</p>
@@ -20,7 +41,9 @@ const PointForm = () => {
             <label
               for="dropzone-file"
               className="flex justify-end bg-white  shadow rounded-md w-full "
+              onChange={(event)=> setImage(event.target.files[0])}
             >
+              {image?.name}
               <div className="upload-file">
                 <p className="text-sm">UPLOAD</p>
               </div>
@@ -30,13 +53,13 @@ const PointForm = () => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Product Name</p>
-          <input type="text" className="input-loyalty2" value="Fruit" />
+          <input type="text" className="input-loyalty2" value={title} onChange={(e)=>setTitle(e.target.value)} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            value="Get a free Fruit at Taste Imperial for just 840points. Hit ‘buy’ now to generate a voucher onyour wallet.This offer includes one of the following: Banana,Orange, Pear and apple."
+            value={description} onChange={(e)=>setDescription(e.target.value)}
             name=""
             id=""
             rows="3"
@@ -44,27 +67,28 @@ const PointForm = () => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">No. of points</p>
-          <input type="text" className="input-loyalty2" value="840" />
+          <input type="text" className="input-loyalty2" value={noOfPoint} onChange={(e)=>setNoOfPoint(e.target.value)} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose outlet</p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              All Outlets
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedOutlate}
+            options={outlate?.docs?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={outlate?.docs?.[0]?._id}
+            onChange={handleOutlate}
+          />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">T&Cs</p>
           <input
             type="text"
             className="input-loyalty2"
-            value="Subject to availability"
+            value={termAndCondition} onChange={(e)=>setTermAndCondition(e.target.value)}
           />
         </div>
         <div className="loyalty-button-container">
@@ -78,9 +102,7 @@ const PointForm = () => {
           </button>
           <button
             className="loyalty-button1"
-            onClick={() => {
-              navigate("/loyalty/point/preview");
-            }}
+            onClick={handleMyPoints}
           >
             See Spend My Points Review
           </button>

@@ -6,7 +6,7 @@ import LoyaltyFilter from "./LoyaltyFilter";
 import { useNavigate } from "react-router-dom";
 import useLoyality from "../../hooks/useLoyality";
 const LoyaltyProgram = () => {
-  const { stamps , saving } = useLoyality();
+  const { stamps , saving , points} = useLoyality();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -112,9 +112,13 @@ const LoyaltyProgram = () => {
         <div>
           <p className="py-4 font-semibold text-xl">Spend My Points</p>
           <div className="flex flex-wrap justify-between gap-4">
-            <LoyalityCard image="./Frame 38308 (1).png" text="Cake" />
-            <LoyalityCard image="./Frame 38308 (1).png" text="Cake" />
-            <LoyalityCard image="./Frame 38308 (2).png" text="Chocolate" />
+          {points?.map((d, i) => (
+              <LoyalityCard
+                image={d?.image}
+                key={i}
+                text={d?.title}
+              />
+            ))}
           </div>
         </div>
       </div>
