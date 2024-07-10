@@ -1,12 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import Select from 'react-select';
 import CatalogueProduct from "../customerInfo/CatalogueProduct";
+import CustomOption from "./CustomOption";
 const NewCampaign = () => {
   const navigate = useNavigate();
 
   const CampaignOptions = [
-    { label: "Percentage Discount", value: "Percentage Discount" },
+    { label: "Percentage Discount", value: "Percentage Discount" ,  },
     { label: "Coupon", value: "Coupon" },
     { label: "Create An Offer", value: "Create An Offer" },
     { label: "Buy 1 Get 1 Free", value: "Buy 1 Get 1 Free" },
@@ -27,10 +29,10 @@ const NewCampaign = () => {
     },
   ];
   const CustomerOptions = [
-    { label: "Active", value: "Active" },
-    { label: "New", value: "New" },
-    { label: "Slipping", value: "Slipping" },
-    { label: "Churn", value: "Churn" },
+    { label: "Active", value: "Active", color: '#03CC5E' },
+    { label: "New", value: "New" , color: '#0070C0' },
+    { label: "Slipping", value: "Slipping", color: '#ED7D31' },
+    { label: "Churn", value: "Churn" , color: '#C00000' },
     { label: "Specific Customer", value: "Specific Customer" },
   ];
   return (
@@ -119,7 +121,11 @@ const NewCampaign = () => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
-          <select
+          <Select
+            options={CustomerOptions}
+            components={{ Option: CustomOption }}
+        />
+          {/* <select
             id="countries"
             // value={selectedOption}
             // onChange={handleChange}
@@ -136,7 +142,7 @@ const NewCampaign = () => {
                 </option>
               </>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Target Location</p>

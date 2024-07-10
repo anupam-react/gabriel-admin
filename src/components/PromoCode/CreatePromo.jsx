@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import { DatePickerComp } from "../common/DatePickerComp";
+import AddProfile from "../DigitalReceipt/AddProfile";
 
 const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
+  const [openProfile, setOpenProfile] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
   const reportData = [
     { title: "Sales Report over time" },
     { title: "ROAS vs Campaign Performance Report" },
@@ -170,9 +173,10 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
                 <img src="./image 675.png" alt="search" className="w-6 h-6" />
               </div>
             </div>
-            <div className="mt-6 cursor-pointer flex justify-center items-center gap-3 rounded-lg py-2 border border-[#0070BC] text-[#0070BC]">
-              <img src="./Mask group (10).png" alt="" className="w-7 h-7" />
+            <div onClick={() => setOpenProfile(!openProfile)} className="mt-6 cursor-pointer flex justify-center items-center gap-3 rounded-lg py-2 border border-[#0070BC] text-[#0070BC]">
+              <img src="./Mask group (10).png" alt="" className="w-7 h-7"  />
               <p className="font-semibold text-lg">ADD</p>
+                 {openProfile && <AddProfile />}
             </div>
             <p className="py-4 text-[#000000B2] text-sm font-semibold">
               Select the{" "}
@@ -220,7 +224,13 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
             </div>
           </div>
           <div className="flex justify-center items-center gap-10 my-8">
-            <button className="sign-button w-48" onClick={() => setOpen(false)}>
+            <button className="sign-button w-48" onClick={() =>{
+               setOpenSuccess(true)
+               setTimeout(()=>{
+                setOpenSuccess(false)
+                setOpen(false)
+               },2000)
+               }}>
             { edit ? "UPDATE" :  "CREATE"}
               
             </button>
@@ -232,6 +242,14 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
               <p className="text-[24px] cancel underline">Cancel</p>
             </div>
           </div>
+        </div>
+      </DialogDefault>
+      <DialogDefault open={openSuccess} handleOpen={setOpenSuccess}>
+        <div className="alert">
+          <img src="../Vector (2).png" alt="" />
+          <p className="text-center text-lg font-semibold">
+          {edit ? "Promo Code Successfully Updated " : "Promo Code Successfully Created"}
+          </p>
         </div>
       </DialogDefault>
     </div>

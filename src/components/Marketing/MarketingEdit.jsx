@@ -12,13 +12,13 @@ const MarketingEdit = () => {
   const data1 = [
     {
       title: "Campaign Type",
-      value: "Percentage DIscount",
+      value: "Percentage Discount",
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
-      title: "Discount Value",
+      title: "Description",
       value: "50% discount coupon on all hot drinks",
       handleCLick: () => {
         navigate("/marketing/newCampaign");

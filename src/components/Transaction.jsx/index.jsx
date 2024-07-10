@@ -162,7 +162,7 @@ const Transaction = () => {
         ))}
       </div>
       <div className="flex gap-4">
-        <SellingCard selectedOption={selectedOption4}  handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
+        <SellingCard data={topSellingItems} selectedOption={selectedOption4}  handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
         <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-3 py-4 px-4 flex-1">
           <div className="flex justify-between items-center w-full">
           <div className="flex justify-between items-center w-full">

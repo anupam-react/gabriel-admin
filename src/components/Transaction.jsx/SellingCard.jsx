@@ -2,32 +2,27 @@ import React, { useState } from "react";
 import Select from "../common/Select";
 import AvailableProduct from "./AvailableProduct";
 
-const SellingCard = () => {
-  const [open, setOpen] = useState(false);
+const SellingCard = ({data ,selectedOption, handleChange , open , setOpen}) => {
   const handleOpen = () => setOpen(!open);
-  const data = [
-    { image: "./Ellipse 1 (1).svg", name: "Lorem Ipsum", count: 56 },
-    { image: "./Ellipse 1 (1).svg", name: "Lorem Ipsum", count: 56 },
-    { image: "./Ellipse 1 (1).svg", name: "Lorem Ipsum", count: 56 },
-  ];
+ ;
   return (
     <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-4 py-4 px-4 w-[23vw]">
       <p className="text-[#0070BC] text-xl font-semibold">TOP SELLING ITEMS</p>
-      <Select />
+      <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen}/>
       <div className="flex flex-col gap-6 my-4">
         {data?.map((d, i) => (
           <div className="flex gap-4">
             <p className="underline text-[22px] rank font-semibold">#{i + 1}</p>
             <img
-              src={d?.image}
+              src={d?.productImage}
               alt="image"
               className="rounded-full w-10 h-10"
             />
             <div>
-              <p className="font-semibold ">{d?.name}</p>
+              <p className="font-semibold ">{d?.productName}</p>
               <p className="text-[#000000B2]">
                 Total Sale :
-                <span className="text-[#0070BC] font-semibold">56</span>
+                <span className="text-[#0070BC] font-semibold">{d?.totalSale}</span>
               </p>
             </div>
           </div>
