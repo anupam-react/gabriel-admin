@@ -26,13 +26,13 @@ const useCusomerInfo = () => {
   useEffect(()=>{
     getCustomerInfoDashboard()
     getCustomer()
-    getCustomerInfoForParticularUser()
   },[])
 
   return {
     dashboard,
     customer,
     customerInfo,
+    getCustomerInfoForParticularUser
   };
 };
 

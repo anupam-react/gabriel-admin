@@ -19,7 +19,10 @@ import OffersTable from "./OffersTable";
 import ReturnForm from "./ReturnForm";
 import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
-const CustomeInfo = ({ handleOpen }) => {
+
+const CustomeInfo = ({ handleOpen , customerInfo}) => {
+
+
   const [openLoyality, setOpenLoyality] = useState(false);
   const [openDemographic, setOpenDemographic] = useState(false);
   const [openEngagement, setOpenEngagement] = useState(false);
@@ -37,19 +40,19 @@ const CustomeInfo = ({ handleOpen }) => {
     {
       title: "Average Spend",
       image: "./image 701.png",
-      amount: "5,000",
+      amount: customerInfo?.averageTotalSpend,
     },
     {
       title: "Average Basket Size",
       image: "./image 700 (1).png",
-      amount: "£300",
+      amount: `£${customerInfo?.averageBasketSize}`,
       text: `Customer Average Transaction Value (ATV) is a metric that measures the average amount spent per transaction by customers with a business, calculated by dividing total sales revenue by the number of transactions within a specific time frame. 
 It helps assess customer spending habits and business performance.`,
     },
     {
       title: "CLV",
       image: "./image 700.png",
-      amount: "5,000",
+      amount: customerInfo?.CLV,
       showInfo: true,
       text: `Customer Lifetime Value (CLV) is a metric that estimates the total revenue a business can expect from a single customer account throughout the business relationship. 
 It factors in the revenue generated from a customer, the duration of the relationship, and the costs associated with serving the customer..`,
@@ -180,7 +183,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Total  Points Earned",
                 image: "./image 699 (3).png",
-                amount: "5000",
+                amount: customerInfo?.totalPointEarned,
                 showInfo: false,
               }}
             />
@@ -188,7 +191,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Total Points Redeemed",
                 image: "./image 699.png",
-                amount: "1000",
+                amount: customerInfo?.totalPointsRedeemed,
                 showInfo: false,
               }}
             />
@@ -220,7 +223,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Total Stamps Redeemed",
                 image: "./image 699 (1).png",
-                amount: "300K",
+                amount: customerInfo?.totalStampsRedeemed,
                 showInfo: false,
               }}
             />
@@ -309,12 +312,12 @@ It factors in the revenue generated from a customer, the duration of the relatio
         </div>
       </div>
       <div className="progress-rotation">
-        <RotaionProgress />
+        <RotaionProgress data={customerInfo?.retentionRate}/>
         <LifeCycleStage2 />
         <Promotion2 />
       </div>
       <div style={{ margin: "30px 0px" }}>
-        <BarChart />
+        <BarChart data={customerInfo?.favouriteTimeOfTheDay}/>
       </div>
       <div style={{ color: "black", margin: "30px 0px" }}>
         <p style={{ fontSize: "20px", fontWeight: 600 }}>Other Details</p>

@@ -24,7 +24,7 @@ const RefferalActivity = ({ handleOpen }) => {
       <hr className="hr2" />
       <InfoHeader />
 
-      <div style={{ paddingTop: "30px", paddingBottom: "20px" }}>
+      <div className="cursor-pointer" onClick={() => handleOpen(false)} style={{ paddingTop: "30px", paddingBottom: "20px" }}>
         <p
           style={{
             color: "#0070BC",

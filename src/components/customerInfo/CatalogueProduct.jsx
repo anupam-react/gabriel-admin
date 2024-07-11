@@ -5,7 +5,7 @@ import InventoryProduct from "./InventoryProduct";
 import ProductDetails from "./ProductDetails";
 import useProduct from "../../hooks/useProduct";
 
-const CatalogueProduct = ({setProductId}) => {
+const CatalogueProduct = ({setProductId=[]}) => {
   const { product } = useProduct()
   const [isView , setView] = useState()
   const [openView , setOpenView] = useState()
@@ -56,11 +56,11 @@ const CatalogueProduct = ({setProductId}) => {
           toggleProductSelection(d?._id)
           }}>
           <div className="relative">
-            <img src={d?.image} alt="" className={isSelect?.includes(d?._id)  ? "border-4 rounded-xl  border-[#FE903C] w-[200px] h-[200px]" :"w-[200px] h-[200px]" }/>
+            <img src={d?.image} alt="" className={isSelect?.includes(d?._id)  ? "border-4 rounded-xl  border-[#FE903C] w-full h-[150px]" :"w-full h-[150px]" }/>
             <img
               src="../Group (9).png"
               alt=""
-              className="absolute top-2 right-2 cursor-pointer"
+              className="absolute top-4 right-5 cursor-pointer"
               onClick={()=> setView(i)}
             />
              {isView === i && (

@@ -5,12 +5,21 @@ import MenuCard from "./MenuCard";
 import { DialogDefault } from "../common/DilogBox";
 import CustomeInfo from "./CustomeInfo";
 import "./index.scss";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
+import { getDateFromISOString } from "../../utiils";
 
 const PaginatedTable = () => {
+  const {  
+    customer,
+    customerInfo,
+    getCustomerInfoForParticularUser
+  } = useCusomerInfo()
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
   const [isActive, setActive] = useState(-1);
+
+  console.log(customer , customerInfo)
 
   let PageSize = 3;
   const data = [
@@ -54,8 +63,8 @@ const PaginatedTable = () => {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return customer?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage , customer]);
 
   const divRef = useRef();
 
@@ -90,11 +99,11 @@ const PaginatedTable = () => {
         <tbody>
           {currentTableData.map((item, i) => {
             return (
-              <tr>
-                <td className="">
-                  <div className="flex items-center gap-6 ml-4 my-2">
+              <tr key={i}>
+                <td className="w-1/2">
+                  <div className="flex items-center gap-6 ml-[100px]  my-2">
                     <div className="profile-image">
-                      <img src="./carbon_user-avatar-filled.png" alt="" />
+                      <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt="" />
                       <img
                         src="./solar_menu-dots-bold (1).png"
                         alt=""
@@ -102,12 +111,15 @@ const PaginatedTable = () => {
                         onClick={() => setOpenMenu(!isOpenMenu)}
                       />
                     </div>
-                    <div className="flex flex-col gap-1 font-[500]">
-                    <p className="profileId" onClick={() => setOpenInfo(true)}>
-                    Vijay Mahar
+                    <div className="flex flex-col gap-1 font-[500]" onClick={() =>{
+                       setOpenInfo(true)
+                       getCustomerInfoForParticularUser(item?.userId?._id)
+                       }}>
+                    <p className="profileId text-left" >
+                  {item?.userId?.firstName + " " + item?.userId?.lastName }
                     </p>
-                    <p className="profileId" onClick={() => setOpenInfo(true)}>
-                      ID:MC12345
+                    <p className="profileId">
+                      ID:{item?.userId?._id}
                     </p>
 
                     </div>
@@ -118,7 +130,7 @@ const PaginatedTable = () => {
                     )}
                   </div>
                 </td>
-                <td>DD/MM/YYYY</td>
+                <td>{getDateFromISOString(item?.userId?.createdAt)}</td>
                
               </tr>
             );
@@ -128,12 +140,12 @@ const PaginatedTable = () => {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={data.length}
+        totalCount={customer?.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo} />
+        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo} />
       </DialogDefault>
     </>
   );

@@ -47,15 +47,16 @@ const BirthdayGiftPreview = ({ handleOpen }) => {
           </div>
         ))}
           </div>
-           <button className="menuButton4" onClick={()=> setSuccess(true)}>Send to Customer Offer folder</button>
+           <button className="menuButton4" onClick={()=>{ 
+            setSuccess(true)
+            }}>Send to Customer Offer folder</button>
 
       </div>
          
            <DialogDefault open={openSuccess} handleOpen={setSuccess}>
               <div className="alert">
                   <img src="./Vector (2).png" alt="" />
-                  <p className="text-[32px] font-bold">Successfully !!!!
-Sent to customer offer folder</p>
+                  <p className="text-[32px] font-bold text-center">Successfully Sent to customer’s Offer Folder</p>
 
             </div>
         </DialogDefault>

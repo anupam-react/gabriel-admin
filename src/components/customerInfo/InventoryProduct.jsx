@@ -84,7 +84,7 @@ const InventoryProduct = ({ handleOpen , isProdInfo = false }) => {
         {product?.map((d, i)=>(
         <div className="catelogue-main"  key={i} onClick={()=> toggleProductSelection(i)}>
           <div className="relative">
-            <img src={d?.image} alt="" className={isSelect?.includes(i)  ? "border-4 rounded-xl  border-[#FE903C] w-[150px] h-[150px]" :" w-[150px] h-[150px]" }/>
+            <img src={d?.image} alt="" className={isSelect?.includes(i)  ? "border-4 rounded-xl  border-[#FE903C] w-full h-[100px]" :" w-full h-[100px]" }/>
             <img
               src="../Group (9).png"
               alt=""
