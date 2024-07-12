@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createApiData, fetchApiData } from "../utiils";
@@ -25,7 +24,7 @@ const useSaving = () => {
 
   const handleMySaving = async (event) => {
     event.preventDefault();
-
+    
     const formData = new FormData();
     formData.append('image', image);
     formData.append('title', title);

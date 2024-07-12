@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Select from "../common/Select";
-import { DatePickerComp } from "../common/DatePickerComp";
 import { BarChart3 } from "./BarChart3";
 import { LineChart4 } from "./LineChart4";
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
+import DatePickerComp from "../common/DatePickerComp";
 
 
 const Comparison = () => {

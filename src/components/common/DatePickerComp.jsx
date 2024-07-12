@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export function DatePickerComp() {
-   const [startDate, setStartDate] = useState(new Date());
+const DatePickerComp = ({startDate, setStartDate }) => {
 
   return (
     <div>
@@ -18,3 +16,4 @@ export function DatePickerComp() {
     </div>
   );
 }
+export default DatePickerComp;

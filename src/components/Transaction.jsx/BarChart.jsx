@@ -58,7 +58,6 @@ const options = {
 
 
 export function BarChart({data}) {
-  console.log(data)
   const labels = data?.map((data)=> data?.time);
 const dataset = {
   labels,

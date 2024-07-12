@@ -22,6 +22,7 @@ ChartJS.register(
 );
 
 export function LineChart2({ data }) {
+  console.log(data)
   const options = {
     scales: {
       x: {
@@ -52,29 +53,29 @@ export function LineChart2({ data }) {
       },
     },
   };
-  const labels = ["BEVERAGES", "SHOES", "PHONES", "ELECTRONICS", "FOOD"];
+  const labels =  data?.map((data)=> data?.category);
 
   const dataset = {
     labels,
     datasets: [
       {
         label: "SALES",
-        data: [100, 200, 300, 500, 400],
+        data: data?.map((data)=> data?.count),
         borderColor: "#FEA82F",
         backgroundColor: "#FEA82F",
       },
       {
         label: "OLD CUSTOMERS",
-        data: [100, 300, 500, 400, 200],
+        data:data?.map((data)=> data?.totalAmount),
         borderColor: "#0070BC",
         backgroundColor: "#0070BC",
       },
-      {
-        label: "OLD CUSTOMERS",
-        data: [100, 400, 200, 300, 500],
-        borderColor: "#FD575B",
-        backgroundColor: "#FD575B",
-      },
+      // {
+      //   label: "OLD CUSTOMERS",
+      //   data: [100, 400, 200, 300, 500],
+      //   borderColor: "#FD575B",
+      //   backgroundColor: "#FD575B",
+      // },
     ],
   };
   return <Line options={options} data={dataset} />;

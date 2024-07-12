@@ -42,30 +42,38 @@ const SalesAnalytics = () => {
   
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
-    getSaleByCategory(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom1(true);
+    }else{
+      getSaleByCategory(event.target.value)
+
     }
   };
   const handleChange2 = (event) => {
     setSelectedOption2(event.target.value);
-    getSaleByLocation(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom2(true);
+    }else{
+      getSaleByLocation(event.target.value)
+
     }
   };
   const handleChange3 = (event) => {
     setSelectedOption3(event.target.value);
-    getSaleTrendOverTime(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom3(true);
+    }else{
+
+      getSaleTrendOverTime(event.target.value)
     }
   };
   const handleChange4 = (event) => {
     setSelectedOption4(event.target.value);
-    getAverageTransactionValue(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom4(true);
+    }else{
+      getAverageTransactionValue(event.target.value)
+
     }
   };
 
@@ -99,7 +107,8 @@ const SalesAnalytics = () => {
       handleChange: handleChange4,
       selectedOption: selectedOption4,
       openCustom: openCustom4,
-      setOpenCustom: setOpenCustom4
+      setOpenCustom: setOpenCustom4,
+      handleSave: getAverageTransactionValue
     },
   ];
 
@@ -140,7 +149,7 @@ const SalesAnalytics = () => {
       </div>
       <div className="flex justify-between my-6">
         {transactionData?.map((data, i) => (
-          <TransactionCard data={data} />
+          <TransactionCard data={data} selectedOption={data?.selectedOption} handleChange={data?.handleChange} open={data?.openCustom} setOpen={data?.setOpenCustom} handleSave={data?.handleSave} />
         ))}
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
@@ -148,7 +157,7 @@ const SalesAnalytics = () => {
           <p className="text-[#0070BC] font-semibold text-xl ">
             SALES BY CATEGORY / DEPARTMENT
           </p>
-          <Select selectedOption={selectedOption1}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+          <Select selectedOption={selectedOption1}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1} handleSave={getSaleByCategory}/>
         </div>
         <div className="w-full">
           <LineChart2 data={saleCategory} />
@@ -160,10 +169,10 @@ const SalesAnalytics = () => {
             SALES BY LOCATION <span className="text-[#000000B2]">( Total</span>{" "}
             <span className="text-[#000000] font-semibold">57 OUTLETS )</span>
           </p>
-          <Select selectedOption={selectedOption2}  handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+          <Select selectedOption={selectedOption2}  handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}  handleSave={getSaleByLocation}/>
         </div>
         <div className="w-full">
-          <BarChart2 data={saleCategory}/>
+          <BarChart2 data={saleLocation}/>
         </div>
       </div>
       <div className="w-[50vw]">
@@ -172,7 +181,7 @@ const SalesAnalytics = () => {
             <p className="text-[#0070BC] font-semibold text-xl ">
               SALES TREND OVER TIME
             </p>
-            <Select selectedOption={selectedOption3}  handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
+            <Select selectedOption={selectedOption3}  handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getSaleTrendOverTime}/>
           </div>
           <div className="w-full h-full">
             <LineChart3 data={saleTrendOver}/>

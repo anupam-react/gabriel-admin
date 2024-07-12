@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Select from "../common/Select";
 import AvailableProduct from "./AvailableProduct";
 
-const SellingCard = ({data ,selectedOption, handleChange , open , setOpen}) => {
+const SellingCard = ({data ,selectedOption, handleChange , open , setOpen , handleSave}) => {
   const handleOpen = () => setOpen(!open);
  ;
   return (
     <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-4 py-4 px-4 w-[23vw]">
       <p className="text-[#0070BC] text-xl font-semibold">TOP SELLING ITEMS</p>
-      <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen}/>
+      <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen} handleSave={handleSave}/>
       <div className="flex flex-col gap-6 my-4">
         {data?.map((d, i) => (
           <div className="flex gap-4">
@@ -35,7 +35,7 @@ const SellingCard = ({data ,selectedOption, handleChange , open , setOpen}) => {
       >
         VIEW MORE
       </p>
-      <AvailableProduct open={open} setOpen={setOpen} handleOpen={handleOpen} />
+      {/* <AvailableProduct open={open} setOpen={setOpen} handleOpen={handleOpen} /> */}
     </div>
   );
 };

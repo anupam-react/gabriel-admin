@@ -5,7 +5,7 @@ import PromoFilter from "./PromoFilter";
 import CreatePromo from "./CreatePromo";
 import MegaSale from "./MegaSale";
 import { DialogDefault } from "../common/DilogBox";
-import { DatePickerComp } from "../common/DatePickerComp";
+import  DatePickerComp  from "../common/DatePickerComp";
 const PromoCode = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

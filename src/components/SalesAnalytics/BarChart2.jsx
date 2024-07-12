@@ -19,7 +19,8 @@ ChartJS.register(
   Legend
 );
 
-export function BarChart2() {
+export function BarChart2({data}) {
+  console.log(data)
   const options = {
     scales: {
       x: {
@@ -50,25 +51,14 @@ export function BarChart2() {
       },
     },
   };
-  const labels = [
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-    "OUTLET #12",
-  ];
+  const labels = data?.map((data)=> data?.location);
 
   const dataset = {
     labels,
     datasets: [
       {
         label: "OUTLETS ",
-        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
+        data: data?.map((data)=> data?.count),
         backgroundColor: "#FEA82F",
       },
     ],

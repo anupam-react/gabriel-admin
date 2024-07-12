@@ -25,6 +25,7 @@ const Transaction = () => {
 
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
   const closeDrawer = () => setIsOpen(false);
   const handleOpen = () => setOpen(!open);
 
@@ -49,37 +50,46 @@ const Transaction = () => {
   
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
-    getTransactionSaleVolume(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom1(true);
+    }else{
+      getTransactionSaleVolume(event.target.value)
     }
   };
   const handleChange2 = (event) => {
     setSelectedOption2(event.target.value);
-    getTransactionCount(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom2(true);
+    }else{
+      getTransactionCount(event.target.value)
+
     }
   };
   const handleChange3 = (event) => {
     setSelectedOption3(event.target.value);
-    getAverageTransactionValue(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom3(true);
+    }else{
+      getAverageTransactionValue(event.target.value)
+
     }
   };
   const handleChange4 = (event) => {
     setSelectedOption4(event.target.value);
-    getTopSellingItems(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom4(true);
+    }else{
+      getTopSellingItems(event.target.value)
+
     }
   };
   const handleChange5 = (event) => {
     setSelectedOption5(event.target.value);
-    getTimeBaseAnalytics(event.target.value)
     if (event.target.value === "custom") {
       setOpenCustom5(true);
+    }else{
+      getTimeBaseAnalytics(event.target.value)
+
     }
   };
 
@@ -94,7 +104,8 @@ const Transaction = () => {
       handleChange: handleChange1,
       selectedOption: selectedOption1,
       openCustom: openCustom1,
-      setOpenCustom: setOpenCustom1
+      setOpenCustom: setOpenCustom1,
+      handleSave: getTransactionSaleVolume,
     },
     {
       title: "TRANSACTION COUNT",
@@ -104,7 +115,8 @@ const Transaction = () => {
       handleChange: handleChange2,
       selectedOption: selectedOption2,
       openCustom: openCustom2,
-      setOpenCustom: setOpenCustom2
+      setOpenCustom: setOpenCustom2,
+      handleSave: getTransactionCount,
     },
     {
       title: "AVERAGE TRANSACTION VALUE",
@@ -114,7 +126,8 @@ const Transaction = () => {
       handleChange: handleChange3,
       selectedOption: selectedOption3,
       openCustom: openCustom3,
-      setOpenCustom: setOpenCustom3
+      setOpenCustom: setOpenCustom3,
+      handleSave: getAverageTransactionValue,
     },
   ];
 
@@ -158,18 +171,18 @@ const Transaction = () => {
       </div>
       <div className="flex justify-between my-6">
         {transactionData?.map((data, i) => (
-          <TransactionCard data={data} selectedOption={data?.selectedOption}  handleChange={data?.handleChange} open={data?.openCustom} setOpen={data?.setOpenCustom}/>
+          <TransactionCard data={data} selectedOption={data?.selectedOption} handleChange={data?.handleChange} open={data?.openCustom} setOpen={data?.setOpenCustom} handleSave={data?.handleSave}/>
         ))}
       </div>
       <div className="flex gap-4">
-        <SellingCard data={topSellingItems} selectedOption={selectedOption4}  handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
+        <SellingCard data={topSellingItems} selectedOption={selectedOption4}  handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4} handleSave={getTopSellingItems}/>
         <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-3 py-4 px-4 flex-1">
           <div className="flex justify-between items-center w-full">
           <div className="flex justify-between items-center w-full">
             <p className="text-[#0070BC] font-semibold text-lg ">
             TIME BASED ANALYTICS
             </p>
-            <Select selectedOption={selectedOption5}  handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
+            <Select selectedOption={selectedOption5}  handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5} handleSave={getTimeBaseAnalytics}/>
           </div>
           </div>
           <div className="w-[650px] h-[350px]">

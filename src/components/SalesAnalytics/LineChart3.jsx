@@ -21,7 +21,8 @@ ChartJS.register(
   Legend
 );
 
-export function LineChart3() {
+export function LineChart3({data}) {
+  console.log(data)
   const options = {
     scales: {
       x: {
@@ -53,23 +54,23 @@ export function LineChart3() {
     },
   };
 
-  const labels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  const labels = data?.map((data)=> data?._id);
 
   const dataset = {
     labels,
     datasets: [
       {
         label: "SALES",
-        data: [60, 40, 70, 20, 50, 80, 70],
+        data: data?.map((data)=> data?.averageDailySalesPercentage),
         borderColor: "#FEA82F",
         backgroundColor: "#FEA82F",
       },
-      {
-        label: "TIME TAKEN",
-        data: [30, 50, 60, 70, 40, 70, 80],
-        borderColor: "#FD575B",
-        backgroundColor: "#FD575B",
-      },
+      // {
+      //   label: "TIME TAKEN",
+      //   data: [30, 50, 60, 70, 40, 70, 80],
+      //   borderColor: "#FD575B",
+      //   backgroundColor: "#FD575B",
+      // },
     ],
   };
   return <Line options={options} data={dataset} />;

@@ -5,7 +5,7 @@ import InventoryProduct from "./InventoryProduct";
 import ProductDetails from "./ProductDetails";
 import useProduct from "../../hooks/useProduct";
 
-const CatalogueProduct = ({setProductId=[]}) => {
+const CatalogueProduct = ({setProductId}) => {
   const { product } = useProduct()
   const [isView , setView] = useState()
   const [openView , setOpenView] = useState()
@@ -26,7 +26,7 @@ const CatalogueProduct = ({setProductId=[]}) => {
       setProductId(isSelect?.filter(id => id !== productId))
     } else {
       setSelect([...isSelect, productId]);
-      setProductId([...isSelect, productId])
+      setProductId(productId)
     }
   };
 

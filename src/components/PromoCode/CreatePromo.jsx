@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
-import { DatePickerComp } from "../common/DatePickerComp";
+import  DatePickerComp  from "../common/DatePickerComp";
 import AddProfile from "../DigitalReceipt/AddProfile";
 
 const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
