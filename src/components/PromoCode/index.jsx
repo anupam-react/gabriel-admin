@@ -6,8 +6,22 @@ import CreatePromo from "./CreatePromo";
 import MegaSale from "./MegaSale";
 import { DialogDefault } from "../common/DilogBox";
 import  DatePickerComp  from "../common/DatePickerComp";
+import usePromoCode from "../../hooks/usePromoCode";
+import { calculateDateGap, deleteApiData, formatDate, formatDate2, formatDate3 } from "../../utiils";
 const PromoCode = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const {
+    promocodes,
+    isOpen, setIsOpen,
+    isReactive , setReactive,
+    isDeactive , setDeactive,
+    activationDate , setActivationDate,
+    expiryDate , setExpiryDate,
+    handleReactivePromocode,
+    handleDeactivePromocode,
+    handleDeletePromocode,
+    getPromoCodeById
+  } = usePromoCode()
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isActive, setActive] = useState(-1);
 
@@ -16,71 +30,24 @@ const PromoCode = () => {
   const [isDelete , setDelete] = useState(false)
   const [deleteSuccess , setSuccess] = useState(false)
   const [isEdit , setEdit] = useState(false)
-  const [isDeactive , setDeactive] = useState(false)
-  const [isReactive , setReactive] = useState(false)
+
+
   const handleOpen = () => setOpen(!open);
   const handleOpen2 = () => setEdit(!open);
   const handleReOpen = () => setOpenReactive(!open);
 
+  console.log(isReactive)
+
   let PageSize = 5;
 
-  const promocodeData = [
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "ACTIVE",
-    },
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "DEACTIVE",
-    },
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "EXPIRED!",
-    },
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "DEACTIVE",
-    },
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "ACTIVE",
-    },
-    {
-      id: "CODE500",
-      title: "Mega Sale!",
-      desc: " Get upto £500 Off on purchases over £1,000",
-      date: "DD/MM/YYYY",
-      validity: "3 Months",
-      status: "EXPIRED!",
-    },
-  ];
+  
   const closeDrawer = () => setIsOpen(false);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return promocodeData.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return promocodes?.docs?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage , promocodes]);
 
   return (
     <div>
@@ -134,36 +101,35 @@ const PromoCode = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item, i) => {
+            {!!currentTableData?.length && currentTableData?.map((item, i) => {
               return (
-                <tr>
+                <tr key={i}>
                   <td>
                     <div className="flex gap-4 justify-center items-center">
                       <img src="./image 681.png" alt="" />
-                      <p className="text-[#0070BC] font-[500]">{item?.id}</p>
+                      <p className="text-[#0070BC] font-[500]">{item?.promoCodeId}</p>
                     </div>
                   </td>
                   <td className="font-semibold">{item?.title}</td>
                   <td>
-                    <p className="text-[#000000B2]">{item?.desc}</p>
+                    <p className="text-[#000000B2]">{item?.description}</p>
                   </td>
                   <td>
-                    <p className="text-[#000000B2]"> {item?.date}</p>
+                    <p className="text-[#000000B2]"> {formatDate3(item?.createdAt)}</p>
                   </td>
                   <td>
-                    <p className="text-[#000000B2]">{item?.validity}</p>
+                    <p className="text-[#000000B2]">{calculateDateGap(formatDate3(item?.activationDate),formatDate3(item?.expiryDate) )} Days</p>
                   </td>
                   <td>
                     <p
                       className={
-                        item?.status === "ACTIVE"
+                        item?.isActive
                           ? "text-[#3BB54A] font-semibold"
-                          : item?.status === "DEACTIVE"
-                          ? "text-[#E5354B] font-semibold"
-                          : "text-[#1E1E1E99] font-semibold"
+                          : "text-[#E5354B] font-semibold"
+                        
                       }
                     >
-                      {item?.status}
+                      {item?.isActive ? "ACTIVE" : "DEACTIVE"}
                     </p>
                   </td>
                   <td>
@@ -178,46 +144,36 @@ const PromoCode = () => {
                       />
                       {isActive === i && (
                         <>
-                          {item?.status === "ACTIVE" ? (
+                          { item?.isActive ? (
                             <div className="action-main">
-                              <div className="flex items-center gap-6" onClick={()=> setDeactive(true)}>
+                              <div className="flex items-center gap-6" onClick={()=> setDeactive(item?._id)}>
                                 <img src="./image 119 (2).png" alt="" />
                                 <p>De-Activate</p>
                               </div>
-                              <div className="flex items-center gap-6" onClick={()=>setEdit(true)}>
+                              <div className="flex items-center gap-6" onClick={()=>{
+                                getPromoCodeById(item?._id)
+                                setEdit(item?._id)}}>
                                 <img src="./image 119 (3).png" alt="" />
                                 <p>Edit Details</p>
                               </div>
-                              <div className="flex items-center gap-6"  onClick={()=> setDelete(true)}>
+                              <div className="flex items-center gap-6"  onClick={()=> setDelete(item?._id)}>
                                 <img src="./image 118.png" alt="" />
                                 <p>Delete Promo Code</p>
                               </div>
                             </div>
-                          ) : item?.status === "DEACTIVE" ? (
+                          ) :  (
                             <div className="action-main">
-                              <div className="flex items-center gap-6" onClick={()=> setReactive(true)}>
+                              <div className="flex items-center gap-6" onClick={()=> setReactive(item?._id)}>
                                 <img src="././image 119 (1).png" alt="" />
                                 <p>Re-Activate</p>
                               </div>
 
-                              <div className="flex items-center gap-6"  onClick={()=> setDelete(true)}>
+                              <div className="flex items-center gap-6"  onClick={()=> setDelete(item?._id)}>
                                 <img src="./image 118.png" alt="" />
                                 <p>Delete Promo Code</p>
                               </div>
                             </div>
-                          ) : (
-                            <div className="action-main">
-                              <div className="flex items-center gap-6" onClick={()=> setReactive(true)}>
-                                <img src="././image 119 (1).png" alt="" />
-                                <p>Re-Activate</p>
-                              </div>
-
-                              <div className="flex items-center gap-6" onClick={()=> setDelete(true)}>
-                                <img src="./image 118.png" alt="" />
-                                <p>Delete Promo Code</p>
-                              </div>
-                            </div>
-                          )}
+                          ) }
                         </>
                       )}
                     </div>
@@ -231,13 +187,13 @@ const PromoCode = () => {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={promocodeData.length}
+        totalCount={!!promocodes?.docs?.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
       {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />}
       <CreatePromo open={open} setOpen={setOpen} handleOpen={handleOpen} />
-      <CreatePromo open={isEdit} edit={true} setOpen={setEdit} handleOpen={handleOpen2} />
+      <CreatePromo open={isEdit} edit={isEdit} setOpen={setEdit} handleOpen={handleOpen2} />
       <MegaSale
         open={openReactive}
         setOpen={setOpenReactive}
@@ -250,7 +206,13 @@ const PromoCode = () => {
           Do you want to delete this product ?
           </p>
           <div className='button-container3'>
-            <button className='promoButton' onClick={()=>{setSuccess(true)}}>Yes</button>
+            <button className='promoButton' onClick={()=>{
+               handleDeletePromocode(isDelete)
+              setSuccess(true)
+              setTimeout(()=> {
+                setSuccess(false)
+              },2000)
+              }}>Yes</button>
             <button className='promoButton' onClick={()=>setDelete(false)}>No</button>
           </div>
         </div>
@@ -270,9 +232,8 @@ const PromoCode = () => {
           Do you want to De-Active this product ?
           </p>
           <div className='button-container3'>
-            <button className='promoButton' onClick={()=>{{
-              setDeactive(false)
-              }}}>Yes</button>
+            <button className='promoButton' onClick={
+              ()=>{handleDeactivePromocode(isDeactive)}}>Yes</button>
             <button className='promoButton' onClick={()=>setDeactive(false)}>No</button>
           </div>
         </div>
@@ -299,17 +260,17 @@ const PromoCode = () => {
           <div className="flex justify-between">
           <div className="flex flex-col gap-2">
           <p className="text-[#0070BC] py-2">FROM</p>
-            <DatePickerComp />
+            <DatePickerComp startDate={activationDate} setStartDate={setActivationDate}/>
           </div>
           <div className="flex flex-col gap-2">
           <p className="text-[#0070BC] py-2">VALID TILL</p>
-            <DatePickerComp />
+            <DatePickerComp startDate={expiryDate} setStartDate={setExpiryDate}/>
           </div>
 
           </div>
-          <div className="text-[#000000B2] py-4">VALIDITY : <span className="text-[black]">6 MONTHS</span></div>
+          <div className="text-[#000000B2] py-4">VALIDITY : <span className="text-[black]">{calculateDateGap(formatDate2(activationDate),formatDate2(expiryDate) )} Days</span></div>
           <div className="flex justify-around items-center mt-4">
-            <button className="sign-button w-48" onClick={() => setReactive(false)}>RE-ACTIVATE</button>
+            <button className="sign-button w-48" onClick={()=> handleReactivePromocode(isReactive)}>RE-ACTIVATE</button>
             <div className="flex  items-center gap-2 cursor-pointer" onClick={() => setReactive(false)}>
               <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
               <p className="text-[24px] cancel underline">Cancel</p>

@@ -6,9 +6,9 @@ import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
 import SelectRetailer from "./SelectRetailer";
 import SelectItem from "./SelectItem";
 
-import Slider, { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './SliderRangeFilter.css';
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
+import "./SliderRangeFilter.css";
 
 // import AddProfile from "./AddProfile";
 const PromoFilter = ({ closeDrawer, open }) => {
@@ -18,7 +18,7 @@ const PromoFilter = ({ closeDrawer, open }) => {
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
-    console.log('Selected range: ', newRange);
+    console.log("Selected range: ", newRange);
   };
 
   return (
@@ -86,78 +86,104 @@ const PromoFilter = ({ closeDrawer, open }) => {
 
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Amount</p>
-                
+
                 <div class="relative mb-10">
-        
-                <div class="relative mb-10">
-        
-             <div className="flex items-center gap-2">
-              <span className="text-[#000000B2] text-[14px] font-[500]">Min.</span>
-                <Slider range  min={0} max={100} value={range} onChange={handleRangeChange} allowCross={false}/>
-                <span className="text-[#000000B2] text-[14px] font-[500]">Max</span>
-             </div>
-       
-      <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-8 font-[500]">
-                    0
-                  </span>
-                  <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
-                    £100
-                  </span>
-                  <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
-                    £500
-                  </span>
-                  <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
-                    £1,000
-                  </span>
-                  <span className="text-sm text-black font-[500] dark:text-gray-400 absolute end-0 -bottom-8">
-                    £5,000
-                  </span>
-      </div>
-          </div>
+                  <div class="relative mb-10">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#000000B2] text-[14px] font-[500]">
+                        Min.
+                      </span>
+                      <Slider
+                        range
+                        min={0}
+                        max={100}
+                        value={range}
+                        onChange={handleRangeChange}
+                        allowCross={false}
+                      />
+                      <span className="text-[#000000B2] text-[14px] font-[500]">
+                        Max
+                      </span>
+                    </div>
+
+                    <span className="text-sm text-black dark:text-gray-400 absolute start-0 -bottom-8 font-[500]">
+                      0
+                    </span>
+                    <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-1/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                      £100
+                    </span>
+                    <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-2/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                      £500
+                    </span>
+                    <span className="text-sm text-black font-[500] dark:text-gray-400 absolute start-3/4 -translate-x-1/2 rtl:translate-x-1/2 -bottom-8">
+                      £1,000
+                    </span>
+                    <span className="text-sm text-black font-[500] dark:text-gray-400 absolute end-0 -bottom-8">
+                      £5,000
+                    </span>
+                  </div>
+                </div>
               </div>
-         
-              <div className="mt-10">
+
+              <div className="mt-10 ">
                 <p className="text-lg font-semibold pb-4">Outlet</p>
-                <select
-                  id="countries"
+                <div
+                  className="relative"
                   onClick={() => {
                     setOpenRetailer(!openRetailer);
                   }}
-                  className="rounded shadow-md mb-4 cursor-pointer bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option className="font-semibold text-[#000000B2]">
-                  Outlet
-                  </option>
-                </select>
-                <select
-                  id="countries"
+                  <input
+                    id="countries"
+                    placeholder="Outlet"
+                    className="rounded shadow-md mb-4 cursor-pointer bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  />
+
+                  <img
+                    src="../Arrow 10.png"
+                    alt=""
+                    className="absolute top-3 right-2 cursor-pointer"
+                  />
+                </div>
+                <div
+                  className="relative"
                   onClick={() => {
-                    setOpenItem(!openItem);
+                    setOpenItem(true);
                   }}
-                
-                  className="rounded shadow-md cursor-pointer  bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option className="font-semibold text-[#000000B2]">
-                    Select Item
-                  </option>
-                </select>
-                {openRetailer && <SelectRetailer />}
-                {openItem && <SelectItem />}
+                  <input
+                    id="countries"
+                    placeholder="Select Item"
+                    className="rounded shadow-md mb-4 cursor-pointer bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  />
+
+                  <img
+                    src="../Arrow 10.png"
+                    alt=""
+                    className="absolute top-3 right-2 cursor-pointer"
+                  />
+                </div>
+
+                {openRetailer && (
+                  <SelectRetailer
+                    onClose={() => setOpenRetailer(false)}
+                    show={openRetailer}
+                  />
+                )}
+                {openItem && (
+                  <SelectItem
+                    onClose={() => setOpenItem(false)}
+                    show={openItem}
+                  />
+                )}
               </div>
-             
             </div>
           </div>
           <div className="button-container">
-            <button
-              className="button2"
-              onClick={closeDrawer}
-            >
+            <button className="button2" onClick={closeDrawer}>
               APPLY
             </button>
-            <button
-              className="button4"
-              onClick={closeDrawer}
-            >
+            <button className="button4" onClick={closeDrawer}>
               RESET
             </button>
           </div>

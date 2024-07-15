@@ -9,6 +9,7 @@ const useLoyality = () => {
   const [saving, setSaving] = useState([]);
   const [points, setPoints] = useState([]);
 
+
   async function getStampSystemByToken() {
     const data = await fetchApiData(
       "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getStampSystemByToken"
@@ -28,7 +29,6 @@ const useLoyality = () => {
     );
     setPoints(data?.data);
   }
-
 
   useEffect(() => {
     getStampSystemByToken();

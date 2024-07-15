@@ -14,6 +14,8 @@ const LoyaltyProgram = () => {
   const handleOpen = () => setOpen(!open);
   const closeDrawer = () => setIsOpen(false);
 
+  console.log(points)
+
   return (
     <div>
       <p className="text-2xl font-bold mb-6">Loyalty Program Management</p>
@@ -78,7 +80,7 @@ const LoyaltyProgram = () => {
           onClick={() => navigate("/loyalty/point")}
         >
           <img src="./image 698 (2).png" alt="" />
-          <p>Spent my Point</p>
+          <p>Spent My Point</p>
         </div>
       </div>
       <div className="mt-4">
@@ -87,9 +89,9 @@ const LoyaltyProgram = () => {
           <div className="flex flex-wrap justify-between gap-4">
             {stamps?.map((d, i) => (
               <LoyalityCard
-                image="./Frame 38302.png"
+                image={d?.productId?.image}
                 key={i}
-                text={d?.title}
+                text={d?.description}
               />
             ))}
 

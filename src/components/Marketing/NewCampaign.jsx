@@ -61,7 +61,7 @@ const NewCampaign = () => {
             {CampaignOptions?.map((data, i) => (
               <>
                 <option
-                  className="font-semibold text-black"
+                  className="font-semibold text-black "
                   key={i}
                   value={data?.value}
                 >
