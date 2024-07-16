@@ -35,7 +35,7 @@ const BookMark = ({ handleOpen }) => {
         </thead>
         <tbody>
           <tr>
-                      <td>
+                      <td className="">
                           <div className="bookmarkImage">
                               <img src="./image 713 (3).png" alt="" className="image1" />
                               <div className="bookmarkText">

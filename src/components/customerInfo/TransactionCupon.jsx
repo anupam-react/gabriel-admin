@@ -35,7 +35,7 @@ const TransactionCupon = ({handleOpen}) => {
           <td>
             <div className='flex items-center justify-between gap-4'>
               <img src="../image 711 (2).png" alt="" className='cursor-pointer' onClick={()=> setProductInfo(true)}/>
-              <div>Redeemed , Yesterday, 10:30 pm <br/>
+              <div className="text-left">Redeemed , Yesterday, 10:30 pm <br/>
               <span className='text-[#0070BC] underline cursor-pointer' onClick={()=>{setProduct(true)}}>See Transaction.</span> </div>
               <img src="../Vector (42).png" alt="" className='h-fit cursor-pointer' onClick={()=> {
       setDownload(true)
@@ -52,7 +52,7 @@ const TransactionCupon = ({handleOpen}) => {
           <td>
             <div className='flex items-center justify-between gap-4'>
               <img src="../image 711 (2).png" alt="" className='cursor-pointer' onClick={()=> setProductInfo(true)}/>
-              <div>Redeemed , Yesterday, 10:30 pm <br/>
+              <div className="text-left">Redeemed , Yesterday, 10:30 pm <br/>
               <span className='text-[#0070BC] underline cursor-pointer' onClick={()=>{setProduct(true)}}>See Transaction.</span> </div>
               <img src="../Vector (42).png" alt="" className='h-fit cursor-pointer' onClick={()=> {
       setDownload(true)
@@ -69,7 +69,7 @@ const TransactionCupon = ({handleOpen}) => {
           <td>
             <div className='flex items-center justify-between gap-4'>
               <img src="../image 711 (2).png" alt="" className='cursor-pointer' onClick={()=> setProductInfo(true)}/>
-              <div>Redeemed , Yesterday, 10:30 pm <br/>
+              <div className="text-left">Redeemed , Yesterday, 10:30 pm <br/>
               <span className='text-[#0070BC] underline cursor-pointer' onClick={()=>{setProduct(true)}}>See Transaction.</span> </div>
               <img src="../Vector (42).png" alt="" className='h-fit cursor-pointer' onClick={()=> {
       setDownload(true)

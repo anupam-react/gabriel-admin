@@ -9,28 +9,22 @@ import {
   updateApiData,
 } from "../utiils";
 import { successToast } from "../components/Toast";
+import { useRecoilState } from "recoil";
+import {
+  activeDateState,
+  expiryDateState,
+  initialState,
+  promocodeState,
+} from "../components/atoms/promocodeState";
 
 const usePromoCode = () => {
-  const initialState = {
-    title: "",
-    promoCodeId: "",
-    description: "",
-    discountType: "buyOneGetOneFree",
-    discountValue: 0,
-    promoCodeLimit: 0,
-    isEmail: false,
-    isSms: false,
-    isAppNotification: false,
-    isActive: false,
-  };
   const [openSuccess, setOpenSuccess] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [promocodes, setPromocodes] = useState([]);
-  const [promocodeInfo, setPromocodeInfo] = useState();
   const [staff, setStaff] = useState([]);
-  const [promocodeData, setPromocodeData] = useState(initialState);
-  const [activationDate, setActivationDate] = useState(new Date());
-  const [expiryDate, setExpiryDate] = useState(new Date());
+  const [promocodeData, setPromocodeData] = useRecoilState(promocodeState);
+  const [activationDate, setActivationDate] = useRecoilState(activeDateState);
+  const [expiryDate, setExpiryDate] = useRecoilState(expiryDateState);
   const [staffId, setStaffId] = useState();
   const [isReactive, setReactive] = useState(false);
   const [isDeactive, setDeactive] = useState(false);
@@ -50,7 +44,9 @@ const usePromoCode = () => {
       `https://gabriel-backend.vercel.app/api/v1/PromoCode/getPromoCodeById/${id}`
     );
     console.log(data?.data);
-    setPromocodeInfo(data?.data);
+    setPromocodeData(data?.data);
+    // setActivationDate(data?.data?.activationDate)
+    // setExpiryDate(data?.data?.expiryDate)
   };
 
   async function getStaffByToken() {
@@ -74,7 +70,6 @@ const usePromoCode = () => {
     });
   };
 
-  console.log(staffId);
   const handleCreatePromocode = async (event) => {
     event.preventDefault();
     const formData = {
@@ -90,6 +85,7 @@ const usePromoCode = () => {
         formData
       );
       getPromoCodeByToken();
+      setPromocodeData(initialState);
       setOpenSuccess(true);
       setTimeout(() => {
         setOpenSuccess(false);
@@ -101,11 +97,23 @@ const usePromoCode = () => {
     }
   };
   const handleUpdatePromocode = async (id) => {
-   
     const formData = {
-      ...promocodeData,
-      activationDate: formatDate2(activationDate),
-      expiryDate: formatDate2(expiryDate),
+      title: promocodeData?.title,
+      promoCodeId: promocodeData?.promoCodeId,
+      description: promocodeData?.description,
+      discountType: promocodeData?.discountType,
+      discountValue: promocodeData?.discountValue,
+      promoCodeLimit: promocodeData?.promoCodeLimit,
+      isEmail: promocodeData?.isEmail,
+      isSms: promocodeData?.isSms,
+      isAppNotification: promocodeData?.isAppNotification,
+      isActive: promocodeData?.isActive,
+      staffId: staffId || promocodeData?.staffId,
+      activationDate:
+        formatDate2(activationDate) ||
+        formatDate3(promocodeData?.activationDate),
+      expiryDate:
+        formatDate2(expiryDate) || formatDate3(promocodeData?.expiryDate),
     };
     try {
       const response = await updateApiData(
@@ -114,6 +122,7 @@ const usePromoCode = () => {
       );
       getPromoCodeByToken();
       setOpenSuccess(true);
+      setPromocodeData(initialState);
       setTimeout(() => {
         setOpenSuccess(false);
         setIsOpen(false);
@@ -159,16 +168,17 @@ const usePromoCode = () => {
     }
   };
 
-  const handleDeletePromocode  = async(id)=>{
-      await deleteApiData(`https://gabriel-backend.vercel.app/api/v1/PromoCode/removePromoCode/${id}`)
-      getPromoCodeByToken();
-  }
+  const handleDeletePromocode = async (id) => {
+    await deleteApiData(
+      `https://gabriel-backend.vercel.app/api/v1/PromoCode/removePromoCode/${id}`
+    );
+    getPromoCodeByToken();
+  };
 
   return {
     promocodeData,
     promocodes,
     staff,
-    promocodeInfo,
     activationDate,
     setActivationDate,
     expiryDate,

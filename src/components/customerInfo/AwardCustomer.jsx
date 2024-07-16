@@ -19,8 +19,8 @@ const AwardCustomer = ({
     { label: "Stamps", value: "Stamps" },
   ];
   return (
-    <div className="gift-container">
-      <div className="gift-main">
+    <div className="gift-container no-scrollbar">
+      <div className="gift-main ">
         <p className="title">{title}</p>
         <img
           src="./Mask group (2).png"
@@ -115,7 +115,7 @@ const AwardCustomer = ({
       </div>
       <div className="flex-center">
         <button className="menuButton" onClick={() => setOpenOffer(true)}>
-          See Promotion preview
+          See Promotion Review
         </button>
       </div>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>

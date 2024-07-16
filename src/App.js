@@ -57,6 +57,7 @@ import Initialpage from "./components/common/Initialpage.jsx";
 import Communications from "./components/Setting/Communications.jsx";
 import Notification from "./components/Notification/index.jsx";
 import AddMultipleProduct from "./components/Inventory/AddMultipleProduct.jsx";
+import ReviewCampaign2 from "./components/Marketing/ReviewCampaign2.jsx";
 
 function App() {
   return (
@@ -155,6 +156,10 @@ function App() {
           <Route
             path="/marketing/review-campaign"
             element={<MarketingReviewCampaign />}
+          />
+          <Route
+            path="/marketing/review-campaign-cupon"
+            element={<ReviewCampaign2 />}
           />
           <Route path="/marketing/ad-preview" element={<MarktingAdPreview />} />
           <Route

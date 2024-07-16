@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePickerComp = ({startDate, setStartDate }) => {
+const DatePickerComp = ({startDate , setStartDate }) => {
 
   return (
     <div>

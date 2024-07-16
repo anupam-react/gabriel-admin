@@ -35,7 +35,7 @@ const BirthdayOfferPreview = ({ handleOpen }) => {
       </div>
       <hr className="hr" />
       <div className="flex flex-col items-center gap-4">
-      <div className="cardContainer" >
+      <div className="cardContainer px-10 py-4" >
         <img src="image 710.jpg" alt="" />
         <p>70% Birthday Special Discount</p>
       </div>

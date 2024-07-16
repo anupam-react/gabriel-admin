@@ -34,6 +34,8 @@ const Promotions = ({ handleOpen }) => {
             fontWeight: 600,
             textTransform: "uppercase",
           }}
+          className="cursor-pointer"
+          onClick={()=> handleOpen(false)}
         >
           Participation in Promotions
         </p>
@@ -48,7 +50,7 @@ const Promotions = ({ handleOpen }) => {
         </thead>
         <tbody>
           <tr>
-            <td style={{ width: "100px" }}>Participation</td>
+            <td style={{ width: "100px" }}>Percentage Discount</td>
             <td style={{ textAlign: "left", paddingLeft: "50px" }}>
               30 Purchases made on discounts –{" "}
               <span
@@ -98,7 +100,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Viewed{" "}
                   <span
                     style={{
@@ -129,7 +131,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Viewed{" "}
                   <span
                     style={{
@@ -164,7 +166,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Viewed{" "}
                   <span
                     style={{
@@ -195,7 +197,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Viewed{" "}
                   <span
                     style={{
@@ -230,7 +232,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Bought 2 times,
                   <span
                     style={{
@@ -260,7 +262,7 @@ const Promotions = ({ handleOpen }) => {
                   style={{ cursor: "pointer", width: "180px" }}
                   onClick={() => setOpenproduct(true)}
                 />
-                <div>
+                <div className="text-left">
                   Bought 2 times,
                   <span
                     style={{

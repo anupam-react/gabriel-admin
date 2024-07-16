@@ -11,22 +11,22 @@ const PromotionDetails = ({ image, type, name, handleOpen }) => {
         onClick={() => handleOpen(false)}
       />
       <img src={image} alt="" className="details-image" />
-      <div className="details-info">
+      <div className="details-info2">
         <div className="info2">
           <p>Product</p>
           <p>{name}</p>
         </div>
         <div className="info2">
-          <p>Promotion Type</p>
-          <p>{type}</p>
+          <p>Promotion Type and Value ID</p>
+          <p> {type}</p>
         </div>
         <div className="info2">
           <p>Date</p>
           <p>05/12/2023</p>
         </div>
         <div className="info2">
-          <p>Timings</p>
-          <p>11:05 pm </p>
+          <p>Promotion Time</p>
+          <p className="text-right">11:05 pm </p>
         </div>
         <div className="info2">
           <p>Expiry</p>

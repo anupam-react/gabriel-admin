@@ -32,16 +32,16 @@ const BirthdayOffer = ({ handleOpen, isOffer = false }) => {
         />
       </div>
       <hr className="hr" />
-      <div className="cardContainer">
+      <div className="cardContainer px-10 py-4">
         <img src="image 710.jpg" alt="" />
-        <p>70% Birthday Special Discount</p>
+        <p className="text-center">70% Birthday Special Discount</p>
       </div>
       <div className="footer-Main">
         {data?.map((d, i) => (
           <div className="footer-container">
-            <p>{d?.title}</p>
-            <p>:</p>
-            <p>{d?.value}</p>
+            <p style={{width:"150px"}}>{d?.title}</p>
+            <span>:</span>
+            <p style={{width:"200px"}}>{d?.value}</p>
             <button
               className="edit-button"
               onClick={() => {

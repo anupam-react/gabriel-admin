@@ -2,12 +2,14 @@ import {
     CircularProgressbar, buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Promotion = ({data}) => {
+  const navigate = useNavigate()
   return (
     <div>
       <p className="font-semibold text-xl pb-4">Recommended Promotion type</p>
-          <div className="rounded-lg shadow-md flex flex-col justify-center items-center bg-white p-4 w-80">
+          <div onClick={()=> navigate('/marketing/review-campaign-cupon')} className="rounded-lg cursor-pointer shadow-md flex flex-col justify-center items-center bg-white p-4 w-80">
               <p className="font-semibold gap-4">{data}% of your customers are likely to respond to</p>
        <CircularProgressbar
         value={data}

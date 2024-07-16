@@ -44,8 +44,8 @@ const AwardOffer = ({handleOpen}) => {
     },
   ];
   return (
-    <div className="gift-container">
-      <div className="gift-main">
+    <div className="gift-container no-scrollbar">
+      <div className="gift-main ">
         <p className="title">Send Target Promotons</p>
         <img
           src="./Mask group (2).png"

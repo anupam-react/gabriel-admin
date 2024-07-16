@@ -12,7 +12,6 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
   const {
     promocodeData,
     staff,
-    promocodeInfo,
     staffId , setStaffId,
     activationDate , setActivationDate,
     expiryDate , setExpiryDate,
@@ -23,7 +22,8 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
     openSuccess, setOpenSuccess,
   } = usePromoCode()
 
-console.log(edit)
+  console.log(edit)
+
   const discountOptions = [
     { label: "Buy One Get One Free", value: "buyOneGetOneFree" },
     { label: "Flat Amount Discount", value: "fixed" },
@@ -130,7 +130,7 @@ console.log(edit)
                 </div>
                 <div>
                   <p className="text-[#0070BC]">TO</p>
-                  <DatePickerComp   startDate={expiryDate} setStartDate={setExpiryDate}/>
+                  <DatePickerComp  startDate={expiryDate} setStartDate={setExpiryDate}/>
                 </div>
               </div>
               <p className="font-semibold text-sm">

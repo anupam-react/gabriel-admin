@@ -21,7 +21,7 @@ const InvitationOffer = ({ handleOpen }) => {
    
   ];
   return (
-    <div className="gift-container">
+    <div className="gift-container no-scrollbar">
       <div className="gift-main" >
         <p className="title">Invitation Link</p>
         <img
@@ -51,7 +51,12 @@ const InvitationOffer = ({ handleOpen }) => {
           </div>
 
           </div>
-           <button className="menuButton4" onClick={()=> setSuccess(true)}>Send to Customer’s Offer Folder</button>
+           <button className="menuButton4" onClick={()=>{
+             setSuccess(true)
+             setTimeout(()=>{
+              setSuccess(false)
+             },2000)
+             }}>Send to Customer’s Offer Folder</button>
 
       </div>
          

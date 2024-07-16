@@ -6,8 +6,8 @@ import InvitationPreview from "./InvitationPreview";
 const Invitation = ({ handleOpen }) => {
   const [openAlert, setOpenAlert] = useState(false);
   return (
-    <div className="gift-container">
-      <div className="gift-main">
+    <div className="gift-container no-scrollbar">
+      <div className="gift-main ">
         <p className="title">Invitation Link</p>
         <img
           src="./Mask group (2).png"

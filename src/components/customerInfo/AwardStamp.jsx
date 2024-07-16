@@ -5,8 +5,8 @@ import CatalogueProduct from './CatalogueProduct';
 const AwardStamp = ({handleOpen}) => {
     const [openSuccess, setSuccess] = useState(false);
   return (
- <div className="px-[24px] py-[16px] text-[black] font-[600]" >
-      <div className="gift-main">
+ <div className="px-[24px] py-[16px] text-[black] font-[600] no-scrollbar" >
+      <div className="gift-main ">
         <p className="title">Award Stamps</p>
         <img
           src="./Mask group (2).png"
