@@ -6,6 +6,8 @@ import { successToast } from "../components/Toast";
 const useProduct = () => {
   const [openSuccess, setSuccess] = useState(false);
   const [openSuccess1, setSuccess1] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false)
+  const [openHighlights, setOpenHighlights] = useState(false);
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -183,6 +185,36 @@ const handleUpdateProduct = async (event) => {
     return error;
   }
 };
+const handleMarkAsProductOutOfStock = async (id) => {
+  
+  try {
+    const response = await updateApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/markAsProductOutOfStock/${id}`
+    );
+    successToast("Mark Out Of Stock Successfully");
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+const handleMarkAsProductAsHighlight = async (id) => {
+  
+  try {
+    const response = await updateApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/markAsProductAsHighlight/${id}`
+    );
+    setOpenHighlights(true);
+    setTimeout(() => {
+      setOpenHighlights(false);
+    }, 2000);
+
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+
 
 
   return {
@@ -217,9 +249,13 @@ const handleUpdateProduct = async (event) => {
     selectedOutlate,
     selectedCat,
     productInfo,
+    openMenu, setOpenMenu,
+    openHighlights, setOpenHighlights,
     getProductById,
     handleCreateProduct,
     handleUpdateProduct,
+    handleMarkAsProductOutOfStock,
+    handleMarkAsProductAsHighlight
   };
 };
 

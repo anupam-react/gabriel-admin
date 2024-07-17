@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './index.scss'
 import { DialogDefault } from '../common/DilogBox'
-const TransactionDetails = ({handleOpen , isButton= true}) => {
+const TransactionDetails = ({handleOpen , isButton= true , data}) => {
   const [openDownload , setOpenDownload] = useState(false)
   const [openShare , setOpenShare] = useState(false)
   return (
@@ -31,16 +31,16 @@ const TransactionDetails = ({handleOpen , isButton= true}) => {
       <div className='details-info text-[#8F8F8F]'>
         <div className='info2'>
           <p>Receipt No</p>
-          <p>90991</p>
+          <p>{data?._id}</p>
         </div>
         <div className='info2'>
           <p>Date & Time</p>
-          <p>12-09-24,7:00 Pm</p>
+          <p>{data?.dateUploaded}</p>
         </div>
         <div className='border border-[#000000] border-dashed w-[400px]'></div>
         <div className='info2'>
           <p className='text-[#121212] font-semibold'>Name</p>
-          <p className='text-[#121212] font-semibold'>Jhon Deo</p>
+          <p className='text-[#121212] font-semibold'>{data?.userId?.firstName + " " + data?.userId?.lastName}</p>
         </div>
         <div className='info2'>
           <p className='text-[#121212]'>Items</p>

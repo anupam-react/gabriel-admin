@@ -6,7 +6,34 @@ import MenuCard from "../customerInfo/MenuCard";
 import { DialogDefault } from "../common/DilogBox";
 import CustomeInfo from "../customerInfo/CustomeInfo";
 import TransactionDetails from "../customerInfo/TransactionDetails";
+import useDigitalReceipt from "../../hooks/useDigitalReceipt";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
 const DigitalReceipt = () => {
+  const {
+    receipt,
+    range,
+    setRange,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    startDate1,
+    setStartDate1,
+    endDate1,
+    setEndDate1,
+    openCustom,
+    selectedOption1,
+    setSelectedOption1,
+    setOpenCustom,
+    selectedOption,
+    setSelectedOption,
+    getDigitalReceiptByToken,
+    receiptInfo,
+    getDigitalReceiptById,
+  } = useDigitalReceipt();
+  const {  
+    getCustomerInfoForParticularUser
+  } = useCusomerInfo()
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setMenuOpen] = useState(-1);
@@ -14,82 +41,16 @@ const DigitalReceipt = () => {
   const [isOpenInfo, setOpenInfo] = useState(false);
   const [isDownload, setDownload] = useState(false);
   const [isOpenTrans, setOpenTrans] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const divRef = useRef(null);
-  let PageSize = 5;
-  const data = [
-    {
-      Product: "Donut",
-      Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-       Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-    {
-      Product: "Donut",
-     Transaction: {date:"12/02/2023", time:"(6:30 AM)"},
-      Customer: {img:"", name:"Jhon Deo" ,id : "MC12345"},
-      Type: "PDF",
-      Size: "11 Mb",
-
-    },
-
-  ];
-  const closeDrawer = () => setIsOpen(false);
+  let PageSize = 10;
+  console.log(receipt);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return receipt?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, receipt, searchTerm]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -127,6 +88,11 @@ const DigitalReceipt = () => {
             type="text"
             className="border-none w-64 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getDigitalReceiptByToken(e.target.value);
+            }}
           />
         </div>
         <div className="flex">
@@ -152,15 +118,14 @@ const DigitalReceipt = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item, i) => {
-              return (
-                <tr key={i}>
-                  <td className="text-[#000000B2]">{item?.Product}</td>
-                  <td>
-                    {item?.Transaction?.date} <span className="text-[#0070BC] font-[500]">{item?.Transaction?.time}</span>
-                  </td>
-                  <td>
-                  <div className="flex items-center justify-center gap-6 relative">
+            {!!receipt?.length &&
+              currentTableData?.map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td className="text-[#000000B2]">{item?.title}</td>
+                    <td>{item?.dateUploaded}</td>
+                    <td>
+                      <div className="flex items-center justify-center gap-6 relative">
                         <div className="profile-image">
                           <img src="./carbon_user-avatar-filled.png" alt="" />
                           <img
@@ -168,9 +133,9 @@ const DigitalReceipt = () => {
                             alt=""
                             className="absolute top-1 right-1 cursor-pointer"
                             onClick={() => {
-                              if(isMenuOpen === i)  setOpenMenu(-1)
-                                else setOpenMenu(i)
-                              }}
+                              if (isMenuOpen === i) setOpenMenu(-1);
+                              else setOpenMenu(i);
+                            }}
                           />
                         </div>
                         {isMenuOpen === i && (
@@ -180,65 +145,100 @@ const DigitalReceipt = () => {
                         )}
                         <p
                           className="cursor-pointer font-semibold text-left text-black"
-                          onClick={() => setOpenInfo(true)}
-                         
+                          onClick={() =>{ 
+                            setOpenInfo(true)
+                            getCustomerInfoForParticularUser(item?.userId?._id)
+                          }}
                         >
-                          <p>Jhon Deo</p>
-                          ID:MC12345
+                          <p>
+                            {item?.userId?.firstName +
+                              " " +
+                              item?.userId?.lastName}{" "}
+                          </p>
+                          ID: {item?.userId?._id}
                         </p>
-                        
                       </div>
-                  </td>
-                  <td>PDF</td>
-                  <td>11 Mb</td>
-                  <td>
-                    <div className="action">
-                      <img
-                        src="./Mask group (9).png"
-                        alt=""
-                        onClick={() => setMenuOpen(i)}
-                      />
-                      {isOpenMenu === i && (
-                        <div className="action-main shadow" ref={divRef}>
-                          <div className="flex gap-6" onClick={()=>setOpenTrans(true)}>
-                            <img src="./image 119.png" alt="" />
-                            <p>View</p>
+                    </td>
+                    <td>{item?.documentType}</td>
+                    <td>{item?.sizeInMbNumber} Mb</td>
+                    <td>
+                      <div className="action">
+                        <img
+                          src="./Mask group (9).png"
+                          alt=""
+                          onClick={() => setMenuOpen(item?._id)}
+                        />
+                        {isOpenMenu === item?._id && (
+                          <div className="action-main shadow" ref={divRef}>
+                            <div
+                              className="flex gap-6"
+                              onClick={() =>{ setOpenTrans(true)
+                                getDigitalReceiptById(isOpenMenu)
+                              }}
+                            >
+                              <img src="./image 119.png" alt="" />
+                              <p>View</p>
+                            </div>
+                            <div
+                              className="flex gap-6"
+                              onClick={() => setDownload(true)}
+                            >
+                              <img src="./image 674.png" alt="" />
+                              <p>Download</p>
+                            </div>
                           </div>
-                          <div className="flex gap-6" onClick={()=> setDownload(true)}>
-                            <img src="./image 674.png" alt="" />
-                            <p>Download</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={data.length}
+        totalCount={receipt?.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      {isOpen && <ReceiptFilter closeDrawer={closeDrawer} open={isOpen} />}
+      {isOpen && (
+        <ReceiptFilter
+          setIsOpen={setIsOpen}
+          open={isOpen}
+          range={range}
+          setRange={setRange}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          startDate1={startDate1}
+          setStartDate1={setStartDate1}
+          endDate1={endDate1}
+          setEndDate1={setEndDate1}
+          openCustom={openCustom}
+          selectedOption1={selectedOption1}
+          setSelectedOption1={setSelectedOption1}
+          setOpenCustom={setOpenCustom}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          getDigitalReceiptByToken={getDigitalReceiptByToken}
+        />
+      )}
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
         <CustomeInfo handleOpen={setOpenInfo} />
       </DialogDefault>
       <DialogDefault open={isDownload} handleOpen={setDownload}>
-      <div className="alert">
+        <div className="alert">
           <img src="../Vector (2).png" alt="" />
           <p className="text-center text-[24px] font-bold">
-          Receipt Downloaded
+            Receipt Downloaded
           </p>
         </div>
       </DialogDefault>
       <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
-        <TransactionDetails handleOpen={setOpenTrans} />
+        <TransactionDetails handleOpen={setOpenTrans} data={receiptInfo}/>
       </DialogDefault>
     </div>
   );

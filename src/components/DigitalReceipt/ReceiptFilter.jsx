@@ -6,19 +6,45 @@ import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './SliderRangeFilter.css';
+import DatePickerComp from "../common/DatePickerComp";
+import { DialogDefault } from "../common/DilogBox";
+import { formatDate2 } from "../../utiils";
 
-const ReceiptFilter = ({ closeDrawer, open }) => {
-  const [range, setRange] = useState([10, 60]);
+
+const ReceiptFilter = ({ setIsOpen, open , range, setRange ,startDate, setStartDate,endDate, setEndDate, startDate1, setStartDate1,endDate1, setEndDate1,openCustom ,selectedOption1, setSelectedOption1, setOpenCustom,selectedOption, setSelectedOption, getDigitalReceiptByToken }) => {
+
+  const handleCheckboxChange = (group) => {
+    setSelectedOption(group);
+  };
+
+  const handleOpen = () => setOpenCustom(!open);
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
     console.log('Selected range: ', newRange);
   };
+
+
+  const MonthOptions = [
+    { label: "WEEKLY", value: "weekly" },
+    { label: "MONTHLY", value: "month" },
+    { label: "YEARLY", value: "year" },
+    { label: "CUSTOM", value: "custom" },
+  ];
+
+  const handleChange = (event) => {
+    setSelectedOption1(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom(true);
+    }else{
+      getDigitalReceiptByToken(event.target.value)
+    }
+  };
   return (
     <React.Fragment>
       <Drawer
         open={open}
-        onClose={closeDrawer}
+        onClose={()=>setIsOpen(false)}
         direction="right"
         className="bla bla bla"
         size={400}
@@ -26,7 +52,7 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
         <div className="filterContainer">
           <div className="filter-body no-scrollbar">
             <div className="mb-6 flex items-center justify-between">
-              <div onClick={closeDrawer}>
+              <div onClick={()=>setIsOpen(false)}>
                 <img
                   src="./Mask group (2).png"
                   alt=""
@@ -34,7 +60,7 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                 />
               </div>
               <h5 className="text-xl font-semibold">Filter</h5>
-              <div onClick={closeDrawer}>
+              <div onClick={()=>setIsOpen(false)}>
                 <img
                   src="./close-outline 1.svg"
                   alt=""
@@ -46,25 +72,64 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
             <div className="p-2">
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Date Range</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    CUSTOM
-                  </option>
-                </select>
+                  <select
+        id="countries"
+        value={selectedOption1}
+        onChange={handleChange}
+        className="input-loyalty"
+      >
+        {MonthOptions?.map((data, i) => (
+          <>
+            <option className="font-semibold" key={i} value={data?.value}>
+              {data?.label}
+            </option>
+          </>
+        ))}
+      </select>
+      <DialogDefault open={openCustom} handleOpen={handleOpen}>
+        <div className="p-4 bg-[#F5F5F5] rounded-lg h-80">
+          <div className="flex justify-between">
+            <div className="flex-1 flex flex-col gap-4">
+              <p className="font-semibold text-black text-xl">
+                Select Date Range
+              </p>
+              <hr className="bg-black w-96" />
+            </div>
+            <div onClick={() => setOpenCustom(false)}>
+              <img
+                src="./Mask group (2).png"
+                alt=""
+                className="w-8 cursor-pointer"
+              />
+            </div>
+          </div>
+          <p className="text-[#0070BC] py-4">FROM</p>
+          <div className="flex gap-6">
+            <DatePickerComp startDate={startDate} setStartDate={setStartDate}/>
+            <DatePickerComp startDate={endDate} setStartDate={setEndDate}/>
+          </div>
+         
+          <div className="flex justify-center items-center gap-10 mt-8">
+            <button className="sign-button w-48" onClick={()=>{
+              // handleSave(selectedOption, formatDate2(startDate), formatDate2(endDate))
+              setOpenCustom(false)
+              }}>SAVE</button>
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setOpenCustom(false)}>
+              <img src="./Mask group (4).svg" alt="" className="w-6 h-6" />
+              <p className="text-sm cancel underline">Cancel</p>
+            </div>
+          </div>
+        </div>
+      </DialogDefault>
               </div>
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={startDate1} setStartDate={setStartDate1}/>
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={endDate1} setStartDate={setEndDate1}/>
                 </div>
               </div>
               <div className="mt-4 mb-[60px]">
@@ -105,8 +170,8 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                     .PDF
                     <input
                       type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
+                      checked={selectedOption === 'pdf'}
+                      onChange={()=>handleCheckboxChange('pdf')}
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -116,8 +181,8 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                     .TXT
                     <input
                       type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
+                      checked={selectedOption === 'txt'}
+                      onChange={()=>handleCheckboxChange('txt')}
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -127,8 +192,8 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                     .DOCX
                     <input
                       type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
+                      checked={selectedOption === 'docx'}
+                      onChange={()=>handleCheckboxChange('docx')}
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -138,63 +203,30 @@ const ReceiptFilter = ({ closeDrawer, open }) => {
                     .RTF
                     <input
                       type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
+                      checked={selectedOption === 'rtf'}
+                      onChange={()=>handleCheckboxChange('rtf')}
                     />
                     <span class="checkmark"></span>
                   </label>
                 </div>
               </div>
 
-              {/* <div className="mt-12">
-                <p className="text-lg font-semibold pb-4">Uploaded By</p>
-                <div className="flex items-center px-6 h-12 input-loyalty">
-                  <img
-                    src="./image 2 (3).svg"
-                    alt="search"
-                    className="w-6 h-6"
-                  />
-                  <input type="text" className="search" placeholder="Search" />
-                </div>
-              </div> */}
-              {/* <div className="mt-4 relative">
-                <div className="flex justify-between items-center px-6 h-12 input-loyalty">
-                  <div className="flex gap-6">
-                    <img
-                      src="./Ellipse 11.png"
-                      alt="search"
-                      className="w-6 h-6"
-                    />
-                    <p>Lorem Ipsum</p>
-                  </div>
-                  <img src="./image 675.png" alt="search" className="w-6 h-6" />
-                </div>
-              </div> */}
-              {/* <div
-                className="mt-6 cursor-pointer flex justify-center items-center gap-3 rounded-lg py-2 border border-[#0070BC] text-[#0070BC]"
-                onClick={() => setOpenProfile(!openProfile)}
-              >
-                <img src="./Mask group (10).png" alt="" className="w-7 h-7" />
-                <p className="font-semibold text-lg">ADD</p>
-              </div> */}
-
-              {/* {openProfile && <AddProfile />} */}
+             
             </div>
           </div>
           <div className="button-container">
             <button
               className="button2"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                  getDigitalReceiptByToken("",formatDate2(startDate1), formatDate2(endDate1), "","", range[0], range[1], selectedOption)
+                  setIsOpen(false)
+                }}
             >
               APPLY
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={()=>setIsOpen(false)}
             >
               RESET
             </button>

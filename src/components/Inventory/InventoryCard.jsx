@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import './index.scss'
 import { useNavigate } from 'react-router-dom';
 import InventoryMenu from './InventoryMenu';
+import useProduct from '../../hooks/useProduct';
 const InventoryCard = ({ data , key }) => {
-  const [openMenu, setOpenMenu] = useState(false)
+  const {openMenu, setOpenMenu} = useProduct();
   const navigate = useNavigate();
   return (
     <div className='relative' key={key}>
@@ -24,7 +25,7 @@ const InventoryCard = ({ data , key }) => {
       </div>
       {openMenu &&
         <div className='menus'>
-          <InventoryMenu setOpenMenu={setOpenMenu} id={data?._id}/>
+          <InventoryMenu setOpenMenu={setOpenMenu} id={data?._id} data={data}/>
           </div>
       }
     </div>

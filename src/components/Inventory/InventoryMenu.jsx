@@ -3,13 +3,15 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import { useNavigate } from "react-router-dom";
 import { deleteApiData } from "../../utiils";
+import useProduct from "../../hooks/useProduct";
 
-const InventoryMenu = ({ setOpenMenu , id }) => {
-
+const InventoryMenu = ({ setOpenMenu , id , data }) => {
+ const {openHighlights, setOpenHighlights ,   handleMarkAsProductOutOfStock,
+  handleMarkAsProductAsHighlight} = useProduct()
   const [openProductStatus, setOpenProductStatus] = useState(false);
   const [openDeleteProduct, setOpenDeleteProduct] = useState(false);
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
-  const [openHighlights, setOpenHighlights] = useState(false);
+
   const navigate = useNavigate();
 
   const handleDelete = () => {
@@ -22,22 +24,13 @@ const InventoryMenu = ({ setOpenMenu , id }) => {
     }, 1000);
   };
 
-  const handleProductStatus = () => {
-    setOpenProductStatus(true);
-    setTimeout(() => {
-      setOpenMenu(false);
-      setOpenProductStatus(false);
-    }, 1000);
-  };
 
   return (
     <div className="menu-container">
       <button className="menuButton7" onClick={() => navigate("/inventory/promote")}>
         Promote Product
       </button>
-      {/* <button className="menuButton7" onClick={handleProductStatus}>
-        Share product to Status
-      </button> */}
+
       <button className="menuButton7" onClick={() => navigate("/inventory/customer-gift")}>
         Send as Gift to customer
       </button>
@@ -53,10 +46,17 @@ const InventoryMenu = ({ setOpenMenu , id }) => {
       >
         Delete Product
       </button>
-      <button className="menuButton7" onClick={() => setOpenMenu(false)}>
+      <button className="menuButton7" onClick={() => {
+        handleMarkAsProductOutOfStock(id)
+        setTimeout(() => {
+          setOpenMenu(false);
+        }, 1000);
+        }}>
         Mark as out of stock
       </button>
-      <button className="menuButton7" onClick={() => setOpenHighlights(true)}>
+      <button className="menuButton7" onClick={() =>{ 
+        handleMarkAsProductAsHighlight(id)
+        }}>
         Add To Highlights
       </button>
       <DialogDefault open={openProductStatus} handleOpen={setOpenProductStatus}>
@@ -95,12 +95,12 @@ const InventoryMenu = ({ setOpenMenu , id }) => {
         </div>
       </DialogDefault>
       <DialogDefault open={openHighlights} handleOpen={setOpenHighlights}>
-        <div style={{ position: "relative" }}>
-          <img src="./Rectangle 8761.png" alt="" className="back-image" />
+        <div style={{ position: "relative" }} className="flex justify-center items-center">
+          <img src={data?.image} alt="" className="w-[600px] h-[300px]" />
           <div className="image-text">
-            <p className="text-xl">COLD DRINKS</p>
+            <p className="text-xl">{data?.name}</p>
             <p>
-              Note : Your Cold drink product has been added to the Highlights
+              Note : Your {data?.name} product has been added to the Highlights
             </p>
           </div>
         </div>
