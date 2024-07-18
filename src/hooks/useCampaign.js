@@ -112,26 +112,27 @@ const useCampaign = () => {
       return error;
     }
   };
-  const handleUpdatePromocode = async (id) => {
-    const formData = {
+
+  // const handleUpdatePromocode = async (id) => {
+  //   const formData = {
     
-    };
-    try {
-      const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
-        formData
-      );
-      setOpenSuccess(true);
-      setPromocodeData(initialState);
-      setTimeout(() => {
-        setOpenSuccess(false);
-        setIsOpen(false);
-      }, 2000);
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  };
+  //   };
+  //   try {
+  //     const response = await updateApiData(
+  //       `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
+  //       formData
+  //     );
+  //     setOpenSuccess(true);
+  //     setPromocodeData(initialState);
+  //     setTimeout(() => {
+  //       setOpenSuccess(false);
+  //       setIsOpen(false);
+  //     }, 2000);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return error;
+  //   }
+  // };
   return {
     campaigns,
     liveCampaign,
