@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useCampaign from "../../hooks/useCampaign";
+import { getDateFromISOString } from "../../utiils";
 
 const MarketingReviewCampaign = () => {
+  const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
     navigate("/marketing/ad-preview");
@@ -10,58 +13,52 @@ const MarketingReviewCampaign = () => {
   const data1 = [
     {
       title: "Campaign Type",
-      value: "Percentage DIscount",
+      value: campaignData?.typeOfCampaign,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
       title: "Discount Value",
-      value: "50% discount coupon on all hot drinks",
+      value: campaignData?.discountValue,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
       title: "Expriy Date",
-      value: "25-jan-2024",
+      value: getDateFromISOString(campaignData?.expireDate),
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
       title: "Add Conditions",
-      value: "Select specific product attached to Coupon ( Burger)",
+      value: campaignData?.conditionOfUse,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
-    {
-      title: "No of Points Reward",
-      value: "500 POints",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
-    },
-    {
-      title: "Add Conditions",
-      value: "Select specific product attached to Coupon ( Burger)",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
-    },
+    // {
+    //   title: "No of Points Reward",
+    //   value: "500 POints",
+    //   //   handleCLick: () => {
+    //   //     setOpenCustom(true);
+    //   //   },
+    // },
+
   ];
   const data2 = [
     {
       title: "Target Location",
-      value: "4517 Washington Ave. Manchester, Kentucky 39495",
+      value: campaignData?.targetLocation,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
       title: "Estimated  Reach",
-      value: "5000 Cutomers",
+      value: campaignData?.estimateReachMax,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
@@ -79,7 +76,11 @@ const MarketingReviewCampaign = () => {
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Ad Review</p>
           <div className="">
-            <img src="../Group 38237.png" alt="" />
+          <div className="cardContainer" style={{width:"480px"}}>
+        <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
+        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+      </div>
+            {/* <img src="../Group 38237.png" alt="" /> */}
           </div>
         </div>
         <div className="footer-Main2">

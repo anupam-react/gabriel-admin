@@ -1,7 +1,10 @@
 import React from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import useCampaign from "../../hooks/useCampaign";
+import { formatDate } from "../../utiils";
 const MarktingAdPreview = ({ isPay = false }) => {
+  const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
     isPay ? navigate("/marketing/payment") : navigate("/marketing/ad-confirm");
@@ -26,7 +29,10 @@ const MarktingAdPreview = ({ isPay = false }) => {
             <img src="../image 720 (2).png" alt="" className="h-fit" />
             <div>
               <div className="">
-                <img src="../Group 38237.png" alt="" />
+              <div className="cardContainer" style={{width:"480px"}}>
+        <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
+        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+      </div>
               </div>
               <div className="flex justify-end gap-2 mt-2">
                 <img src="../mdi_gift.png" alt="" />
@@ -39,7 +45,7 @@ const MarktingAdPreview = ({ isPay = false }) => {
             <p className="pb-2 ">
               Buy Any Hot Drinks Today And Double Your Points.
             </p>
-            <p className="pb-2">Exp: 05 Jan 2024</p>
+            <p className="pb-2">Exp: {formatDate(campaignData?.expireDate)}</p>
 
             <button
               className="loyalty-button1"

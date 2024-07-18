@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { PerformanceChart } from "./PerformanceChart";
 import { DialogDefault } from "../common/DilogBox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useCampaign from "../../hooks/useCampaign";
 const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
+  const {getMarketingCampaignById , campaignData} = useCampaign()
   const [openInfo, setOpenInfo] = useState(false);
+  const {id} = useParams()
+  useEffect(()=>{
+    getMarketingCampaignById(id)
+  },[id])
   const navigate = useNavigate();
   return (
     <div>
       <div className="flex justify-between">
       <p className="text-2xl font-bold">Live Campaign View</p>
       <button className="back" onClick={()=> navigate("/marketing")}> 
-        <img src="../back.png" alt="" />
+        <img src="../../back.png" alt="" />
         Back</button>
 
       </div>
@@ -32,7 +38,7 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
             <p>Campaign Type</p>
             <span>:</span>
             <p className="text-[#1BB4F0]">
-              {isOfferCard ? "Buy 1 Get 1 Free" : "Gain More Followers"}
+              {isOfferCard ? campaignData?.typeOfCampaign : "Gain More Followers"}
             </p>
           </div>
           <div className="type-text">
@@ -43,7 +49,11 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
               <p className="live-dot"></p>
             </div>
           </div>
-          <img src="../Group 38313.png" alt="" className="w-[300px] " />
+          {/* <img src="../../Group 38313.png" alt="" className="w-[300px] " /> */}
+          <div className="cardContainer" style={{width:"300px" , height:"150px"}} >
+        <img src={campaignData?.couponImage} alt="" className="w-[120px] h-[80px]" />
+        <p className="font-[600] text-xl">{campaignData?.typeOfCampaign}</p>
+      </div>
         </div>
         <div className="campaign-view-main">
           <p className="text-xl font-bold text-[#1BB4F0]">Performance</p>
@@ -60,7 +70,7 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
           <div className="type-text">
             <p>Ad Spent</p>
             <span>:</span>
-            <p className="text-[#FEA82F]">£2500 </p>
+            <p className="text-[#FEA82F]">£{campaignData?.campaignCost} </p>
           </div>
           {isOfferCard && (
             <div className="type-text">
@@ -69,7 +79,7 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
               <div className="flex gap-2">
                 <div className="text-[#1BB4F0]">10.2</div>
                 <img
-                  src="../Group 38355.png"
+                  src="../../Group 38355.png"
                   alt=""
                   className="w-4 h-4 cursor-pointer"
                   onClick={() => setOpenInfo(true)}

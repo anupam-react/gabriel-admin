@@ -173,7 +173,7 @@ export function getDateFromISOString(dateString) {
   const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are zero-based
   const day = ("0" + date.getDate()).slice(-2);
 
-  return `${day}/${month}/${year}`;
+  return `${day}-${month}-${year}`;
 }
 export function formatDate2(date) {
 

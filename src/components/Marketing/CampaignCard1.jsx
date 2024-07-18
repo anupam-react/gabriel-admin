@@ -3,6 +3,7 @@ import "./index.scss";
 import CampaignMenu from "./CampaignMenu";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import { formatDate } from "../../utiils";
 const CampaignCard1 = ({
   isButton = false,
   isStar = false,
@@ -11,10 +12,12 @@ const CampaignCard1 = ({
   image,
   isLive = false,
   title,
+  data
 }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const navigate = useNavigate();
+
   return (
     <>
       <div className="campaign-card1-container">
@@ -26,22 +29,29 @@ const CampaignCard1 = ({
             Current Sales made : <span className="text-[#00B050]">£2500</span>{" "}
           </p>
           <p>
-            Ad Spent : <span className="text-[#FEA82F]">£25</span>
+            Ad Spent : <span className="text-[#FEA82F]">£{data?.campaignCost}</span>
           </p>
         </div>
         <div className="campaign-image">
-          <img src={image} alt="" className="prod-img" />
+        <div className="cardContainer" style={{width:"100%" , height:"200px"}} >
+        <img src={image} alt="" className="w-[150px] h-[100px]" />
+        <p className="font-[600] text-xl">{data?.typeOfCampaign}</p>
+      </div>
+          {/* <img src={image} alt="" /> */}
           <img
             src="./solar_menu-dots-bold.png"
             alt=""
             className="menu-dots"
-            onClick={() => setOpenMenu(!openMenu)}
+            onClick={() => setOpenMenu(data?._id)}
           />
-          {openMenu && (
+          {openMenu === data?._id && (
             <CampaignMenu
               isLive={isLive}
-              isPause={isPause}
+              isPause={data?.isPause}
               isOfferCard={true}
+              id={data?._id}
+              onClose={()=> setOpenMenu(false)}
+              openMenu={openMenu}
             />
           )}
           {isGift && (
@@ -56,7 +66,7 @@ const CampaignCard1 = ({
             </div>
           )}
         </div>
-        <p className="text-center font-[500]">Expiry Date : 04 Jan 2024, 1:30 am</p>
+        <p className="text-center font-[500]">Expiry Date : {formatDate(data?.expireDate) }</p>
         {isButton && (
           <button
             className="run-again"

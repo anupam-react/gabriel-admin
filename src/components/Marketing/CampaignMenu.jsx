@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
@@ -7,20 +7,43 @@ const CampaignMenu = ({
   isPause = false,
   isOfferCard = false,
   isShop,
+  id,
+  onClose,
+  openMenu
 }) => {
   const [openPause, setOpenPause] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
   const naviagte = useNavigate();
+
+  const popupRef = useRef();
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (openMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openMenu, onClose]);
+
   return (
-    <div className="campaign-menu-main">
+    <div className="campaign-menu-main" ref={popupRef}>
       {isLive ? (
         <div className="campaign-menu-container">
           <p
             onClick={() => {
               isOfferCard
-                ? naviagte("/marketing/offer-view")
-                : naviagte("/marketing/view");
+                ? naviagte(`/marketing/offer-view/${id}`)
+                : naviagte(`/marketing/view/${id}`);
             }}
             className="cursor-pointer"
           >

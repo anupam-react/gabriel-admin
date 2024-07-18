@@ -137,11 +137,11 @@ function App() {
           <Route path="/feedback" element={<FeedBack />} />
           <Route path="/marketing" element={<Marketing />} />
           <Route
-            path="/marketing/view"
+            path="/marketing/view:id"
             element={<ViewProduct isOfferCard={false} />}
           />
           <Route
-            path="/marketing/offer-view"
+            path="/marketing/offer-view/:id"
             element={<ViewProduct isOfferCard={true} />}
           />
           <Route
