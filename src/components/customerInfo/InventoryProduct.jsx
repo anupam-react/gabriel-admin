@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
-import BirthdayOffer from "./BirthdayOffer";
-import CatalogueProduct from "./CatalogueProduct";
 import ProductDetails from "./ProductDetails";
 const InventoryProduct = ({ handleOpen , isProdInfo = false }) => {
   const [isView , setView] = useState()

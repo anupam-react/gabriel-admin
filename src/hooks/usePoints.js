@@ -1,6 +1,6 @@
 import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createApiData, fetchApiData } from "../utiils";
+import { createApiData } from "../utiils";
 import { successToast } from "../components/Toast";
 
 const usePoints = () => {

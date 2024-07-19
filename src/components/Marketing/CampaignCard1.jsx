@@ -4,6 +4,7 @@ import CampaignMenu from "./CampaignMenu";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import { formatDate } from "../../utiils";
+
 const CampaignCard1 = ({
   isButton = false,
   isStar = false,
@@ -17,6 +18,7 @@ const CampaignCard1 = ({
   const [openMenu, setOpenMenu] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const navigate = useNavigate();
+  
 
   return (
     <>
@@ -42,7 +44,10 @@ const CampaignCard1 = ({
             src="./solar_menu-dots-bold.png"
             alt=""
             className="menu-dots"
-            onClick={() => setOpenMenu(data?._id)}
+            onClick={() =>{
+              if(openMenu === data?._id) setOpenMenu(false)
+              else
+               setOpenMenu(data?._id)}}
           />
           {openMenu === data?._id && (
             <CampaignMenu

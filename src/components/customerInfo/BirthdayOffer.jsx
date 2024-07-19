@@ -4,16 +4,20 @@ import { DialogDefault } from "../common/DilogBox";
 
 import BirthdayOfferPreview from "./BirthdayOfferPreview";
 import BirthdayGiftPreview from "./BirthdayGiftPreview";
+import useOffer from "../../hooks/useOffer";
 const BirthdayOffer = ({ handleOpen, isOffer = false }) => {
+  const {  offerData}= useOffer();
   const [openSuccess, setSuccess] = useState(false);
   const data = [
     {
       title: "Decription",
-      value: "70% discount Birthday special",
+      value: offerData?.description,
+     
     },
     {
       title: "Birthday Message",
-      value: "Happy Birthday !!",
+      value: offerData?.message,
+     
     },
   ];
   return (
@@ -33,8 +37,8 @@ const BirthdayOffer = ({ handleOpen, isOffer = false }) => {
       </div>
       <hr className="hr" />
       <div className="cardContainer px-10 py-4">
-        <img src="image 710.jpg" alt="" />
-        <p className="text-center">70% Birthday Special Discount</p>
+        <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
+        <p className="text-center">{offerData?.description}</p>
       </div>
       <div className="footer-Main">
         {data?.map((d, i) => (

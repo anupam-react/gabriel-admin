@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.scss";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";

@@ -108,7 +108,10 @@ const PaginatedTable = () => {
                         src="./solar_menu-dots-bold (1).png"
                         alt=""
                         className="absolute top-1 right-1 cursor-pointer"
-                        onClick={() => setOpenMenu(!isOpenMenu)}
+                        onClick={() => {
+                          if(isOpenMenu === item?._id) setOpenMenu(false)
+                          else
+                          setOpenMenu(item?._id)}}
                       />
                     </div>
                     <div className="flex flex-col gap-1 font-[500]" onClick={() =>{
@@ -123,9 +126,9 @@ const PaginatedTable = () => {
                     </p>
 
                     </div>
-                    {isOpenMenu && (
+                    {isOpenMenu === item?._id && (
                       <div className="menu-Main">
-                        <MenuCard />
+                        <MenuCard onClose={()=> setOpenMenu(false)} isOpenMenu={isOpenMenu} data={item?.userId}/>
                       </div>
                     )}
                   </div>

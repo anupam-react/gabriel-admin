@@ -3,12 +3,16 @@ import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import "./index.scss";
 import PromotionPreview from "./PromotionPreview";
+import useOffer from "../../hooks/useOffer";
 const AwardOffer = ({handleOpen}) => {
   const [openCustom, setOpenCustom] = useState(false);
   const [openSuccess, setSuccess] = useState(false);
+  const {
+    offerData,
+  } = useOffer();
   const data = [
     {
-      title: "Campaign Type",
+      title: "Promotion Type",
       value: "Percentage DIscount",
       handleCLick: () => {
          handleOpen(false);
@@ -16,28 +20,28 @@ const AwardOffer = ({handleOpen}) => {
     },
     {
       title: "Decription",
-      value: "70% discount Birthday special",
+      value: offerData?.description,
       handleCLick: () => {
          handleOpen(false);
       },
     },
     {
       title: "Reward Type",
-      value: "Points",
+      value: offerData?.typeOfReward,
       handleCLick: () => {
          handleOpen(false);
       },
     },
     {
       title: "Reward Value",
-      value: "70%",
+      value: offerData?.rewardPoints,
       handleCLick: () => {
          handleOpen(false);
       },
     },
     {
       title: "Expiration Date",
-      value: "01-10-24",
+      value:  offerData?.expireDate,
       handleCLick: () => {
          handleOpen(false);
       },
@@ -58,8 +62,8 @@ const AwardOffer = ({handleOpen}) => {
       </div>
       <hr className="hr" />
       <div className="cardContainer">
-        <img src="image 710.jpg" alt="" />
-        <p>70% Birthday Special Discount</p>
+      <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p>{offerData?.description}</p>
       </div>
       <div className="footer-Main">
         {data?.map((d, i) => (

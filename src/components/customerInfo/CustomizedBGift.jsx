@@ -3,8 +3,17 @@ import "./index.scss";
 import CatalogueProduct from "./CatalogueProduct";
 import { DialogDefault } from "../common/DilogBox";
 import BirthdayOffer from "./BirthdayOffer";
-const CustomizedBGift = ({ handleOpen }) => { 
-  const [openOffer, setOffer] = useState(false);
+import useOffer from "../../hooks/useOffer";
+const CustomizedBGift = ({ handleOpen , id}) => { 
+  const {
+    offerData,
+    openOffer,
+    setOpenOffer,
+    handleChange,
+    setProductId,
+    setOfferData,
+    handleCreateUserRewards,
+  } = useOffer();
   const [openUploadImage, setUploadImage] = useState(false);
 
   return (
@@ -23,16 +32,17 @@ const CustomizedBGift = ({ handleOpen }) => {
       <hr className="hr" />
       <div className="catalogue">
         <label>Select Product from catalogue</label>
-        <CatalogueProduct />
+        <CatalogueProduct setProductId={setProductId}/>
       </div>
       <div className="form-container">
       <div className="input-container">
           <label>Upload photo/product</label>
          <div className="flex  w-full">
              <label
-               for="dropzone-file"
+              
                className="flex justify-end bg-white  shadow rounded-md w-full "
              >
+               {offerData?.image?.name}
                <div
                  className="flex py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
                  style={{ backgroundColor: "#00AAEA" }}
@@ -49,11 +59,13 @@ const CustomizedBGift = ({ handleOpen }) => {
         <div className="input-container">
           <label>Promotion Description text</label>
           <textarea
-            id="w3review"
-            name="w3review"
+            id="description"
+            name="description"
             rows="4"
             cols="50"
             className="input"
+            value={offerData?.description}
+            onChange={handleChange}
           />
         </div>
 
@@ -62,10 +74,11 @@ const CustomizedBGift = ({ handleOpen }) => {
           <label>Enter Birthday Meassage!</label>
           <input
             type="text"
-            name=""
-            id=""
+            name="message"
+            id="message"
             className="input"
-            placeholder="Happy Birthday !!"
+            value={offerData?.message}
+            onChange={handleChange}
           />
         </div>
   
@@ -73,16 +86,14 @@ const CustomizedBGift = ({ handleOpen }) => {
       <div className="flex-center">
         <button
           className="menuButton"
-          onClick={() => {
-            setOffer(true);
-          }}
+          onClick={()=>handleCreateUserRewards(id, "Offer")}
         >
           Save & Next
         </button>
       </div>
       
-      <DialogDefault open={openOffer} handleOpen={setOffer}>
-  <BirthdayOffer handleOpen={setOffer} isOffer={true}/>
+      <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
+  <BirthdayOffer handleOpen={setOpenOffer} isOffer={true}/>
     </DialogDefault>
     <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
         <div className="p-6">
@@ -90,10 +101,19 @@ const CustomizedBGift = ({ handleOpen }) => {
                 <img src="../Vector (40).png" alt="" className="cursor-pointer" onClick={()=>setUploadImage(false)}/>
             </div>
             <div className="flex justify-around mt-4">
-            <div className="flex gap-2 cursor-pointer"  onClick={()=>setUploadImage(false)}>
-                <img src="../Vector (41).png" alt="" />
-                <p className="underline text-black font-[500]">Browse Image</p>
-            </div>
+            <label id="dropzone-file" className="flex gap-2 cursor-pointer">
+              <input
+                id="dropzone-file"
+                type="file"
+                className="hidden"
+                onChange={(e) =>
+                  setOfferData({ ...offerData, image: e.target.files[0] })
+                }
+              />
+              <img src="../Vector (41).png" alt="" />
+              <p className="underline text-black font-[500]">Browse Image</p>
+            </label>
+          
             <div className="flex gap-2 cursor-pointer"  onClick={()=>setUploadImage(false)}>
                 <img src="../solar_gallery-bold.png" alt="" />
                 <p className="underline text-black font-[500]">Open Gallery</p>

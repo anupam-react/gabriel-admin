@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import "./index.scss";
 import { DialogDefault } from '../common/DilogBox';
-import InventoryProduct from './InventoryProduct';
 import TransactionDetails from './TransactionDetails';
 import ProductDetails3 from './ProductDetails3';
 const TransactionCupon = ({handleOpen}) => {

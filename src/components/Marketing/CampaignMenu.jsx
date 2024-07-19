@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useCampaign from "../../hooks/useCampaign";
 const CampaignMenu = ({
   isLive = false,
   isPause = false,
@@ -11,6 +12,7 @@ const CampaignMenu = ({
   onClose,
   openMenu
 }) => {
+  const {handlePauseMarketingCampaign} = useCampaign()
   const [openPause, setOpenPause] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -36,7 +38,7 @@ const CampaignMenu = ({
   }, [openMenu, onClose]);
 
   return (
-    <div className="campaign-menu-main" ref={popupRef}>
+    <div className="campaign-menu-main" >
       {isLive ? (
         <div className="campaign-menu-container">
           <p
@@ -60,7 +62,10 @@ const CampaignMenu = ({
             Edit
           </p>
           {isPause ? (
-            <p className="cursor-pointer" onClick={() => setOpenunPause(true)}>
+            <p className="cursor-pointer" onClick={() =>{ 
+            
+              setOpenunPause(true)
+              }}>
               Un Pause
             </p>
           ) : (
@@ -101,7 +106,13 @@ const CampaignMenu = ({
           <div className="flex gap-4 mt-6">
             <button
               className="w-[120px] bg-[#0070BC] py-2 text-white rounded-md"
-              onClick={() => setOpenPause(true)}
+              onClick={() =>{
+                handlePauseMarketingCampaign(id)
+                setOpenPause(true)
+                setTimeout(()=>{
+                  setOpenPause(false)
+                },2000)
+              } }
             >
               Yes
             </button>

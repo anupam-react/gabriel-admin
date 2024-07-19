@@ -2,20 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createApiData,
-  deleteApiData,
   fetchApiData,
-  formatDate2,
-  formatDate3,
   updateApiData,
 } from "../utiils";
-import { successToast } from "../components/Toast";
 import { useRecoilState } from "recoil";
 
-import { campaignState , initialState } from "../components/atoms/campaignState";
+import { campaignState  } from "../components/atoms/campaignState";
 
 const useCampaign = () => {
-  const [openSuccess, setOpenSuccess] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const [liveCampaign, setLiveCampaign] = useState([]);
   const [pastCampaign, setPastCampaign] = useState([]);
@@ -133,6 +127,19 @@ const useCampaign = () => {
   //     return error;
   //   }
   // };
+
+  const handlePauseMarketingCampaign = async (id) => {
+    console.log(id)
+  
+    try {
+      const response = await updateApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/pauseMarketingCampaign/${id}`
+      );
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
   return {
     campaigns,
     liveCampaign,
@@ -142,7 +149,8 @@ const useCampaign = () => {
     handleCreateCampaign,
     handleChange,
     setProductId,
-    getMarketingCampaignById
+    getMarketingCampaignById,
+    handlePauseMarketingCampaign
   };
 };
 

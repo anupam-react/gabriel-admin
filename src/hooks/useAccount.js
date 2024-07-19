@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createApiData, fetchApiData } from "../utiils";
-import {  warnToast } from "../components/Toast";
+
 
 const useAccount = () => {
   const [fname, setFName] = useState("");

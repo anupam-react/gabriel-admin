@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import BirthdayGiftPay from "./BirthdayGiftPay";
+import useOffer from "../../hooks/useOffer";
 
 const BirthdayOfferPreview = ({ handleOpen }) => {
-
+  const {  offerData}= useOffer();
   const [openSuccess, setSuccess] = useState(false);
   const data = [
     
     {
       title: "Decription",
-      value: "70% discount Birthday special",
+      value: offerData?.description,
      
     },
     {
       title: "Birthday Message",
-      value: "Happy Birthday !!",
+      value: offerData?.message,
      
     },
    
@@ -36,8 +37,8 @@ const BirthdayOfferPreview = ({ handleOpen }) => {
       <hr className="hr" />
       <div className="flex flex-col items-center gap-4">
       <div className="cardContainer px-10 py-4" >
-        <img src="image 710.jpg" alt="" />
-        <p>70% Birthday Special Discount</p>
+        <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
+        <p>{offerData?.description}</p>
       </div>
       <div >
         {data?.map((d, i) => (

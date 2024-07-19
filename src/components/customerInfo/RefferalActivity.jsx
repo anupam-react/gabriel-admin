@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
-import HistoryDetails from "./HistoryDetails";
 import ProductDetails2 from "./ProductDeatils2";
 import TransactionDetails from "./TransactionDetails";
-import ProductDetails from "./ProductDetails";
+
 
 const RefferalActivity = ({ handleOpen }) => {
   const [openProduct, setOpenproduct] = useState(false);
