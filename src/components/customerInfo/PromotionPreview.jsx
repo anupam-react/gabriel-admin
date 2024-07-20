@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useOffer from "../../hooks/useOffer";
+import { formatDate3 } from "../../utiils";
 const PromotionPreview = ({handleOpen, isPay = false }) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
+  const {
+    offerData,
+  } = useOffer();
   return (
     <div className="gift-container no-scrollbar">
         <div className="gift-main">
@@ -26,15 +31,15 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
         <p className="text-[#121212] text-[20px] font-semibold">Percentage Discount</p>
       
       <div className="cardContainer">
-        <img src="../image 710.jpg" alt="" />
-        <p>70% Birthday Special Discount</p>
+      <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p>{offerData?.description}</p>
       </div>
       <div className="flex gap-6 items-center">
-        <p className="text-[#0070BC]">Exp : 01-10-24</p>
+        <p className="text-[#0070BC]">Exp : {formatDate3(offerData?.expireDate)}</p>
       <div>
               <div className="flex justify-end gap-2">
                 <img src="../mdi_gift.png" alt="" />
-                <p className="font-semibold"> : 500</p>
+                <p className="font-semibold"> : {offerData?.rewardPoints}</p>
                 <img src="../image 698 (3).png" alt="" />
               </div>
             </div>

@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
+import useReferral from "../../hooks/useReferral";
+import { formatDate3 } from "../../utiils";
 
 
 const InvitationOffer = ({ handleOpen }) => {
-
+  const {
+    referralData,
+  } = useReferral()
   const [openSuccess, setSuccess] = useState(false);
-  const data = [
-    
-    {
-      title: "Decription",
-      value: "70% discount Birthday special",
-     
-    },
-    {
-      title: "Birthday Message",
-      value: "Happy Birthday !!",
-     
-    },
-   
-  ];
+ 
   return (
     <div className="gift-container no-scrollbar">
       <div className="gift-main" >
@@ -35,18 +26,18 @@ const InvitationOffer = ({ handleOpen }) => {
       </div>
       <hr className="hr" />
       <div className="flex flex-col justify-center items-center gap-4">
-      <div className="cardContainer2 px-8" >
-        <img src="image 710.jpg" alt="" className="pb-3 pt-3" />
-        <p className="pb-4">70% Birthday Special Discount</p>
+      <div className="cardContainer2 px-8 py-4" >
+      <img src={referralData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p className="text-center">{referralData?.description}</p>
       </div>
       <div >
       
           <div className="">
            
-              <p className="pb-3 text-[20px] font-[600] w-[300px]">Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
-              <p className="pb-3 text-[20px] font-[600] w-[300px]">http://Www.Moneychat.com//Slice/
-                refferalvoucher</p>
-              <p className="pb-3 text-[20px] font-[600] text-[#0070BC] w-[300px]">Exp : 01-10-24</p>
+              <p className="pb-3 text-[20px] font-[600] w-[300px]">{referralData?.message}</p>
+              <p className="pb-3 text-[20px] font-[600] w-[300px]">{referralData?.exclusiveLink}
+                </p>
+              <p className="pb-3 text-[20px] font-[600] text-[#0070BC] w-[300px]">Exp : {formatDate3(referralData?.expireDate)}</p>
            
           </div>
 

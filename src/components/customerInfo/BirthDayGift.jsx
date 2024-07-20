@@ -84,7 +84,7 @@ const BirthDayGift = ({ handleOpen, id }) => {
       <div className="flex-center">
         <button
           className="menuButton4"
-          onClick={() => handleCreateUserRewards(id, "Gift")}
+          onClick={() => handleCreateUserRewards(id, "BirthDay")}
         >
           See Customer Gift Review
         </button>

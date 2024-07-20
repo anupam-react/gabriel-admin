@@ -86,7 +86,7 @@ const CustomizedBGift = ({ handleOpen , id}) => {
       <div className="flex-center">
         <button
           className="menuButton"
-          onClick={()=>handleCreateUserRewards(id, "Offer")}
+          onClick={()=>handleCreateUserRewards(id, "BirthDay")}
         >
           Save & Next
         </button>

@@ -16,9 +16,6 @@ const useOffer = () => {
   const [openOffer, setOpenOffer] = useState(false);
 
 
-
-  const navigate = useNavigate();
-
 //   async function getMarketingCampaignByToken() {
 //     const data = await fetchApiData(
 //       "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignByToken"
@@ -36,7 +33,6 @@ const useOffer = () => {
 //     // setActivationDate(data?.data?.activationDate)
 //     // setExpiryDate(data?.data?.expiryDate)
 //   };
-
 
 
   const handleChange = (e) => {
@@ -76,13 +72,13 @@ const useOffer = () => {
       return error;
     }
   };
-  const handleCreatePromotion = async (userId , type) => {
+  const handleCreatePromotion = async (userId) => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
     // formData.append('message', offerData?.message);
     formData.append('expireDate', offerData?.expireDate);
-    formData.append('type', type);
+    formData.append('type', offerData?.type);
     formData.append('typeOfReward', offerData?.typeOfReward);
     formData.append('rewardPoints', offerData?.rewardPoints);
     formData.append('description', offerData?.description);

@@ -20,10 +20,10 @@ const AwardCustomer = ({
   } = useOffer();
 
   const promotionOptions = [
-    { label: "Percentage Discount", value: "Discount" },
+    { label: "Percentage Discount", value: "PercentageDiscount" },
     { label: "Coupon", value: "Coupon" },
-    { label: "Create an offer", value: "offer" },
-    { label: "Buy 1 Get 1 Free", value: "Buy 1 Get 1 Free" },
+    { label: "Create An Offer", value: "Offer" },
+    { label: "Buy 1 Get 1 Free", value: "Buy 1 get 1 free" },
   ];
   // const rewardOptions = [
   //   { label: "Points", value: "Points" },
@@ -46,8 +46,9 @@ const AwardCustomer = ({
           <label>Choose Promotion Type</label>
           <select
             id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+            name="type"
+            value={offerData?.type}
+            onChange={handleChange}
             className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             {promotionOptions?.map((data, i) => (
@@ -129,7 +130,7 @@ const AwardCustomer = ({
         </div>
       </div>
       <div className="flex-center">
-        <button className="menuButton" onClick={()=>handleCreatePromotion(id, "Reward")}>
+        <button className="menuButton" onClick={()=>handleCreatePromotion(id)}>
           See Promotion Review
         </button>
       </div>

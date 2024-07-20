@@ -32,10 +32,10 @@ const MenuCard = ({onClose,  data}) => {
             <AwardCustomer  handleOpen={setOpenPromotions} id={data?._id}/>
         </DialogDefault>
           <DialogDefault open={openBonus} handleOpen={setOpenBonus}>
-            <Bouns  handleOpen={setOpenBonus}/>
+            <Bouns  handleOpen={setOpenBonus} id={data?._id}/>
         </DialogDefault>
           <DialogDefault open={openEvent} handleOpen={setOpenEvent}>
-            <Invitation  handleOpen={setOpenEvent}/>
+            <Invitation  handleOpen={setOpenEvent} id={data?._id}/>
         </DialogDefault>
     </div>
   )

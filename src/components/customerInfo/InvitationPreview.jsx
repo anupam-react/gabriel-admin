@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import InvitationOffer from "./InvitationOffer";
+import useReferral from "../../hooks/useReferral";
+import { formatDate3 } from "../../utiils";
 
 const InvitationPreview = ({ handleOpen }) => {
-
+  const {
+    referralData,
+  } = useReferral()
   const [openSuccess, setSuccess] = useState(false);
 
   return (
@@ -24,14 +28,14 @@ const InvitationPreview = ({ handleOpen }) => {
     </div>
     <hr className="hr" />
     <div className="cardContainer">
-      <img src="image 710.jpg" alt="" />
-      <p>70% Birthday Special Discount</p>
+    <img src={referralData?.image} alt="" className="h-[100px] w-[150px]"/>
+    <p className="text-center">{referralData?.description}</p>
     </div>
     <div className="footer-Main">
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Custom Message</p>
           <p>:</p>
-          <p style={{width:"200px"}}>Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
+          <p style={{width:"200px"}}>{referralData?.message}</p>
           <button
             className="edit-button"
             onClick={() => {
@@ -45,8 +49,7 @@ const InvitationPreview = ({ handleOpen }) => {
           <p style={{width:"fit-content"}}>Exclusive Link</p>
           <p>:</p>
           <p style={{width:"200px", color:"#0070BC"}}>http://
-            Www.Moneychat.com
-            //Slice/refferalvoucher</p>
+            {referralData?.exclusiveLink}</p>
           <button
             className="edit-button"
             onClick={() => {
@@ -59,7 +62,7 @@ const InvitationPreview = ({ handleOpen }) => {
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Expiration Date</p>
           <p>:</p>
-          <p style={{width:"200px"}}>01-10-24</p>
+          <p style={{width:"200px"}}>{formatDate3(referralData?.expireDate)}</p>
           <button
             className="edit-button"
             onClick={() => {

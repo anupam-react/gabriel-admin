@@ -9,13 +9,11 @@ export const initialState = {
   price: "",
   typeOfReward: "",
   rewardPoints: "",
-  amount: "",
-  discount: "",
-  type: "PercentageDiscount",
+  exclusiveLink: "",
   image: {},
   description: "",
   };
-export const offerState = atom({
-  key: 'offerState', // unique ID (with respect to other atoms/selectors)
+export const referralState = atom({
+  key: 'referralState', // unique ID (with respect to other atoms/selectors)
   default: initialState, // default value (aka initial value)
 });
