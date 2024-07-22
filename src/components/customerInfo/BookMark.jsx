@@ -4,7 +4,7 @@ import MenuCard3 from "./MenuCard3";
 import HistoryDetails from "./HistoryDetails";
 import { DialogDefault } from "../common/DilogBox";
 
-const BookMark = ({ handleOpen }) => {
+const BookMark = ({ handleOpen , setOpenInfo }) => {
     const [openMenu , setOpenMenu ] = useState(false)
     const [openTransaction , setOpenTransaction ] = useState(false)
   return (
@@ -45,7 +45,7 @@ const BookMark = ({ handleOpen }) => {
                               </div>
                               <img src="./charm_menu-meatball.png" alt="" className="dot-image" onClick={()=>setOpenMenu(!openMenu)}/>
                           </div>
-                          {openMenu && <MenuCard3 />}
+                          {openMenu && <MenuCard3 setOpenInfo={setOpenInfo}/>}
             </td>
             <td>10/12/2023</td>
             <td>

@@ -7,7 +7,7 @@ import AwardCustomer from './AwardCustomer'
 import Bouns from './Bouns'
 
 import Invitation from './Invitation';
-const MenuCard = ({onClose,  data}) => {
+const MenuCard = ({onClose,  data , setOpenInfo}) => {
     const [openGift , setOpenGift] = useState(false)
     const [openOffer , setOpenOffer] = useState(false)
     const [openPromotions , setOpenPromotions] = useState(false)
@@ -23,7 +23,7 @@ const MenuCard = ({onClose,  data}) => {
        <button className="menuButton2" onClick={()=> setOpenBonus(true)}>Awared Free Bonus</button>
           <button className="menuButton2" onClick={()=> setOpenEvent(true)}>Send Special Event Invite</button>
           <DialogDefault open={openGift} handleOpen={setOpenGift}>
-            <BirthDayGift  handleOpen={setOpenGift} id={data?._id}/>
+            <BirthDayGift  handleOpen={setOpenGift} id={data?._id} setOpenInfo={setOpenInfo}/>
         </DialogDefault>
           <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
             <CustomizedBGift  handleOpen={setOpenOffer} id={data?._id}/>

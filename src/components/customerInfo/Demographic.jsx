@@ -4,7 +4,7 @@ import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import BirthDayGift from "./BirthDayGift";
 import CustomizedBGift from "./CustomizedBGift";
-const Demographic = ({ handleOpen }) => {
+const Demographic = ({ handleOpen , setOpenInfo }) => {
   const [openGift, setOpenGift] = useState(false);
   const [openCGift, setOpenCGift] = useState(false);
   return (
@@ -79,7 +79,7 @@ const Demographic = ({ handleOpen }) => {
         </tbody>
       </table>
       <DialogDefault open={openGift} handleOpen={setOpenGift}>
-        <BirthDayGift handleOpen={setOpenGift} />
+        <BirthDayGift handleOpen={setOpenGift} setOpenInfo={setOpenInfo}/>
       </DialogDefault>
       <DialogDefault open={openCGift} handleOpen={setOpenCGift}>
         <CustomizedBGift handleOpen={setOpenCGift} />

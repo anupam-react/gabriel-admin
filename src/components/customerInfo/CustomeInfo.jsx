@@ -21,8 +21,6 @@ import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
 
 const CustomeInfo = ({ handleOpen , customerInfo}) => {
-
-
   const [openLoyality, setOpenLoyality] = useState(false);
   const [openDemographic, setOpenDemographic] = useState(false);
   const [openEngagement, setOpenEngagement] = useState(false);
@@ -300,7 +298,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
              {isView === i && (
                       <div className="absolute top-[50px] right-[40px] cursor-pointer" ref={divRef}>
                      {/* <p className="viewProd text-[14px]">View Product</p> */}
-                     <MenuCard4 />
+                     <MenuCard4 setOpenInfo={handleOpen}/>
                       </div>
                     )}
             </div>
@@ -372,7 +370,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         <ProductDetails handleOpen={setOpenProd} />
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-        <Demographic handleOpen={setOpenDemographic} />
+        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} />
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
         <Loyality handleOpen={setOpenLoyality} />
@@ -390,7 +388,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         <TransactionHistory handleOpen={setOpenTransaction} />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-        <BookMark handleOpen={setOpenBookmark} />
+        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen}/>
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
         <Verification handleOpen={setOpenVerification} />

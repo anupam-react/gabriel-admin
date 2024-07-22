@@ -4,8 +4,8 @@ import { DialogDefault } from "../common/DilogBox";
 import BirthdayOffer from "./BirthdayOffer";
 import CatalogueProduct from "./CatalogueProduct";
 import useOffer from "../../hooks/useOffer";
-import { type } from "@testing-library/user-event/dist/type";
-const BirthDayGift = ({ handleOpen, id }) => {
+
+const BirthDayGift = ({ handleOpen, id , setOpenInfo }) => {
   const {
     offerData,
     openOffer,
@@ -90,7 +90,7 @@ const BirthDayGift = ({ handleOpen, id }) => {
         </button>
       </div>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <BirthdayOffer handleOpen={setOpenOffer} />
+        <BirthdayOffer handleOpen={setOpenOffer} setOpenInfo={setOpenInfo}/>
       </DialogDefault>
       <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
         <div className="p-6">

@@ -93,7 +93,7 @@ const PaginatedTable = () => {
                     </div>
                     {isOpenMenu === item?._id && (
                       <div className="menu-Main">
-                        <MenuCard onClose={()=> setOpenMenu(false)} isOpenMenu={isOpenMenu} data={item?.userId}/>
+                        <MenuCard onClose={()=> setOpenMenu(false)} setOpenInfo={setOpenInfo} isOpenMenu={isOpenMenu} data={item?.userId}/>
                       </div>
                     )}
                   </div>

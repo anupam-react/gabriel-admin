@@ -4,9 +4,8 @@ import { DialogDefault } from "../common/DilogBox";
 import { useNavigate } from "react-router-dom";
 import useOffer from "../../hooks/useOffer";
 import { initialState } from "../atoms/offerState";
-import useCusomerInfo from "../../hooks/useCusomerInfo";
 
-const BirthdayGiftPreview = ({ handleOpen }) => {
+const BirthdayGiftPreview = ({ handleOpen , setOpenInfo }) => {
   const {  offerData , setOfferData}= useOffer();
 
   const navigate = useNavigate()
@@ -58,7 +57,7 @@ const BirthdayGiftPreview = ({ handleOpen }) => {
             setOfferData(initialState)
             setTimeout(()=>{
               setSuccess(false)
-              navigate('/transaction')
+              setOpenInfo(false)
             },2000)
             }}>Send to Customer Gift folder</button>
 
