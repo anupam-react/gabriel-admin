@@ -15,7 +15,7 @@ const Promotions = ({ handleOpen }) => {
   return (
     <div className="info-container">
       <div className="gift-main">
-        <p className="title">Participation in Promotions</p>
+        <p className="title">Participation In Promotions</p>
         <img
           src="./Mask group (2).png"
           alt=""

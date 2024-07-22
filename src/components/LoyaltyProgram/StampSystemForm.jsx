@@ -3,14 +3,14 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import useStamp from "../../hooks/useStamp";
+import CatalogueProduct from "../customerInfo/CatalogueProduct";
 
 const StampSystemForm = () => {
   const {
-    description,
-    setDescription,
-    setTotalNoOfStamps,
-    setCategoryId,
-    setSubCategoryId,
+    stampData,
+    handleChange,
+    setStampData,
+    setProductId,
     category,
     subcategory,
     selectedCat,
@@ -38,6 +38,12 @@ const StampSystemForm = () => {
          
       </p>
       <div className="loyalty-form-container">
+      <div className="catalogue mt-4">
+          <p className="text-lg font-semibold pb-2">
+            Select Product from catalogue
+          </p>
+          <CatalogueProduct  setProductId={setProductId}/>
+        </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Product Category</p>
           <Select
@@ -55,7 +61,7 @@ const StampSystemForm = () => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">
-            Choose Product sub-category
+            Choose Product Sub-category
           </p>
           <Select
             className="input-loyalty2"
@@ -68,13 +74,13 @@ const StampSystemForm = () => {
             defaultValue={subcategory?.[0]?._id}
             onChange={(e) => {
               setSubCat(e);
-              setSubCategoryId(e.value);
+              setStampData({...stampData , subCategoryId : e.value});
             }}
           />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">
-            Total No. of stamps to collect before reward
+            Total No. Of Stamps To Collect Before Reward
           </p>
           <Select
             className="input-loyalty2"
@@ -84,7 +90,7 @@ const StampSystemForm = () => {
             defaultValue={stampOptions?.[0]?.value}
             onChange={(e) => {
               setNoOfStamp(e);
-              setTotalNoOfStamps(e.value);
+              setStampData({...stampData , totalNoOfStamps : e.value});
             }}
           />
         </div>
@@ -92,9 +98,9 @@ const StampSystemForm = () => {
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            onChange={(e)=>setDescription(e.target.value)}
-            value={description}
-            name=""
+            onChange={handleChange}
+            value={stampData?.description}
+            name="description"
             id=""
             rows="3"
           ></textarea>
@@ -109,7 +115,7 @@ const StampSystemForm = () => {
             className="loyalty-button1"
             onClick={handleStamp}
           >
-          See Stamp System review
+          See Stamp System Review
           </button>
         </div>
       </div>

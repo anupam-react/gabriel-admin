@@ -1,9 +1,12 @@
 import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createApiData } from "../utiils";
+import { createApiData, fetchApiData } from "../utiils";
 import { successToast } from "../components/Toast";
+import { useRecoilState } from "recoil";
+import { singlePointsState } from "../components/atoms/LoyalityState";
 
 const usePoints = () => {
+  const [pointsData , setPointsData] = useRecoilState(singlePointsState)
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -16,6 +19,14 @@ const usePoints = () => {
 
 
   const navigate = useNavigate();
+
+  const getSpendMyPointById = async (id) => {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSpendMyPointById/${id}`
+    );
+    setPointsData(data?.data);
+  };
+
 
   const handleOutlate = (event) => {
     setSelectOutlate(event);
@@ -40,6 +51,7 @@ const usePoints = () => {
         "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createSpendMyPoint",
         formData
       );
+      getSpendMyPointById(response?.data?._id)
       successToast("Create Successfully");
       navigate("/loyalty/point/preview");
     } catch (error) {
@@ -49,6 +61,7 @@ const usePoints = () => {
   };
 
   return {
+    pointsData,
     description, setDescription,
     title, setTitle,
     image, setImage,

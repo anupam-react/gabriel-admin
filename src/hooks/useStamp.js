@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createApiData, fetchApiData } from "../utiils";
 import { successToast } from "../components/Toast";
+import { useRecoilState } from "recoil";
+import { singleStampState, stampState } from "../components/atoms/LoyalityState";
 
 const useStamp = () => {
-  const [description, setDescription] = useState("");
-  const [totalNoOfStamps, setTotalNoOfStamps] = useState("");
+  const [stampData , setStampData] = useRecoilState(stampState)
+  const [singleStampData , setSingleStampData] = useRecoilState(singleStampState)
+  const [productId, setProductId] = useState("");;
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
   const [category, setCategory] = useState();
@@ -15,12 +18,22 @@ const useStamp = () => {
 
   const navigate = useNavigate();
 
+  const getStampById = async (id) => {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getStampSystemById/${id}`
+    );
+    setSingleStampData(data?.data);
+  };
+
+
   async function fetchCategory() {
     const data = await fetchApiData(
       "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
+
+
   async function fetchSubCategory(id) {
     if (id !== "") {
       const data = await fetchApiData(
@@ -36,9 +49,18 @@ const useStamp = () => {
     fetchCategory();
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+    setStampData({
+      ...stampData,
+      [name]: val,
+    });
+  };
+
   const handleCategory = (event) => {
     setCat(event);
-    setCategoryId(event.value);
+    setStampData({...stampData , categoryId : event.value});
     fetchSubCategory(event.value);
   };
 
@@ -46,10 +68,11 @@ const useStamp = () => {
     event.preventDefault();
 
     const formData = {
-      description,
-      totalNoOfStamps,
-      subCategoryId,
-      categoryId,
+      productId: productId,
+      description : stampData?.description,
+      totalNoOfStamps: stampData?.totalNoOfStamps,
+      subCategoryId: stampData?.subCategoryId,
+      categoryId: stampData?.categoryId,
     };
 
     try {
@@ -58,6 +81,7 @@ const useStamp = () => {
         formData
       );
       successToast("Create Successfully");
+      getStampById(response?.data?._id)
       navigate("/loyalty/stamp-system/preview");
     } catch (error) {
       console.log(error);
@@ -66,10 +90,11 @@ const useStamp = () => {
   };
 
   return {
-    description,
-    setDescription,
-    totalNoOfStamps,
-    setTotalNoOfStamps,
+    singleStampData,
+    stampData,
+    handleChange,
+    setStampData,
+    setProductId,
     categoryId,
     setCategoryId,
     subCategoryId,

@@ -118,7 +118,7 @@ const LoyaltyProgram = () => {
               <LoyalityCard
                 image={d?.image}
                 key={i}
-                text={d?.title}
+                text={d?.productId?.name}
               />
             ))}
           </div>

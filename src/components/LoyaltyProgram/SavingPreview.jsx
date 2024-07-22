@@ -3,7 +3,9 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import LoyalityCard from "./LoyalityCard";
 import { useNavigate } from "react-router-dom";
+import useSaving from "../../hooks/useSaving";
 const SavingPreview = () => {
+  const { savingData } = useSaving()
   const [openSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
   return (
@@ -11,8 +13,8 @@ const SavingPreview = () => {
       <p className="loyalty-form-header">Make a Saving Preview</p>
       <div className="loyalty-form-container h-[350px] flex justify-center items-center flex-col gap-6">
         <LoyalityCard
-          image="../../Frame 38308 (3).png"
-          text="Get 12 for the price of 9 donuts for £15 "
+          image={savingData?.image}
+          text={savingData?.description}
         />
         <button className="loyalty-button1" onClick={() =>{ 
           setSuccess(true)

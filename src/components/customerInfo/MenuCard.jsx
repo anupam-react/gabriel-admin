@@ -16,7 +16,7 @@ const MenuCard = ({onClose,  data}) => {
 
 
   return (
-    <div className='menu-container' >
+    <div className='menu-container'>
        <button className="menuButton2" onClick={()=> setOpenGift(true)}>Send BirthDay Gift</button>
        <button className="menuButton2" onClick={()=> setOpenOffer(true)}>Send Customized Offer</button>
        <button className="menuButton2"  onClick={()=> setOpenPromotions(true)}>Send Target Promotions</button>

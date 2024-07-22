@@ -6,6 +6,7 @@ const useCusomerInfo = () => {
   const [dashboard, setDashboard] = useState([])
   const [customer, setCustomer] = useState([])
   const [customerInfo, setCustomerInfo] = useState([])
+  const [isOpenInfo, setOpenInfo] = useState(false);
 
 
   const getCustomerInfoDashboard = async ()=>{
@@ -32,7 +33,8 @@ const useCusomerInfo = () => {
     dashboard,
     customer,
     customerInfo,
-    getCustomerInfoForParticularUser
+    getCustomerInfoForParticularUser,
+    isOpenInfo, setOpenInfo
   };
 };
 

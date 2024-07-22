@@ -37,6 +37,14 @@ const useTransaction = () => {
     setTimeBaseAnalytics(data?.data)
   }
 
+  async function getTransactionFilter(search="", fromDate="", toDate="", min="" , max="" ) {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/Dashboard/transactionData?type=All&customStartDate=${fromDate}&customEndDate=${toDate}&min=${min}&max=${max}`
+    );
+   
+  }
+
+
 
   useEffect(()=>{
     getTransactionSaleVolume()

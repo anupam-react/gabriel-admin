@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createApiData } from "../utiils";
+import { createApiData, fetchApiData } from "../utiils";
 import { successToast } from "../components/Toast";
+import { singleSavingState } from "../components/atoms/LoyalityState";
+import { useRecoilState } from "recoil";
 
 const useSaving = () => {
+  const [savingData , setSavingData] = useRecoilState(singleSavingState)
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -20,6 +23,13 @@ const useSaving = () => {
   const handleOutlate = (event) => {
     setSelectOutlate(event);
     setOutletId(event.value);
+  };
+
+  const getMakeASavingById = async (id) => {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getMakeASavingById/${id}`
+    );
+    setSavingData(data?.data);
   };
 
   const handleMySaving = async (event) => {
@@ -40,6 +50,7 @@ const useSaving = () => {
         "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createMakeASaving",
         formData
       );
+      getMakeASavingById(response?.data?._id)
       successToast("Create Successfully");
       navigate("/loyalty/saving/preview");
     } catch (error) {
@@ -49,6 +60,7 @@ const useSaving = () => {
   };
 
   return {
+    savingData,
     description, setDescription,
     title, setTitle,
     image, setImage,

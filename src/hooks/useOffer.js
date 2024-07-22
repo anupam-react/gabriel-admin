@@ -14,6 +14,7 @@ const useOffer = () => {
   const [offerData, setOfferData] = useRecoilState(offerState);
   const [productId, setProductId] = useState("");
   const [openOffer, setOpenOffer] = useState(false);
+  const [openSuccess, setSuccess] = useState(false);
 
 
 //   async function getMarketingCampaignByToken() {
@@ -108,7 +109,8 @@ const useOffer = () => {
     openOffer, setOpenOffer,
     handleCreateUserRewards,
     handleCreatePromotion,
-    productId, setProductId
+    productId, setProductId,
+    openSuccess, setSuccess
   };
 };
 

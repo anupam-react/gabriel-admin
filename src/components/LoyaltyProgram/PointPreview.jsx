@@ -3,7 +3,9 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import LoyalityCard from "./LoyalityCard";
 import { useNavigate } from "react-router-dom";
+import usePoints from "../../hooks/usePoints";
 const PointPreview = () => {
+  const { pointsData} = usePoints()
   const [openSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
   return (
@@ -11,8 +13,8 @@ const PointPreview = () => {
       <p className="loyalty-form-header">Spent My Points (Preview )</p>
       <div className="loyalty-form-container h-[350px] flex justify-center items-center flex-col gap-6">
         <LoyalityCard
-          image="../../Frame 38308 (2).png"
-          text="Chocolate"
+          image={pointsData?.image}
+          text={pointsData?.productId?.name}
         />
         <button className="loyalty-button1" onClick={() =>{ 
           setSuccess(true)
