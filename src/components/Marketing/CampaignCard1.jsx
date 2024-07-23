@@ -4,11 +4,11 @@ import CampaignMenu from "./CampaignMenu";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import { formatDate } from "../../utiils";
+import useCampaign from "../../hooks/useCampaign";
 
 const CampaignCard1 = ({
   isButton = false,
   isStar = false,
-  isPause = false,
   isGift = false,
   image,
   isLive = false,
@@ -18,8 +18,8 @@ const CampaignCard1 = ({
   const [openMenu, setOpenMenu] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const navigate = useNavigate();
+  const {handlePauseMarketingCampaign} = useCampaign()
   
-
   return (
     <>
       <div className="campaign-card1-container">
@@ -80,8 +80,14 @@ const CampaignCard1 = ({
             Run Again
           </button>
         )}
-        {isPause && (
-          <button className="unpause" onClick={() => setOpenunPause(true)}>
+        {data?.isPause && (
+          <button className="unpause" onClick={() => {
+            handlePauseMarketingCampaign(data?._id)
+            setOpenunPause(true)
+            setTimeout(()=>{
+              setOpenunPause(false)
+            },1000)
+            }}>
             Unpause to continue run your ad campaign
           </button>
         )}

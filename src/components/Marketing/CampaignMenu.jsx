@@ -12,7 +12,7 @@ const CampaignMenu = ({
   onClose,
   openMenu
 }) => {
-  const {handlePauseMarketingCampaign} = useCampaign()
+  const { handlePauseMarketingCampaign , getMarketingCampaignById } = useCampaign()
   const [openPause, setOpenPause] = useState(false);
   const [openunPause, setOpenunPause] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -54,9 +54,19 @@ const CampaignMenu = ({
           <p
             className="cursor-pointer"
             onClick={() => {
-              if (isOfferCard) naviagte("/marketing/edit-marketing");
-              else if (isShop) naviagte("/marketing/edit-shop-marketing");
-              else naviagte("/marketing/edit-followers-marketing");
+              if (isOfferCard){ 
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-marketing")
+              }
+              else if(isShop) {
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-shop-marketing");
+              }
+              else{ 
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-followers-marketing")
+
+              }
             }}
           >
             Edit
@@ -89,9 +99,19 @@ const CampaignMenu = ({
           <p
             className="cursor-pointer"
             onClick={() => {
-              if (isOfferCard) naviagte("/marketing/edit-marketing");
-              else if (isShop) naviagte("/marketing/edit-shop-marketing");
-              else naviagte("/marketing/edit-followers-marketing");
+              if (isOfferCard){ 
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-marketing")
+              }
+              else if(isShop) {
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-shop-marketing");
+              }
+              else{ 
+                getMarketingCampaignById(id)
+                naviagte("/marketing/edit-followers-marketing")
+
+              }
             }}
           >
             Edit and Run
@@ -108,9 +128,11 @@ const CampaignMenu = ({
               className="w-[120px] bg-[#0070BC] py-2 text-white rounded-md"
               onClick={() =>{
                 handlePauseMarketingCampaign(id)
+                setOpenConfirm(false)
                 setOpenPause(true)
                 setTimeout(()=>{
                   setOpenPause(false)
+                  onClose()
                 },2000)
               } }
             >

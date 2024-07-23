@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 import { getDateFromISOString } from "../../utiils";
 
-const MarketingReviewCampaign = () => {
+const MarketingReviewCampaignShop = () => {
   const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/marketing/ad-preview");
+    navigate("/marketing/shop-ad");
   };
 
   const data1 = [
@@ -19,36 +19,26 @@ const MarketingReviewCampaign = () => {
       //   },
     },
     {
-      title: "Discount Value",
-      value: campaignData?.discountValue + "%",
+      title: "Description",
+      value: "New Winter Delight. Now available.",
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
-      title: "Expriy Date",
-      value: getDateFromISOString(campaignData?.expireDate),
+      title: "Audience",
+      value: `1500`,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
-      title: "Add Conditions",
-      value: campaignData?.conditionOfUse,
+      title: "Campaign Duration",
+      value: `25-jan-2024`,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
-    // {
-    //   title: "No of Points Reward",
-    //   value: "500 POints",
-    //   //   handleCLick: () => {
-    //   //     setOpenCustom(true);
-    //   //   },
-    // },
-
-  ];
-  const data2 = [
     {
       title: "Target Location",
       value: campaignData?.targetLocation,
@@ -58,12 +48,14 @@ const MarketingReviewCampaign = () => {
     },
     {
       title: "Estimated  Reach",
-      value: campaignData?.estimateReachMax + " Customers",
+      value: campaignData?.estimateReachMax,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
+    
   ];
+  
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -72,13 +64,13 @@ const MarketingReviewCampaign = () => {
         <img src="../back.png" alt="" />
         Back</button>
       </div>
-      <div className="loyalty-form-container">
+      <div className="loyalty-form-container" style={{padding:"20px 40px"}}>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Ad Review</p>
           <div className="">
           <div className="cardContainer" style={{width:"480px"}}>
         <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+        {/* <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p> */}
       </div>
             {/* <img src="../Group 38237.png" alt="" /> */}
           </div>
@@ -92,23 +84,8 @@ const MarketingReviewCampaign = () => {
               <button className="edit-button2">Edit</button>
             </div>
           ))}
-          <div className="footer-container2">
-            <p>Customer</p>
-            <span>:</span>
-            <p className="flex items-center gap-3">
-             {campaignData?.typeOfCustomer}
-              {/* <span className="live-dots"></span> */}
-            </p>
-            <button className="edit-button2">Edit</button>
-          </div>
-          {data2?.map((d, i) => (
-            <div className="footer-container2">
-              <p>{d?.title}</p>
-              <span>:</span>
-              <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
-            </div>
-          ))}
+      
+    
         </div>
         <button
           className="loyalty-button1"
@@ -122,4 +99,4 @@ const MarketingReviewCampaign = () => {
   );
 };
 
-export default MarketingReviewCampaign;
+export default MarketingReviewCampaignShop;

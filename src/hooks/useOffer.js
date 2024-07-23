@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   createApiData,
-  fetchApiData,
-  updateApiData,
 } from "../utiils";
 import { useRecoilState } from "recoil";
 import { offerState } from "../components/atoms/offerState.js";

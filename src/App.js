@@ -58,6 +58,13 @@ import Communications from "./components/Setting/Communications.jsx";
 import Notification from "./components/Notification/index.jsx";
 import AddMultipleProduct from "./components/Inventory/AddMultipleProduct.jsx";
 import ReviewCampaign2 from "./components/Marketing/ReviewCampaign2.jsx";
+import MarketingReviewCampaignOffer from "./components/Marketing/MarketingReviewCampaignOffer.jsx";
+import MarketingReviewCampaignFree from "./components/Marketing/MarketingReviewCampaignFree.jsx";
+import MarketingReviewCampaignFeatured from "./components/Marketing/MarketingReviewCampaignFeatured.jsx";
+import MarktingAdPreviewFeatured from "./components/Marketing/MarktingAdPreviewFeatured.jsx";
+import MarketingReviewCampaignFollower from "./components/Marketing/MarketingReviewCampaignFollower.jsx";
+import FollowerAdPreview from "./components/Marketing/FollowerAdPreview.jsx";
+import MarketingReviewCampaignShop from "./components/Marketing/MarketingReviewCampaignShop.jsx";
 
 function App() {
   return (
@@ -158,13 +165,39 @@ function App() {
             element={<MarketingReviewCampaign />}
           />
           <Route
+            path="/marketing/review-offer"
+            element={<MarketingReviewCampaignOffer />}
+          />
+          <Route
+            path="/marketing/review-free"
+            element={<MarketingReviewCampaignFree />}
+          />
+          <Route
+            path="/marketing/review-featured"
+            element={<MarketingReviewCampaignFeatured />}
+          />
+          <Route
+            path="/marketing/review-follower"
+            element={<MarketingReviewCampaignFollower />}
+          />
+          <Route
+            path="/marketing/review-shop"
+            element={<MarketingReviewCampaignShop />}
+          />
+          <Route
             path="/marketing/review-campaign-cupon"
             element={<ReviewCampaign2 />}
           />
           <Route path="/marketing/ad-preview" element={<MarktingAdPreview />} />
+          <Route path="/marketing/ad-preview-follower" element={<FollowerAdPreview />} />
+          <Route path="/marketing/ad-preview-featured" element={<MarktingAdPreviewFeatured />} />
           <Route
             path="/marketing/ad-confirm"
             element={<MarktingAdPreview isPay={true} />}
+          />
+          <Route
+            path="/marketing/ad-follower-confirm"
+            element={<FollowerAdPreview isPay={true} />}
           />
           <Route path="/marketing/payment" element={<Payment />} />
           <Route path="/marketing/edit-marketing" element={<MarketingEdit />} />

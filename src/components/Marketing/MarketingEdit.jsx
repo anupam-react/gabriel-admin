@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useCampaign from "../../hooks/useCampaign";
+import { initialState } from "../atoms/campaignState";
 
 const MarketingEdit = () => {
+  const { campaignData , setCampaignData} = useCampaign()
   const [openSuccess, setOpenSuccess] = useState(false);
   const navigate = useNavigate();
+  console.log(campaignData)
   const handleSubmit = () => {
     setOpenSuccess(true);
   };
@@ -12,21 +16,21 @@ const MarketingEdit = () => {
   const data1 = [
     {
       title: "Campaign Type",
-      value: "Percentage Discount",
+      value: campaignData?.typeOfCampaign,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
       title: "Description",
-      value: "50% discount coupon on all hot drinks",
+      value: campaignData?.conditionOfUse,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
       title: "Reward Type",
-      value: "Points",
+      value: campaignData?.conditionOfUse,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
@@ -107,7 +111,9 @@ const MarketingEdit = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">Edit Campaign</p>
-      <button className="back" onClick={()=> navigate("/marketing")}> 
+      <button className="back" onClick={()=>{
+        setCampaignData(initialState)
+         navigate("/marketing")}}> 
         <img src="../back.png" alt="" />
         Back</button>
       </div>

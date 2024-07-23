@@ -69,22 +69,22 @@ const useCampaign = () => {
     });
   };
 
-  const handleCreateCampaign = async (event) => {
-    event.preventDefault();
+  const handleCreateCampaign = async () => {
+    // event.preventDefault();
     const formData = new FormData();
-    formData.append('typeOfCampaign', campaignData?.typeOfCampaign);
-    formData.append('couponImage', campaignData?.couponImage);
-    formData.append('productId', productId);
-    formData.append('discountValue', campaignData?.discountValue);
-    formData.append('expireDate', campaignData?.expireDate);
-    formData.append('conditionOfUse', campaignData?.conditionOfUse);
-    formData.append('typeOfCustomer', campaignData?.typeOfCustomer);
-    formData.append('targetLocation', campaignData?.targetLocation);
-    formData.append('estimateReachMin', campaignData?.estimateReachMin);
-    formData.append('estimateReachMax', campaignData?.estimateReachMax);
-    formData.append('locationLat', campaignData?.locationLat);
-    formData.append('locationLong', campaignData?.locationLong);
-    formData.append('image', campaignData?.image);
+    formData.append('typeOfCampaign', campaignData?.typeOfCampaign || "");
+    // formData.append('couponImage', campaignData?.couponImage || "");
+    formData.append('image', campaignData?.image ||"");
+    formData.append('productId', productId || "");
+    formData.append('discountValue', campaignData?.discountValue || "");
+    formData.append('expireDate', campaignData?.expireDate || "");
+    formData.append('conditionOfUse', campaignData?.conditionOfUse || "");
+    formData.append('typeOfCustomer', campaignData?.typeOfCustomer || "");
+    formData.append('targetLocation', campaignData?.targetLocation || "");
+    formData.append('estimateReachMin', campaignData?.estimateReachMin || "");
+    formData.append('estimateReachMax', campaignData?.estimateReachMax || "");
+    formData.append('locationLat', campaignData?.locationLat || "");
+    formData.append('locationLong', campaignData?.locationLong || "");
     
     try {
       const response = await createApiData(
@@ -93,14 +93,6 @@ const useCampaign = () => {
       );
 
       setCampaignData(response?.data)
-      navigate("/marketing/review-campaign");
-      // getPromoCodeByToken();
-      // setPromocodeData(initialState);
-      // setOpenSuccess(true);
-      // setTimeout(() => {
-      //   setOpenSuccess(false);
-      //   setIsOpen(false);
-      // }, 2000);
     } catch (error) {
       console.log(error);
       return error;

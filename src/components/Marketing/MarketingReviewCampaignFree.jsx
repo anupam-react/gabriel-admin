@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 import { getDateFromISOString } from "../../utiils";
 
-const MarketingReviewCampaign = () => {
+const MarketingReviewCampaignFree = () => {
   const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -19,8 +19,15 @@ const MarketingReviewCampaign = () => {
       //   },
     },
     {
-      title: "Discount Value",
-      value: campaignData?.discountValue + "%",
+      title: "Description",
+      value: "Buu 1 Get 1 Free Offer coupon on all hot drinks",
+      //   handleCLick: () => {
+      //     setOpenCustom(true);
+      //   },
+    },
+    {
+      title: "Reward Type",
+      value: "Points",
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
@@ -58,7 +65,7 @@ const MarketingReviewCampaign = () => {
     },
     {
       title: "Estimated  Reach",
-      value: campaignData?.estimateReachMax + " Customers",
+      value: campaignData?.estimateReachMax + " Cutomers",
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
@@ -78,7 +85,7 @@ const MarketingReviewCampaign = () => {
           <div className="">
           <div className="cardContainer" style={{width:"480px"}}>
         <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+        <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p>
       </div>
             {/* <img src="../Group 38237.png" alt="" /> */}
           </div>
@@ -96,7 +103,7 @@ const MarketingReviewCampaign = () => {
             <p>Customer</p>
             <span>:</span>
             <p className="flex items-center gap-3">
-             {campaignData?.typeOfCustomer}
+              {campaignData?.typeOfCustomer}
               {/* <span className="live-dots"></span> */}
             </p>
             <button className="edit-button2">Edit</button>
@@ -122,4 +129,4 @@ const MarketingReviewCampaign = () => {
   );
 };
 
-export default MarketingReviewCampaign;
+export default MarketingReviewCampaignFree;

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useCampaign from "../../hooks/useCampaign";
+import { initialState } from "../atoms/campaignState";
 
 const MarketingEdit1 = () => {
+  const { campaignData , setCampaignData} = useCampaign()
   const [openSuccess, setOpenSuccess] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -69,7 +72,9 @@ const MarketingEdit1 = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">Edit Campaign</p>
-        <button className="back" onClick={()=> navigate("/marketing")}> 
+        <button className="back" onClick={()=>{
+        setCampaignData(initialState)
+         navigate("/marketing")}}> 
         <img src="../back.png" alt="" />
         Back</button>
       </div>

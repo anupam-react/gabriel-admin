@@ -13,9 +13,9 @@ const MarktingAdPreview = ({ isPay = false }) => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">
-          {isPay ? "Run Campaign" : "DIscount Ad Preview"}
+          {isPay ? "Run Campaign" : campaignData?.typeOfCampaign === "Coupon" ? "Coupon Ad Preview" : campaignData?.typeOfCampaign === "Percentage Discount" ?  "Discount Ad Preview" : "Offer Ad Preview"}
         </p>
-        <button className="back" onClick={()=> navigate("/marketing")}> 
+        <button className="back" onClick={()=>  isPay ? navigate("/marketing/ad-preview") : navigate("/marketing/review-campaign")}> 
         <img src="../back.png" alt="" />
         Back</button>
       </div>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 import { getDateFromISOString } from "../../utiils";
 
-const MarketingReviewCampaign = () => {
+const MarketingReviewCampaignOffer = () => {
   const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -19,15 +19,29 @@ const MarketingReviewCampaign = () => {
       //   },
     },
     {
-      title: "Discount Value",
+      title: "Offer Discount",
       value: campaignData?.discountValue + "%",
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
     },
     {
-      title: "Expriy Date",
-      value: getDateFromISOString(campaignData?.expireDate),
+      title: "Reward Type",
+      value: campaignData?.discountValue,
+      //   handleCLick: () => {
+      //     setOpenCustom(true);
+      //   },
+    },
+    {
+      title: "Description",
+      value: campaignData?.discountValue,
+      //   handleCLick: () => {
+      //     setOpenCustom(true);
+      //   },
+    },
+    {
+      title: "No of Points Reward",
+      value: campaignData?.discountValue,
       //   handleCLick: () => {
       //     setOpenCustom(true);
       //   },
@@ -39,31 +53,25 @@ const MarketingReviewCampaign = () => {
       //     setOpenCustom(true);
       //   },
     },
-    // {
-    //   title: "No of Points Reward",
-    //   value: "500 POints",
-    //   //   handleCLick: () => {
-    //   //     setOpenCustom(true);
-    //   //   },
-    // },
+        {
+      title: "Customer",
+      value: campaignData?.typeOfCustomer,
+      //   handleCLick: () => {
+      //     setOpenCustom(true);
+      //   },
+    },
+    {
+      title: "Expriy Date",
+      value: getDateFromISOString(campaignData?.expireDate),
+      //   handleCLick: () => {
+      //     setOpenCustom(true);
+      //   },
+    },
+    
+
 
   ];
-  const data2 = [
-    {
-      title: "Target Location",
-      value: campaignData?.targetLocation,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
-    },
-    {
-      title: "Estimated  Reach",
-      value: campaignData?.estimateReachMax + " Customers",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
-    },
-  ];
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -78,7 +86,7 @@ const MarketingReviewCampaign = () => {
           <div className="">
           <div className="cardContainer" style={{width:"480px"}}>
         <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+        <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p>
       </div>
             {/* <img src="../Group 38237.png" alt="" /> */}
           </div>
@@ -96,19 +104,12 @@ const MarketingReviewCampaign = () => {
             <p>Customer</p>
             <span>:</span>
             <p className="flex items-center gap-3">
-             {campaignData?.typeOfCustomer}
-              {/* <span className="live-dots"></span> */}
+              Active
+              <span className="live-dots"></span>
             </p>
             <button className="edit-button2">Edit</button>
           </div>
-          {data2?.map((d, i) => (
-            <div className="footer-container2">
-              <p>{d?.title}</p>
-              <span>:</span>
-              <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
-            </div>
-          ))}
+         
         </div>
         <button
           className="loyalty-button1"
@@ -122,4 +123,4 @@ const MarketingReviewCampaign = () => {
   );
 };
 
-export default MarketingReviewCampaign;
+export default MarketingReviewCampaignOffer;
