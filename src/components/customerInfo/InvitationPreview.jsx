@@ -48,7 +48,7 @@ const InvitationPreview = ({ handleOpen , onClose }) => {
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Exclusive Link</p>
           <p>:</p>
-          <p style={{width:"200px", color:"#0070BC"}}>http://
+          <p style={{width:"200px", color:"#0070BC"}}>
             {inviteData?.exclusiveLink}</p>
           <button
             className="edit-button"

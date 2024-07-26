@@ -2,20 +2,51 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useSetting from "../../hooks/useSetting";
+import useAccount from "../../hooks/useAccount";
 const ReportSetting = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const {    
+    image , setImage,
+    automaticReportSchedule , setAutomaticReportSchedule,
+    sendReportTo , setSendReportTo,
+    isMaximumFailedTransactionStatus , setIsMaximumFailedTransactionStatus,
+    isMaximumFailedTransactionValueCrossed , setIsMaximumFailedTransactionValueCrossed,
+    maximumFailedTransactionStatus , setMaximumFailedTransactionStatus,
+    maximumFailedTransactionValueCrossed , setMaximumFailedTransactionValueCrossed,
+    handleUpdateReport
+  }= useSetting()
+
+  const { staff }= useAccount()
+
+  const toggleStaffSelection = (staff) => {
+    const isSelected = selectStaff.includes(staff);
+    if (isSelected) {
+      setSelectStaff(selectStaff?.filter(d => d?._id !== staff?._id));
+      setSendReportTo(sendReportTo?.filter(id => id !== staff?._id))
+    } else {
+      setSelectStaff([...selectStaff, staff]);
+      setSendReportTo([...sendReportTo , staff?._id])
+    }
+  };
+
+
+
+  console.log(staff)
+
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
+  const [openSuccess , setOpenSuccess] = useState(false)
+  const [selectStaff, setSelectStaff] = useState([])
 
   const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+    setAutomaticReportSchedule(event.target.value);
   };
   const MonthOptions = [
-    { label: "Daily", value: "daily" },
-    { label: "Weekly", value: "weekly" },
-    { label: "Monthly", value: "monthly" },
-    { label: "Half-Yearly", value: "half-yearly" },
-    { label: "Yearly", value: "yearly" },
+    { label: "Daily", value: "Daily" },
+    { label: "Weekly", value: "Weekly" },
+    { label: "Monthly", value: "Monthly" },
+    { label: "Half-Yearly", value: "Half-Yearly" },
+    { label: "Yearly", value: "Yearly" },
   ];
   const navigate = useNavigate();
   return (
@@ -39,7 +70,7 @@ const ReportSetting = () => {
           <div className="flex justify-between items-center px-6 h-12 input-loyalty">
             <div className="flex gap-6">
               <img src="../image 73.png" alt="search" className="w-6 h-6" />
-              <p>Windows \ D: \My Files \ My Folder \</p>
+              <p>{image?.name}</p>
             </div>
             <label
               for="fileUpload"
@@ -52,7 +83,7 @@ const ReportSetting = () => {
               />
               <p className="text-[#FEA82F] font-bold">CHANGE</p>
             </label>
-            <input type="file" id="fileUpload" className="hidden" />
+            <input type="file" id="fileUpload" className="hidden" onChange={(e)=> setImage(e.target.files[0])}/>
           </div>
         </div>
         <div>
@@ -68,7 +99,7 @@ const ReportSetting = () => {
             </p>
             <select
               id="countries"
-              value={selectedOption}
+              value={automaticReportSchedule}
               onChange={handleChange}
               className="rounded shadow-md text-gray-900 text-sm  border-none block w-[400px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
@@ -94,69 +125,20 @@ const ReportSetting = () => {
             </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
+            {selectStaff?.map((d)=>(
             <div className="report-profile" style={{ width: "200px" }}>
               <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
+              <p> {d?.firstName + " " + d?.lastName}</p>
               <img
                 src="../Mask group (14).png"
                 alt="search"
-                className="w-5 h-5"
+                className="w-5 h-5 cursor-pointer"
+                onClick={()=>toggleStaffSelection(d)}
               />
             </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p>Lorem Ipsum</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5"
-              />
-            </div>
+
+            ))}
+          
             <div
               className="flex items-center gap-4 cursor-pointer"
               onClick={() => setOpenAddEmp(true)}
@@ -175,7 +157,7 @@ const ReportSetting = () => {
           <div className="flex flex-col gap-6 mb-4">
             <div className="flex items-start gap-6">
               <label className="inline-flex items-center me-5 cursor-pointer">
-                <input type="checkbox" value="" className="sr-only peer" />
+                <input type="checkbox" value="Maximum Number Of Transaction Crossed" className="sr-only peer" onChange={()=> setIsMaximumFailedTransactionStatus(!isMaximumFailedTransactionStatus)} checked={isMaximumFailedTransactionStatus}/>
                 <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
               </label>
               <div className="flex flex-col gap-4">
@@ -187,7 +169,8 @@ const ReportSetting = () => {
                     type="text"
                     name=""
                     id=""
-                    value="Add Value ( e.g 1,00,000 )"
+                   value={maximumFailedTransactionStatus}
+                   onChange={(e)=> setMaximumFailedTransactionStatus(e.target.value)}
                     className="rounded shadow-md text-[#000000B2] text-sm  border-none block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
@@ -195,7 +178,7 @@ const ReportSetting = () => {
             </div>
             <div className="flex items-start gap-6">
               <label className="inline-flex items-center me-5 cursor-pointer">
-                <input type="checkbox" value="" className="sr-only peer" />
+                <input type="checkbox" value="Maximum Transaction Value Crossed" className="sr-only peer" onChange={()=> setIsMaximumFailedTransactionValueCrossed(!isMaximumFailedTransactionValueCrossed)} checked={isMaximumFailedTransactionValueCrossed}/>
                 <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
               </label>
               <div className="flex flex-col gap-4">
@@ -207,7 +190,8 @@ const ReportSetting = () => {
                     type="text"
                     name=""
                     id=""
-                    value="Add Value ( e.g 1,00,000 )"
+                    value={maximumFailedTransactionValueCrossed}
+                    onChange={(e)=> setMaximumFailedTransactionValueCrossed(e.target.value)}
                     className="rounded shadow-md text-[#000000B2] text-sm  border-none block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
@@ -218,7 +202,10 @@ const ReportSetting = () => {
         <div className="flex justify-center">
           <button
             className="back2 text-center"
-            onClick={() => navigate("/setting")}
+            onClick={() =>{
+              handleUpdateReport()
+               navigate("/setting")
+              }}
           >
             SAVE
           </button>
@@ -261,62 +248,46 @@ const ReportSetting = () => {
             />
             {isAddEmp && (
               <div className="addEmp bg-[white] flex flex-col gap-2  rounded-md p-4">
-                <div className="flex items-center gap-2">
+                 {staff?.docs?.map((emp, i)=>(
+                <div className={selectStaff?.includes(emp) ? "flex items-center gap-2 cursor-pointer bg-green-400" : "flex items-center gap-2 cursor-pointer"} key={i} onClick={()=>{
+                  setSendReportTo([...sendReportTo, emp?._id])
+                  setSelectStaff([...selectStaff, emp])
+                  }}>
                   <img
                     src=""
                     alt=""
                     className="w-[20px] h-[20px] rounded-full "
                   />
-                  <p> JhonDeo , </p>
-                  <p>Id :3456789.</p>
+                  <p> {emp?.firstName + " " + emp?.lastName} , </p>
+                  <p>Id :{emp?.employeeId}.</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    src=""
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p> JhonDeo , </p>
-                  <p>Id :3456789.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    src=""
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p> JhonDeo , </p>
-                  <p>Id :3456789.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    src=""
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p> JhonDeo , </p>
-                  <p>Id :3456789.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    src=""
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p> JhonDeo , </p>
-                  <p>Id :3456789.</p>
-                </div>
+                 ))}
+              
               </div>
             )}
           </div>
           <div className="flex justify-center">
             <button
               className="back2 text-center"
-              onClick={() => setOpenAddEmp(false)}
+              onClick={() => {
+                setOpenSuccess(true)
+                setTimeout(()=>{
+                  setOpenAddEmp(false)
+                  setOpenSuccess(false)
+                },2000)
+              }}
             >
               ADD
             </button>
           </div>
+        </div>
+      </DialogDefault>
+      <DialogDefault open={openSuccess} handleOpen={setOpenSuccess}>
+        <div className="alert">
+          <img src="../Vector (2).png" alt="" />
+          <p className="text-center text-lg ">
+          You’ve successfully added an employee
+          </p>
         </div>
       </DialogDefault>
     </div>

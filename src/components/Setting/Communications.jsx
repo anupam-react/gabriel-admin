@@ -1,7 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import useSetting from "../../hooks/useSetting";
 const Communications = () => {
+
+  const {    
+        communicationNotificationEmail , setCommunicationNotificationEmail,
+    communicationNotificationSms , setCommunicationNotificationSms,
+    handleUpdateCommunication} = useSetting()
   const navigate = useNavigate();
   return (
     <div>
@@ -24,13 +30,13 @@ const Communications = () => {
           RECEIVE COMMUNICATION ON
           </p>
           <div className="mb-[10px] ">
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="sms" onChange={()=> setCommunicationNotificationEmail(!communicationNotificationEmail)} checked={communicationNotificationEmail}/>
             <label for="vehicle1" className="pl-[30px] text-[20px] font-[500]">
               SMS
             </label>
           </div>
           <div>
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="email" onChange={()=> setCommunicationNotificationSms(!communicationNotificationSms)} checked={communicationNotificationSms} />
             <label for="vehicle1" className="pl-[30px] text-[20px] font-[500]">
               Email
             </label>
@@ -39,7 +45,10 @@ const Communications = () => {
         <div className="flex justify-center">
           <button
             className="back2 text-center"
-            onClick={() => navigate("/setting")}
+            onClick={() => {
+              handleUpdateCommunication()
+              navigate("/setting")
+            }}
           >
             SAVE
           </button>

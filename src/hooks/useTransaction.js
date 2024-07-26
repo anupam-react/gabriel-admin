@@ -52,6 +52,7 @@ const useTransaction = () => {
     getAverageTransactionValue()
     getTopSellingItems()
     getTimeBaseAnalytics()
+
   },[])
 
   return {
@@ -64,7 +65,8 @@ const useTransaction = () => {
     getTransactionCount,
     getAverageTransactionValue,
     getTopSellingItems,
-    getTimeBaseAnalytics
+    getTimeBaseAnalytics,
+    getTransactionFilter
   };
 };
 

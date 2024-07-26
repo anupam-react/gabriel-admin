@@ -43,6 +43,7 @@ const Referal = ({ handleOpen , onClose }) => {
                for="dropzone-file"
                className="flex justify-end bg-white  shadow rounded-md w-full "
              >
+              <p>{referralData?.image?.name}</p>
                <div
                  className="flex py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
                  style={{ backgroundColor: "#00AAEA" }}
@@ -57,11 +58,12 @@ const Referal = ({ handleOpen , onClose }) => {
         <div className="input-container">
           <label>Custom Message</label>
           <textarea
-            id="w3review"
-            name="w3review"
+            id="message"
+            name="message"
             rows="4"
             cols="50"
-            value="Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us."
+            value={referralData?.message}
+            onChange={handleChange}
             className="input"
           />
         </div>
@@ -81,8 +83,8 @@ const Referal = ({ handleOpen , onClose }) => {
           <label>Expiry Date</label>
           <input
             type="text"
-            name="exclusiveLink"
-            value={referralData?.exclusiveLink}
+            name="expireDate"
+            value={referralData?.expireDate}
             onChange={handleChange}
             id=""
             className="input"
@@ -106,28 +108,44 @@ const Referal = ({ handleOpen , onClose }) => {
         Stamps
         </button>
       </div>
-    {isActive === 1 ?  <div className="button-group">
-        <button className="button2" onClick={()=>{
-           setActive(2)
+    {isActive === 1 ? 
+     <div className="button-group">
+        <button className={isActivePoints === 1 ? "button2" : "button1"} onClick={()=>{
+           setActivePoints(1)
            setReferralData({ ...referralData, rewardPoints: "50" })
         }}>
           50 Points
         </button>
-        <button className="button1">
+        <button className={isActivePoints === 2 ? "button2" : "button1"} onClick={()=>{
+           setActivePoints(2)
+           setReferralData({ ...referralData, rewardPoints: "200" })
+        }}>
           200 Points
         </button>
-        <button className="button1">
+        <button className={isActivePoints === 3 ? "button2" : "button1"} onClick={()=>{
+           setActivePoints(3)
+           setReferralData({ ...referralData, rewardPoints: "300" })
+        }}>
           300 Points
         </button>
       </div> : 
       <div className="button-group">
-        <button className="button2">
+        <button className={isActiveStamps === 1 ? "button2" : "button1"} onClick={()=>{
+           setActiveStamps(1)
+           setReferralData({ ...referralData, rewardPoints: "5" })
+        }}>
           5 Stamps
         </button>
-        <button className="button1">
+        <button  className={isActiveStamps === 2 ? "button2" : "button1"} onClick={()=>{
+           setActiveStamps(2)
+           setReferralData({ ...referralData, rewardPoints: "20" })
+        }}>
           20 Stamps
         </button>
-        <button className="button1">
+        <button  className={isActiveStamps === 3 ? "button2" : "button1"} onClick={()=>{
+           setActiveStamps(3)
+           setReferralData({ ...referralData, rewardPoints: "30" })
+        }}>
           30 Stamps
         </button>
       </div>
@@ -153,6 +171,7 @@ const Referal = ({ handleOpen , onClose }) => {
         <button
           className="menuButton"
           onClick={() => {
+            handleCreateReferalStampsUserRewards()
             setOpenAlert(true);
           }}
         >

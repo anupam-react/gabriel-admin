@@ -4,7 +4,7 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Promotion2 = () => {
+const Promotion2 = ({data}) => {
   const navigate = useNavigate()
   return (
     <div>
@@ -12,7 +12,7 @@ const Promotion2 = () => {
           <div onClick={()=> navigate('/marketing/review-campaign-cupon')} className="rounded-lg cursor-pointer shadow-md flex flex-col justify-center items-center bg-white p-4 w-80">
         
        <CircularProgressbar
-        value={70}
+        value={data}
         text={`Coupons`}
         styles={buildStyles({
           textColor: "black",

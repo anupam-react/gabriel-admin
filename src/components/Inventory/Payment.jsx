@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 const Payment = () => {
+  const { path } = useParams()
   const [isSuccess, setSuccess] = useState(false);
   const [isReview, setReview] = useState(false);
   const [isLive, setLive] = useState(false);
@@ -19,7 +20,7 @@ const Payment = () => {
     }, 2000);
     setTimeout(() => {
       setLive(false);
-      navigate("/inventory");
+      navigate(`/${path}`);
     }, 3000);
   };
 

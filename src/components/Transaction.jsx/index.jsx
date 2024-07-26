@@ -21,7 +21,9 @@ const Transaction = () => {
     getTransactionCount,
     getAverageTransactionValue,
     getTopSellingItems,
-    getTimeBaseAnalytics } = useTransaction()
+    getTimeBaseAnalytics,
+    getTransactionFilter
+   } = useTransaction()
 
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -214,7 +216,7 @@ const Transaction = () => {
         </div>
       </div>
       {isOpen && <TransactionFilter closeDrawer={closeDrawer} open={isOpen} />}
-      <ReportPage open={open} setOpen={setOpen} handleOpen={handleOpen} />
+      <ReportPage open={open} setOpenReport={setOpen} handleOpen={handleOpen} />
     </div>
   );
 };

@@ -67,38 +67,42 @@ const PaginatedTable = () => {
               <tr key={i}>
                 <td className="w-1/2">
                   <div className="flex items-center gap-6 ml-[100px] my-2 relative">
-                    <div className="profile-image">
-                      <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt="" />
+                  <div className="relative">
+                    <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
+                      <img src={item?.image || "./carbon_user-avatar-filled.png"} alt=""/>
+                    </div>
                       <img
                         src="./solar_menu-dots-bold (1).png"
                         alt=""
                         className="absolute top-1 right-1 cursor-pointer"
-                        onClick={() => {
-                          if(isOpenMenu === item?._id) setOpenMenu(false)
+                        onClick={() =>{
+
+                            if(isOpenMenu === item?._id) setOpenMenu(false)
                           else
                           setOpenMenu(item?._id)}}
                       />
                     </div>
+                
                     <div className="flex flex-col gap-1 font-[500]" onClick={() =>{
                        setOpenInfo(true)
-                       getCustomerInfoForParticularUser(item?.userId?._id)
+                       getCustomerInfoForParticularUser(item?._id)
                        }}>
                     <p className="profileId text-left" >
-                  {item?.userId?.firstName + " " + item?.userId?.lastName }
+                  {item?.firstName + " " + item?.lastName }
                     </p>
                     <p className="profileId">
-                      ID:{item?.userId?._id}
+                      ID:{item?._id}
                     </p>
 
                     </div>
                     {isOpenMenu === item?._id && (
                       <div className="menu-Main">
-                        <MenuCard onClose={()=> setOpenMenu(false)} setOpenInfo={setOpenInfo} isOpenMenu={isOpenMenu} data={item?.userId}/>
+                        <MenuCard onClose={()=> setOpenMenu(false)} isOpenMenu={isOpenMenu} data={item?.userId}/>
                       </div>
                     )}
                   </div>
                 </td>
-                <td>{getDateFromISOString(item?.userId?.createdAt)}</td>
+                <td>{getDateFromISOString(item?.createdAt)}</td>
                
               </tr>
             );

@@ -26,14 +26,14 @@ const useReferral = () => {
     });
   };
 
-  const handleCreateReferalStampsUserRewards = async (userId ) => {
+  const handleCreateReferalStampsUserRewards = async (userId) => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
     formData.append('message', referralData?.message);
     formData.append('expireDate', referralData?.expireDate);
     formData.append('exclusiveLink', referralData?.exclusiveLink);
-    formData.append('description', referralData?.description);
+    // formData.append('description', referralData?.description);
     formData.append('image', referralData?.image);
     
     try {
