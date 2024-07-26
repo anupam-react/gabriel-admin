@@ -4,7 +4,7 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import HistoryDetails from "./HistoryDetails";
 
-const Engagement = ({ handleOpen }) => {
+const Engagement = ({ handleOpen , onClose }) => {
   const [openTransaction, setOpenTransaction] = useState(false);
   return (
     <div className="info-container">

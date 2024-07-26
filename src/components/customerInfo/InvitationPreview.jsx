@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import InvitationOffer from "./InvitationOffer";
-import useReferral from "../../hooks/useReferral";
 import { formatDate3 } from "../../utiils";
+import useInvite from "../../hooks/useInvite";
 
-const InvitationPreview = ({ handleOpen }) => {
+const InvitationPreview = ({ handleOpen , onClose }) => {
   const {
-    referralData,
-  } = useReferral()
+    inviteData,
+  } = useInvite()
   const [openSuccess, setSuccess] = useState(false);
 
   return (
@@ -28,14 +28,14 @@ const InvitationPreview = ({ handleOpen }) => {
     </div>
     <hr className="hr" />
     <div className="cardContainer">
-    <img src={referralData?.image} alt="" className="h-[100px] w-[150px]"/>
-    <p className="text-center">{referralData?.description}</p>
+    <img src={inviteData?.image} alt="" className="h-[100px] w-[150px]"/>
+    <p className="text-center">{inviteData?.description}</p>
     </div>
     <div className="footer-Main">
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Custom Message</p>
           <p>:</p>
-          <p style={{width:"200px"}}>{referralData?.message}</p>
+          <p style={{width:"200px"}}>{inviteData?.message}</p>
           <button
             className="edit-button"
             onClick={() => {
@@ -49,7 +49,7 @@ const InvitationPreview = ({ handleOpen }) => {
           <p style={{width:"fit-content"}}>Exclusive Link</p>
           <p>:</p>
           <p style={{width:"200px", color:"#0070BC"}}>http://
-            {referralData?.exclusiveLink}</p>
+            {inviteData?.exclusiveLink}</p>
           <button
             className="edit-button"
             onClick={() => {
@@ -62,7 +62,7 @@ const InvitationPreview = ({ handleOpen }) => {
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Expiration Date</p>
           <p>:</p>
-          <p style={{width:"200px"}}>{formatDate3(referralData?.expireDate)}</p>
+          <p style={{width:"200px"}}>{formatDate3(inviteData?.expireDate)}</p>
           <button
             className="edit-button"
             onClick={() => {
@@ -78,7 +78,7 @@ const InvitationPreview = ({ handleOpen }) => {
     </button>
 
     <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-      <InvitationOffer handleOpen={setSuccess}/>
+      <InvitationOffer handleOpen={setSuccess} onClose={onClose}/>
     </DialogDefault>
   </div>
   );

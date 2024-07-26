@@ -14,37 +14,37 @@ const MarketingReviewCampaignFree = () => {
     {
       title: "Campaign Type",
       value: campaignData?.typeOfCampaign,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Description",
       value: "Buu 1 Get 1 Free Offer coupon on all hot drinks",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Reward Type",
       value: "Points",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Expriy Date",
       value: getDateFromISOString(campaignData?.expireDate),
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Add Conditions",
       value: campaignData?.conditionOfUse,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     // {
     //   title: "No of Points Reward",
@@ -59,16 +59,16 @@ const MarketingReviewCampaignFree = () => {
     {
       title: "Target Location",
       value: campaignData?.targetLocation,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Estimated  Reach",
       value: campaignData?.estimateReachMax + " Cutomers",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
   ];
   return (
@@ -96,7 +96,7 @@ const MarketingReviewCampaignFree = () => {
               <p>{d?.title}</p>
               <span>:</span>
               <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
+              <button className="edit-button2"  onClick={d?.handleCLick}>Edit</button>
             </div>
           ))}
           <div className="footer-container2">
@@ -113,7 +113,7 @@ const MarketingReviewCampaignFree = () => {
               <p>{d?.title}</p>
               <span>:</span>
               <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
+              <button className="edit-button2"  onClick={d?.handleCLick}>Edit</button>
             </div>
           ))}
         </div>

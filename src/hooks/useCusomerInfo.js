@@ -15,7 +15,7 @@ const useCusomerInfo = () => {
   }
   const getCustomer = async ()=>{
     const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomer`)
-    setCustomer(data?.data)
+    setCustomer(data?.data?.docs)
   }
   const getCustomerInfoForParticularUser = async (id)=>{
     const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomerInfoForParticularUser/${id}`)

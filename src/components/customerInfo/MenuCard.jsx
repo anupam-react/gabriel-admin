@@ -23,7 +23,7 @@ const MenuCard = ({onClose,  data , setOpenInfo}) => {
        <button className="menuButton2" onClick={()=> setOpenBonus(true)}>Awared Free Bonus</button>
           <button className="menuButton2" onClick={()=> setOpenEvent(true)}>Send Special Event Invite</button>
           <DialogDefault open={openGift} handleOpen={setOpenGift}>
-            <BirthDayGift  handleOpen={setOpenGift} id={data?._id} setOpenInfo={setOpenInfo}/>
+            <BirthDayGift  handleOpen={setOpenGift} id={data?._id} setOpenInfo={setOpenInfo} onClose={onClose}/>
         </DialogDefault>
           <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
             <CustomizedBGift  handleOpen={setOpenOffer} id={data?._id}/>
@@ -32,10 +32,10 @@ const MenuCard = ({onClose,  data , setOpenInfo}) => {
             <AwardCustomer  handleOpen={setOpenPromotions} id={data?._id}/>
         </DialogDefault>
           <DialogDefault open={openBonus} handleOpen={setOpenBonus}>
-            <Bouns  handleOpen={setOpenBonus} id={data?._id}/>
+            <Bouns handleOpen={setOpenBonus} id={data?._id} onClose={onClose}/>
         </DialogDefault>
           <DialogDefault open={openEvent} handleOpen={setOpenEvent}>
-            <Invitation  handleOpen={setOpenEvent} id={data?._id}/>
+            <Invitation  handleOpen={setOpenEvent} id={data?._id} onClose={onClose}/>
         </DialogDefault>
     </div>
   )

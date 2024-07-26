@@ -3,7 +3,7 @@ import './index.scss'
 import InfoHeader from './InfoHeader'
 import LoyalityTab1 from './LoyalityTab1';
 import LoyalityTab2 from './LoyalityTab2';
-const Loyality = ({ handleOpen }) => {
+const Loyality = ({ handleOpen , onClose }) => {
       const [activeLink, setActiveLink] = useState(0);
   const handleLinkClick = (index) => {
     setActiveLink(index);

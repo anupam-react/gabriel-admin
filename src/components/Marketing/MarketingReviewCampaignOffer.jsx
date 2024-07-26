@@ -14,58 +14,58 @@ const MarketingReviewCampaignOffer = () => {
     {
       title: "Campaign Type",
       value: campaignData?.typeOfCampaign,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Offer Discount",
       value: campaignData?.discountValue + "%",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Reward Type",
       value: campaignData?.discountValue,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Description",
       value: campaignData?.discountValue,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "No of Points Reward",
       value: campaignData?.discountValue,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Add Conditions",
       value: campaignData?.conditionOfUse,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
         {
       title: "Customer",
       value: campaignData?.typeOfCustomer,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Expriy Date",
       value: getDateFromISOString(campaignData?.expireDate),
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+      handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     
 
@@ -97,7 +97,7 @@ const MarketingReviewCampaignOffer = () => {
               <p>{d?.title}</p>
               <span>:</span>
               <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
+              <button className="edit-button2"  onClick={d?.handleCLick}>Edit</button>
             </div>
           ))}
           <div className="footer-container2">

@@ -14,30 +14,30 @@ const MarketingReviewCampaign = () => {
     {
       title: "Campaign Type",
       value: campaignData?.typeOfCampaign,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Discount Value",
       value: campaignData?.discountValue + "%",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Expriy Date",
       value: getDateFromISOString(campaignData?.expireDate),
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Add Conditions",
       value: campaignData?.conditionOfUse,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     // {
     //   title: "No of Points Reward",
@@ -52,16 +52,16 @@ const MarketingReviewCampaign = () => {
     {
       title: "Target Location",
       value: campaignData?.targetLocation,
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
     {
       title: "Estimated  Reach",
       value: campaignData?.estimateReachMax + " Customers",
-      //   handleCLick: () => {
-      //     setOpenCustom(true);
-      //   },
+        handleCLick: () => {
+            navigate("/marketing/newCampaign");
+        },
     },
   ];
   return (
@@ -89,7 +89,7 @@ const MarketingReviewCampaign = () => {
               <p>{d?.title}</p>
               <span>:</span>
               <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
+              <button className="edit-button2" onClick={d?.handleCLick}>Edit</button>
             </div>
           ))}
           <div className="footer-container2">
@@ -106,7 +106,7 @@ const MarketingReviewCampaign = () => {
               <p>{d?.title}</p>
               <span>:</span>
               <p>{d?.value}</p>
-              <button className="edit-button2">Edit</button>
+              <button className="edit-button2" onClick={d?.handleCLick}>Edit</button>
             </div>
           ))}
         </div>

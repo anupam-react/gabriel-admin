@@ -42,11 +42,13 @@ const Transaction = () => {
   const [selectedOption3, setSelectedOption3] = useState("");
   const [selectedOption4, setSelectedOption4] = useState("");
   const [selectedOption5, setSelectedOption5] = useState("");
+  const [selectedOption6, setSelectedOption6] = useState("");
   const [openCustom1, setOpenCustom1] = useState(false);
   const [openCustom2, setOpenCustom2] = useState(false);
   const [openCustom3, setOpenCustom3] = useState(false);
   const [openCustom4, setOpenCustom4] = useState(false);
   const [openCustom5, setOpenCustom5] = useState(false);
+  const [openCustom6, setOpenCustom6] = useState(false);
   
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
@@ -90,6 +92,13 @@ const Transaction = () => {
     }else{
       getTimeBaseAnalytics(event.target.value)
 
+    }
+  };
+  const handleChange6 = (event) => {
+    setSelectedOption6(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom6(true);
+    }else{
     }
   };
 
@@ -197,7 +206,7 @@ const Transaction = () => {
             <p className="text-[#0070BC] font-semibold text-lg ">
               CUSTOMER LOYALTY METRICS
             </p>
-            <Select />
+            <Select  selectedOption={selectedOption6}  handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
           </div>
           <div className="w-[650px] h-[350px]">
             <LineChart />

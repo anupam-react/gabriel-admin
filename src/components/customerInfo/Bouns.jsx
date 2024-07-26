@@ -4,7 +4,7 @@ import "./index.scss";
 import BounsPreview from "./BounsPreview";
 import CatalogueProduct from "./CatalogueProduct";
 import useBouns from "../../hooks/useBouns";
-const Bouns = ({ handleOpen , id }) => {
+const Bouns = ({ handleOpen , id , onClose}) => {
   const { 
     bouns,
     handleChange,
@@ -128,7 +128,7 @@ const Bouns = ({ handleOpen , id }) => {
         </button>
       </div>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-        <BounsPreview handleOpen={setSuccess} />
+        <BounsPreview handleOpen={setSuccess} handleClose={onClose}/>
       </DialogDefault>
     </div>
   );

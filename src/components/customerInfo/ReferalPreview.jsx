@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
-const ReferalPreview = ({handleOpen}) => {
+const ReferalPreview = ({handleOpen , onClose}) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
   return (
@@ -39,15 +39,15 @@ const ReferalPreview = ({handleOpen}) => {
               </div>
             </div>
       </div>
-      <p className="text-[#00000080] text-left font-[600] w-[270px]">Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
-          <p className="text-[#0070BC] w-[270px]">http://Www.Moneychat.com//Slice/refferalvoucher</p>
+      <p className="text-[#00000080] text-left font-[600] w-[260px]">Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
+          <p className="text-[#0070BC] w-[260px]">http://Www.Moneychat.com//Slice/refferalvoucher</p>
             <button
               className="loyalty-button1 mt-6"
               style={{ width: "fit-content" }}
               onClick={()=>{
                 setSuccess(true)
                 setTimeout(()=>{
-                  setSuccess(false) 
+                  onClose()
                 },[1000])
               }}
             >

@@ -5,7 +5,7 @@ import BirthdayOffer from "./BirthdayOffer";
 import CatalogueProduct from "./CatalogueProduct";
 import useOffer from "../../hooks/useOffer";
 
-const BirthDayGift = ({ handleOpen, id , setOpenInfo }) => {
+const BirthDayGift = ({ handleOpen, id  , onClose }) => {
   const {
     offerData,
     openOffer,
@@ -90,7 +90,7 @@ const BirthDayGift = ({ handleOpen, id , setOpenInfo }) => {
         </button>
       </div>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <BirthdayOffer handleOpen={setOpenOffer} setOpenInfo={setOpenInfo}/>
+        <BirthdayOffer  setOpenInfo={setOpenInfo} onClose={onClose}/>
       </DialogDefault>
       <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
         <div className="p-6">

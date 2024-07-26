@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useCampaign from "../../hooks/useCampaign";
 
 const MarketingEdit2 = () => {
+  const { campaignData , setCampaignData} = useCampaign()
   const [openSuccess, setOpenSuccess] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -91,7 +93,10 @@ const MarketingEdit2 = () => {
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Ad Review</p>
           <div className="">
-            <img src="../Group 38237.png" alt="" />
+          <div className="cardContainer" style={{width:"480px"}}>
+        <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
+        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+      </div>
           </div>
         </div>
         <div className="footer-Main2">

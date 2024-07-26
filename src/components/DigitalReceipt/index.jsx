@@ -171,7 +171,7 @@ const DigitalReceipt = () => {
                         {isOpenMenu === item?._id && (
                           <div className="action-main shadow" ref={divRef}>
                             <div
-                              className="flex gap-6"
+                              className="flex items-center gap-6"
                               onClick={() =>{ setOpenTrans(true)
                                 getDigitalReceiptById(isOpenMenu)
                               }}
@@ -180,8 +180,13 @@ const DigitalReceipt = () => {
                               <p>View</p>
                             </div>
                             <div
-                              className="flex gap-6"
-                              onClick={() => setDownload(true)}
+                              className="flex items-center gap-6"
+                              onClick={() =>{ 
+                                setDownload(true)
+                                setTimeout(()=>{
+                                  setDownload(false)
+                                },2000)
+                              }}
                             >
                               <img src="./image 674.png" alt="" />
                               <p>Download</p>

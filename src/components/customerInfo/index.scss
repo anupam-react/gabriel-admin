@@ -165,8 +165,15 @@
 }
 .menu-Main {
   position: absolute;
-  top: 50%;
-  left: 16%;
+  top: 10%;
+  left: 18%;
+  z-index: 10;
+}
+.menu-Main3 {
+  position: absolute;
+  top: 0%;
+  right: -70%;
+  z-index: 10;
 }
 .menu-Main2 {
   position: absolute;

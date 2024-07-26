@@ -4,16 +4,12 @@ import { atom } from 'recoil';
 export const initialState = {
   userId: "",
   productId: "",
-  message: "",
+  customMessage: "",
   expireDate: "",
-  price: "",
-  typeOfReward: "Points",
-  rewardPoints: "",
   exclusiveLink: "",
   image: {},
-  description: "",
   };
-export const referralState = atom({
-  key: 'referralState', // unique ID (with respect to other atoms/selectors)
+export const inviteState = atom({
+  key: 'inviteState', // unique ID (with respect to other atoms/selectors)
   default: initialState, // default value (aka initial value)
 });

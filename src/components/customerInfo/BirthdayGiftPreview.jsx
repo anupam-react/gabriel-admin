@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useOffer from "../../hooks/useOffer";
 import { initialState } from "../atoms/offerState";
 
-const BirthdayGiftPreview = ({ handleOpen , setOpenInfo }) => {
+const BirthdayGiftPreview = ({ handleOpen , onClose }) => {
   const {  offerData , setOfferData}= useOffer();
 
   const navigate = useNavigate()
@@ -56,8 +56,7 @@ const BirthdayGiftPreview = ({ handleOpen , setOpenInfo }) => {
             setSuccess(true)
             setOfferData(initialState)
             setTimeout(()=>{
-              setSuccess(false)
-              setOpenInfo(false)
+            onClose()
             },2000)
             }}>Send to Customer Gift folder</button>
 

@@ -6,13 +6,14 @@ import CatalogueProduct from "../customerInfo/CatalogueProduct";
 import CustomOption from "./CustomOption";
 import useCampaign from "../../hooks/useCampaign";
 const NewCampaign = () => {
-  const { campaignData , setProductId, handleChange , setCampaignData , handleCreateCampaign} = useCampaign()
+  const { campaignData , setProductId, handleChange , setCampaignData , handleCreateCampaign , handleUpdateCampaign} = useCampaign()
   const [selectUserType, setSelectUserType] = useState("")
   const navigate = useNavigate();
   const handleSelect = (event) => {
     setSelectUserType(event);
     setCampaignData({...campaignData , typeOfCustomer : event.value})
   };
+  console.log(campaignData?.typeOfCampaign)
 
   const CampaignOptions = [
     { label: "Percentage Discount", value: "Percentage Discount"},
@@ -77,6 +78,7 @@ const NewCampaign = () => {
                   className="font-semibold text-black "
                   key={i}
                   value={data?.value}
+                  defaultValue="Percentage Discount"
                 >
                   {data?.label}
                 </option>
@@ -84,8 +86,9 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+       
         {campaignData?.typeOfCampaign === "Percentage Discount" 
-        && 
+        &&
         <>
         <div className="catalogue mt-4">
         <p className="text-lg font-semibold pb-2">Upload Product From Inventory</p>
@@ -210,7 +213,11 @@ const NewCampaign = () => {
             className="loyalty-button1"
             style={{ width: "150px" }}
             onClick={()=>{
-              handleCreateCampaign()
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
               navigate("/marketing/review-campaign");
             }}
           >
@@ -218,7 +225,8 @@ const NewCampaign = () => {
           </button>
         </div>
         </>
-        }
+          }
+       
         {campaignData?.typeOfCampaign === "Coupon" 
         && 
         <>
@@ -345,7 +353,11 @@ const NewCampaign = () => {
             className="loyalty-button1"
             style={{ width: "150px" }}
             onClick={()=>{
-              handleCreateCampaign()
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
               navigate("/marketing/review-campaign");
             }}
           >
@@ -1023,6 +1035,7 @@ const NewCampaign = () => {
         </div>
         </>
         }
+         
       </div>
     </div>
   );

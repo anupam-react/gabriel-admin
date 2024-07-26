@@ -7,7 +7,7 @@ import {
 } from "../utiils";
 import { useRecoilState } from "recoil";
 
-import { campaignState  } from "../components/atoms/campaignState";
+import { campaignState, initialState  } from "../components/atoms/campaignState";
 
 const useCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -99,26 +99,33 @@ const useCampaign = () => {
     }
   };
 
-  // const handleUpdatePromocode = async (id) => {
-  //   const formData = {
-    
-  //   };
-  //   try {
-  //     const response = await updateApiData(
-  //       `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
-  //       formData
-  //     );
-  //     setOpenSuccess(true);
-  //     setPromocodeData(initialState);
-  //     setTimeout(() => {
-  //       setOpenSuccess(false);
-  //       setIsOpen(false);
-  //     }, 2000);
-  //   } catch (error) {
-  //     console.log(error);
-  //     return error;
-  //   }
-  // };
+  const handleUpdateCampaign = async (id) => {
+    const formData = new FormData();
+    formData.append('typeOfCampaign', campaignData?.typeOfCampaign || "");
+    // formData.append('couponImage', campaignData?.couponImage || "");
+    formData.append('image', campaignData?.image ||"");
+    formData.append('productId', productId || "");
+    formData.append('discountValue', campaignData?.discountValue || "");
+    formData.append('expireDate', campaignData?.expireDate || "");
+    formData.append('conditionOfUse', campaignData?.conditionOfUse || "");
+    formData.append('typeOfCustomer', campaignData?.typeOfCustomer || "");
+    formData.append('targetLocation', campaignData?.targetLocation || "");
+    formData.append('estimateReachMin', campaignData?.estimateReachMin || "");
+    formData.append('estimateReachMax', campaignData?.estimateReachMax || "");
+    formData.append('locationLat', campaignData?.locationLat || "");
+    formData.append('locationLong', campaignData?.locationLong || "");
+    try {
+      const response = await updateApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/updateMarketingCampaign/${id}`,
+        formData
+      );
+      setCampaignData(response?.data);
+   
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
   const handlePauseMarketingCampaign = async (id) => {
     console.log(id)
@@ -142,7 +149,8 @@ const useCampaign = () => {
     handleChange,
     setProductId,
     getMarketingCampaignById,
-    handlePauseMarketingCampaign
+    handlePauseMarketingCampaign,
+    handleUpdateCampaign
   };
 };
 

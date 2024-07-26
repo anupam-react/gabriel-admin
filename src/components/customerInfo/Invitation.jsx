@@ -3,16 +3,17 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import CatalogueProduct from "./CatalogueProduct";
 import InvitationPreview from "./InvitationPreview";
-import useReferral from "../../hooks/useReferral";
-const Invitation = ({ handleOpen , id}) => {
+
+import useInvite from "../../hooks/useInvite";
+const Invitation = ({ handleOpen , id , onClose}) => {
   const {
-    referralData,
+    inviteData,
     handleChange,
-    setReferralData,
+    setInviteData,
     openOffer, setOpenOffer,
-    handleCreateReferalStampsUserRewards,
-    productId, setProductId
-  } = useReferral()
+    handleCreateEventInvite,
+    setProductId
+  } = useInvite()
 
   const [openUploadImage, setUploadImage] = useState(false);
 
@@ -42,7 +43,7 @@ const Invitation = ({ handleOpen , id}) => {
               
                className="flex justify-end bg-white  shadow rounded-md w-full "
              >
-               {referralData?.image?.name}
+               {inviteData?.image?.name}
                <div
                  className="flex py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
                  style={{ backgroundColor: "#00AAEA" }}
@@ -61,7 +62,7 @@ const Invitation = ({ handleOpen , id}) => {
             name="message"
             rows="4"
             cols="50"
-            value={referralData?.message}
+            value={inviteData?.customMessage}
             onChange={handleChange}
             // value="Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us."
             className="input"
@@ -75,7 +76,7 @@ const Invitation = ({ handleOpen , id}) => {
             id=""
             className="input"
             placeholder=""
-            value={referralData?.exclusiveLink}
+            value={inviteData?.exclusiveLink}
             onChange={handleChange}
             // value="https://www.Moneychat.com/slic e/referralvoucher"
           />
@@ -88,7 +89,7 @@ const Invitation = ({ handleOpen , id}) => {
             id=""
             className="input"
             placeholder=""
-            value={referralData?.expireDate}
+            value={inviteData?.expireDate}
             onChange={handleChange}
           />
         </div>
@@ -96,13 +97,13 @@ const Invitation = ({ handleOpen , id}) => {
       <div className="flex-center">
         <button
           className="menuButton"
-          onClick={() => handleCreateReferalStampsUserRewards(id)}
+          onClick={() => handleCreateEventInvite(id)}
         >
          See Invitation Review
         </button>
       </div>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-      <InvitationPreview handleOpen={setOpenOffer}/>
+      <InvitationPreview handleOpen={setOpenOffer} onClose={onClose}/>
       </DialogDefault>
       <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
         <div className="p-6">
@@ -116,7 +117,7 @@ const Invitation = ({ handleOpen , id}) => {
                 type="file"
                 className="hidden"
                 onChange={(e) =>
-                  setReferralData({ ...referralData, image: e.target.files[0] })
+                  setInviteData({ ...inviteData, image: e.target.files[0] })
                 }
               />
               <img src="../Vector (41).png" alt="" />

@@ -118,9 +118,7 @@ const TransactionFilter = ({ closeDrawer, open }) => {
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+              onClick={closeDrawer}
             >
               RESET
             </button>

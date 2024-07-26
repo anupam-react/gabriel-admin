@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
-import useReferral from "../../hooks/useReferral";
 import { formatDate3 } from "../../utiils";
+import useInvite from "../../hooks/useInvite";
 
 
-const InvitationOffer = ({ handleOpen }) => {
+const InvitationOffer = ({ handleOpen, onClose }) => {
   const {
-    referralData,
-  } = useReferral()
+    inviteData,
+  } = useInvite()
   const [openSuccess, setSuccess] = useState(false);
  
   return (
@@ -27,17 +27,17 @@ const InvitationOffer = ({ handleOpen }) => {
       <hr className="hr" />
       <div className="flex flex-col justify-center items-center gap-4">
       <div className="cardContainer2 px-8 py-4" >
-      <img src={referralData?.image} alt="" className="h-[100px] w-[150px]"/>
-      <p className="text-center">{referralData?.description}</p>
+      <img src={inviteData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p className="text-center">{inviteData?.description}</p>
       </div>
       <div >
       
           <div className="">
            
-              <p className="pb-3 text-[20px] font-[600] w-[300px]">{referralData?.message}</p>
-              <p className="pb-3 text-[20px] font-[600] w-[300px]">{referralData?.exclusiveLink}
+              <p className="pb-3 text-[20px] font-[600] w-[300px]">{inviteData?.message}</p>
+              <p className="pb-3 text-[20px] font-[600] w-[300px]">{inviteData?.exclusiveLink}
                 </p>
-              <p className="pb-3 text-[20px] font-[600] text-[#0070BC] w-[300px]">Exp : {formatDate3(referralData?.expireDate)}</p>
+              <p className="pb-3 text-[20px] font-[600] text-[#0070BC] w-[300px]">Exp : {formatDate3(inviteData?.expireDate)}</p>
            
           </div>
 
@@ -45,7 +45,7 @@ const InvitationOffer = ({ handleOpen }) => {
            <button className="menuButton4" onClick={()=>{
              setSuccess(true)
              setTimeout(()=>{
-              setSuccess(false)
+              onClose()
              },2000)
              }}>Send to Customer’s Offer Folder</button>
 

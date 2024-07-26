@@ -66,7 +66,7 @@ const PaginatedTable = () => {
             return (
               <tr key={i}>
                 <td className="w-1/2">
-                  <div className="flex items-center gap-6 ml-[100px]  my-2">
+                  <div className="flex items-center gap-6 ml-[100px] my-2 relative">
                     <div className="profile-image">
                       <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt="" />
                       <img

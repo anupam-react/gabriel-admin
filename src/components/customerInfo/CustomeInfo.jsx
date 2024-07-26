@@ -19,6 +19,7 @@ import OffersTable from "./OffersTable";
 import ReturnForm from "./ReturnForm";
 import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
+import { formatDate, formatDate2, formatDate3 } from "../../utiils";
 
 const CustomeInfo = ({ handleOpen , customerInfo}) => {
   const [openLoyality, setOpenLoyality] = useState(false);
@@ -156,7 +157,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader />
+      <InfoHeader onClose={() => handleOpen(false)}/>
       <div style={{ paddingTop: "40px", paddingBottom: "30px" }}>
         <p style={{ color: "#0070BC", fontWeight: 600 }}>CUSTOMER INSIGHTS</p>
         <hr className="hr3" />
@@ -198,7 +199,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Current  Points Balance",
                 image: "./image 701.png",
-                amount: "1000",
+                amount: customerInfo?.currentPointBalance,
                 showInfo: false,
               }}
             />
@@ -206,7 +207,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Point Vouchers",
                 image: "./image 701 (1).png",
-                amount: "1000",
+                amount: customerInfo?.pointVouchers,
                 showInfo: false,
               }}
             />
@@ -229,7 +230,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Incomplete Stamps",
                 image: "./image 699 (1).png",
-                amount: "04",
+                amount: customerInfo?.inCompleteStampsRedeemed,
                 showInfo: false,
               }}
             />
@@ -237,7 +238,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Stamp vouchers",
                 image: "./image 699 (1).png",
-                amount: "2",
+                amount: customerInfo?.stampVouchers,
                 showInfo: false,
               }}
             />
@@ -250,7 +251,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
           <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4 min-w-48 ">
             <img src="./image 700 (2).png" alt="" />
             <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
-              12/08
+              {formatDate3(customerInfo?.birthDay)}
             </p>
           </div>
         </div>
@@ -262,7 +263,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
             <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4 min-w-48 ">
               <img src="./image 700 (3).png" alt="" />
               <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
-                London UK
+               {customerInfo?.location}
               </p>
             </div>
           </div>
@@ -298,7 +299,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
              {isView === i && (
                       <div className="absolute top-[50px] right-[40px] cursor-pointer" ref={divRef}>
                      {/* <p className="viewProd text-[14px]">View Product</p> */}
-                     <MenuCard4 setOpenInfo={handleOpen}/>
+                     <MenuCard4 onClose={()=> handleOpen(false)}/>
                       </div>
                     )}
             </div>
@@ -311,8 +312,8 @@ It factors in the revenue generated from a customer, the duration of the relatio
       </div>
       <div className="progress-rotation">
         <RotaionProgress data={customerInfo?.retentionRate}/>
-        <LifeCycleStage2 />
-        <Promotion2 />
+        <LifeCycleStage2 data={customerInfo?.LifeCycleStage}/>
+        <Promotion2 data={customerInfo?.recommendedPromotionType}/>
       </div>
       <div style={{ margin: "30px 0px" }}>
         <BarChart data={customerInfo?.favouriteTimeOfTheDay}/>
@@ -370,34 +371,34 @@ It factors in the revenue generated from a customer, the duration of the relatio
         <ProductDetails handleOpen={setOpenProd} />
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} />
+        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-        <Loyality handleOpen={setOpenLoyality} />
+        <Loyality handleOpen={setOpenLoyality} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
-        <Engagement handleOpen={setOpenEngagement} />
+        <Engagement handleOpen={setOpenEngagement} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
-        <Promotions handleOpen={setOpenPromotions} />
+        <Promotions handleOpen={setOpenPromotions} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-        <RefferalActivity handleOpen={setOpenReferral} />
+        <RefferalActivity handleOpen={setOpenReferral} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionHistory handleOpen={setOpenTransaction} />
+        <TransactionHistory handleOpen={setOpenTransaction} onClose={()=> handleOpen(false)} />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen}/>
+        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
-        <Verification handleOpen={setOpenVerification} />
+        <Verification handleOpen={setOpenVerification} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <OffersTable handleOpen={setOpenOffer} />
+        <OffersTable handleOpen={setOpenOffer} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
-        <ReturnForm handleOpen={setOpenReturn} />
+        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
     </div>
   );
