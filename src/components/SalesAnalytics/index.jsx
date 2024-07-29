@@ -15,9 +15,13 @@ const SalesAnalytics = () => {
     saleCategory,
     saleLocation,
     saleTrendOver,
+    saleTotalRevenue,
+    transactionCount,
     getSaleByCategory,
     getSaleByLocation,
-    getSaleTrendOverTime
+    getSaleTrendOverTime,
+    getSaleAnalyticsTotalRevenue,
+    getSaleAnalyticsTransactionCount
   } = useSales()
 
   const {   
@@ -34,11 +38,14 @@ const SalesAnalytics = () => {
   const [selectedOption3, setSelectedOption3] = useState("");
   const [selectedOption4, setSelectedOption4] = useState("");
   const [selectedOption5, setSelectedOption5] = useState("");
+  const [selectedOption6, setSelectedOption6] = useState("");
+
   const [openCustom1, setOpenCustom1] = useState(false);
   const [openCustom2, setOpenCustom2] = useState(false);
   const [openCustom3, setOpenCustom3] = useState(false);
   const [openCustom4, setOpenCustom4] = useState(false);
   const [openCustom5, setOpenCustom5] = useState(false);
+  const [openCustom6, setOpenCustom6] = useState(false);
   
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
@@ -76,6 +83,24 @@ const SalesAnalytics = () => {
 
     }
   };
+  const handleChange5 = (event) => {
+    setSelectedOption5(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom5(true);
+    }else{
+      getSaleAnalyticsTotalRevenue(event.target.value)
+
+    }
+  };
+  const handleChange6 = (event) => {
+    setSelectedOption6(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom6(true);
+    }else{
+      getSaleAnalyticsTransactionCount(event.target.value)
+
+    }
+  };
 
 
 
@@ -90,14 +115,24 @@ const SalesAnalytics = () => {
     {
       title: "TOTAL REVENUE",
       image: "./image 51 (2).png",
-      amount: 5000,
+      amount: saleTotalRevenue,
       footerTitle: "INDIVIDUAL TRANSACTION PROCESSED",
+      handleChange: handleChange5,
+      selectedOption: selectedOption5,
+      openCustom: openCustom5,
+      setOpenCustom: setOpenCustom5,
+      handleSave: getSaleAnalyticsTotalRevenue
     },
     {
       title: "TOTAL TRANSACTIONS",
       image: "./image 51 (3).png",
-      amount: 5000,
+      amount: transactionCount,
       footerTitle: "INDIVIDUAL TRANSACTION PROCESSED",
+      handleChange: handleChange6,
+      selectedOption: selectedOption6,
+      openCustom: openCustom6,
+      setOpenCustom: setOpenCustom6,
+      handleSave: getSaleAnalyticsTransactionCount
     },
     {
       title: "AVERAGE TRANSACTION VALUE",

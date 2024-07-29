@@ -39,7 +39,7 @@ const Navbar = ({data}) => {
           className="rounded-full w-14 h-12"
           />
           <div>
-          <p className="font-semibold">{data?.fullName}</p>
+          <p className="font-semibold">{data?.firstName + " " + data?.lastName}</p>
           <p className="view">VIEW MORE {`>`}</p>
 
           </div>

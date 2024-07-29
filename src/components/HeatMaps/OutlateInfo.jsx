@@ -1,13 +1,13 @@
 import React from "react";
 import { BarChartMap } from "./BarChartMap";
 
-const OutlateInfo = () => {
+const OutlateInfo = ({data}) => {
   return (
     <div className="w-[350px]">
       <div className="flex gap-6 items-center">
-        <img src="./Ellipse 13.png" alt="" />
+        <img src={data?.image} alt="" />
         <p className="text-[#000000B2] font-semibold text-xl">
-          OUTLET <span className="text-[#FEA82F]">#123</span>
+          OUTLET <span className="text-[#FEA82F]">{data?.name}</span>
         </p>
       </div>
       <hr className="my-4" />
@@ -16,7 +16,7 @@ const OutlateInfo = () => {
         <div>
           <p className="font-semibold text-[18px]">Outlet Location -</p>
           <p className="text-[#000000B2] font-semibold pt-2 text-[14px]">
-            Street 1, Town Name, Lorem Ipsum City, New Delhi, India
+          {data?.firstLineAddress} ,  {data?.city}, {data?.state}
           </p>
         </div>
       </div>

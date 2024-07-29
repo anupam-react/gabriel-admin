@@ -26,117 +26,29 @@ function Icon({ id, open }) {
   );
 }
 
-export function AccordionCustomIcon() {
+export function AccordionCustomIcon({data}) {
+
+  console.log(data)
   const [open, setOpen] = React.useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   return (
     <>
-      <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(1)}>
+    {data?.map((d, i)=>(
+      <Accordion open={open === i+1} icon={<Icon id={i+1} open={open} />}>
+        <AccordionHeader onClick={() => handleOpen(i+1)}>
           <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
+           {d?.question}
           </p>
         </AccordionHeader>
         <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
+        {d?.answer}
         </AccordionBody>
       </Accordion>
-      <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(2)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(3)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(4)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 5} icon={<Icon id={5} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(5)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 5} icon={<Icon id={5} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(5)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 5} icon={<Icon id={5} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(5)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={open === 5} icon={<Icon id={5} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(5)}>
-          <p className="text-[18px] text-[#000000B2]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ?
-          </p>
-        </AccordionHeader>
-        <AccordionBody>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          tempor lacus nec odio semper egestas. Integer gravida pulvinar augue,
-          a facilisis enim scelerisque et. Quisque a ligula vestibulum, suscipit
-          lectus vitae, blandit turpis.
-        </AccordionBody>
-      </Accordion>
+
+    ))}
+    
     </>
   );
 }

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./index.scss";
 import { GoogleMapPage } from "./GoogleMapPage";
 import Searchbar from "./Searchbar";
+
 const HeatMaps = () => {
+
   const [showSearch, setShowSearch] = useState(false);
   return (
     <div>

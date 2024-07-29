@@ -5,10 +5,24 @@ import InventoryFilter from "./InventoryFilter";
 import { useNavigate } from "react-router-dom";
 import useProduct from "../../hooks/useProduct";
 const Inventory = () => {
-  const { product }= useProduct()
-  
+  const {
+    product,
+    range,
+    setRange,
+    range1,
+    setRange1,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    getProduct,
+  } = useProduct();
+
   const [isOpen, setIsOpen] = useState(false);
   const [openAddProd, setOpenAddProd] = useState(false);
+  const [openCustom , setOpenCustom] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const closeDrawer = () => setIsOpen(false);
   const navigate = useNavigate();
@@ -73,6 +87,11 @@ const Inventory = () => {
               type="text"
               className="border-none w-48 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
               placeholder="Search "
+              value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getProduct(e.target.value);
+            }}
             />
           </div>
           <div className="flex">
@@ -144,10 +163,28 @@ const Inventory = () => {
       </div>
       <div className="card-main">
         {product?.docs?.map((d, i) => (
-          <InventoryCard data={d} key={i}/>
+          <InventoryCard data={d} key={i} />
         ))}
       </div>
-      {isOpen && <InventoryFilter closeDrawer={closeDrawer} open={isOpen} />}
+      {isOpen && (
+        <InventoryFilter
+          closeDrawer={closeDrawer}
+          open={isOpen}
+          range={range}
+          setRange={setRange}
+          range1={range1}
+          setRange1={setRange1}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          setOpenCustom={setOpenCustom}
+          openCustom={openCustom}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          getProduct={getProduct}
+        />
+      )}
     </div>
   );
 };

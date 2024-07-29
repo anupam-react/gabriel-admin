@@ -5,8 +5,12 @@ import CustomerFeedBack from "./CustomerFeedBack";
 import MenuCard from "../customerInfo/MenuCard";
 import { DialogDefault } from "../common/DilogBox";
 import CustomeInfo from "../customerInfo/CustomeInfo";
+import useFeedback from "../../hooks/useFeedback";
+import { getDateFromISOString } from "../../utiils";
+import StarRating from "./StarRating";
 
 const FeedBack = () => {
+  const { feedback } = useFeedback()
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
@@ -14,14 +18,14 @@ const FeedBack = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   let PageSize = 3;
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  
   const closeDrawer = () => setIsOpen(false);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return feedback?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage , feedback]);
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -71,7 +75,7 @@ const FeedBack = () => {
                       <div className="flex items-center justify-center gap-6 relative">
                       <div className="relative">
                     <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
-                      <img src="./carbon_user-avatar-filled.png" alt=""/>
+                      <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt=""/>
                     </div>
                       <img
                         src="./solar_menu-dots-bold (1).png"
@@ -89,8 +93,8 @@ const FeedBack = () => {
                           onClick={() => setOpenInfo(true)}
                          
                         >
-                          <p>Jhon Deo</p>
-                          ID:MC12345
+                          <p>{item?.userId?.firstName + " " + item?.userId?.lastName}</p>
+                          ID:{item?._id}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]">
@@ -101,29 +105,28 @@ const FeedBack = () => {
                     </td>
                     <td>
                       <p className="text-[#000000B2] font-semibold">
-                        DD/MM/YYYY
+                       {getDateFromISOString(item?.date)}
                       </p>
                     </td>
-                    <td className="font-semibold">Technical Issue</td>
+                    <td className="font-semibold">{item?.type}</td>
                     <td>
                       <div className="flex justify-center gap-3">
-                        <p className="text-[#3BB54A] font-bold text-sm">4.5</p>
-                        <img src="./Group 409.png" alt="" />
+                        <p className="text-[#3BB54A] font-bold text-sm">{item?.rating}</p>
+                  <StarRating rating={item?.rating}/>
                       </div>
                     </td>
 
-                    <td className="text-sm w-[300px] cursor-pointer"  onClick={() => setOpen(true)}>
-                      <p className="font-bold pb-2 text-left">Lorem Ipsum Heading!</p>
-                      <p className=" text-[#00000099] text-left">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque efficitur eu magna et malesuada. Null.....
-                        <span
-                          className="text-[#0070BC] font-semibold "
+                    <td className="text-sm w-[300px] cursor-pointer" onClick={() => setOpen(item)}>
+                      <p className="font-bold pb-2 text-left">{item?.title}</p>
+                      <p className=" text-[#00000099] text-left line-clamp-3">
+                      {item?.comment}
+                      </p>
+                        <p
+                          className="text-[#0070BC] font-semibold text-left"
                          
                         >
                           READ MORE
-                        </span>
-                      </p>
+                        </p>
                     </td>
                   </tr>
               );
@@ -134,7 +137,7 @@ const FeedBack = () => {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={data.length}
+        totalCount={feedback?.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />

@@ -31,9 +31,9 @@ const usePromoCode = () => {
 
   const navigate = useNavigate();
 
-  async function getPromoCodeByToken() {
+  async function getPromoCodeByToken(search="", fromDate="", toDate="", page="", limit="", maxAmount="", minAmount=""  ) {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/PromoCode/getPromoCodeByToken"
+      `https://gabriel-backend.vercel.app/api/v1/PromoCode/getPromoCodeByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxAmount=${maxAmount}&minAmount=${minAmount}`
     );
 
     setPromocodes(data?.data);
@@ -201,6 +201,7 @@ const usePromoCode = () => {
     handleDeactivePromocode,
     handleDeletePromocode,
     getPromoCodeById,
+    getPromoCodeByToken
   };
 };
 

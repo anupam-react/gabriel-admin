@@ -7,16 +7,44 @@ import InventoryProfile from "./InventoryProfile";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './SliderRangeFilter.css';
-const InventoryFilter = ({ closeDrawer, open }) => {
+import { formatDate2 } from "../../utiils";
+const InventoryFilter = ({ closeDrawer, open , range,
+  setRange,
+  range1,
+  setRange1,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  setOpenCustom,
+  openCustom,
+  selectedOption,
+  setSelectedOption,
+  getProduct 
+}) => {
   const [openProfile, setOpenProfile] = useState(false);
-  
-  const [range, setRange] = useState([10, 60]);
+
+  const MonthOptions = [
+    { label: "WEEKLY", value: "weekly" },
+    { label: "MONTHLY", value: "month" },
+    { label: "YEARLY", value: "year" },
+    { label: "CUSTOM", value: "custom" },
+  ];
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom(true);
+    }else{
+      getProduct(event.target.value)
+    }
+  };
+
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
     console.log('Selected range: ', newRange);
   };
-  const [range1, setRange1] = useState([10, 60]);
 
   const handleRangeChange1 = (newRange) => {
     setRange1(newRange);
@@ -68,11 +96,11 @@ const InventoryFilter = ({ closeDrawer, open }) => {
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={startDate} setStartDate={setStartDate}/>
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={endDate} setStartDate={setEndDate}/>
                 </div>
               </div>
 
@@ -83,7 +111,7 @@ const InventoryFilter = ({ closeDrawer, open }) => {
         
         <div className="flex items-center gap-2">
          {/* <span className="text-[#000000B2] text-[14px] font-[500]">Min.</span> */}
-           <Slider range  min={0} max={100} value={range} onChange={handleRangeChange} allowCross={false}/>
+           <Slider range  min={0} max={10000} value={range} onChange={handleRangeChange} allowCross={false}/>
            {/* <span className="text-[#000000B2] text-[14px] font-[500]">Max</span> */}
         </div>
   
@@ -168,9 +196,10 @@ const InventoryFilter = ({ closeDrawer, open }) => {
           <div className="button-container">
             <button
               className="button2"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                 getProduct("",formatDate2(startDate), formatDate2(endDate), "","", range1[0], range1[1], range[0], range[1])
+                  closeDrawer()
+                }}
             >
               APPLY
             </button>

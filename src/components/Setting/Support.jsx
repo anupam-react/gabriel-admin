@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AccordionCustomIcon } from "./Accordian";
 import "./index.scss";
+import { fetchApiData } from "../../utiils";
 const Support = () => {
+  const [faq, setFaq] = useState([])
+  async function getFaq() {
+    const data = await fetchApiData(
+      "https://gabriel-backend.vercel.app/api/v1/static/faq/All"
+    );
+    setFaq(data?.data);
+  }
+
+  useEffect(() => {
+    getFaq()
+  }, [faq?.length])
+  
   return (
     <div>
       <p className="font-semibold text-xl py-6">Support & Help Desk</p>
@@ -14,7 +27,7 @@ const Support = () => {
           FREQUENTLY ASKED QUESTIONS ( FAQ’S )
         </p>
         <div>
-          <AccordionCustomIcon />
+          <AccordionCustomIcon data={faq}/>
         </div>
         <img src="./Component 32.png" alt="" className="message-box" />
       </div>

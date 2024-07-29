@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Drawer } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "./DilogBox";
+import useProfile from "../../hooks/useProfile";
 const Profile = ({ closeDrawer, open , data }) => {
+  const {
+    handleUpdateProfile} = useProfile()
   const [openUploadImage, setUploadImage] = useState(false);
   const navigate = useNavigate();
   return (
@@ -79,9 +82,12 @@ const Profile = ({ closeDrawer, open , data }) => {
                 id="dropzone-file"
                 type="file"
                 className="hidden"
-                // onChange={(e) =>
-                //   setOfferData({ ...offerData, image: e.target.files[0] })
-                // }
+                onChange={(e) =>{
+              
+                  handleUpdateProfile(e.target.files[0])
+                  setUploadImage(false)
+                }
+                }
               />
               <img src="../Vector (41).png" alt="" />
               <p className="underline text-black font-[500]">Browse Image</p>

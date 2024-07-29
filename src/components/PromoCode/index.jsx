@@ -19,11 +19,18 @@ const PromoCode = () => {
     handleReactivePromocode,
     handleDeactivePromocode,
     handleDeletePromocode,
-    getPromoCodeById
+    getPromoCodeById,
+    getPromoCodeByToken
   } = usePromoCode()
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isActive, setActive] = useState(-1);
+  const [openCustom , setOpenCustom] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [range, setRange] = useState([0, 5000]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [openReactive, setOpenReactive] = useState(false);
   const [open, setOpen] = useState(false);
@@ -67,6 +74,11 @@ const PromoCode = () => {
             type="text"
             className="border-none w-64 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getPromoCodeByToken(e.target.value);
+            }}
           />
         </div>
         <div className="flex">
@@ -191,7 +203,20 @@ const PromoCode = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />}
+      {isOpen && <PromoFilter 
+      closeDrawer={closeDrawer}
+       open={isOpen}  
+       range={range}
+          setRange={setRange}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          setOpenCustom={setOpenCustom}
+          openCustom={openCustom}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          getPromoCodeByToken={getPromoCodeByToken}/>}
       <CreatePromo open={open} setOpen={setOpen} handleOpen={handleOpen} />
       <CreatePromo open={isEdit} edit={isEdit} setOpen={setEdit} handleOpen={handleOpen2} />
       <MegaSale

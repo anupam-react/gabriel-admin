@@ -8,6 +8,10 @@ const useProduct = () => {
   const [openSuccess1, setSuccess1] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [openHighlights, setOpenHighlights] = useState(false);
+  const [range, setRange] = useState([0, 100]);
+  const [range1, setRange1] = useState([0, 10000]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -42,9 +46,9 @@ const useProduct = () => {
 
   const navigate = useNavigate();
 
-  async function getProduct() {
+  async function getProduct(search="", fromDate="", toDate="", page="", limit="", maxStock="", minStock="", maxPrice="", minPrice="") {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProduct"
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
     );
     setProduct(data?.data);
   }
@@ -266,6 +270,11 @@ const useProduct = () => {
     setOpenMenu,
     openHighlights,
     setOpenHighlights,
+    range, setRange,
+    range1, setRange1,
+    startDate, setStartDate,
+    endDate, setEndDate,
+    getProduct,
     getProductById,
     handleCreateProduct,
     handleUpdateProduct,

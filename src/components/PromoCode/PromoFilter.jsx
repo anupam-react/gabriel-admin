@@ -9,12 +9,24 @@ import SelectItem from "./SelectItem";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./SliderRangeFilter.css";
+import { formatDate2 } from "../../utiils";
 
 // import AddProfile from "./AddProfile";
-const PromoFilter = ({ closeDrawer, open }) => {
+const PromoFilter = ({ closeDrawer, open , 
+   range,
+  setRange,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  setOpenCustom,
+  openCustom,
+  selectedOption,
+  setSelectedOption,
+  getPromoCodeByToken }) => {
   const [openRetailer, setOpenRetailer] = useState(false);
   const [openItem, setOpenItem] = useState(false);
-  const [range, setRange] = useState([10, 60]);
+
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
@@ -76,11 +88,11 @@ const PromoFilter = ({ closeDrawer, open }) => {
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={startDate} setStartDate={setStartDate}/>
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2 startDate={endDate} setStartDate={setEndDate}/>
                 </div>
               </div>
 
@@ -96,7 +108,7 @@ const PromoFilter = ({ closeDrawer, open }) => {
                       <Slider
                         range
                         min={0}
-                        max={100}
+                        max={5000}
                         value={range}
                         onChange={handleRangeChange}
                         allowCross={false}
@@ -180,7 +192,10 @@ const PromoFilter = ({ closeDrawer, open }) => {
             </div>
           </div>
           <div className="button-container">
-            <button className="button2" onClick={closeDrawer}>
+            <button className="button2" onClick={()=>{
+              getPromoCodeByToken("",formatDate2(startDate), formatDate2(endDate), "","", range[0], range[1] )
+              closeDrawer()
+            }}>
               APPLY
             </button>
             <button className="button4" onClick={closeDrawer}>

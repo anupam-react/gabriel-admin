@@ -164,6 +164,21 @@ export function formatTime(dateString) {
 
   return `${hours}:${minutes}:${seconds} ${amOrPm}`;
 }
+export function formatTime2(dateString) {
+  const date = new Date(dateString);
+
+  let hours = date.getHours();
+  const minutes = ("0" + date.getMinutes()).slice(-2);
+  const seconds = ("0" + date.getSeconds()).slice(-2);
+
+  let amOrPm = "AM";
+  if (hours >= 12) {
+    amOrPm = "PM";
+    hours = hours % 12 || 12;
+  }
+
+  return `${hours}:${minutes} ${amOrPm}`;
+}
 
 export function getDateFromISOString(dateString) {
   const date = new Date(dateString);
