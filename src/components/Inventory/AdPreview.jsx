@@ -9,7 +9,7 @@ const AdPreview = ({ isPay = false }) => {
   };
   const navigate = useNavigate();
   const handleSubmit = () => {
-    isPay ? navigate("/inventory/payment") : navigate("/inventory/ad-confirm");
+    isPay ? navigate("/inventory/payment/inventory") : navigate("/inventory/ad-confirm");
   };
   return (
     <div>

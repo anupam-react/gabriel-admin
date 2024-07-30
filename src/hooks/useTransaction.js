@@ -37,9 +37,9 @@ const useTransaction = () => {
     setTimeBaseAnalytics(data?.data)
   }
 
-  async function getTransactionFilter(search="", fromDate="", toDate="", min="" , max="" ) {
+  async function getTransactionFilter(fromDate="2024-01-30", toDate="2024-06-30", min="" , max="" ) {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/Dashboard/transactionData?type=All&customStartDate=${fromDate}&customEndDate=${toDate}&min=${min}&max=${max}`
+      `https://gabriel-backend.vercel.app/api/v1/Dashboard/transactionData`
     );
    
   }
@@ -52,6 +52,7 @@ const useTransaction = () => {
     getAverageTransactionValue()
     getTopSellingItems()
     getTimeBaseAnalytics()
+    getTransactionFilter()
 
   },[])
 

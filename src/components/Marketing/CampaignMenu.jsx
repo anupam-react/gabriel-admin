@@ -90,8 +90,8 @@ const CampaignMenu = ({
             className="cursor-pointer"
             onClick={() => {
               isOfferCard
-                ? naviagte("/marketing/offer-view-past")
-                : naviagte("/marketing/view-past");
+                ? naviagte(`/marketing/offer-view-past/${id}`)
+                : naviagte(`/marketing/view-past/${id}`);
             }}
           >
             Manage
@@ -101,15 +101,15 @@ const CampaignMenu = ({
             onClick={() => {
               if (isOfferCard){ 
                 getMarketingCampaignById(id)
-                naviagte("/marketing/edit-marketing")
+                naviagte("/marketing/review-offer")
               }
               else if(isShop) {
                 getMarketingCampaignById(id)
-                naviagte("/marketing/edit-shop-marketing");
+                naviagte("/marketing/review-shop");
               }
               else{ 
                 getMarketingCampaignById(id)
-                naviagte("/marketing/edit-followers-marketing")
+                naviagte("/marketing/review-campaign")
 
               }
             }}

@@ -88,7 +88,7 @@ const PaginatedTable = () => {
                        getCustomerInfoForParticularUser(item?._id)
                        }}>
                     <p className="profileId text-left" >
-                  {item?.firstName + " " + item?.lastName }
+                  {item?.fullName || item?.firstName + " " + item?.lastName }
                     </p>
                     <p className="profileId">
                       ID:{item?._id}

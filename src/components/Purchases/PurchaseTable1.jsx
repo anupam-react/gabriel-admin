@@ -4,20 +4,31 @@ import { DialogDefault } from "../common/DilogBox";
 import CustomeInfo from "../customerInfo/CustomeInfo";
 import MenuCard from "../customerInfo/MenuCard";
 import TransactionDetails from "../customerInfo/TransactionDetails";
+import { formatTime2, getDateFromISOString } from "../../utiils";
+import usePurchases from "../../hooks/usePurchases";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
 
-const PurchaseTable1 = () => {
+
+const PurchaseTable1 = ({data}) => {
+
+  const {singlePurchases ,  getPurchasesStoreId }  = usePurchases()
+  const {  
+    customerInfo,
+    getCustomerInfoForParticularUser
+  } = useCusomerInfo()
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
   const [isOpenTrans, setOpenTrans] = useState(false);
   let PageSize = 5;
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+    return data?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage , data]);
   return (
     <div>
       <div className="table-wapper">
@@ -39,8 +50,10 @@ const PurchaseTable1 = () => {
                    <td>
                       <div className="flex items-center justify-center gap-6 relative">
                       <div className="relative">
-                    <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
-                      <img src="./carbon_user-avatar-filled.png" alt=""/>
+                    <div className="profile-image cursor-pointer" onClick={() =>{ 
+                         getCustomerInfoForParticularUser(item?.user?._id)
+                      setOpenInfo(true)}}>
+                      <img src={item?.user?.image || "./carbon_user-avatar-filled.png"} alt=""/>
                     </div>
                       <img
                         src="./solar_menu-dots-bold (1).png"
@@ -55,39 +68,45 @@ const PurchaseTable1 = () => {
                         
                         <p
                           className="profileId font-semibold text-left text-[#000000B2]"
-                          onClick={() => setOpenInfo(true)}
+                          onClick={() =>{
+                            getCustomerInfoForParticularUser(item?.user?._id)
+                             setOpenInfo(true)
+                            }}
                          
                         >
-                          <p>Jhon Deo</p>
-                          ID:MC12345
+                          <p>{item?.user?.fullName || item?.user?.firstName + " " + item?.user?.lastName}</p>
+                          ID:{item?._id}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]" >
-                            <MenuCard onClose={()=> setOpenMenu(false)} setOpenInfo={setOpenInfo}/>
+                            <MenuCard onClose={()=> setOpenMenu(false)} data={item?.user}/>
                           </div>
                         )}
                       </div>
                     </td>
-                  <td className="font-semibold text-xl"> £500</td>
-                  <td onClick={()=> setOpenTrans(true)} className="font-semibold text-[#0070BC] underline cursor-pointer">ABCD12345</td>
+                  <td className="font-semibold text-xl">£{item?.total}</td>
+                  <td onClick={()=> {
+                    getPurchasesStoreId(item?._id)
+                    setOpenTrans(true)
+                    }} className="font-semibold text-[#0070BC] underline cursor-pointer">{item?.orderId}</td>
 
                   <td>
-                    DD/MM/YYYY <span className="text-[#0070BC]">(6:30 AM)</span>
+                   {getDateFromISOString(item?.createdAt)} <span className="text-[#0070BC]">({formatTime2(item?.createdAt)})</span>
                   </td>
                   <td>
                     <div className="flex items-center gap-3">
                       <img
-                        src="./Ellipse 11 (1).png"
+                        src={item?.productId?.image}
                         alt=""
-                        className="h-10 w-10"
+                        className="h-10 w-10 rounded-full"
                       />
                       <div>
-                        <p className="font-semibold text-left">DUNKIN’</p>
-                        <p className="text-[#000000B2]">Sweet Donuts</p>
+                        <p className="font-semibold text-left">{item?.productId?.name}</p>
+                        <p className="text-[#000000B2] text-left">{item?.productId?.nutrition}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="font-semibold text-[#000000B2]">#ABCD12345</td>
+                  <td className="font-semibold text-[#000000B2]">{item?.productId?._id}</td>
                 </tr>
               );
             })}
@@ -97,15 +116,15 @@ const PurchaseTable1 = () => {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={data.length}
+        totalCount={data?.length}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
        <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo} />
+        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo}/>
       </DialogDefault>
        <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
-        <TransactionDetails handleOpen={setOpenTrans} />
+        <TransactionDetails handleOpen={setOpenTrans} userData={singlePurchases?.user} data={singlePurchases}/>
       </DialogDefault>
     </div>
   );

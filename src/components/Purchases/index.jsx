@@ -5,7 +5,9 @@ import PurchaseTable2 from "./PurchaseTable2";
 import PurchasesReport from "./PurchasesReport";
 import PromoFilter from "../PromoCode/PromoFilter";
 import "./index.scss";
+import usePurchases from "../../hooks/usePurchases";
 const Purchases = () => {
+  const { purchasesApp , purchasesStore}= usePurchases()
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -66,7 +68,7 @@ const Purchases = () => {
           In-Store Purchases
         </button>
       </div>
-      {activeLink === 1 ? <PurchaseTable2 /> : <PurchaseTable1 />}
+      {activeLink === 1 ? <PurchaseTable2 data={purchasesStore}/> : <PurchaseTable1 data={purchasesApp}/>}
       <PurchasesReport open={open} setOpen={setOpen} handleOpen={handleOpen} />
       {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />}
     </div>

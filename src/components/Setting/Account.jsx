@@ -3,6 +3,7 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import useAccount from "../../hooks/useAccount";
+import useProfile from "../../hooks/useProfile";
 const Account = () => {
   const {
     fname,
@@ -22,9 +23,12 @@ const Account = () => {
     setSuccess,
     handleAddStaff
   } = useAccount();
+  const {profile} = useProfile()
   const [isChecked, setIsChecked] = useState(false);
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
+
+  console.log(profile)
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -64,7 +68,7 @@ const Account = () => {
               placeholder="Full Name"
               className="account-input"
               required
-              // value={name}
+              value={profile?.fullName}
               // onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -163,6 +167,7 @@ const Account = () => {
               placeholder="1234567890"
               className="account-input"
               required
+              value={profile?.phone}
               // value={name}
               // onChange={(e) => setPassword(e.target.value)}
             />
@@ -180,7 +185,7 @@ const Account = () => {
               placeholder="loremipsum@gmail.com"
               className="account-input"
               required
-              // value={password}
+              value={profile?.email}
               // onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -206,6 +211,7 @@ const Account = () => {
         </div>
 
         <div className="flex flex-col gap-4">
+        <div className="flex gap-[20px]">
           <div className="relative">
             <img
               src="./image 52 (2).png"
@@ -222,6 +228,22 @@ const Account = () => {
               // value={name}
               // onChange={(e) => setPassword(e.target.value)}
             />
+          </div>
+          <div className="">
+              <label
+                for="dropzone-file3"
+                className="flex bg-white items-center shadow rounded-md justify-center "
+              >
+                <div
+                  className="flex items-center justify-center py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
+                  style={{ backgroundColor: "#00AAEA80" }}
+                >
+                  <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
+                  <p className="text-sm">UPLOAD</p>
+                </div>
+                <input id="dropzone-file3" type="file" className="hidden" />
+              </label>
+            </div>
           </div>
           <div className="flex gap-[20px]">
             <div className="relative">
@@ -261,6 +283,7 @@ const Account = () => {
         </div>
         <p className="text-black">Identity Verification</p>
         <div className="flex flex-col gap-4">
+        <div className="flex gap-[20px]">
           <div className="relative">
             <img
               src="./image 52 (2).png"
@@ -277,7 +300,25 @@ const Account = () => {
               // value={name}
               // onChange={(e) => setPassword(e.target.value)}
             />
+         
           </div>
+          <div className="">
+              <label
+                for="dropzone-file1"
+                className="flex bg-white items-center shadow rounded-md justify-center "
+              >
+                <div
+                  className="flex items-center justify-center py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
+                  style={{ backgroundColor: "#00AAEA80" }}
+                >
+                  <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
+                  <p className="text-sm">UPLOAD</p>
+                </div>
+                <input id="dropzone-file1" type="file" className="hidden" />
+              </label>
+            </div>
+          </div>
+          <div className="flex gap-[20px]">
           <div className="relative">
             <img
               src="./image 52 (2).png"
@@ -294,6 +335,22 @@ const Account = () => {
               // value={name}
               // onChange={(e) => setPassword(e.target.value)}
             />
+          </div>
+          <div className="">
+              <label
+                for="dropzone-file2"
+                className="flex bg-white items-center shadow rounded-md justify-center "
+              >
+                <div
+                  className="flex items-center justify-center py-2 px-4 rounded-md text-white gap-2 cursor-pointer"
+                  style={{ backgroundColor: "#00AAEA80" }}
+                >
+                  <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
+                  <p className="text-sm">UPLOAD</p>
+                </div>
+                <input id="dropzone-file2" type="file" className="hidden" />
+              </label>
+            </div>
           </div>
         </div>
         <div className="text-[#FC0005] flex items-center gap-2 ml-[10vw]">

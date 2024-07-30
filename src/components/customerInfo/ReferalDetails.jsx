@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import ReferalPreview from "./ReferalPreview";
+import useReferral from "../../hooks/useReferral";
+import { formatDate3 } from "../../utiils";
 
 const ReferalDetails = ({ handleOpen , onClose}) => {
+
+  const {
+    referralData,
+  } = useReferral();
 
   const [openSuccess, setSuccess] = useState(false);
   const data1 = [
     {
       title: "Custom Message",
-      value: "Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.",
+      value: referralData?.message,
       handleCLick: () => {
         handleOpen(false);
     },
@@ -19,21 +25,21 @@ const ReferalDetails = ({ handleOpen , onClose}) => {
   const data2 = [
     {
       title: "Expiration Date",
-      value: "01-10-24",
+      value: formatDate3(referralData?.expireDate),
       handleCLick: () => {
         handleOpen(false);
     },
     },
     {
       title: "Reward Type",
-      value: "Points",
+      value: referralData?.typeOfReward,
       handleCLick: () => {
         handleOpen(false);
     },
     },
     {
       title: "Reward Value",
-      value: "200",
+      value: referralData?.rewardPoints,
       handleCLick: () => {
         handleOpen(false);
     },
@@ -58,8 +64,8 @@ const ReferalDetails = ({ handleOpen , onClose}) => {
     </div>
     <hr className="hr" />
     <div className="cardContainer">
-      <img src="image 710.jpg" alt="" />
-      <p>70% Birthday Special Discount</p>
+      <img src={referralData?.image} alt="" />
+      <p>{referralData?.description}</p>
     </div>
     <div className="footer-Main">
           {data1?.map((d, i) => (
@@ -75,9 +81,7 @@ const ReferalDetails = ({ handleOpen , onClose}) => {
           <div className="footer-container">
               <p>Exclusive Link</p>
               <span>:</span>
-              <p className="text-[#0070BC]">http://
-                www.Moneychat.com/
-                Slice/refferalvoucher</p>
+              <p className="text-[#0070BC]">{referralData?.exclusiveLink}</p>
               <button className="edit-button2" onClick={()=> handleOpen(false)}>
                 Edit
               </button>

@@ -29,7 +29,7 @@ const Payment = () => {
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">Payment</p>
         <button className="back" onClick={()=> navigate("/marketing")}> 
-        <img src="../back.png" alt="" />
+        <img src="../../back.png" alt="" />
         Back</button>
       
       </div>
@@ -54,7 +54,7 @@ const Payment = () => {
               value="9870 3456 7890 6473"
               className="cardN-input"
             />
-            <img src="../mastercard 1.png" alt="" className="visa-logo" />
+            <img src="../../mastercard 1.png" alt="" className="visa-logo" />
           </div>
           <div className="flex justify-between">
             <div className="payment-input-container">
@@ -86,7 +86,7 @@ const Payment = () => {
       </div>
       <DialogDefault open={isSuccess} handleOpen={setSuccess}>
         <div className="alert">
-          <img src="../Vector (2).png" alt="" />
+          <img src="../../Vector (2).png" alt="" />
           <p className="text-center text-[20px]">
           Payment Successfully
           </p>
@@ -94,7 +94,7 @@ const Payment = () => {
       </DialogDefault>
       <DialogDefault open={isReview} handleOpen={setReview}>
         <div className="alert">
-          <img src="../emojione-monotone_hourglass-not-done.png" alt="" />
+          <img src="../../emojione-monotone_hourglass-not-done.png" alt="" />
           <p className="text-center text-[20px]">
           Thank you! Your ad is under review. We will let you know when it is Live.
           </p>
@@ -102,7 +102,7 @@ const Payment = () => {
       </DialogDefault>
       <DialogDefault open={isLive} handleOpen={setLive}>
         <div className="alert">
-          <img src="../Vector (2).png" alt="" />
+          <img src="../../Vector (2).png" alt="" />
           <p className="text-center text-[20px]">
           Congratulations! Your ad is now Live.
           </p>

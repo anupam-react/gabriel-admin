@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./index.scss";
 import { GoogleMapPage } from "./GoogleMapPage";
 import Searchbar from "./Searchbar";
+import useOutlate from "../../hooks/useOutlate";
 
 const HeatMaps = () => {
+  const { outlate } = useOutlate();
 
   const [showSearch, setShowSearch] = useState(false);
   return (
@@ -30,7 +32,7 @@ const HeatMaps = () => {
       <div className="flex justify-between items-center gap-6 my-6">
         <img src="./Ellipse 13.png" alt="" />
         <p className="font-bold text-[20px]">
-          Total <span className="text-[#FD575B]">12</span> Outlets{" "}
+          Total <span className="text-[#FD575B]">{outlate?.docs?.length}</span> Outlets{" "}
           <span className="text-[#000000B2]">Outlets all over the India</span>
         </p>
         <div className="flex gap-4">

@@ -28,7 +28,7 @@ const Profile = ({ closeDrawer, open , data }) => {
           <img src={data?.image} alt="" className="w-[120px] h-[120px] mb-4 rounded-full" />
             <img src="../tabler_edit.png" alt="" className="absolute bottom-4 right-2 cursor-pointer" onClick={()=> setUploadImage(true)} />
           </div>
-          <p className="font-semibold pb-2">{data?.fullName}</p>
+          <p className="font-semibold pb-2">{data?.fullName || data?.firstName + " " + data?.lastName}</p>
           <p className="text-sm">
             <span className="text-[#0070BC]">USER ID</span> - {data?._id}
           </p>

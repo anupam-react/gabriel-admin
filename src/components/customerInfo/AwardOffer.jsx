@@ -79,7 +79,7 @@ const AwardOffer = ({handleOpen}) => {
       See Promotion Preview
       </button>
       <DialogDefault open={openCustom} handleOpen={setOpenCustom}>
-        <AwardCustomer handleOpen={setOpenCustom} />
+        <AwardCustomer handleOpen={setOpenCustom} id={data?._id}/>
       </DialogDefault>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
         <PromotionPreview  handleOpen={setSuccess}/>

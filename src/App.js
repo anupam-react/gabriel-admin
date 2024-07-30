@@ -152,11 +152,11 @@ function App() {
             element={<ViewProduct isOfferCard={true} />}
           />
           <Route
-            path="/marketing/offer-view-past"
+            path="/marketing/offer-view-past/:id"
             element={<ViewProduct isOfferCard={true} isPast={true} />}
           />
           <Route
-            path="/marketing/view-past"
+            path="/marketing/view-past/:id"
             element={<ViewProduct isOfferCard={false} isPast={true} />}
           />
           <Route path="/marketing/newCampaign" element={<NewCampaign />} />

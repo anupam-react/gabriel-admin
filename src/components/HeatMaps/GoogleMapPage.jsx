@@ -26,14 +26,15 @@ export function GoogleMapPage() {
   console.log(oulateData);
 
   const onMarkerClick = (index) => {
-    console.log(showingInfoWindow);
+    console.log(index , showingInfoWindow);
     // setSelectedPlace(props);
     // setActiveMarker(marker);
+    if(showingInfoWindow === index) return;
     setShowingInfoWindow(index);
   };
 
   const onClose = () => {
-    setActiveMarker(null);
+    // setActiveMarker(null);
     setShowingInfoWindow(false);
   };
   const locations = [
@@ -64,7 +65,7 @@ export function GoogleMapPage() {
     setMap(null);
   }, []);
 
-  const getCoordinates = async (address) => {
+  const getCoordinates = async (address , data) => {
     try {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
         address
@@ -72,11 +73,8 @@ export function GoogleMapPage() {
       const response = await axios.get(url);
       if (response.data.status === "OK" && response.data.results.length > 0) {
         const location = response.data.results[0].geometry.location;
-        setCoordinates({
-          lat: location.lat,
-          lng: location.lng,
-        });
-        oulateData?.push( {lat: location.lat,
+    
+        oulateData?.push( {  ...data, lat: location.lat,
           lng: location.lng})
         setError("");
       } else {
@@ -92,7 +90,7 @@ export function GoogleMapPage() {
 
   useEffect(() => {
     {outlate?.docs?.map((d , i)=>(
-      getCoordinates(d?.city)
+      getCoordinates(d?.city , d)
     ))}
   }, [outlate?.docs?.length])
   
@@ -101,17 +99,18 @@ export function GoogleMapPage() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={{
-        lat: 28.5355,
-        lng: 77.391,
+        lat: oulateData[0]?.lat,
+        lng: oulateData[0]?.lng,
       }}
-      zoom={4}
+      zoom={2}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       {oulateData?.map((location, index) => (
       <Marker
-      key={index}
-        onMouseOver={()=>onMarkerClick(index)}
+      key={index+1}
+        onMouseOver={()=>onMarkerClick(index+1)}
+        // onMouseOut={onClose}
         icon={{
           url: "./Component 62.png",
         }}
@@ -120,10 +119,10 @@ export function GoogleMapPage() {
           lng: location?.lng,
         }}
       >
-        {showingInfoWindow === index && (
+        {showingInfoWindow === index+1 && (
           <InfoWindow
             marker={activeMarker}
-            visible={showingInfoWindow === index}
+            visible={showingInfoWindow === index+1}
             onClose={onClose}
           >
             <OutlateInfo data={location}/>

@@ -8,6 +8,7 @@ import CustomeInfo from "../customerInfo/CustomeInfo";
 import useFeedback from "../../hooks/useFeedback";
 import { getDateFromISOString } from "../../utiils";
 import StarRating from "./StarRating";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
 
 const FeedBack = () => {
   const { feedback } = useFeedback()
@@ -20,6 +21,11 @@ const FeedBack = () => {
   let PageSize = 3;
   
   const closeDrawer = () => setIsOpen(false);
+
+  const {  
+    customerInfo,
+    getCustomerInfoForParticularUser
+  } = useCusomerInfo()
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -74,7 +80,10 @@ const FeedBack = () => {
                     <td>
                       <div className="flex items-center justify-center gap-6 relative">
                       <div className="relative">
-                    <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
+                    <div className="profile-image cursor-pointer" onClick={() =>{
+                      getCustomerInfoForParticularUser(item?.userId?._id)
+                       setOpenInfo(true)
+                       }}>
                       <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt=""/>
                     </div>
                       <img
@@ -90,15 +99,18 @@ const FeedBack = () => {
                         
                         <p
                           className="profileId font-semibold text-left text-[#000000B2]"
-                          onClick={() => setOpenInfo(true)}
+                          onClick={() =>{
+                            getCustomerInfoForParticularUser(item?.userId?._id)
+                             setOpenInfo(true)
+                            }}
                          
                         >
-                          <p>{item?.userId?.firstName + " " + item?.userId?.lastName}</p>
+                          <p>{item?.userId?.fullName || item?.userId?.firstName + " " + item?.userId?.lastName}</p>
                           ID:{item?._id}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]">
-                            <MenuCard onClose={()=> setOpenMenu(false)} setOpenInfo={setOpenInfo}/>
+                            <MenuCard onClose={()=> setOpenMenu(false)} data={item?.userId}/>
                           </div>
                         )}
                       </div>
@@ -144,7 +156,7 @@ const FeedBack = () => {
       {isOpen && <FeedBackFilter closeDrawer={closeDrawer} open={isOpen} />}
       <CustomerFeedBack open={open} setOpen={setOpen} handleOpen={handleOpen} />
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo} />
+        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo}/>
       </DialogDefault>
     </div>
   );

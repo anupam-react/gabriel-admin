@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useReferral from "../../hooks/useReferral";
 const ReferalPreview = ({handleOpen , onClose}) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
+  const {
+    referralData,
+  } = useReferral();
   return (
     <div className="gift-container no-scrollbar">
         <div className="gift-main">
@@ -26,8 +30,8 @@ const ReferalPreview = ({handleOpen , onClose}) => {
         <p className="text-[#121212] text-[20px] font-semibold">Referral Reward</p>
       
       <div className="cardContainer">
-        <img src="../image 710.jpg" alt="" />
-        <p>70% Birthday Special Discount</p>
+        <img src={referralData?.image} alt="" />
+        <p>{referralData?.description}</p>
       </div>
       <div className="flex gap-6 items-center">
         <p className="text-[#0070BC]">Exp : 01-10-24</p>
@@ -39,8 +43,8 @@ const ReferalPreview = ({handleOpen , onClose}) => {
               </div>
             </div>
       </div>
-      <p className="text-[#00000080] text-left font-[600] w-[260px]">Your slice awaits you. Received a cake voucher when you refer a friend and make your first transaction with us.</p>
-          <p className="text-[#0070BC] w-[260px]">http://Www.Moneychat.com//Slice/refferalvoucher</p>
+      <p className="text-[#00000080] text-left font-[600] w-[260px]">{referralData?.message}</p>
+          <p className="text-[#0070BC] w-[260px]">{referralData?.exclusiveLink}</p>
             <button
               className="loyalty-button1 mt-6"
               style={{ width: "fit-content" }}

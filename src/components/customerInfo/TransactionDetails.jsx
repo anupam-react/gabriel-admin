@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './index.scss'
 import { DialogDefault } from '../common/DilogBox'
-const TransactionDetails = ({handleOpen , isButton= true , data}) => {
+import { formatTime2, getDateFromISOString } from '../../utiils'
+const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => {
   const [openDownload , setOpenDownload] = useState(false)
   const [openShare , setOpenShare] = useState(false)
   return (
@@ -35,33 +36,33 @@ const TransactionDetails = ({handleOpen , isButton= true , data}) => {
         </div>
         <div className='info2'>
           <p>Date & Time</p>
-          <p>{data?.dateUploaded}</p>
+          <p>{data?.dateUploaded || getDateFromISOString(data?.createdAt)+ " , " + formatTime2(data?.createdAt)}</p>
         </div>
         <div className='border border-[#000000] border-dashed w-[400px]'></div>
         <div className='info2'>
           <p className='text-[#121212] font-semibold'>Name</p>
-          <p className='text-[#121212] font-semibold'>{data?.userId?.firstName + " " + data?.userId?.lastName}</p>
+          <p className='text-[#121212] font-semibold'>{userData?.firstName + " " + userData?.lastName}</p>
         </div>
         <div className='info2'>
           <p className='text-[#121212]'>Items</p>
           <p className='text-[#121212]'>Price</p>
         </div>
         <div className='info2'>
+          <p>{data?.productId?.name}</p>
+          <p>£{data?.price} * {data?.quantity}</p>
+        </div>
+        {/* <div className='info2'>
           <p>Lorem</p>
           <p>£15</p>
         </div>
         <div className='info2'>
           <p>Lorem</p>
           <p>£15</p>
-        </div>
-        <div className='info2'>
-          <p>Lorem</p>
-          <p>£15</p>
-        </div>
+        </div> */}
         <div className='border border-[#000000] border-dashed w-[400px]'></div>
         <div className='info2'>
           <p className='text-[#121212] font-semibold'>Total</p>
-          <p className='text-[#121212] font-semibold'>£45</p>
+          <p className='text-[#121212] font-semibold'>£{data?.total}</p>
         </div>
         <div className='info2'>
           <p>Discount</p>

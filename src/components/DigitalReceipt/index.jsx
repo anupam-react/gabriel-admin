@@ -32,6 +32,7 @@ const DigitalReceipt = () => {
     getDigitalReceiptById,
   } = useDigitalReceipt();
   const {  
+    customerInfo,
     getCustomerInfoForParticularUser
   } = useCusomerInfo()
   const [isOpen, setIsOpen] = useState(false);
@@ -127,7 +128,10 @@ const DigitalReceipt = () => {
                     <td>
                       <div className="flex items-center justify-center gap-6 relative">
                       <div className="relative">
-                    <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
+                    <div className="profile-image cursor-pointer" onClick={() =>{
+                       setOpenInfo(true)
+                       getCustomerInfoForParticularUser(item?.userId?._id)
+                       }}>
                       <img src="./carbon_user-avatar-filled.png" alt=""/>
                     </div>
                       <img
@@ -142,7 +146,7 @@ const DigitalReceipt = () => {
                     </div>
                         {isMenuOpen === i && (
                           <div className="absolute top-0 z-20 md:-right-[250px] lg:-right-[230px] xl:-right-[200px]">
-                            <MenuCard  onClose={()=>setOpenMenu(false)}/>
+                            <MenuCard  data={item?.userId} onClose={()=>setOpenMenu(false)}/>
                           </div>
                         )}
                         <p
@@ -153,7 +157,7 @@ const DigitalReceipt = () => {
                           }}
                         >
                           <p>
-                            {item?.userId?.firstName +
+                            {item?.userId?.fullName || item?.userId?.firstName +
                               " " +
                               item?.userId?.lastName}{" "}
                           </p>
@@ -234,7 +238,7 @@ const DigitalReceipt = () => {
         />
       )}
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo} />
+        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo}/>
       </DialogDefault>
       <DialogDefault open={isDownload} handleOpen={setDownload}>
         <div className="alert">
@@ -245,7 +249,7 @@ const DigitalReceipt = () => {
         </div>
       </DialogDefault>
       <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
-        <TransactionDetails handleOpen={setOpenTrans} data={receiptInfo}/>
+        <TransactionDetails handleOpen={setOpenTrans} userData={receiptInfo?.userId} data={receiptInfo}/>
       </DialogDefault>
     </div>
   );

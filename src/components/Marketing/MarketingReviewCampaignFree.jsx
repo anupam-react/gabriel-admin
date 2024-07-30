@@ -27,7 +27,7 @@ const MarketingReviewCampaignFree = () => {
     },
     {
       title: "Reward Type",
-      value: "Points",
+      value: campaignData,
         handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
