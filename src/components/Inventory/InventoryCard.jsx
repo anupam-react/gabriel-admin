@@ -14,7 +14,7 @@ const InventoryCard = ({ data , key }) => {
                  {data?.online ? <p className='dots'></p> : <p className='inActive'></p>}
                   <p className='text-[#121212] font-semibold'>{data?.inStore ? "Available Instore" : "UnAvailable Instore"}</p>
               </div>
-              <img src="./solar_menu-dots-bold.png" alt="" className='h-fit cursor-pointer' onClick={()=>setOpenMenu(!openMenu) }/>
+              <img src="../../solar_menu-dots-bold.png" alt="" className='h-fit cursor-pointer' onClick={()=>setOpenMenu(!openMenu) }/>
           </div>
           <div className='image cursor-pointer' onClick={()=> navigate(`/inventory/product-details/${data?._id}`)}>
           <img src={data?.image} alt="" />

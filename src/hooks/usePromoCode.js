@@ -71,7 +71,7 @@ const usePromoCode = () => {
   };
 
   const handleCreatePromocode = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const formData = {
       ...promocodeData,
       staffId: staffId,

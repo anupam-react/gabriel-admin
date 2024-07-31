@@ -5,7 +5,7 @@ import { DialogDefault } from "./DilogBox";
 import useProfile from "../../hooks/useProfile";
 const Profile = ({ closeDrawer, open , data }) => {
   const {
-    handleUpdateProfile} = useProfile()
+    handleUpdateProfileImage} = useProfile()
   const [openUploadImage, setUploadImage] = useState(false);
   const navigate = useNavigate();
   return (
@@ -84,7 +84,7 @@ const Profile = ({ closeDrawer, open , data }) => {
                 className="hidden"
                 onChange={(e) =>{
               
-                  handleUpdateProfile(e.target.files[0])
+                  handleUpdateProfileImage(e.target.files[0])
                   setUploadImage(false)
                 }
                 }

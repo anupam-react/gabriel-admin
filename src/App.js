@@ -117,10 +117,10 @@ function App() {
             path="/inventory/product-details/:id"
             element={<ProductDetails />}
           />
-          <Route path="/inventory/customer-gift" element={<CustomerGift />} />
-          <Route path="/inventory/preview-gift" element={<GiftPreview />} />
+          <Route path="/inventory/customer-gift/:id" element={<CustomerGift />} />
+          <Route path="/inventory/preview-gift/:id" element={<GiftPreview />} />
           <Route
-            path="/inventory/customized-gift"
+            path="/inventory/customized-gift/:id"
             element={<CustomizedGift />}
           />
           <Route

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
-const ReturnForm = ({ handleOpen }) => {
+const ReturnForm = ({ handleOpen  , onClose}) => {
   const [isAddEmp, setAddEmp] = useState(false);
   return (
     <div className="info-container">
@@ -308,7 +308,7 @@ const ReturnForm = ({ handleOpen }) => {
         </div>
       </div>
       <div className="flex justify-center my-6">
-        <button className="menuButton3"  onClick={() => handleOpen(false)}>DONE</button>
+        <button className="menuButton3"  onClick={() =>  onClose()}>DONE</button>
       </div>
     </div>
   );

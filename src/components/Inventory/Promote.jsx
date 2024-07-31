@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import InventoryCard from "./InventoryCard";
+import Select from 'react-select';
+import CustomOption from "../Marketing/CustomOption";
 const Promote = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -12,6 +14,13 @@ const Promote = () => {
     image: "../../Rectangle 8765 (3).png",
     name: "Butter Croissant",
   };
+  const CustomerOptions = [
+    { label: "Active", value: "Active", color: '#03CC5E' },
+    { label: "New", value: "New" , color: '#0070C0' },
+    { label: "Slipping", value: "Slipping", color: '#ED7D31' },
+    { label: "Churn", value: "Churn" , color: '#C00000' },
+    { label: "Specific Customer", value: "Specific Customer" },
+  ];
 
   const CampaignOptions = [
     { label: "Percentage Discount", value: "Percentage Discount" },
@@ -34,13 +43,7 @@ const Promote = () => {
         "Select Product Categories To Apply Coupon(Burger, Coke, Dounts , Pizza",
     },
   ];
-  const CustomerOptions = [
-    { label: "Active", value: "Active" },
-    { label: "New", value: "New" },
-    { label: "Slipping", value: "Slipping" },
-    { label: "Churn", value: "Churn" },
-    { label: "Specific Customer", value: "Specific Customer" },
-  ];
+ 
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -129,25 +132,14 @@ const Promote = () => {
           </select>
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Choose Type Of Customers</p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
-            className="input-loyalty2"
-          >
-            {CustomerOptions?.map((data, i) => (
-              <>
-                <option
-                  className="font-semibold text-black"
-                  key={i}
-                  value={data?.value}
-                >
-                  {data?.label}
-                </option>
-              </>
-            ))}
-          </select>
+          <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
+          <Select
+            options={CustomerOptions}
+            components={{ Option: CustomOption }}
+            // value={selectUserType}
+            // onChange={handleSelect }
+          
+        />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Target Location</p>

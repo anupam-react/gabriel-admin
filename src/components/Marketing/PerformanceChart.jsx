@@ -23,17 +23,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-    },
-  },
-};
+
 
 const labels = [
   "Dec 27",
@@ -57,6 +47,40 @@ export const data = {
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
   ],
+};
+
+const options = {
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "A day of the week",
+        color: "#131313",
+        font: {
+          size: 16,
+          weight: 600,
+        }
+        
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: "People Engaged with AD",
+        color: "#131313",
+        font: {
+          size: 16,
+          weight: 600
+        }
+      }
+    }
+  },
+  plugins: {
+    legend: {
+      display: false,
+      position: "bottom"
+    }
+  }
 };
 
 export function PerformanceChart() {

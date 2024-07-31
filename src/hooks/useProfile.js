@@ -3,6 +3,10 @@ import { fetchApiData, updateApiData } from "../utiils";
 
 const useProfile = () => {
   const [profile, setProfile] = useState([]);
+  const [fullName , setFullName] = useState("")
+  const [phones , setPhones] = useState("")
+  const [emails , setEmails] = useState("")
+  const [password , setPassword] = useState("")
 
 
   const getProfile = async () => {
@@ -16,7 +20,7 @@ const useProfile = () => {
     getProfile();
   }, []);
 
-  const handleUpdateProfile = async (image) => {
+  const handleUpdateProfileImage = async (image) => {
     const formData = new FormData()
     formData?.append("image",image)
 
@@ -33,10 +37,35 @@ const useProfile = () => {
     }
   };
 
+  const handleUpdateProfile = async () => {
+    const formData = {}
+      if(fullName) formData.fullName = fullName
+      if(phones) formData.phone = phones
+      if(emails) formData.email = emails
+      if(password) formData.password = password
+    
+
+
+    try {
+      const response = await updateApiData(
+        `https://gabriel-backend.vercel.app/api/v1/business/updateProfile`,
+        formData
+      );
+   
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
   return {
     profile,
-
-    handleUpdateProfile
+    fullName , setFullName,
+    phones , setPhones,
+    emails , setEmails,
+    password , setPassword,
+    handleUpdateProfile,
+    handleUpdateProfileImage
   };
 };
 

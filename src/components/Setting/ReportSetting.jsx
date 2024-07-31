@@ -5,38 +5,44 @@ import { DialogDefault } from "../common/DilogBox";
 import useSetting from "../../hooks/useSetting";
 import useAccount from "../../hooks/useAccount";
 const ReportSetting = () => {
-  const {    
-    image , setImage,
-    automaticReportSchedule , setAutomaticReportSchedule,
-    sendReportTo , setSendReportTo,
-    isMaximumFailedTransactionStatus , setIsMaximumFailedTransactionStatus,
-    isMaximumFailedTransactionValueCrossed , setIsMaximumFailedTransactionValueCrossed,
-    maximumFailedTransactionStatus , setMaximumFailedTransactionStatus,
-    maximumFailedTransactionValueCrossed , setMaximumFailedTransactionValueCrossed,
-    handleUpdateReport
-  }= useSetting()
+  const {
+    image,
+    setImage,
+    automaticReportSchedule,
+    setAutomaticReportSchedule,
+    sendReportTo,
+    setSendReportTo,
+    isMaximumFailedTransactionStatus,
+    setIsMaximumFailedTransactionStatus,
+    isMaximumFailedTransactionValueCrossed,
+    setIsMaximumFailedTransactionValueCrossed,
+    maximumFailedTransactionStatus,
+    setMaximumFailedTransactionStatus,
+    maximumFailedTransactionValueCrossed,
+    setMaximumFailedTransactionValueCrossed,
+    handleUpdateReport,
+  } = useSetting();
 
-  const { staff }= useAccount()
+  const { staff } = useAccount();
 
   const toggleStaffSelection = (staff) => {
     const isSelected = selectStaff.includes(staff);
     if (isSelected) {
-      setSelectStaff(selectStaff?.filter(d => d?._id !== staff?._id));
-      setSendReportTo(sendReportTo?.filter(id => id !== staff?._id))
+      setSelectStaff(selectStaff?.filter((d) => d?._id !== staff?._id));
+      setSendReportTo(sendReportTo?.filter((id) => id !== staff?._id));
     } else {
       setSelectStaff([...selectStaff, staff]);
-      setSendReportTo([...sendReportTo , staff?._id])
+      setSendReportTo([...sendReportTo, staff?._id]);
     }
   };
 
-
-
-  console.log(staff)
+  console.log(staff);
 
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
-  const [openSuccess , setOpenSuccess] = useState(false)
-  const [selectStaff, setSelectStaff] = useState([])
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [selectStaff, setSelectStaff] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleChange = (event) => {
     setAutomaticReportSchedule(event.target.value);
@@ -83,7 +89,12 @@ const ReportSetting = () => {
               />
               <p className="text-[#FEA82F] font-bold">CHANGE</p>
             </label>
-            <input type="file" id="fileUpload" className="hidden" onChange={(e)=> setImage(e.target.files[0])}/>
+            <input
+              type="file"
+              id="fileUpload"
+              className="hidden"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
           </div>
         </div>
         <div>
@@ -125,20 +136,19 @@ const ReportSetting = () => {
             </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
-            {selectStaff?.map((d)=>(
-            <div className="report-profile" style={{ width: "200px" }}>
-              <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
-              <p> {d?.firstName + " " + d?.lastName}</p>
-              <img
-                src="../Mask group (14).png"
-                alt="search"
-                className="w-5 h-5 cursor-pointer"
-                onClick={()=>toggleStaffSelection(d)}
-              />
-            </div>
-
+            {selectStaff?.map((d) => (
+              <div className="report-profile" style={{ width: "200px" }}>
+                <img src="../Ellipse 11.png" alt="search" className="w-7 h-7" />
+                <p> {d?.firstName + " " + d?.lastName}</p>
+                <img
+                  src="../Mask group (14).png"
+                  alt="search"
+                  className="w-5 h-5 cursor-pointer"
+                  onClick={() => toggleStaffSelection(d)}
+                />
+              </div>
             ))}
-          
+
             <div
               className="flex items-center gap-4 cursor-pointer"
               onClick={() => setOpenAddEmp(true)}
@@ -157,43 +167,114 @@ const ReportSetting = () => {
           <div className="flex flex-col gap-6 mb-4">
             <div className="flex items-start gap-6">
               <label className="inline-flex items-center me-5 cursor-pointer">
-                <input type="checkbox" value="Maximum Number Of Transaction Crossed" className="sr-only peer" onChange={()=> setIsMaximumFailedTransactionStatus(!isMaximumFailedTransactionStatus)} checked={isMaximumFailedTransactionStatus}/>
+                <input
+                  type="checkbox"
+                  value="Maximum Number Of Transaction Crossed"
+                  className="sr-only peer"
+                  onChange={() =>
+                    setIsMaximumFailedTransactionStatus(
+                      !isMaximumFailedTransactionStatus
+                    )
+                  }
+                  checked={isMaximumFailedTransactionStatus}
+                />
                 <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
               </label>
+
               <div className="flex flex-col gap-4">
                 <span className="font-semibold text-black dark:text-gray-300 ">
                   Maximum Number Of Transaction Crossed
                 </span>
-                <div className="flex items-center gap-4">
+                <div className="relative w-[500px] group ">
                   <input
-                    type="text"
-                    name=""
-                    id=""
-                   value={maximumFailedTransactionStatus}
-                   onChange={(e)=> setMaximumFailedTransactionStatus(e.target.value)}
+                    type="name"
+                    name="name"
+                    id="name"
+                    value={maximumFailedTransactionStatus}
+                    onChange={(e) =>
+                      setMaximumFailedTransactionStatus(e.target.value)
+                    }
                     className="rounded shadow-md text-[#000000B2] text-sm  border-none block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                    onClick={() => {
+                      setIsEditing(1);
+                    }}
+                    // onChange={(e) => setPassword(e.target.value)}
                   />
+                  {isEditing === 1 ? (
+                    <span
+                      onClick={() => setIsEditing(false)}
+                      className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                    >
+                      SAVE
+                    </span>
+                  ) : (
+                    <img
+                      src="../Mask group (16).png"
+                      alt=""
+                      onClick={() => {
+                        setIsEditing(1);
+                      }}
+                      className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                    />
+                  )}
                 </div>
               </div>
             </div>
             <div className="flex items-start gap-6">
               <label className="inline-flex items-center me-5 cursor-pointer">
-                <input type="checkbox" value="Maximum Transaction Value Crossed" className="sr-only peer" onChange={()=> setIsMaximumFailedTransactionValueCrossed(!isMaximumFailedTransactionValueCrossed)} checked={isMaximumFailedTransactionValueCrossed}/>
+                <input
+                  type="checkbox"
+                  value="Maximum Transaction Value Crossed"
+                  className="sr-only peer"
+                  placeholder="Add Value ( e.g 1,00,000 )"
+                  onChange={() =>
+                    setIsMaximumFailedTransactionValueCrossed(
+                      !isMaximumFailedTransactionValueCrossed
+                    )
+                  }
+                  checked={isMaximumFailedTransactionValueCrossed}
+                />
                 <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
               </label>
               <div className="flex flex-col gap-4">
                 <span className="font-semibold text-black dark:text-gray-300">
                   Maximum Transaction Value Crossed
                 </span>
-                <div className="flex items-center gap-4">
+                <div className="relative w-[500px] group ">
                   <input
-                    type="text"
-                    name=""
-                    id=""
+                    type="name"
+                    name="name"
+                    id="name"
+                    placeholder="Add Value ( e.g 1,00,000 )"
                     value={maximumFailedTransactionValueCrossed}
-                    onChange={(e)=> setMaximumFailedTransactionValueCrossed(e.target.value)}
+                    onChange={(e) =>
+                      setMaximumFailedTransactionValueCrossed(e.target.value)
+                    }
                     className="rounded shadow-md text-[#000000B2] text-sm  border-none block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                    onClick={() => {
+                      setIsEditing(2);
+                    }}
+                    // onChange={(e) => setPassword(e.target.value)}
                   />
+                  {isEditing === 2 ? (
+                    <span
+                      onClick={() => setIsEditing(false)}
+                      className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                    >
+                      SAVE
+                    </span>
+                  ) : (
+                    <img
+                      src="../Mask group (16).png"
+                      alt=""
+                      onClick={() => {
+                        setIsEditing(2);
+                      }}
+                      className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -202,10 +283,10 @@ const ReportSetting = () => {
         <div className="flex justify-center">
           <button
             className="back2 text-center"
-            onClick={() =>{
-              handleUpdateReport()
-               navigate("/setting")
-              }}
+            onClick={() => {
+              handleUpdateReport();
+              navigate("/setting");
+            }}
           >
             SAVE
           </button>
@@ -231,7 +312,10 @@ const ReportSetting = () => {
           <p className="text-[#000000B2] text-[18px] font-[500] pb-2 mt-6">
             Add Employee
           </p>
-          <div className="relative w-full mb-6">
+          <div
+            className="relative w-full mb-6 cursor-pointer"
+            onClick={() => setAddEmp(!isAddEmp)}
+          >
             <input
               id="countries"
               //   value={selectedOption}
@@ -242,27 +326,33 @@ const ReportSetting = () => {
 
             <img
               src="../Arrow 6.png"
-              onClick={() => setAddEmp(!isAddEmp)}
               alt=""
               className="absolute top-3 right-2 cursor-pointer"
             />
             {isAddEmp && (
               <div className="addEmp bg-[white] flex flex-col gap-2  rounded-md p-4">
-                 {staff?.docs?.map((emp, i)=>(
-                <div className={selectStaff?.includes(emp) ? "flex items-center gap-2 cursor-pointer bg-green-400" : "flex items-center gap-2 cursor-pointer"} key={i} onClick={()=>{
-                  setSendReportTo([...sendReportTo, emp?._id])
-                  setSelectStaff([...selectStaff, emp])
-                  }}>
-                  <img
-                    src=""
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p> {emp?.firstName + " " + emp?.lastName} , </p>
-                  <p>Id :{emp?.employeeId}.</p>
-                </div>
-                 ))}
-              
+                {staff?.docs?.map((emp, i) => (
+                  <div
+                    className={
+                      selectStaff?.includes(emp)
+                        ? "flex items-center gap-2 cursor-pointer bg-green-400"
+                        : "flex items-center gap-2 cursor-pointer"
+                    }
+                    key={i}
+                    onClick={() => {
+                      setSendReportTo([...sendReportTo, emp?._id]);
+                      setSelectStaff([...selectStaff, emp]);
+                    }}
+                  >
+                    <img
+                      src=""
+                      alt=""
+                      className="w-[20px] h-[20px] rounded-full "
+                    />
+                    <p> {emp?.firstName + " " + emp?.lastName} , </p>
+                    <p>Id :{emp?.employeeId}.</p>
+                  </div>
+                ))}
               </div>
             )}
           </div>
@@ -270,11 +360,11 @@ const ReportSetting = () => {
             <button
               className="back2 text-center"
               onClick={() => {
-                setOpenSuccess(true)
-                setTimeout(()=>{
-                  setOpenAddEmp(false)
-                  setOpenSuccess(false)
-                },2000)
+                setOpenSuccess(true);
+                setTimeout(() => {
+                  setOpenAddEmp(false);
+                  setOpenSuccess(false);
+                }, 2000);
               }}
             >
               ADD
@@ -286,7 +376,7 @@ const ReportSetting = () => {
         <div className="alert">
           <img src="../Vector (2).png" alt="" />
           <p className="text-center text-lg ">
-          You’ve successfully added an employee
+            You’ve successfully added an employee
           </p>
         </div>
       </DialogDefault>

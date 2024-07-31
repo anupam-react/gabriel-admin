@@ -21,14 +21,23 @@ const Account = () => {
     staff,
     success,
     setSuccess,
-    handleAddStaff
+    handleAddStaff,
   } = useAccount();
-  const {profile} = useProfile()
+  const { 
+    profile ,     
+    fullName , 
+    setFullName,
+    phones , setPhones,
+    emails , setEmails,
+    password , setPassword,
+    handleUpdateProfile} = useProfile();
   const [isChecked, setIsChecked] = useState(false);
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isView, setIsView] = useState(false);
 
-  console.log(profile)
+  console.log(profile);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -55,7 +64,7 @@ const Account = () => {
       <div className="supportContainer">
         <p className="text-[#0070BC] font-semibold">PROFILE INFORMATION</p>
         <div className="flex flex-col gap-4">
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./image 54.svg"
               alt=""
@@ -68,11 +77,35 @@ const Account = () => {
               placeholder="Full Name"
               className="account-input"
               required
-              value={profile?.fullName}
-              // onChange={(e) => setPassword(e.target.value)}
+              value={fullName || profile?.fullName}
+              onClick={() => {
+                setIsEditing(1);
+                
+              }}
+              onChange={(e) => setFullName(e.target.value)}
             />
+            {isEditing === 1 ? (
+              <span
+                onClick={() =>{
+                  handleUpdateProfile()
+                   setIsEditing(false)
+                  }}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(1);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./Mask group (1).svg"
               alt=""
@@ -85,10 +118,33 @@ const Account = () => {
               placeholder="PASSWORD"
               className="account-input"
               required
-              // value={password}
-              // onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              onClick={() => {
+                setIsEditing(2);
+              }}
+            onChange={(e) => setPassword(e.target.value)}
             />
+            {isEditing === 2 ? (
+              <span
+                onClick={() =>{ 
+                  handleUpdateProfile()
+                  setIsEditing(false)}}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(2);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
+
           <div className="relative">
             <img
               src="./image 59.png"
@@ -128,19 +184,18 @@ const Account = () => {
             />
             {isAddEmp && (
               <div className="addstaf bg-[white] flex flex-col gap-2  rounded-md p-4">
-                {staff?.docs?.map((d, i)=>(
-                <div className="flex items-center gap-2" key={i}>
-                  <img
-                    src={d?.image}
-                    alt=""
-                    className="w-[20px] h-[20px] rounded-full "
-                  />
-                  <p>{d?.firstName + " " + d?.lastName}, </p>
-                  <p>Id :{d?.employeeId}.</p>
-                </div>
-
+                {staff?.docs?.map((d, i) => (
+                  <div className="flex items-center gap-2" key={i}>
+                    <img
+                      src={d?.image}
+                      alt=""
+                      className="w-[20px] h-[20px] rounded-full "
+                    />
+                    <p>{d?.firstName + " " + d?.lastName}, </p>
+                    <p>Id :{d?.employeeId}.</p>
+                  </div>
                 ))}
-             
+
                 <button
                   className="back"
                   style={{ width: "140px" }}
@@ -162,17 +217,16 @@ const Account = () => {
             />
             <input
               type="name"
-              name="name"
+              name="phone"
               id="name"
               placeholder="1234567890"
               className="account-input"
               required
-              value={profile?.phone}
-              // value={name}
-              // onChange={(e) => setPassword(e.target.value)}
+              value={phones || profile?.phone}
+              onChange={(e) => setPhones(e.target.value)}
             />
           </div>
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./image 33.svg"
               alt=""
@@ -185,9 +239,31 @@ const Account = () => {
               placeholder="loremipsum@gmail.com"
               className="account-input"
               required
-              value={profile?.email}
-              // onChange={(e) => setPassword(e.target.value)}
+              value={emails || profile?.email}
+              onClick={() => {
+                setIsEditing(3);
+              }}
+              onChange={(e) => setEmails(e.target.value)}
             />
+            {isEditing === 3 ? (
+              <span
+                onClick={() =>{
+                  handleUpdateProfile()
+                   setIsEditing(false)}}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(3);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
         </div>
         <p className="pt-4 text-black">My Documents</p>
@@ -211,25 +287,40 @@ const Account = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-        <div className="flex gap-[20px]">
-          <div className="relative">
-            <img
-              src="./image 52 (2).png"
-              alt=""
-              className="w-6 h-6 absolute top-2 left-4"
-            />
-            <input
-              type="name"
-              name="name"
-              id="name"
-              placeholder="Business License"
-              className="account-input"
-              required
-              // value={name}
-              // onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="">
+          <div className="flex gap-[20px]">
+            <div className="relative w-[50vw] group ">
+              <img
+                src="./image 52 (2).png"
+                alt=""
+                className="w-6 h-6 absolute top-2 left-4"
+              />
+              <input
+                type="name"
+                name="name"
+                id="name"
+                placeholder="Business License"
+                className="account-input"
+                required
+                onClick={() => {
+                  setIsView(1);
+                }}
+                // onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+                VIEW
+              </span>
+              {/* <img
+                src=""
+                alt="view"
+                onClick={() => {
+                  setIsView(1);
+                }}
+                className="w-5 h-5 absolute top-2 right-[100px] cursor-pointer opacity-0 group-hover:opacity-100"
+              /> */}
+            </div>
+
+            <div className="">
               <label
                 for="dropzone-file3"
                 className="flex bg-white items-center shadow rounded-md justify-center "
@@ -283,26 +374,40 @@ const Account = () => {
         </div>
         <p className="text-black">Identity Verification</p>
         <div className="flex flex-col gap-4">
-        <div className="flex gap-[20px]">
-          <div className="relative">
-            <img
-              src="./image 52 (2).png"
-              alt=""
-              className="w-6 h-6 absolute top-2 left-4"
-            />
-            <input
-              type="name"
-              name="name"
-              id="name"
-              placeholder="Owner / Operator ID"
-              className="account-input"
-              required
-              // value={name}
-              // onChange={(e) => setPassword(e.target.value)}
-            />
-         
-          </div>
-          <div className="">
+          <div className="flex gap-[20px]">
+            <div className="relative w-[50vw] group ">
+              <img
+                src="./image 52 (2).png"
+                alt=""
+                className="w-6 h-6 absolute top-2 left-4"
+              />
+              <input
+                type="name"
+                name="name"
+                id="name"
+                placeholder="Owner / Operator ID"
+                className="account-input"
+                required
+                onClick={() => {
+                  setIsView(1);
+                }}
+                // onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+                VIEW
+              </span>
+              {/* <img
+                src=""
+                alt="view"
+                onClick={() => {
+                  setIsView(1);
+                }}
+                className="w-5 h-5 absolute top-2 right-[100px] cursor-pointer opacity-0 group-hover:opacity-100"
+              /> */}
+            </div>
+
+            <div className="">
               <label
                 for="dropzone-file1"
                 className="flex bg-white items-center shadow rounded-md justify-center "
@@ -319,24 +424,38 @@ const Account = () => {
             </div>
           </div>
           <div className="flex gap-[20px]">
-          <div className="relative">
-            <img
-              src="./image 52 (2).png"
-              alt=""
-              className="w-6 h-6 absolute top-2 left-4"
-            />
-            <input
-              type="name"
-              name="name"
-              id="name"
-              placeholder="Proof of Address"
-              className="account-input"
-              required
-              // value={name}
-              // onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="">
+            <div className="relative w-[50vw] group ">
+              <img
+                src="./image 52 (2).png"
+                alt=""
+                className="w-6 h-6 absolute top-2 left-4"
+              />
+              <input
+                type="name"
+                name="name"
+                id="name"
+                placeholder="Proof of Address"
+                className="account-input"
+                required
+                onClick={() => {
+                  setIsView(1);
+                }}
+                // onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+                VIEW
+              </span>
+              {/* <img
+                src=""
+                alt="view"
+                onClick={() => {
+                  setIsView(1);
+                }}
+                className="w-5 h-5 absolute top-2 right-[100px] cursor-pointer opacity-0 group-hover:opacity-100"
+              /> */}
+            </div>
+            <div className="">
               <label
                 for="dropzone-file2"
                 className="flex bg-white items-center shadow rounded-md justify-center "
@@ -361,7 +480,7 @@ const Account = () => {
       <div className="supportContainer">
         <p className="text-[#0070BC] font-semibold">BUSINESS INFORMATION</p>
         <div className="flex flex-col gap-4">
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./image 54.svg"
               alt=""
@@ -374,10 +493,31 @@ const Account = () => {
               placeholder="Business Name"
               className="account-input"
               required
-              // value={name}
+              //  value={profile?.email}
+              onClick={() => {
+                setIsEditing(4);
+              }}
               // onChange={(e) => setPassword(e.target.value)}
             />
+            {isEditing === 4 ? (
+              <span
+                onClick={() => setIsEditing(false)}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(4);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
+
           <div className="relative">
             <img
               src="./image 56.png"
@@ -408,7 +548,7 @@ const Account = () => {
               <option className="font-semibold">Industry</option>
             </select>
           </div>
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./image 54.svg"
               alt=""
@@ -421,9 +561,29 @@ const Account = () => {
               placeholder="VAT REG. No"
               className="account-input"
               required
-              // value={name}
+              //  value={profile?.email}
+              onClick={() => {
+                setIsEditing(5);
+              }}
               // onChange={(e) => setPassword(e.target.value)}
             />
+            {isEditing === 5 ? (
+              <span
+                onClick={() => setIsEditing(false)}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(5);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -445,7 +605,7 @@ const Account = () => {
           </label>
           {isChecked ? (
             <div className="flex flex-col gap-4">
-              <div className="relative">
+              <div className="relative w-[50vw] group ">
                 <img
                   src="./image 54.svg"
                   alt=""
@@ -458,10 +618,31 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  // value={name}
+                  //  value={profile?.email}
+                  onClick={() => {
+                    setIsEditing(6);
+                  }}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
+                {isEditing === 6 ? (
+                  <span
+                    onClick={() => setIsEditing(false)}
+                    className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                  >
+                    SAVE
+                  </span>
+                ) : (
+                  <img
+                    src="./Mask group (16).png"
+                    alt=""
+                    onClick={() => {
+                      setIsEditing(6);
+                    }}
+                    className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                  />
+                )}
               </div>
+
               <div className="relative">
                 <img
                   src="./image 57.png"
@@ -479,7 +660,7 @@ const Account = () => {
                   </option>
                 </select>
               </div>
-              <div className="relative">
+              <div className="relative w-[50vw] group ">
                 <img
                   src="./image 54.svg"
                   alt=""
@@ -492,14 +673,34 @@ const Account = () => {
                   placeholder="Sort Code"
                   className="account-input"
                   required
-                  // value={name}
+                  //  value={profile?.email}
+                  onClick={() => {
+                    setIsEditing(9);
+                  }}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
+                {isEditing === 9 ? (
+                  <span
+                    onClick={() => setIsEditing(false)}
+                    className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                  >
+                    SAVE
+                  </span>
+                ) : (
+                  <img
+                    src="./Mask group (16).png"
+                    alt=""
+                    onClick={() => {
+                      setIsEditing(9);
+                    }}
+                    className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                  />
+                )}
               </div>
             </div>
           ) : (
             <div className="flex flex-col gap-4">
-              <div className="relative">
+              <div className="relative w-[50vw] group ">
                 <img
                   src="./image 54.svg"
                   alt=""
@@ -512,9 +713,29 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  // value={name}
+                  //  value={profile?.email}
+                  onClick={() => {
+                    setIsEditing(6);
+                  }}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
+                {isEditing === 6 ? (
+                  <span
+                    onClick={() => setIsEditing(false)}
+                    className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                  >
+                    SAVE
+                  </span>
+                ) : (
+                  <img
+                    src="./Mask group (16).png"
+                    alt=""
+                    onClick={() => {
+                      setIsEditing(6);
+                    }}
+                    className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                  />
+                )}
               </div>
               <div className="relative">
                 <img
@@ -531,7 +752,7 @@ const Account = () => {
                   <option className="font-semibold">Select Bank</option>
                 </select>
               </div>
-              <div className="relative">
+              <div className="relative w-[50vw] group ">
                 <img
                   src="./image 54.svg"
                   alt=""
@@ -544,15 +765,35 @@ const Account = () => {
                   placeholder="Swift Code / BIC"
                   className="account-input"
                   required
-                  // value={name}
+                  //  value={profile?.email}
+                  onClick={() => {
+                    setIsEditing(7);
+                  }}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
+                {isEditing === 7 ? (
+                  <span
+                    onClick={() => setIsEditing(false)}
+                    className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                  >
+                    SAVE
+                  </span>
+                ) : (
+                  <img
+                    src="./Mask group (16).png"
+                    alt=""
+                    onClick={() => {
+                      setIsEditing(7);
+                    }}
+                    className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                  />
+                )}
               </div>
-              <div className="relative">
+              <div className="relative w-[50vw] group ">
                 <img
                   src="./image 57.png"
                   alt=""
-                  className="w-5 h-5 absolute top-2 left-4"
+                  className="w-5 h-6 absolute top-2 left-4"
                 />
                 <input
                   type="name"
@@ -561,31 +802,36 @@ const Account = () => {
                   placeholder="Routing Number"
                   className="account-input"
                   required
-                  // value={name}
+                  //  value={profile?.email}
+                  onClick={() => {
+                    setIsEditing(8);
+                  }}
                   // onChange={(e) => setPassword(e.target.value)}
                 />
+                {isEditing === 8 ? (
+                  <span
+                    onClick={() => setIsEditing(false)}
+                    className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                  >
+                    SAVE
+                  </span>
+                ) : (
+                  <img
+                    src="./Mask group (16).png"
+                    alt=""
+                    onClick={() => {
+                      setIsEditing(8);
+                    }}
+                    className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+                  />
+                )}
               </div>
-              {/* <div className="relative">
-                <img
-                  src="./image 57.png"
-                  alt=""
-                  className="w-5 h-5 absolute top-2 left-4"
-                />
-                <select
-                  id="countries"
-                  //   value={selectedOption}
-                  //   onChange={handleChange}
-                  className="account-input"
-                >
-                  <option className="font-semibold">Account Type</option>
-                </select>
-              </div> */}
             </div>
           )}
         </div>
         <p className="text-[#000000]">Debit Card</p>
         <div className="flex flex-col gap-4">
-          <div className="relative">
+          <div className="relative w-[50vw] group ">
             <img
               src="./Rectangle 78.png"
               alt=""
@@ -599,10 +845,31 @@ const Account = () => {
               className="account-input"
               style={{ paddingLeft: "70px" }}
               required
-              // value={name}
+              //  value={profile?.email}
+              onClick={() => {
+                setIsEditing(10);
+              }}
               // onChange={(e) => setPassword(e.target.value)}
             />
+            {isEditing === 10 ? (
+              <span
+                onClick={() => setIsEditing(false)}
+                className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+              >
+                SAVE
+              </span>
+            ) : (
+              <img
+                src="./Mask group (16).png"
+                alt=""
+                onClick={() => {
+                  setIsEditing(10);
+                }}
+                className="w-5 h-5 absolute top-2 right-4 cursor-pointer opacity-0 group-hover:opacity-100"
+              />
+            )}
           </div>
+
           <div className="flex gap-4">
             <div className="relative">
               <select
@@ -681,11 +948,13 @@ const Account = () => {
               />
               <select
                 id="countries"
-                  value={role}
-                  onChange={(e)=> setRole(e.target.value)}
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
                 className="new-input"
               >
-                <option className="font-semibold" selected>Staff</option>
+                <option className="font-semibold" selected>
+                  Staff
+                </option>
               </select>
             </div>
             <div className="relative">

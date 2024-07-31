@@ -235,6 +235,7 @@ const PromoCode = () => {
                handleDeletePromocode(isDelete)
               setSuccess(true)
               setTimeout(()=> {
+                setDelete(false)
                 setSuccess(false)
               },2000)
               }}>Yes</button>

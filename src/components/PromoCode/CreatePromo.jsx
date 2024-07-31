@@ -249,7 +249,10 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
             </div>
           </div>
           <div className="flex justify-center items-center gap-10 my-8">
-            <button className="sign-button w-48" onClick={edit ? ()=>handleUpdatePromocode(edit) : handleCreatePromocode}>
+            <button className="sign-button w-48" onClick={edit ? ()=>{setOpen(false)
+               handleUpdatePromocode(edit)} : ()=>{
+                setOpen(false)
+               handleCreatePromocode()}}>
             { edit ? "UPDATE" :  "CREATE"}
               
             </button>

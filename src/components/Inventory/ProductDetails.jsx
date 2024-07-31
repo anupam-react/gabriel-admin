@@ -52,6 +52,10 @@ const ProductDetails = () => {
           {productInfo?.allergens}
           </p>
         </div>
+        <div className='mt-3'>
+              <p className="text-lg font-semibold">Nutrition</p>
+              <p className='text-[#00000080]'>{productInfo?.nutrition}</p>
+              </div>
         <div className="mt-3">
           <p className="text-lg font-semibold">Product Category</p>
           <p className="text-[#00000080]">{categoryInfo?.name}</p>

@@ -31,10 +31,10 @@ const InventoryMenu = ({ setOpenMenu , id , data }) => {
         Promote Product
       </button>
 
-      <button className="menuButton7" onClick={() => navigate("/inventory/customer-gift")}>
+      <button className="menuButton7" onClick={() => navigate(`/inventory/customer-gift/${id}`)}>
         Send as Gift to customer
       </button>
-      <button className="menuButton7" onClick={() => navigate("/inventory/customized-gift")}>
+      <button className="menuButton7" onClick={() => navigate(`/inventory/customized-gift/${id}`)}>
         Customize and Send to customer
       </button>
       <button className="menuButton7" onClick={() => navigate(`/inventory/edit-product/${id}`)}>
