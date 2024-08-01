@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import useAccount from "../../hooks/useAccount";
 import useProfile from "../../hooks/useProfile";
+import useDocument from "../../hooks/useDocument";
 const Account = () => {
   const {
     fname,
@@ -23,14 +24,29 @@ const Account = () => {
     setSuccess,
     handleAddStaff,
   } = useAccount();
-  const { 
-    profile ,     
-    fullName , 
+  const {
+    profile,
+    fullName,
     setFullName,
-    phones , setPhones,
-    emails , setEmails,
-    password , setPassword,
-    handleUpdateProfile} = useProfile();
+    phones,
+    setPhones,
+    emails,
+    setEmails,
+    password,
+    setPassword,
+    handleUpdateProfile,
+  } = useProfile();
+
+  const {
+    accountNumber,
+    setAccountNumber,
+    businessBank,
+    setBusinessBank,
+    sortCode,
+    setSortCode,
+    handleAccountDocument
+  } = useDocument();
+
   const [isChecked, setIsChecked] = useState(false);
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
@@ -80,16 +96,15 @@ const Account = () => {
               value={fullName || profile?.fullName}
               onClick={() => {
                 setIsEditing(1);
-                
               }}
               onChange={(e) => setFullName(e.target.value)}
             />
             {isEditing === 1 ? (
               <span
-                onClick={() =>{
-                  handleUpdateProfile()
-                   setIsEditing(false)
-                  }}
+                onClick={() => {
+                  handleUpdateProfile();
+                  setIsEditing(false);
+                }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
                 SAVE
@@ -122,13 +137,14 @@ const Account = () => {
               onClick={() => {
                 setIsEditing(2);
               }}
-            onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {isEditing === 2 ? (
               <span
-                onClick={() =>{ 
-                  handleUpdateProfile()
-                  setIsEditing(false)}}
+                onClick={() => {
+                  handleUpdateProfile();
+                  setIsEditing(false);
+                }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
                 SAVE
@@ -247,9 +263,10 @@ const Account = () => {
             />
             {isEditing === 3 ? (
               <span
-                onClick={() =>{
-                  handleUpdateProfile()
-                   setIsEditing(false)}}
+                onClick={() => {
+                  handleUpdateProfile();
+                  setIsEditing(false);
+                }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
                 SAVE
@@ -618,7 +635,8 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  //  value={profile?.email}
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value)}
                   onClick={() => {
                     setIsEditing(6);
                   }}
@@ -626,8 +644,11 @@ const Account = () => {
                 />
                 {isEditing === 6 ? (
                   <span
-                    onClick={() => setIsEditing(false)}
+                    onClick={() =>{
+                      handleAccountDocument()
+                       setIsEditing(false)}}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
+                 
                   >
                     SAVE
                   </span>
@@ -651,8 +672,8 @@ const Account = () => {
                 />
                 <select
                   id="countries"
-                  //   value={selectedOption}
-                  //   onChange={handleChange}
+                  value={businessBank}
+                  onChange={(e) => setBusinessBank(e.target.value)}
                   className="account-input"
                 >
                   <option className="font-semibold">
@@ -673,15 +694,17 @@ const Account = () => {
                   placeholder="Sort Code"
                   className="account-input"
                   required
-                  //  value={profile?.email}
+                  value={sortCode}
+                  onChange={(e) => setSortCode(e.target.value)}
                   onClick={() => {
                     setIsEditing(9);
                   }}
-                  // onChange={(e) => setPassword(e.target.value)}
                 />
                 {isEditing === 9 ? (
                   <span
-                    onClick={() => setIsEditing(false)}
+                    onClick={() => {
+                      handleAccountDocument()
+                      setIsEditing(false)}}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
                   >
                     SAVE
@@ -713,15 +736,17 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  //  value={profile?.email}
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value)}
                   onClick={() => {
                     setIsEditing(6);
                   }}
-                  // onChange={(e) => setPassword(e.target.value)}
                 />
                 {isEditing === 6 ? (
                   <span
-                    onClick={() => setIsEditing(false)}
+                    onClick={() => {
+                      handleAccountDocument()
+                      setIsEditing(false)}}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
                   >
                     SAVE

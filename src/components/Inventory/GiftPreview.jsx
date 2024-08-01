@@ -49,7 +49,7 @@ const GiftPreview = () => {
         <div className="gift-main2">
           <img src={productInfo?.image} alt="" className="back-image2" />
           <div className="image-text2">
-            <p className="text-2xl">{giftData?.message}</p>
+            <p className="text-2xl">Gift {productInfo?.name}</p>
             <p className="text-[12px]">Gift a {productInfo?.name} for £{giftData?.price}</p>
           </div>
         </div>

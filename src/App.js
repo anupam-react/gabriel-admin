@@ -124,17 +124,17 @@ function App() {
             element={<CustomizedGift />}
           />
           <Route
-            path="/inventory/customized-preview"
+            path="/inventory/customized-preview/:id"
             element={<CustomizedPreview />}
           />
-          <Route path="/inventory/promote" element={<Promote />} />
+          <Route path="/inventory/promote/:id" element={<Promote />} />
           <Route
-            path="/inventory/review-campaign"
+            path="/inventory/review-campaign/:id"
             element={<ReviewCampaign />}
           />
-          <Route path="/inventory/ad-preview" element={<AdPreview />} />
+          <Route path="/inventory/ad-preview/:id" element={<AdPreview />} />
           <Route
-            path="/inventory/ad-confirm"
+            path="/inventory/ad-confirm/:id"
             element={<AdPreview isPay={true} />}
           />
           <Route path="/inventory/payment/:path" element={<Payment />} />

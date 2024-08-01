@@ -7,41 +7,13 @@ import {
 } from "../utiils";
 import { useRecoilState } from "recoil";
 
-import { campaignState, initialState  } from "../components/atoms/campaignState";
+import { campaignState  } from "../components/atoms/campaignState";
 
-const useCampaign = () => {
-  const [campaigns, setCampaigns] = useState([]);
-  const [liveCampaign, setLiveCampaign] = useState([]);
-  const [pastCampaign, setPastCampaign] = useState([]);
-  const [productId, setProductId] = useState("");
+const usePromoteProduct = () => {
   const [campaignData, setCampaignData] = useRecoilState(campaignState);
 
   console.log(campaignData);
 
-
-  const navigate = useNavigate();
-
-  async function getMarketingCampaignByToken() {
-    const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignByToken"
-    );
-
-    setCampaigns(data?.data);
-  }
-  async function getLiveMarketingCampaignByToken() {
-    const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getLiveMarketingCampaignByToken"
-    );
-
-    setLiveCampaign(data?.data);
-  }
-  async function getPastMarketingCampaignByToken() {
-    const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getPastMarketingCampaignByToken"
-    );
-
-    setPastCampaign(data?.data);
-  }
 
   const getMarketingCampaignById = async (id) => {
     const data = await fetchApiData(
@@ -54,11 +26,7 @@ const useCampaign = () => {
   };
 
 
-  useEffect(() => {
-    getMarketingCampaignByToken();
-    getLiveMarketingCampaignByToken()
-    getPastMarketingCampaignByToken()
-  }, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -69,12 +37,10 @@ const useCampaign = () => {
     });
   };
 
-  const handleCreateCampaign = async () => {
+  const handleCreateCampaign = async (productId) => {
     // event.preventDefault();
     const formData = new FormData();
     formData.append('typeOfCampaign', campaignData?.typeOfCampaign || "");
-    // formData.append('couponImage', campaignData?.couponImage || "");
-    formData.append('image', campaignData?.image ||"");
     formData.append('productId', productId || "");
     formData.append('discountValue', campaignData?.discountValue || "");
     formData.append('expireDate', campaignData?.expireDate || "");
@@ -104,7 +70,6 @@ const useCampaign = () => {
     if(campaignData?.typeOfCampaign) formData.append('typeOfCampaign', campaignData?.typeOfCampaign || "");
     // formData.append('couponImage', campaignData?.couponImage || "");
     if(campaignData?.image) formData.append('image', campaignData?.image ||"");
-    if(campaignData?.productId) formData.append('productId', productId || "");
     if(campaignData?.discountValue) formData.append('discountValue', campaignData?.discountValue || "");
     if(campaignData?.expireDate) formData.append('expireDate', campaignData?.expireDate || "");
     if(campaignData?.conditionOfUse) formData.append('conditionOfUse', campaignData?.conditionOfUse || "");
@@ -127,31 +92,15 @@ const useCampaign = () => {
     }
   };
 
-  const handlePauseMarketingCampaign = async (id) => {
-    console.log(id)
-  
-    try {
-      const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/pauseMarketingCampaign/${id}`
-      );
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  };
+
   return {
-    campaigns,
-    liveCampaign,
-    pastCampaign,
     campaignData,
+    getMarketingCampaignById,
     setCampaignData,
     handleCreateCampaign,
     handleChange,
-    setProductId,
-    getMarketingCampaignById,
-    handlePauseMarketingCampaign,
     handleUpdateCampaign
   };
 };
 
-export default useCampaign;
+export default usePromoteProduct;

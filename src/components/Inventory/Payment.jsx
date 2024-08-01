@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+
+import usePromoteProduct from "../../hooks/usePromoteProduct";
+
 const Payment = () => {
+  const { campaignData} = usePromoteProduct()
+  console.log(campaignData)
   const { path } = useParams()
   const [isSuccess, setSuccess] = useState(false);
   const [isReview, setReview] = useState(false);
@@ -71,12 +76,12 @@ const Payment = () => {
             style={{ width: "180px", marginTop: "20px" }}
             onClick={handleSubmit}
           >
-            Pay £450
+            Pay £{campaignData?.campaignCost}
           </button>
         </div>
         <div className="payment-card">
           <p>You’re paying a total of</p>
-          <p className="text-[24px] font-bold text-black pb-3">£450.00</p>
+          <p className="text-[24px] font-bold text-black pb-3">£{campaignData?.campaignCost}</p>
           <hr />
           <div className="flex justify-between font-bold text-black mt-2">
             <p>Campaign Run</p>

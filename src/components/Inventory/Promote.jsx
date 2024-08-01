@@ -1,18 +1,42 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./index.scss";
 import InventoryCard from "./InventoryCard";
 import Select from 'react-select';
 import CustomOption from "../Marketing/CustomOption";
+
+import useProduct from "../../hooks/useProduct";
+import usePromoteProduct from "../../hooks/usePromoteProduct";
 const Promote = () => {
+  const {id} = useParams()
+  const {getProductById , productInfo} = useProduct()
+  const { campaignData , handleChange , setCampaignData , handleCreateCampaign , handleUpdateCampaign} = usePromoteProduct()
+  const [selectUserType, setSelectUserType] = useState("")
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/inventory/review-campaign");
+    if(campaignData?._id){
+      handleUpdateCampaign(campaignData?._id)
+    }else{
+      handleCreateCampaign(id)
+    }
+    navigate(`/inventory/review-campaign/${id}`);
+  };
+
+  useEffect(()=>{
+    getProductById(id);
+  },[id])
+
+  const handleSelect = (event) => {
+    setSelectUserType(event);
+    setCampaignData({...campaignData , typeOfCustomer : event.value})
   };
 
   const data = {
-    image: "../../Rectangle 8765 (3).png",
-    name: "Butter Croissant",
+    image: productInfo?.image,
+    price: `£${productInfo?.price}`,
+    name: productInfo?.name,
+    inStore: productInfo?.inStore,
+    online: productInfo?.online
   };
   const CustomerOptions = [
     { label: "Active", value: "Active", color: '#03CC5E' },
@@ -104,18 +128,21 @@ const Promote = () => {
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Discount Value</p>
-          <input type="text" className="input-loyalty2" value="50%" />
+          <input type="text" className="input-loyalty2" name="discountValue"  value={campaignData?.discountValue}
+            onChange={handleChange} />
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">Add Expiration date</p>
-          <input type="text" className="input-loyalty2" value="01-01-2024" />
+          <p className="text-lg font-semibold pb-2">Add Expiration Date</p>
+          <input type="text" className="input-loyalty2" name="expireDate"  value={campaignData?.expireDate}
+            onChange={handleChange} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Conditions Of Use</p>
           <select
             id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+            name="conditionOfUse"
+            value={campaignData?.conditionOfUse}
+            onChange={handleChange}
             className="input-loyalty2"
           >
             {useOptions?.map((data, i) => (
@@ -136,8 +163,8 @@ const Promote = () => {
           <Select
             options={CustomerOptions}
             components={{ Option: CustomOption }}
-            // value={selectUserType}
-            // onChange={handleSelect }
+            value={selectUserType}
+            onChange={handleSelect }
           
         />
         </div>
@@ -145,25 +172,46 @@ const Promote = () => {
           <p className="text-lg font-semibold pb-2">Choose Target Location</p>
           <textarea
             className="input-loyalty2"
-            value="4517 Washington Ave. Manchester, Kentucky 39495"
-            name=""
+            name="targetLocation"
             id=""
             rows="3"
+            value={campaignData?.targetLocation}
+            onChange={handleChange}
           ></textarea>
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Min Estimated Reach</p>
+          <input type="text" className="input-loyalty2" name="estimateReachMin"  value={campaignData?.estimateReachMin}
+            onChange={handleChange} />
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Max Estimated Reach</p>
+          <input type="text" className="input-loyalty2" name="estimateReachMax"  value={campaignData?.estimateReachMax}
+            onChange={handleChange} />
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Location Long</p>
+          <input type="text" className="input-loyalty2" name="locationLat"  value={campaignData?.locationLat}
+            onChange={handleChange} />
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Location Lat</p>
+          <input type="text" className="input-loyalty2" name="locationLong"  value={campaignData?.locationLong}
+            onChange={handleChange} />
         </div>
         <div className="mt-4">
           <div className="input-loyalty2 p-4">
             <p className="font-semibold pb-2">
-              4517 Washington Ave. Manchester, Kentucky 39495
+            {campaignData?.targetLocation}
             </p>
-            <img src="../image 724.png" alt="" />
+            <img src="../../image 724.png" alt="" />
             <button
               className="loyalty-button1 mt-2"
               style={{ width: "300px" }}
               // onClick={handleSubmit}
             >
               <p className="text-[14px]">Estimated Reach</p>
-              <p className="text-[20px]">2500-5000</p>
+              <p className="text-[20px]"> {campaignData?.estimateReachMin + "-"+campaignData?.estimateReachMax}</p>
             </button>
           </div>
         </div>
@@ -180,9 +228,7 @@ const Promote = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={() => {
-              navigate("/inventory/review-campaign");
-            }}
+            onClick={handleSubmit}
           >
             Next
           </button>

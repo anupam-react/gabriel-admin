@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { initialState, offerState } from "../atoms/offerState";
+import { useRecoilState } from "recoil";
+import useProduct from "../../hooks/useProduct";
+import { getDateFromISOString } from "../../utiils";
 const CustomizedPreview = () => {
+  const {id} = useParams()
     const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
+    const [ giftData, setGiftData] = useRecoilState(offerState)
+    const {getProductById , productInfo} = useProduct()
     const navigate = useNavigate()
+    useEffect(()=>{
+      getProductById(id);
+
+    },[id])
     const handleSubmit = () => {
         setOpenDeleteConfirm(true);
+        setGiftData(initialState)
         setTimeout(() => {
             navigate('/inventory')
         },1000)
@@ -34,18 +46,18 @@ const CustomizedPreview = () => {
       </div>
       <div className="gift-container2">
         <div className="gift-main2">
-          <img src="../Rectangle 8765 (3).png" alt="" className="back-image2" />
+          <img src={productInfo?.image} alt="" className="back-image2" />
           <div className="image-text2">
-            <p className="text-2xl">Gift Butter Croissant</p>
-            <p className="text-[12px]">Gift a Butter Corrisant for £6.00</p>
+          <p className="text-2xl">Gift {productInfo?.name}</p>
+          <p className="text-[12px]">Gift a {productInfo?.name} for £{giftData?.amount}</p>
           </div>
         </div>
         <div className="w-[500px] font-bold mt-2">
           <p className="pb-2">
-            Rewards - 300 Points
+            Rewards - {giftData?.rewardPoints} Points
           </p>
-          <p className="pb-2">Discount Issued -70 % Off (£450.00)</p>
-          <p className="pb-2">Expiry Date - DD/MM/YYYY</p>
+          <p className="pb-2">Discount Issued -{giftData?.discount} % Off (£{giftData?.amount})</p>
+          <p className="pb-2">Expiry Date - {getDateFromISOString(giftData?.expireDate)}</p>
           <button
             className="loyalty-button1"
             style={{ width: "300px" }}
@@ -57,7 +69,7 @@ const CustomizedPreview = () => {
           </div>
                 <DialogDefault open={openDeleteConfirm} handleOpen={setOpenDeleteConfirm}>
         <div className="alert">
-          <img src="../Vector (2).png" alt="" />
+          <img src="../../Vector (2).png" alt="" />
           <p className="text-center text-lg">
             Product successfully sent to customer Gift Folder'
           </p>

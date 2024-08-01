@@ -1,73 +1,85 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import InventoryCard from './InventoryCard';
+import useProduct from '../../hooks/useProduct';
+import usePromoteProduct from '../../hooks/usePromoteProduct';
+import { getDateFromISOString } from '../../utiils';
 
 const ReviewCampaign = () => {
-      const navigate = useNavigate();
+  const {id} = useParams()
+  const {getProductById , productInfo} = useProduct()
+  const { campaignData} = usePromoteProduct()
+  useEffect(()=>{
+    getProductById(id);
+  },[id])
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/inventory/ad-preview");
+    navigate(`/inventory/ad-preview/${id}`);
   };
 
   const data = {
-    image: "../../Rectangle 8765 (3).png",
-    name: "Butter Croissant",
+    image: productInfo?.image,
+    price: `£${productInfo?.price}`,
+    name: productInfo?.name,
+    inStore: productInfo?.inStore,
+    online: productInfo?.online
     };
      const data2 = [
     {
       title: "Campaign Type",
-      value: "Percentage DIscount",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: campaignData?.typeOfCampaign,
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Offer Discount",
-      value: "50%",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: campaignData?.discountValue + "%",
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Reward Type",
       value: "Points",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Description",
       value: "Special Offer coupon on all hot drinks",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "No of Points Reward",
-      value: "500 POints",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: "500 Points",
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Add Conditions",
-      value: "Select specific product attached to Coupon ( Burger)",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: campaignData?.conditionOfUse,
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Customer",
-      value: "New",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: campaignData?.typeOfCustomer,
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
     {
       title: "Expriy Date",
-      value: "25-jan-2024",
-    //   handleCLick: () => {
-    //     setOpenCustom(true);
-    //   },
+      value: getDateFromISOString(campaignData?.expireDate),
+      handleClick: () => {
+        navigate(`/inventory/promote/${id}`);
+      },
     },
   ];
   return (
@@ -105,7 +117,7 @@ const ReviewCampaign = () => {
             <p>{d?.title}</p>
             <span>:</span>
             <p>{d?.value}</p>
-            <button className="edit-button2" >Edit</button>
+            <button className="edit-button2" onClick={d?.handleClick} >Edit</button>
           </div>
         ))}
           </div>

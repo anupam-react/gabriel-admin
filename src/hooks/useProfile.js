@@ -14,6 +14,7 @@ const useProfile = () => {
       `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProfile`
     );
     setProfile(data?.data);
+    sessionStorage.setItem("userId", data?.data?._id);
   };
 
   useEffect(() => {

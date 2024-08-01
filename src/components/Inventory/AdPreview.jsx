@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 import InventoryCard from "./InventoryCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useProduct from "../../hooks/useProduct";
+import usePromoteProduct from "../../hooks/usePromoteProduct";
+import { formatDate } from "../../utiils";
 const AdPreview = ({ isPay = false }) => {
+  const {id} = useParams()
+  const {getProductById , productInfo} = useProduct()
+  const { campaignData} = usePromoteProduct()
+  useEffect(()=>{
+    getProductById(id);
+  },[id])
   const data = {
-    image: "../../Rectangle 8765 (3).png",
-    name: "Butter Croissant",
+    image: productInfo?.image,
+    price: `£${productInfo?.price}`,
+    name: productInfo?.name,
+    inStore: productInfo?.inStore,
+    online: productInfo?.online
   };
   const navigate = useNavigate();
   const handleSubmit = () => {
-    isPay ? navigate("/inventory/payment/inventory") : navigate("/inventory/ad-confirm");
+    isPay ? navigate("/inventory/payment/inventory") : navigate(`/inventory/ad-confirm/${id}`);
   };
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <p className="text-2xl font-bold">DIscount Ad Preview</p>
+        <p className="text-2xl font-bold">Discount Ad Preview</p>
         <div
           className="flex items-center px-6 h-12"
           style={{
@@ -36,15 +48,15 @@ const AdPreview = ({ isPay = false }) => {
         <p className="text-[#121212] font-semibold text-xl pb-4">Ad Preview</p>
         <div className="ad-main">
           <div className="flex gap-4">
-            <img src="../image 720.png" alt="" className="h-fit" />
+            <img src="../../image 720.png" alt="" className="h-fit" />
             <div>
               <div className="image-shadow w-fit">
                 <InventoryCard data={data} />
               </div>
               <div className="flex justify-end gap-2 mt-2">
-                <img src="../mdi_gift.png" alt="" />
+                <img src="../../mdi_gift.png" alt="" />
                 <p className="font-semibold"> : 500</p>
-                <img src="../image 698 (3).png" alt="" />
+                <img src="../../image 698 (3).png" alt="" />
               </div>
             </div>
           </div>
@@ -52,14 +64,14 @@ const AdPreview = ({ isPay = false }) => {
             <p className="pb-2">
               Buy Any Hot Drinks Today And Double Your Points.
             </p>
-            <p className="pb-2">Exp: 05 Jan 2024</p>
+            <p className="pb-2">Exp: {formatDate(campaignData?.expireDate)}</p>
 
             <button
               className="loyalty-button1"
               style={{ width: "260px" }}
               onClick={handleSubmit}
             >
-              {isPay ? "Pay £1" : "Run  Campaign"}
+              {isPay ? `Pay £${campaignData?.campaignCost}` : "Run  Campaign"}
             </button>
           </div>
         </div>

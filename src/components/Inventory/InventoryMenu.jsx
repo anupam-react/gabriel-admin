@@ -27,7 +27,7 @@ const InventoryMenu = ({ setOpenMenu , id , data }) => {
 
   return (
     <div className="menu-container">
-      <button className="menuButton7" onClick={() => navigate("/inventory/promote")}>
+      <button className="menuButton7" onClick={() => navigate(`/inventory/promote/${id}`)}>
         Promote Product
       </button>
 

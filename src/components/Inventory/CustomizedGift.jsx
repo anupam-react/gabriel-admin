@@ -1,18 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import InventoryCard from "./InventoryCard";
+import useProduct from "../../hooks/useProduct";
+import { offerState } from "../atoms/offerState";
+import { createApiData, fetchApiData } from "../../utiils";
+import { useRecoilState } from "recoil";
 const CustomizedGift = () => {
+  const {id} = useParams()
+  const {getProductById , productInfo} = useProduct()
+  const [ giftData, setGiftData] = useRecoilState(offerState)
+  const [cutomers, setCustomers] = useState([])
   const navigate = useNavigate();
-  const handleSubmit = () => {
-     navigate('/inventory/customized-preview')
+
+
+  const getCustomer = async ()=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomer`)
+    setCustomers(data?.data?.docs)
+  }
+
+  useEffect(()=>{
+    getProductById(id);
+    getCustomer()
+  },[id])
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+    setGiftData({
+      ...giftData,
+      [name]: val,
+    });
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append('userId', giftData?.userId || cutomers[0]?._id);
+    formData.append('productId', id);
+    formData.append('message', giftData?.message);
+    formData.append('expireDate', giftData?.expireDate);
+    formData.append('type', "Gift");
+    formData.append('typeOfReward', giftData?.typeOfReward);
+    formData.append('rewardPoints', giftData?.rewardPoints);
+    formData.append('amount', giftData?.amount);
+    formData.append('discount', giftData?.discount);
+
+    
+    try {
+      const response = await createApiData(
+        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createUserRewards",
+        formData
+      );
+
+      setGiftData(response?.data)
+      navigate(`/inventory/customized-preview/${id}`);
+
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   };
 
   const data = {
-    image: "../../Rectangle 8765 (3).png",
-    price: "£5",
-    name: "Butter Croissant",
+    image: productInfo?.image,
+    price: `£${productInfo?.price}`,
+    name: productInfo?.name,
+    inStore: productInfo?.inStore,
+    online: productInfo?.online
   };
   return (
     <div>
@@ -46,18 +101,33 @@ const CustomizedGift = () => {
           <p className="text-lg font-semibold pb-2">
             Send to Specific Customer
           </p>
-          <input
-            type="text"
+          <select
+            id="countries"
+            value={giftData?.userId}
+            onChange={handleChange}
             className="input-loyalty2"
-            value="Search Moneychat ID"
-          />
+          >
+            {cutomers?.map((data, i) => (
+              <>
+                <option
+                  className="font-semibold text-black"
+                  key={i}
+                  value={data?._id}
+                  defaultValue={cutomers[0]?._id}
+                >
+                  {data?.fullName || data?.firstName + " " + data?.lastName}
+                </option>
+              </>
+            ))}
+          </select>
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Message</p>
         <textarea
             className="input-loyalty2"
-            value="Description"
-            name=""
+           name="message" 
+           value={giftData?.message}   
+           onChange={handleChange}
             id=""
             rows="3"
           ></textarea>
@@ -65,23 +135,24 @@ const CustomizedGift = () => {
       
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Expiry Date</p>
-          <input type="text" className="input-loyalty2" value="10-02-2024" />
+          <input type="text" className="input-loyalty2" name="expireDate"
+             value={giftData?.expireDate}   onChange={handleChange} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Type of Rewards</p>
-          <input type="text" className="input-loyalty2" value="Points" />
+          <input type="text" className="input-loyalty2" name="typeOfReward" value={giftData?.typeOfReward} onChange={handleChange} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Change Rewards Point</p>
-          <input type="text" className="input-loyalty2" value="Eg : 2000" />
+          <input type="text" className="input-loyalty2"  name="rewardPoints" value={giftData?.rewardPoints} onChange={handleChange} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Discount</p>
-          <input type="text" className="input-loyalty2" value="Eg : 50%" />
+          <input type="text" className="input-loyalty2"  name="discount" value={giftData?.discount} onChange={handleChange} />
         </div>
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">New Amount</p>
-          <input type="text" className="input-loyalty2" value="£450.00" />
+          <input type="text" className="input-loyalty2" name="amount" value={giftData?.amount} onChange={handleChange} />
         </div>
         <div className="my-4 flex justify-between">
           <button
