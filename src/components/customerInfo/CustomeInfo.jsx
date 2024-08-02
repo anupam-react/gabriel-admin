@@ -19,7 +19,8 @@ import OffersTable from "./OffersTable";
 import ReturnForm from "./ReturnForm";
 import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
-import { formatDate, formatDate2, formatDate3 } from "../../utiils";
+import { formatDate3 } from "../../utiils";
+import useCusomerInfo from "../../hooks/useCusomerInfo";
 
 const CustomeInfo = ({ handleOpen , customerInfo}) => {
   const [openLoyality, setOpenLoyality] = useState(false);
@@ -34,6 +35,8 @@ const CustomeInfo = ({ handleOpen , customerInfo}) => {
   const [openReturn, setOpenReturn] = useState(false);
   const [isView , setView] = useState(false)
   const [isOpenProd , setOpenProd] = useState(false)
+
+  const { mostViewProd } = useCusomerInfo() 
 
   const statisticData = [
     {
@@ -57,23 +60,23 @@ It helps assess customer spending habits and business performance.`,
 It factors in the revenue generated from a customer, the duration of the relationship, and the costs associated with serving the customer..`,
     },
   ];
-  const mostViewProd = [
-    {
-      title: "Coffee",
+  // const mostViewProd = [
+  //   {
+  //     title: "Coffee",
 
-      image: "./Group 527.png",
-    },
-    {
-      title: "Donuts",
+  //     image: "./Group 527.png",
+  //   },
+  //   {
+  //     title: "Donuts",
 
-      image: "./Group 528.png",
-    },
-    {
-      title: "Coffee",
+  //     image: "./Group 528.png",
+  //   },
+  //   {
+  //     title: "Coffee",
 
-      image: "./Group 527.png",
-    },
-  ];
+  //     image: "./Group 527.png",
+  //   },
+  // ];
   const data = [
     {
       image: "./carbon_user-avatar-filled (1).png",
@@ -157,7 +160,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader onClose={() => handleOpen(false)}/>
+      <InfoHeader onClose={() => handleOpen(false)} data={customerInfo}/>
       <div style={{ paddingTop: "40px", paddingBottom: "30px" }}>
         <p style={{ color: "#0070BC", fontWeight: 600 }}>CUSTOMER INSIGHTS</p>
         <hr className="hr3" />
@@ -371,34 +374,34 @@ It factors in the revenue generated from a customer, the duration of the relatio
         <ProductDetails handleOpen={setOpenProd} />
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} onClose={()=> handleOpen(false)}/>
+        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-        <Loyality handleOpen={setOpenLoyality} onClose={()=> handleOpen(false)}/>
+        <Loyality handleOpen={setOpenLoyality} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
-        <Engagement handleOpen={setOpenEngagement} onClose={()=> handleOpen(false)}/>
+        <Engagement handleOpen={setOpenEngagement} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
-        <Promotions handleOpen={setOpenPromotions} onClose={()=> handleOpen(false)}/>
+        <Promotions handleOpen={setOpenPromotions} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-        <RefferalActivity handleOpen={setOpenReferral} onClose={()=> handleOpen(false)}/>
+        <RefferalActivity handleOpen={setOpenReferral} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionHistory handleOpen={setOpenTransaction} onClose={()=> handleOpen(false)} />
+        <TransactionHistory handleOpen={setOpenTransaction} data={customerInfo} onClose={()=> handleOpen(false)} />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} onClose={()=> handleOpen(false)}/>
+        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
-        <Verification handleOpen={setOpenVerification} onClose={()=> handleOpen(false)}/>
+        <Verification handleOpen={setOpenVerification} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <OffersTable handleOpen={setOpenOffer} onClose={()=> handleOpen(false)}/>
+        <OffersTable handleOpen={setOpenOffer} data={customerInfo} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
-        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}/>
+        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}  data={customerInfo}/>
       </DialogDefault>
     </div>
   );

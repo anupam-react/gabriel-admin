@@ -4,7 +4,7 @@ import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import Notification from "./Notification";
 
-const Verification = ({ handleOpen }) => {
+const Verification = ({ handleOpen , onClose , data}) => {
   const [openPromotion, setOpenPromotion] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
   return (
@@ -19,7 +19,7 @@ const Verification = ({ handleOpen }) => {
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader />
+      <InfoHeader  onClose={onClose} data={data}/>
       <div style={{ paddingTop: "30px", paddingBottom: "20px" }}>
         <p style={{ color: "#0070BC", fontWeight: 600 }}  className="cursor-pointer" onClick={()=> handleOpen(false)}>
           STUDENT VERIFICATION

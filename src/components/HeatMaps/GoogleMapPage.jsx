@@ -6,8 +6,8 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import OutlateInfo from "./OutlateInfo";
-import useOutlate from "../../hooks/useOutlate";
 import axios from "axios";
+import useHeatMap from "../../hooks/useHeatMap";
 
 const containerStyle = {
   width: "100%",
@@ -15,7 +15,7 @@ const containerStyle = {
 };
 
 export function GoogleMapPage() {
-  const { outlate } = useOutlate();
+  const { allOutlate } = useHeatMap();
   const [activeMarker, setActiveMarker] = useState({});
 
   const [oulateData , setOutelateData]= useState([])
@@ -23,12 +23,12 @@ export function GoogleMapPage() {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
   const [error, setError] = useState('');
-  console.log(oulateData);
+  console.log(allOutlate);
 
   const onMarkerClick = (index) => {
     console.log(index , showingInfoWindow);
     // setSelectedPlace(props);
-    // setActiveMarker(marker);
+    setActiveMarker(index);
     if(showingInfoWindow === index) return;
     setShowingInfoWindow(index);
   };
@@ -65,58 +65,58 @@ export function GoogleMapPage() {
     setMap(null);
   }, []);
 
-  const getCoordinates = async (address , data) => {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        address
-      )}&key=${API_KEY}`;
-      const response = await axios.get(url);
-      if (response.data.status === "OK" && response.data.results.length > 0) {
-        const location = response.data.results[0].geometry.location;
+  // const getCoordinates = async (address , data) => {
+  //   try {
+  //     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+  //       address
+  //     )}&key=${API_KEY}`;
+  //     const response = await axios.get(url);
+  //     if (response.data.status === "OK" && response.data.results.length > 0) {
+  //       const location = response.data.results[0].geometry.location;
     
-        oulateData?.push( {  ...data, lat: location.lat,
-          lng: location.lng})
-        setError("");
-      } else {
-        setError("No results found.");
-        setCoordinates(null);
-      }
-    } catch (err) {
-      setError("Error occurred while fetching coordinates.");
-      setCoordinates(null);
-    }
+  //       oulateData?.push( {  ...data, lat: location.lat,
+  //         lng: location.lng})
+  //       setError("");
+  //     } else {
+  //       setError("No results found.");
+  //       setCoordinates(null);
+  //     }
+  //   } catch (err) {
+  //     setError("Error occurred while fetching coordinates.");
+  //     setCoordinates(null);
+  //   }
    
-  };
+  // };
 
-  useEffect(() => {
-    {outlate?.docs?.map((d , i)=>(
-      getCoordinates(d?.city , d)
-    ))}
-  }, [outlate?.docs?.length])
+  // useEffect(() => {
+  //   {outlate?.docs?.map((d , i)=>(
+  //     getCoordinates(d?.city , d)
+  //   ))}
+  // }, [outlate?.docs?.length])
   
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={{
-        lat: oulateData[0]?.lat,
-        lng: oulateData[0]?.lng,
+        lat: allOutlate[0]?.locationCordinate?.coordinates[0],
+        lng: allOutlate[0]?.locationCordinate?.coordinates[1],
       }}
-      zoom={2}
+      zoom={6}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {oulateData?.map((location, index) => (
+      {allOutlate?.map((location, index) => (
       <Marker
       key={index+1}
         onMouseOver={()=>onMarkerClick(index+1)}
-        // onMouseOut={onClose}
+        onMouseOut={onClose}
         icon={{
           url: "./Component 62.png",
         }}
         position={{
-          lat: location?.lat,
-          lng: location?.lng,
+          lat: location?.locationCordinate?.coordinates[0],
+          lng: location?.locationCordinate?.coordinates[1],
         }}
       >
         {showingInfoWindow === index+1 && (

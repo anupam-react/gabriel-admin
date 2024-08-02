@@ -4,7 +4,7 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import HistoryDetails from "./HistoryDetails";
 
-const Engagement = ({ handleOpen , onClose }) => {
+const Engagement = ({ handleOpen , onClose , data }) => {
   const [openTransaction, setOpenTransaction] = useState(false);
   return (
     <div className="info-container">
@@ -18,7 +18,7 @@ const Engagement = ({ handleOpen , onClose }) => {
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader />
+      <InfoHeader onClose={onClose} data={data}/>
       <div className="engagement-card">
         <div className="other">
           <p style={{ color: "#000000B2", fontWeight: 600 }}>
@@ -80,7 +80,7 @@ const Engagement = ({ handleOpen , onClose }) => {
                 <span
                   style={{ color: "#0070BC", textDecoration: "underline" }}
                   className="cursor-pointer"
-                  onClick={() => setOpenTransaction(true)}
+                  onMouseOver={()=> setOpenTransaction(true)}
                 >
                   4 visits
                 </span>{" "}
@@ -94,7 +94,7 @@ const Engagement = ({ handleOpen , onClose }) => {
                 <span
                   style={{ color: "#0070BC", textDecoration: "underline" }}
                   className="cursor-pointer"
-                  onClick={() => setOpenTransaction(true)}
+                  onMouseOver={()=> setOpenTransaction(true)}
                 >
                   4 visits
                 </span>{" "}
@@ -117,7 +117,7 @@ const Engagement = ({ handleOpen , onClose }) => {
                   <span
                     style={{ color: "#0070BC", textDecoration: "underline" }}
                     className="cursor-pointer"
-                    onClick={() => setOpenTransaction(true)}
+                    onMouseOver={()=> setOpenTransaction(true)}
                   >
                     2 visits
                   </span>
@@ -131,7 +131,7 @@ const Engagement = ({ handleOpen , onClose }) => {
                   <span
                     style={{ color: "#0070BC", textDecoration: "underline" }}
                     className="cursor-pointer"
-                    onClick={() => setOpenTransaction(true)}
+                    onMouseOver={()=> setOpenTransaction(true)}
                   >
                     2 visits
                   </span>
@@ -145,7 +145,7 @@ const Engagement = ({ handleOpen , onClose }) => {
                   <span
                     style={{ color: "#0070BC", textDecoration: "underline" }}
                     className="cursor-pointer"
-                    onClick={() => setOpenTransaction(true)}
+                    onMouseOver={()=> setOpenTransaction(true)}
                   >
                     2 visits
                   </span>

@@ -13,6 +13,7 @@ const PaginatedTable = () => {
     customer,
     customerInfo,
     getCustomerInfoForParticularUser,
+    getMostViewProductByUserId,
     isOpenInfo, setOpenInfo
   } = useCusomerInfo()
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,7 +69,12 @@ const PaginatedTable = () => {
                 <td className="w-1/2">
                   <div className="flex items-center gap-6 ml-[100px] my-2 relative">
                   <div className="relative">
-                    <div className="profile-image cursor-pointer" onClick={() => setOpenInfo(true)}>
+                    <div className="profile-image cursor-pointer" onClick={() =>{
+                       setOpenInfo(true)
+                       getCustomerInfoForParticularUser(item?._id)
+                       getMostViewProductByUserId(item?._id)
+
+                       }}>
                       <img src={item?.image || "./carbon_user-avatar-filled.png"} alt=""/>
                     </div>
                       <img
@@ -86,6 +92,7 @@ const PaginatedTable = () => {
                     <div className="flex flex-col gap-1 font-[500]" onClick={() =>{
                        setOpenInfo(true)
                        getCustomerInfoForParticularUser(item?._id)
+                       getMostViewProductByUserId(item?._id)
                        }}>
                     <p className="profileId text-left" >
                   {item?.fullName || item?.firstName + " " + item?.lastName }

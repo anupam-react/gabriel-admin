@@ -19,22 +19,25 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
 
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Total Sales",
-      data: [200, 400, 500, 300, 600, 500, 700],
-      backgroundColor: "#FD575B",
-    },
-  ],
-};
 
-export function BarChart3() {
+
+
+export function BarChart3({data}) {
+  console.log(data)
+  const labels = data?.map((data)=> data?.dayOfWeek);
+const dataSet = {
+    labels,
+    datasets: [
+      {
+        label: "Total Sales",
+        data: data?.map((data)=> data?.totalSales),
+        backgroundColor: "#FD575B",
+      },
+    ],
+  };
   const options = {
     scales: {
       x: {
@@ -65,5 +68,5 @@ export function BarChart3() {
       }
     }
   };
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={dataSet} />;
 }

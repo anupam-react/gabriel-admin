@@ -7,9 +7,11 @@ import { LineChart4 } from "./LineChart4";
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
 import Select3 from "../common/Select3";
+import useComparison from "../../hooks/useComparison";
 
 
 const Comparison = () => {
+  const { saleComp } = useComparison()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
@@ -97,7 +99,7 @@ const Comparison = () => {
         Sales Comparisons 
         </p>
         <div className="w-[600px]">
-          <BarChart3 />
+          <BarChart3 data={saleComp}/>
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6 my-6">
