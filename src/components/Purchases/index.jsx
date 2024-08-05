@@ -10,6 +10,7 @@ const Purchases = () => {
   const { purchasesApp , purchasesStore}= usePurchases()
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [range, setRange] = useState([0, 5000]);
   const navigate = useNavigate();
   const handleOpen = () => setOpen(!open);
   const closeDrawer = () => setIsOpen(false);

@@ -6,15 +6,23 @@ import LoyaltyFilter from "./LoyaltyFilter";
 import { useNavigate } from "react-router-dom";
 import useLoyality from "../../hooks/useLoyality";
 const LoyaltyProgram = () => {
-  const { stamps , saving , points} = useLoyality();
+  const {
+    stamps,
+    saving,
+    points,
+    getStampSystemByToken,
+    getMakeASavingByToken,
+    getSpendMyPointByToken,
+  } = useLoyality();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const handleOpen = () => setOpen(!open);
   const closeDrawer = () => setIsOpen(false);
 
-  console.log(points)
+  console.log(stamps, saving, points);
 
   return (
     <div>
@@ -94,27 +102,20 @@ const LoyaltyProgram = () => {
                 text={d?.description}
               />
             ))}
-
           </div>
         </div>
         <div>
           <p className="py-4 font-semibold text-xl">My Saving</p>
           <div className="flex flex-wrap justify-between gap-4">
-            {saving?.map((d, i)=>(
-              <LoyalityCard
-                image={d?.image}
-                key={i}
-                text={d?.title}
-              />
-
+            {saving?.map((d, i) => (
+              <LoyalityCard image={d?.image} key={i} text={d?.title} />
             ))}
-     
           </div>
         </div>
         <div>
           <p className="py-4 font-semibold text-xl">Spend My Points</p>
           <div className="flex flex-wrap justify-between gap-4">
-          {points?.map((d, i) => (
+            {points?.map((d, i) => (
               <LoyalityCard
                 image={d?.image}
                 key={i}
@@ -124,8 +125,15 @@ const LoyaltyProgram = () => {
           </div>
         </div>
       </div>
-      <LoyaltyReport open={open} setOpen={setOpen} handleOpen={handleOpen} />
-      <LoyaltyFilter closeDrawer={closeDrawer} open={isOpen} />
+      <LoyaltyReport
+        open={open}
+        setOpen={setOpen}
+        handleOpen={handleOpen}
+   
+      />
+      <LoyaltyFilter closeDrawer={closeDrawer} open={isOpen} getStampSystemByToken={getStampSystemByToken}
+    getMakeASavingByToken={getMakeASavingByToken}
+    getSpendMyPointByToken={getSpendMyPointByToken}/>
     </div>
   );
 };

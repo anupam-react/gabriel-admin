@@ -23,7 +23,8 @@ const useCusomerInfo = () => {
     setCustomerInfo(data?.data)
   }
   const getMostViewProductByUserId = async (id)=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getMostViewProductByUserId/${id}`)
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getMostViewProduct/ByUserId/${id}`)
+    console.log(data?.data)
     setMostViewProd(data?.data)
   }
 

@@ -12,6 +12,7 @@ const PaginatedTable = () => {
   const {  
     customer,
     customerInfo,
+    mostViewProd,
     getCustomerInfoForParticularUser,
     getMostViewProductByUserId,
     isOpenInfo, setOpenInfo
@@ -124,7 +125,7 @@ const PaginatedTable = () => {
         onPageChange={(page) => setCurrentPage(page)}
       />
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
-        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo} />
+        <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo} mostViewProd={mostViewProd}/>
       </DialogDefault>
     </>
   );

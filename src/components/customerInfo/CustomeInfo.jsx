@@ -22,7 +22,7 @@ import ProductDetails from "./ProductDetails";
 import { formatDate3 } from "../../utiils";
 import useCusomerInfo from "../../hooks/useCusomerInfo";
 
-const CustomeInfo = ({ handleOpen , customerInfo}) => {
+const CustomeInfo = ({ handleOpen , customerInfo , mostViewProd}) => {
   const [openLoyality, setOpenLoyality] = useState(false);
   const [openDemographic, setOpenDemographic] = useState(false);
   const [openEngagement, setOpenEngagement] = useState(false);
@@ -36,7 +36,8 @@ const CustomeInfo = ({ handleOpen , customerInfo}) => {
   const [isView , setView] = useState(false)
   const [isOpenProd , setOpenProd] = useState(false)
 
-  const { mostViewProd } = useCusomerInfo() 
+
+  console.log(mostViewProd)
 
   const statisticData = [
     {
@@ -289,7 +290,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
           <div className="" key={i}>
             <div className="relative">
 
-            <img src={d?.image} alt="" className="cursor-pointer" onClick={()=> setOpenProd(true)}/>
+            <img src={d?.products?.image} alt="" className="cursor-pointer" onClick={()=> setOpenProd(d?.products)}/>
             <img
               src="../Group (9).png"
               alt=""
@@ -306,7 +307,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
                       </div>
                     )}
             </div>
-            <p>{d?.title}</p>
+            <p>{d?.products?.name}</p>
           </div>
 
           ))}
@@ -371,7 +372,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         </div>
       </div> */}
       <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
-        <ProductDetails handleOpen={setOpenProd} />
+        <ProductDetails handleOpen={setOpenProd} data={isOpenProd}/>
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
         <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} data={customerInfo} onClose={()=> handleOpen(false)}/>

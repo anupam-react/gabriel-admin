@@ -1,19 +1,98 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
-import Slider, { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './SliderRangeFilter.css';
-const LoyaltyFilter = ({ closeDrawer, open }) => {
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
+import "./SliderRangeFilter.css";
+import Select from "react-select";
+import { fetchApiData, formatDate } from "../../utiils";
+import useOutlate from "../../hooks/useOutlate";
+import useLoyality from "../../hooks/useLoyality";
+const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
+  getMakeASavingByToken,
+  getSpendMyPointByToken,}) => {
+  const { outlate } = useOutlate();
+  // const {
+  //   getStampSystemByToken,
+  //   getMakeASavingByToken,
+  //   getSpendMyPointByToken,
+  // } = useLoyality();
   const [isActive, setActive] = useState(1);
-  const [range, setRange] = useState([10, 60]);
+  const [range, setRange] = useState([0, 5000]);
+  const [productId, setProductId] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [subCategoryId, setSubCategoryId] = useState("");
+  const [outletId, setOutletId] = useState("");
+  const [category, setCategory] = useState();
+  const [subcategory, setSubcategory] = useState();
+  const [selectedSubCat, setSubCat] = useState(null);
+  const [selectedCat, setCat] = useState(null);
+  const [selectedOutlate, setSelectOutlate] = useState(null);
+  const [product, setProduct] = useState([]);
+  const [selectedProduct, setSelectProduct] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [pointEarn, setPointEarn] = useState("");
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
-    console.log('Selected range: ', newRange);
+    console.log("Selected range: ", newRange);
   };
+
+  async function fetchCategory() {
+    const data = await fetchApiData(
+      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+    );
+    setCategory(data?.data);
+  }
+
+  const handleCategory = (event) => {
+    setCat(event);
+    setCategoryId(event.value);
+    fetchSubCategory(event.value);
+  };
+
+  async function fetchSubCategory(id) {
+    if (id !== "") {
+      const data = await fetchApiData(
+        `https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`
+      );
+      setSubcategory(data?.data);
+    }
+  }
+  async function getProduct(
+    search = "",
+    fromDate = "",
+    toDate = "",
+    page = "",
+    limit = "",
+    maxStock = "",
+    minStock = "",
+    maxPrice = "",
+    minPrice = ""
+  ) {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
+    );
+    setProduct(data?.data);
+  }
+
+  const handleOutlate = (event) => {
+    setSelectOutlate(event);
+    setOutletId(event.value);
+  };
+  const handleProduct = (event) => {
+    setSelectProduct(event);
+    setProductId(event.value);
+  };
+
+  useEffect(() => {
+    fetchCategory();
+    getProduct();
+  }, []);
+
   return (
     <React.Fragment>
       <Drawer
@@ -46,20 +125,27 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
             <div className="p-2">
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Item Bought</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    COFFEE
-                  </option>
-                </select>
+                <Select
+                  className="input-loyalty2"
+                  styles={{ width: "20px" }}
+                  value={selectedProduct}
+                  options={product?.docs?.map((user) => ({
+                    value: user._id,
+                    label: user?.name,
+                  }))}
+                  defaultValue={product?.docs?.[0]?._id}
+                  onChange={handleProduct}
+                  placeholder=""
+                />
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Points Earned</p>
-                <input type="text" className="input-loyalty" value="300" />
+                <input
+                  type="text"
+                  className="input-loyalty"
+                  value={pointEarn}
+                  onChange={(e) => setPointEarn(e.target.value)}
+                />
               </div>
               <div className="filterbutton-group mt-4">
                 <button
@@ -89,49 +175,63 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Categories</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    Beverages
-                  </option>
-                </select>
+                <Select
+                  className="input-loyalty2"
+                  styles={{ width: "20px" }}
+                  value={selectedCat}
+                  options={category?.map((user) => ({
+                    value: user._id,
+                    label: user?.name,
+                  }))}
+                  defaultValue={category?.[0]?._id}
+                  onChange={handleCategory}
+                  placeholder=""
+                />
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Sub Categories</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    Coffee, Burger , etc..
-                  </option>
-                </select>
+                <Select
+                  className="input-loyalty2"
+                  styles={{ width: "20px" }}
+                  value={selectedSubCat}
+                  options={subcategory?.map((user) => ({
+                    value: user._id,
+                    label: user?.name,
+                  }))}
+                  defaultValue={subcategory?.[0]?._id}
+                  onChange={(e) => {
+                    setSubCat(e);
+                    setSubCategoryId(e.value);
+                  }}
+                />
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Choose Outlate</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    Coffee, Burger , etc..
-                  </option>
-                </select>
+                <Select
+                  className="input-loyalty2"
+                  styles={{ width: "20px" }}
+                  value={selectedOutlate}
+                  options={outlate?.docs?.map((user) => ({
+                    value: user._id,
+                    label: user?.name,
+                  }))}
+                  defaultValue={outlate?.docs?.[0]?._id}
+                  onChange={handleOutlate}
+                  placeholder=""
+                />
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Amount</p>
                 <div class="relative mb-10">
-              
                   {/* <input id="labels-range-input" type="range" value="1000" min="100" max="1500" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
-                  <Slider range  min={0} max={100} value={range} onChange={handleRangeChange} allowCross={false}/>
+                  <Slider
+                    range
+                    min={0}
+                    max={5000}
+                    value={range}
+                    onChange={handleRangeChange}
+                    allowCross={false}
+                  />
                   <span className="text-sm font-[500] text-black dark:text-gray-400 absolute start-0 -bottom-8">
                     0
                   </span>
@@ -152,11 +252,22 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
               <div className="calender" style={{ marginTop: "60px" }}>
                 <div>
                   <p>From</p>
-                 <input type="text" className="input-loyalty" placeholder="£100"/>
+                  <input
+                    type="text"
+                    className="input-loyalty"
+                    placeholder=""
+                    value={range?.[0]}
+                    onChange={(e) => setRange()}
+                  />
                 </div>
                 <div>
                   <p>To</p>
-                  <input type="text" className="input-loyalty" placeholder="£1,000"/>
+                  <input
+                    type="text"
+                    className="input-loyalty"
+                    placeholder=""
+                    value={range?.[1]}
+                  />
                 </div>
               </div>
               <div className="mt-4">
@@ -184,11 +295,17 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                  />
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2
+                    startDate={endDate}
+                    setStartDate={setEndDate}
+                  />
                 </div>
               </div>
             </div>
@@ -196,16 +313,55 @@ const LoyaltyFilter = ({ closeDrawer, open }) => {
           <div className="button-container">
             <button
               className="button2"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+              onClick={() => {
+                if (isActive === 2)
+                  getStampSystemByToken(
+                    "",
+                    "",
+                    productId,
+                    pointEarn,
+                    subCategoryId,
+                    categoryId,
+                    outletId,
+                    range[0],
+                    range[1],
+                    startDate,
+                    endDate
+                  );
+                else if (isActive === 3)
+                  getMakeASavingByToken(
+                    "",
+                    "",
+                    productId,
+                    pointEarn,
+                    subCategoryId,
+                    categoryId,
+                    outletId,
+                    range[0],
+                    range[1],
+                    startDate,
+                    endDate
+                  );
+                else if (isActive === 4)
+                  getSpendMyPointByToken(
+                    "",
+                    "",
+                    productId,
+                    pointEarn,
+                    subCategoryId,
+                    categoryId,
+                    outletId,
+                    range[0],
+                    range[1],
+                    startDate,
+                    endDate
+                  );
+                closeDrawer();
+              }}
             >
               APPLY
             </button>
-            <button
-              className="button4"
-              onClick={closeDrawer}
-            >
+            <button className="button4" onClick={closeDrawer}>
               RESET
             </button>
           </div>
