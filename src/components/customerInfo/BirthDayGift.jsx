@@ -90,7 +90,7 @@ const BirthDayGift = ({ handleOpen, id  , onClose }) => {
         </button>
       </div>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <BirthdayOffer onClose={onClose}/>
+        <BirthdayOffer onClose={onClose} handleOpen={()=>setOpenOffer(false)}/>
       </DialogDefault>
       <DialogDefault open={openUploadImage} handleOpen={setUploadImage}>
         <div className="p-6">

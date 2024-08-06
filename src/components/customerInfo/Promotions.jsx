@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
@@ -7,6 +7,7 @@ import TransactionCupon from "./TransactionCupon";
 import TransactionDiscount from "./TransactionDiscount";
 import ProductDetails3 from "./ProductDetails3";
 import TransactionDetails from "./TransactionDetails";
+import { fetchApiData } from "../../utiils";
 
 const Promotions = ({ handleOpen , onClose , data}) => {
   const [openProduct, setOpenproduct] = useState(false);
@@ -14,6 +15,20 @@ const Promotions = ({ handleOpen , onClose , data}) => {
   const [openCupon, setOpenCupon] = useState(false);
   const [openDiscount, setOpenDiscount] = useState(false);
   const [openTransaction, setOpenTransaction] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCustomerParticipationInPromotions = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCustomerParticipationInPromotions/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(()=>{
+    getAllCustomerParticipationInPromotions()
+  },[])
   return (
     <div className="info-container">
       <div className="gift-main">

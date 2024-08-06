@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import InfoHeader from "./InfoHeader";
 import "./index.scss";
 import ProductDetails2 from "./ProductDeatils2";
 import TransactionDetails from "./TransactionDetails";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
 
 const RefferalActivity = ({ handleOpen , onClose , data }) => {
   const [openProduct, setOpenproduct] = useState(false);
   const [openHistory, setOpenHistory] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCustomerReferralActivity = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCustomerReferralActivity/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(()=>{
+    getAllCustomerReferralActivity()
+  },[])
+
+
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -45,16 +62,17 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {dataInfo?.map((data, i)=>(
+          <tr key={i}>
             <td>
               <div className="flex justify-center">
-                <img src="./carbon_user-avatar-filled (2).png" alt="" />
+                <img src={data?.user?.image || "./carbon_user-avatar-filled (2).png"} alt="" className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : MC12345</p>
+              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {data?.user?._id}</p>
             </td>
             <td>
               <div style={{ color: "#000000", fontWeight: 600 }}>
-                https:www.Moneychat.com /referral/link
+               {data?.user?.referralSource}
               </div>
             </td>
             <td>
@@ -64,24 +82,25 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
                     className="pb-2"
                     style={{ color: "#000000", fontWeight: 600 }}
                   >
-                    Donut
+                    {data?.productId?.name}
                   </p>
                   <img
-                    src="./image 713 (1).png"
+                    src={data?.productId?.image}
                     alt=""
                     style={{
                       cursor: "pointer",
                       width: "120px",
                       height: "100px",
+                      borderRadius:"20px"
                     }}
-                    onClick={() => setOpenproduct(true)}
+                    onClick={() => setOpenproduct(data?.productId)}
                   />
                 </div>
                 <div className="mt-6">
-                  09/12/2023,11:00 am <br />
+                  {getDateFromISOString(data?.orderId?.updatedAt) + "," + formatTime2(data?.orderId?.updatedAt)} <br />
                   <span
                     className="id-link"
-                    onClick={() => setOpenHistory(true)}
+                    onClick={() => setOpenHistory(data)}
                   >
                     {" "}
                     See transaction
@@ -96,111 +115,36 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
                     className="pb-2"
                     style={{ color: "#000000", fontWeight: 600 }}
                   >
-                    Free Donut
+                    Free {data?.userRewardsId?.productId?.name}
                   </p>
                   <img
-                    src="./image 713 (1).png"
+                    src={data?.userRewardsId?.productId?.image}
                     alt=""
                     style={{
                       cursor: "pointer",
                       width: "120px",
                       height: "100px",
+                      borderRadius:"20px"
                     }}
-                    onClick={() => setOpenproduct(true)}
+                    onClick={() => setOpenproduct(data?.userRewardsId?.productId)}
                   />
                 </div>
                 <div className="mt-6">
-                  <span style={{ color: "#FEA82F" }}>Unclaimed</span> <br />
-                  09/12/2023,11:00 am
+                  <span style={{ color: "#FEA82F" }}>{data?.userRewardsId?.isRewardUsed ? "Claimed" :"Unclaimed"}</span> <br />
+                  {getDateFromISOString(data?.userRewardsId?.expireDate) + "," + formatTime2(data?.userRewardsId?.expireDate)}
                 </div>
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <div className="flex justify-center">
-                <img src="./carbon_user-avatar-filled (2).png" alt="" />
-              </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : MC12345</p>
-            </td>
-            <td>
-              <div style={{ color: "#000000", fontWeight: 600 }}>
-                https:www.Moneychat.com /referral/link
-              </div>
-            </td>
-            <td>
-              <div className="flex justify-center items-center gap-6">
-                <div>
-                  <p
-                    className="pb-2"
-                    style={{ color: "#000000", fontWeight: 600 }}
-                  >
-                    Coffee
-                  </p>
-                  <img
-                    src="./image 713 (2).png"
-                    alt=""
-                    style={{
-                      cursor: "pointer",
-                      width: "120px",
-                      height: "100px",
-                    }}
-                    onClick={() => setOpenproduct(true)}
-                  />
-                </div>
-                <div className="mt-6">
-                  09/12/2023,11:00 am <br />
-                  <span
-                    className="id-link"
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div className="flex justify-center items-center gap-6">
-                <div>
-                  <p
-                    className="pb-2"
-                    style={{ color: "#000000", fontWeight: 600 }}
-                  >
-                    Free Coffee
-                  </p>
-                  <img
-                    src="./image 713 (2).png"
-                    alt=""
-                    style={{
-                      cursor: "pointer",
-                      width: "120px",
-                      height: "100px",
-                    }}
-                    onClick={() => setOpenproduct(true)}
-                  />
-                </div>
-                <div className="mt-6">
-                  <span style={{ color: "#3BB54A" }}>claimed</span> <br />
-                  09/12/2023,11:00 am <br />
-                  <span
-                    className="id-link"
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </div>
-              </div>
-            </td>
-          </tr>
+          ))}
+        
         </tbody>
       </table>
       <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
-        <ProductDetails2 handleOpen={setOpenproduct} />
+        <ProductDetails2 handleOpen={setOpenproduct} data={openProduct}/>
       </DialogDefault>
       <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
-        <TransactionDetails handleOpen={setOpenHistory} />
+        <TransactionDetails handleOpen={setOpenHistory} userData={openHistory?.user} data={openHistory?.orderId}/>
       </DialogDefault>
     </div>
   );

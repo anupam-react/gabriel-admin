@@ -14,11 +14,7 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
   getMakeASavingByToken,
   getSpendMyPointByToken,}) => {
   const { outlate } = useOutlate();
-  // const {
-  //   getStampSystemByToken,
-  //   getMakeASavingByToken,
-  //   getSpendMyPointByToken,
-  // } = useLoyality();
+
   const [isActive, setActive] = useState(1);
   const [range, setRange] = useState([0, 5000]);
   const [productId, setProductId] = useState("");
@@ -361,7 +357,12 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
             >
               APPLY
             </button>
-            <button className="button4" onClick={closeDrawer}>
+            <button className="button4" onClick={()=>{
+              getStampSystemByToken("");
+              getMakeASavingByToken("")
+              getSpendMyPointByToken("")
+              closeDrawer()
+              }}>
               RESET
             </button>
           </div>

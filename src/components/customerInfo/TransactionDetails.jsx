@@ -41,7 +41,7 @@ const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => 
         <div className='border border-[#000000] border-dashed w-[400px]'></div>
         <div className='info2'>
           <p className='text-[#121212] font-semibold'>Name</p>
-          <p className='text-[#121212] font-semibold'>{userData?.firstName + " " + userData?.lastName}</p>
+          <p className='text-[#121212] font-semibold'>{userData?.fullName || userData?.firstName + " " + userData?.lastName}</p>
         </div>
         <div className='info2'>
           <p className='text-[#121212]'>Items</p>

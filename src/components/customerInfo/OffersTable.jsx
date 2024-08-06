@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InfoHeader from "./InfoHeader";
+import { fetchApiData } from "../../utiils";
 
 const OffersTable = ({ handleOpen , onClose , data }) => {
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllOffers = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllOffers/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(()=>{
+    getAllOffers()
+  },[])
+
   return (
     <div className="info-container">
       <div className="gift-main">

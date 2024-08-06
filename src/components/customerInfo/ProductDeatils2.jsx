@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import InventoryProduct from "./InventoryProduct";
-const ProductDetails2 = ({ handleOpen }) => {
+import { getDateFromISOString } from "../../utiils";
+const ProductDetails2 = ({ handleOpen , data }) => {
   const [openProduct, setProduct] = useState(false);
   return (
     <div className="details-container">
@@ -13,7 +14,7 @@ const ProductDetails2 = ({ handleOpen }) => {
         className="cross-image2"
         onClick={() => handleOpen(false)}
       />
-      <img src="./image 713 (1).png" alt="" className="details-image2 cursor-pointer"  onClick={()=>setProduct(true)}/>
+      <img src={data?.image || "../image 713 (1).png"} alt="" className="details-image2 cursor-pointer"  onClick={()=>setProduct(true)}/>
       <div className="border-dashed border w-full border-black"></div>
       <div className="details-info">
         <div className="info2 text-[#121212] font-bold">
@@ -23,36 +24,26 @@ const ProductDetails2 = ({ handleOpen }) => {
         <div className="border-dashed border border-[#A5A5A5] my-2"></div>
         <div className="info2 text-[#8F8F8F]">
           <p>Product</p>
-          <p>Dunkins Coffee</p>
+          <p>{data?.name}</p>
         </div>
         <div className="info2 text-[#8F8F8F]">
           <p>Price</p>
-          <p>£200</p>
+          <p>£{data?.price}</p>
         </div>
         <div className="info2 text-[#8F8F8F]">
           <p>Date</p>
-          <p>10/12/2023</p>
+          <p>{getDateFromISOString(data?.createdAt)}</p>
         </div>
         <div className="border-dashed border border-[#A5A5A5] my-2"></div>
-        <div className="info2 text-[#8F8F8F]">
-          <p>
-            Available in store <span className="pl-4">:</span>
-          </p>
-
-          <div
-            style={{ background: "#00B050" }}
-            className="w-[20px] h-[20px] rounded-full"
-          ></div>
+        <div className='info2'>
+          <p>Available in store <span className='pl-4'>:</span></p>
+         
+          <div className={data?.inStore ? 'bg-[#00B050] w-[20px] h-[20px] rounded-full' : 'bg-[#D9D9D9] w-[20px] h-[20px] rounded-full'}></div>
         </div>
-        <div className="info2 text-[#8F8F8F]">
-          <p>
-            Available in online <span className="pl-4">:</span>
-          </p>
-
-          <div
-            style={{ background: "#D9D9D9" }}
-            className="w-[20px] h-[20px] rounded-full"
-          ></div>
+        <div className='info2'>
+          <p>Available in online <span className='pl-4'>:</span></p>
+          
+          <div className={data?.online ? 'bg-[#00B050] w-[20px] h-[20px] rounded-full' : 'bg-[#D9D9D9] w-[20px] h-[20px] rounded-full'}></div>
         </div>
       </div>
       <DialogDefault open={openProduct} handleOpen={setProduct}>

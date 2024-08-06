@@ -20,7 +20,7 @@ import ReturnForm from "./ReturnForm";
 import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
 import { formatDate3 } from "../../utiils";
-import useCusomerInfo from "../../hooks/useCusomerInfo";
+
 
 const CustomeInfo = ({ handleOpen , customerInfo , mostViewProd}) => {
   const [openLoyality, setOpenLoyality] = useState(false);
@@ -375,34 +375,34 @@ It factors in the revenue generated from a customer, the duration of the relatio
         <ProductDetails handleOpen={setOpenProd} data={isOpenProd}/>
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-        <Loyality handleOpen={setOpenLoyality} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <Loyality handleOpen={setOpenLoyality} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
-        <Engagement handleOpen={setOpenEngagement} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <Engagement handleOpen={setOpenEngagement} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
-        <Promotions handleOpen={setOpenPromotions} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <Promotions handleOpen={setOpenPromotions} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-        <RefferalActivity handleOpen={setOpenReferral} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <RefferalActivity handleOpen={setOpenReferral} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionHistory handleOpen={setOpenTransaction} data={customerInfo} onClose={()=> handleOpen(false)} />
+        <TransactionHistory handleOpen={setOpenTransaction} data={customerInfo?.User1} onClose={()=> handleOpen(false)} />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
-        <Verification handleOpen={setOpenVerification} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <Verification handleOpen={setOpenVerification} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <OffersTable handleOpen={setOpenOffer} data={customerInfo} onClose={()=> handleOpen(false)}/>
+        <OffersTable handleOpen={setOpenOffer} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
       </DialogDefault>
       <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
-        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}  data={customerInfo}/>
+        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}  data={customerInfo?.User1}/>
       </DialogDefault>
     </div>
   );

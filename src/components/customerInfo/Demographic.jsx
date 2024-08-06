@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import BirthDayGift from "./BirthDayGift";
 import CustomizedBGift from "./CustomizedBGift";
+import { fetchApiData, formatDate3, getDateFromISOString } from "../../utiils";
 const Demographic = ({ handleOpen , data , onClose}) => {
   const [openGift, setOpenGift] = useState(false);
   const [openCGift, setOpenCGift] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState()
+
+  console.log(data)
+
+  const getCustomerDemographicByUserId = async ()=>{
+    const response = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getCustomerDemographic/ByUserId/${data?._id}`)
+    console.log(response)
+    setDataInfo(response?.data)
+  }
+
+  useEffect(()=>{
+    getCustomerDemographicByUserId()
+  },[])
+
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -38,22 +54,25 @@ const Demographic = ({ handleOpen , data , onClose}) => {
         <tbody>
           <tr>
             <td>
-              <div style={{ color: "#121212B2" }}> ID : MC12345</div>
+            <div className="flex justify-center">
+                <img src={dataInfo?.image || "./carbon_user-avatar-filled (2).png"} alt="" className="w-[40px] h-[40px] rounded-full"/>
+              </div>
+              <div style={{ color: "#121212B2" }}> ID : {dataInfo?._id}</div>
             </td>
             <td>
               <div style={{ color: "#0070BC", textDecoration: "underline" }}>
                 {" "}
-                ID : MC12345
+                ID : {dataInfo?._id}
               </div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>London, United Kingdom</div>
+              <div style={{ color: "#000000B2" }}>{dataInfo?.city}, {dataInfo?.country}</div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>12/02</div>
+              <div style={{ color: "#000000B2" }}>{getDateFromISOString(dataInfo?.dob)}</div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>Student</div>
+              <div style={{ color: "#000000B2" }}>{dataInfo?.occupation}</div>
             </td>
             <td className="flex justify-center items-center">
               <div className="buttonContainer2">
@@ -79,10 +98,10 @@ const Demographic = ({ handleOpen , data , onClose}) => {
         </tbody>
       </table>
       <DialogDefault open={openGift} handleOpen={setOpenGift}>
-        <BirthDayGift handleOpen={setOpenGift} onClose={onClose}/>
+        <BirthDayGift handleOpen={setOpenGift} onClose={onClose} id={data?._id}/>
       </DialogDefault>
       <DialogDefault open={openCGift} handleOpen={setOpenCGift}>
-        <CustomizedBGift handleOpen={setOpenCGift} />
+        <CustomizedBGift handleOpen={setOpenCGift} id={data?._id}/>
       </DialogDefault>
     </div>
   );

@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import Notification from "./Notification";
+import { fetchApiData, getDateFromISOString } from "../../utiils";
 
 const Verification = ({ handleOpen , onClose , data}) => {
   const [openPromotion, setOpenPromotion] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState()
+
+  console.log(data)
+
+  const getCustomerDemographicByUserId = async ()=>{
+    const response = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getCustomerDemographic/ByUserId/${data?._id}`)
+    console.log(response)
+    setDataInfo(response?.data)
+  }
+
+  useEffect(()=>{
+    getCustomerDemographicByUserId()
+  },[])
   return (
     <div className="info-container">
       <div className="gift-main">
@@ -30,7 +45,7 @@ const Verification = ({ handleOpen , onClose , data}) => {
         <thead>
           <tr>
             <th>Student ID</th>
-            <th>Educational Institution</th>
+            <th>Institution Email</th>
             <th>Status</th>
             <th>Date</th>
             <th>Notification</th>
@@ -40,23 +55,23 @@ const Verification = ({ handleOpen , onClose , data}) => {
           <tr>
             <td>
               <div className="flex justify-center">
-                <img src="./carbon_user-avatar-filled (2).png" alt="" />
+                <img src={data?.image || "./carbon_user-avatar-filled (2).png"} alt=""  className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : MC12345</p>
+              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {dataInfo?._id}</p>
             </td>
             <td>
               {" "}
               <span className="text-[#121212] font-[500]" >
-              University Of Manchester
+             {dataInfo?.studentEmail}
               </span>{" "}
 
             </td>
             <td>
-            <span className="id-link" style={{ color: "#3BB54A" }}>
-                Verified
+            <span className={data?.studentEmailVerification ? "text-[#3BB54A] underline" : "text-[#FC0005] underline"} >
+              {data?.studentEmailVerification ?   "Verified" : "Not Verified"}
               </span>{" "}
             </td>
-            <td>18/12/2023</td>
+            <td>{data?.studentEmailVerification ? getDateFromISOString(data?.studentEmailDate) : "N/A"}</td>
             <td>
               {" "}
               <button
@@ -123,6 +138,7 @@ const Verification = ({ handleOpen , onClose , data}) => {
         <AwardCustomer
           handleOpen={setOpenPromotion}
           title="Send Customized Student Promotion"
+          id={dataInfo?._id}
         />
       </DialogDefault>
       <DialogDefault open={openNotification} handleOpen={setOpenNotification}>

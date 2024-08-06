@@ -198,7 +198,10 @@ const PromoFilter = ({ closeDrawer, open ,
             }}>
               APPLY
             </button>
-            <button className="button4" onClick={closeDrawer}>
+            <button className="button4" onClick={()=>{
+              getPromoCodeByToken("")
+              closeDrawer()
+              }}>
               RESET
             </button>
           </div>
