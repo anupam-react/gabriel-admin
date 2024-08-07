@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InfoHeader from "./InfoHeader";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, getDateFromISOString } from "../../utiils";
 
 const OffersTable = ({ handleOpen , onClose , data }) => {
   const [dataInfo, setDataInfo] = useState();
@@ -43,7 +43,25 @@ const OffersTable = ({ handleOpen , onClose , data }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {dataInfo?.map((data, i)=>(
+          <tr key={i}>
+            <td>
+              <div className="flex justify-center">
+                <img src={data?.image} alt="" className="w-[300px] h-[150px] rounded-md" />
+              </div>
+            </td>
+            <td>{getDateFromISOString(data?.createdAt)}</td>
+            <td>
+              <span className={data?.isRewardUsed ? "underline text-[#3BB54A]" : "underline text-[#FEA82F]"}>
+               {data?.isRewardUsed ? "Read" : "Unread" }
+              </span>
+              <br />
+              {/* Yesterday 6:00 pm. */}
+            </td>
+          </tr>
+
+          ))}
+          {/* <tr>
             <td>
               <div className="flex justify-center">
                 <img src="./Group 38082.png" alt="" />
@@ -57,22 +75,7 @@ const OffersTable = ({ handleOpen , onClose , data }) => {
               <br />
               Yesterday 6:00 pm.
             </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="flex justify-center">
-                <img src="./Group 38082.png" alt="" />
-              </div>
-            </td>
-            <td>10/12/2023</td>
-            <td>
-              <span className="id-link" style={{ color: "#3BB54A" }}>
-                Read
-              </span>
-              <br />
-              Yesterday 6:00 pm.
-            </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>

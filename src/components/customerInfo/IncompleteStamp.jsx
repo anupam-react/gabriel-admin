@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AwardMenu from "./AwardMenu";
+import { fetchApiData } from "../../utiils";
 
-const IncompleteStamp = () => {
+const IncompleteStamp = ({data}) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenMenu2, setOpenMenu2] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllInCompleteStampVouchers = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllInCompleteStampVouchers/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllInCompleteStampVouchers();
+  }, []);
   return (
     <div>
       <table className="table2">

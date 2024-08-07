@@ -3,7 +3,7 @@ import "./index.scss";
 import CurrentStamp from "./CurrentStamp";
 import RedeemedStamp from "./RedeemedStamp";
 import IncompleteStamp from "./IncompleteStamp";
-const LoyalityTab2 = ({handleOpen}) => {
+const LoyalityTab2 = ({handleOpen , data}) => {
   const [activeLink, setActiveLink] = useState(0);
   const handleLinkClick = (index) => {
     setActiveLink(index);
@@ -67,9 +67,9 @@ const LoyalityTab2 = ({handleOpen}) => {
         </div>
       </div>
 
-      {activeLink === 0 && <CurrentStamp />}
-      {activeLink === 1 && <RedeemedStamp />}
-      {activeLink === 2 && <IncompleteStamp />}
+      {activeLink === 0 && <CurrentStamp data={data}/>}
+      {activeLink === 1 && <RedeemedStamp data={data}/>}
+      {activeLink === 2 && <IncompleteStamp data={data}/>}
     </div>
   );
 };

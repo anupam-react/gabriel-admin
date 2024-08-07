@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchApiData } from '../../utiils';
 
-const RedeemedStamp = () => {
+const RedeemedStamp = ({data}) => {
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllRedeemedStampVouchers = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllRedeemedStampVouchers/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllRedeemedStampVouchers();
+  }, []);
   return (
     <div>
       <table className="table2">

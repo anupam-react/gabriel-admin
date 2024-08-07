@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 import ProductDetails from "./ProductDetails";
+import { fetchApiData } from "../../utiils";
 
-const MoneyTransferTable = () => {
+const MoneyTransferTable = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
   const [openDetails, setOpenDetails] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCustomerPointEarnedFromMoneyTransferRewards = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCustomerPointEarnedFromMoneyTransferRewards/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllCustomerPointEarnedFromMoneyTransferRewards();
+  }, []);
+
   return (
     <div>
       <table className="table2">

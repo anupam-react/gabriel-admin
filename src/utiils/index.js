@@ -221,3 +221,17 @@ export function calculateDateGap(startDate, endDate) {
   return differenceInDays;
 }
 
+
+export function getWeekday(dateString) {
+  // Create a new Date object with the given date string
+  let date = new Date(dateString);
+  
+  // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+  let dayOfWeek = date.getDay();
+  
+  // Create an array of weekday names
+  let weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
+  // Get the name of the day
+  return weekdays[dayOfWeek];
+}

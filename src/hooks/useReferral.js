@@ -33,6 +33,8 @@ const useReferral = () => {
     formData.append('message', referralData?.message);
     formData.append('expireDate', referralData?.expireDate);
     formData.append('exclusiveLink', referralData?.exclusiveLink);
+    formData.append('typeOfReward', referralData?.typeOfReward);
+    formData.append('rewardPoints', referralData?.rewardPoints);
     // formData.append('description', referralData?.description);
     formData.append('image', referralData?.image);
     

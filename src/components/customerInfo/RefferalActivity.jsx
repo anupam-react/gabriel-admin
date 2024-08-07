@@ -130,7 +130,7 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
                   />
                 </div>
                 <div className="mt-6">
-                  <span style={{ color: "#FEA82F" }}>{data?.userRewardsId?.isRewardUsed ? "Claimed" :"Unclaimed"}</span> <br />
+                  <span className={data?.userRewardsId?.isRewardUsed ? " text-[#3BB54A]" : " text-[#FEA82F]"} >{data?.userRewardsId?.isRewardUsed ? "Claimed" :"Unclaimed"}</span> <br />
                   {getDateFromISOString(data?.userRewardsId?.expireDate) + "," + formatTime2(data?.userRewardsId?.expireDate)}
                 </div>
               </div>

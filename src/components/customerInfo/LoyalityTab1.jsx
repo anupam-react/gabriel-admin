@@ -7,7 +7,7 @@ import MoneyTransferTable from "./MoneyTransferTable";
 import RedemptionHistoryTable from "./RedemptionHistoryTable";
 import ClaimHistoryTable from "./ClaimHistoryTable";
 
-const LoyalityTab1 = ({handleOpen , onClose}) => {
+const LoyalityTab1 = ({handleOpen , onClose , data}) => {
   const [activeLink, setActiveLink] = useState(0);
   const handleLinkClick = (index) => {
     setActiveLink(index);
@@ -118,12 +118,12 @@ const LoyalityTab1 = ({handleOpen , onClose}) => {
           {activeLink === 5 && <hr className="hr4" />}
         </div>
       </div>
-      {activeLink === 0 && <Transaction onClose={onClose}/>}
-      {activeLink === 1 && <RefferalTable onClose={handleOpen} />}
-      {activeLink === 2 && <PromotionsTable />}
-      {activeLink === 3 && <MoneyTransferTable />}
-      {activeLink === 4 && <ClaimHistoryTable />}
-      {activeLink === 5 && <RedemptionHistoryTable />}
+      {activeLink === 0 && <Transaction onClose={onClose} data={data}/>}
+      {activeLink === 1 && <RefferalTable onClose={handleOpen} data={data}/>}
+      {activeLink === 2 && <PromotionsTable data={data}/>}
+      {activeLink === 3 && <MoneyTransferTable data={data}/>}
+      {activeLink === 4 && <ClaimHistoryTable data={data}/>}
+      {activeLink === 5 && <RedemptionHistoryTable data={data}/>}
     </div>
   );
 };

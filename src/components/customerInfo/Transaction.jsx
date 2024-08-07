@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import Bouns from "./Bouns";
 import AwardCustomer from "./AwardCustomer";
 import TransactionDetails from "./TransactionDetails";
-const Transaction = ({onClose}) => {
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
+const Transaction = ({ onClose, data }) => {
   const [openAward, setOpenAward] = useState(false);
   const [openPoint, setOpenPoint] = useState(false);
   const [openTransaction, setOpenTransaction] = useState(false);
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllPointEarnedFromTransaction = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllPointEarnedFromTransaction/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllPointEarnedFromTransaction();
+  }, []);
   return (
     <div>
       <table className="table2">
@@ -20,28 +34,48 @@ const Transaction = ({onClose}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {dataInfo?.map((data, i )=>(
+          <tr key={i}>
             <td>
-              <div>Coffee</div>
+              <div>{data?.productId?.name}</div>
             </td>
             <td>
+              {data?.purchaseBy === "App"  ? "N/A" : 
+              
               <div>
                 05/12/2023, 6:00 pm Transaction
                 <span
                   className="id-link"
-                  onClick={() => setOpenTransaction(true)}
+                  onClick={() => setOpenTransaction(data)}
                 >
                   {" "}
                   ID:CFA3945BFO348U
                 </span>{" "}
                 Café Nero, Manchester Spinning Fields, M6 3AJ
               </div>
+              }
             </td>
             <td>
-              <div>N/A</div>
+              <div> {data?.purchaseBy === "App"  ? 
+              
+              <div>
+                {getDateFromISOString(data?.transactionId?.date)},{formatTime2(data?.transactionId?.date)} Transaction
+                <br/>
+                <span
+                  className="id-link"
+                  onClick={() => setOpenTransaction(data)}
+                >
+                  {" "}
+                  ID: {data?.transactionId?._id}
+                </span>{" "}
+              
+              </div>
+              :
+              "N/A"
+              }</div>
             </td>
             <td>
-              <p>300</p>
+              <p>{data?.points}</p>
               <div className="button-container2">
                 <button
                   className="menuButton4"
@@ -55,11 +89,12 @@ const Transaction = ({onClose}) => {
                 >
                   Send Target Point Promotions
                 </button>
-               
               </div>
             </td>
           </tr>
-          <tr>
+
+          ))}
+          {/* <tr>
             <td>
               <div>Coffee</div>
             </td>
@@ -95,21 +130,20 @@ const Transaction = ({onClose}) => {
                 >
                   Send Target Point Promotions
                 </button>
-                
               </div>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
       <DialogDefault open={openAward} handleOpen={setOpenAward}>
-                  <Bouns handleOpen={setOpenAward} onClose={onClose}/>
-                </DialogDefault>
-                <DialogDefault open={openPoint} handleOpen={setOpenPoint}>
-                  <AwardCustomer handleOpen={setOpenPoint} />
-                </DialogDefault>
-                <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-                  <TransactionDetails handleOpen={setOpenTransaction} />
-                </DialogDefault>
+        <Bouns handleOpen={setOpenAward} onClose={onClose} id={data?._id}/>
+      </DialogDefault>
+      <DialogDefault open={openPoint} handleOpen={setOpenPoint}>
+        <AwardCustomer handleOpen={setOpenPoint} id={data?._id}/>
+      </DialogDefault>
+      <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
+        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.productId}/>
+      </DialogDefault>
     </div>
   );
 };

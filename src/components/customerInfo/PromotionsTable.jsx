@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import PromotionDetails from "./PromotionDetails";
 import TransactionDetails from "./TransactionDetails";
-const PromotionsTable = () => {
+import { fetchApiData } from "../../utiils";
+const PromotionsTable = ({data}) => {
   const [openPromtion1, setOpenPromtion1] = useState(false);
   const [openPromtion2, setOpenPromtion2] = useState(false);
   const [openTransaction, setOpenTransaction] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCustomerTargetCustomizedPromotionPoints = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCustomerTargetCustomizedPromotionPoints/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllCustomerTargetCustomizedPromotionPoints();
+  }, []);
+
   return (
     <div>
       <table className="table2">

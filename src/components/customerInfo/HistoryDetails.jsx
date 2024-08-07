@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.scss";
-const HistoryDetails = ({ handleOpen }) => {
+import { formatTime2, getDateFromISOString, getWeekday } from "../../utiils";
+const HistoryDetails = ({ handleOpen , data }) => {
   return (
     <div className="details-container">
       <p className="details-title"  style={{paddingBottom:"30px"}}>Visit History</p>
@@ -21,41 +22,17 @@ const HistoryDetails = ({ handleOpen }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Instore</td>
-            <td>Monday</td>
-            <td>18/12/2023</td>
-            <td>10:30 AM</td>
-            <td>45 Sec</td>
+          {data?.map((d, i)=>(
+          <tr key={i}>
+            <td>{d?.type === "app" ? "Online" : "Instore"}</td>
+            <td>{getWeekday(d?.startTime)}</td>
+            <td>{getDateFromISOString(d?.startTime)}</td>
+            <td>{formatTime2(d?.startTime)}</td>
+            <td>{Math.round(d?.totalTimeSpent / 60)} Sec</td>
           </tr>
-          <tr>
-          <td>Instore</td>
-            <td>Monday</td>
-            <td>18/12/2023</td>
-            <td>10:30 AM</td>
-            <td>45 Sec</td>
-          </tr>
-          <tr>
-          <td>Instore</td>
-            <td>Monday</td>
-            <td>18/12/2023</td>
-            <td>10:30 AM</td>
-            <td>45 Sec</td>
-          </tr>
-          <tr>
-          <td>Instore</td>
-            <td>Monday</td>
-            <td>18/12/2023</td>
-            <td>10:30 AM</td>
-            <td>45 Sec</td>
-          </tr>
-          <tr>
-          <td>Instore</td>
-            <td>Monday</td>
-            <td>18/12/2023</td>
-            <td>10:30 AM</td>
-            <td>45 Sec</td>
-          </tr>
+
+          ))}
+    
         </tbody>
       </table>
       <hr style={{ width: "100%" }} />

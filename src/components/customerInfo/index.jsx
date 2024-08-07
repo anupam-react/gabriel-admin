@@ -48,7 +48,7 @@ It helps assess customer spending habits and business performance.`,
     {
       title: "Average Total Spend",
       image: "./image 701.png",
-      amount: dashboard?.averageTotalSpend,
+      amount: Math.round(dashboard?.averageTotalSpend),
       showInfo: true,
       text: `Customer average total spend is a metric indicating how much a customer spends over a specific period.
  
@@ -167,7 +167,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
               data={{
                 title: "Total  Average Points Balance",
                 image: "./image 701.png",
-                amount: dashboard?.totalAveragePointBalance,
+                amount: Math.round(dashboard?.totalAveragePointBalance),
                 showInfo: false,
               }}
             />
@@ -209,7 +209,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
               data={{
                 title: "Average Basket Size",
                 image: "./image 700 (1).png",
-                amount: dashboard?.averageBasketSize,
+                amount: Math.round(dashboard?.averageBasketSize),
                 showInfo: true,
                 text: `Customer average basket size is a retail metric that represents the average number of items purchased by customers in a single transaction.
 

@@ -4,7 +4,7 @@ import { DialogDefault } from "../common/DilogBox";
 import CatalogueProduct from "./CatalogueProduct";
 import ReferalDetails from "./ReferalDetails";
 import useReferral from "../../hooks/useReferral";
-const Referal = ({ handleOpen, onClose }) => {
+const Referal = ({ handleOpen, onClose ,id }) => {
   const {
     referralData,
     handleChange,
@@ -28,9 +28,7 @@ const Referal = ({ handleOpen, onClose }) => {
           src="./Mask group (2).png"
           alt=""
           className="cross-image"
-          onClick={() => {
-            handleOpen(false);
-          }}
+          onClick={()=>handleOpen(false)}
         />
       </div>
       <hr className="hr" />
@@ -195,7 +193,7 @@ const Referal = ({ handleOpen, onClose }) => {
         <button
           className="menuButton"
           onClick={() => {
-            handleCreateReferalStampsUserRewards();
+            handleCreateReferalStampsUserRewards(id);
             setOpenAlert(true);
           }}
         >

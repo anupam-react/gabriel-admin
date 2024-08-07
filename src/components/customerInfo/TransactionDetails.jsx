@@ -3,6 +3,7 @@ import './index.scss'
 import { DialogDefault } from '../common/DilogBox'
 import { formatTime2, getDateFromISOString } from '../../utiils'
 const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => {
+
   const [openDownload , setOpenDownload] = useState(false)
   const [openShare , setOpenShare] = useState(false)
   return (

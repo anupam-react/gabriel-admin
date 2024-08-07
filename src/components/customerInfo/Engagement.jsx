@@ -3,7 +3,7 @@ import InfoHeader from "./InfoHeader";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import HistoryDetails from "./HistoryDetails";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
 const Engagement = ({ handleOpen, onClose, data }) => {
   const [openTransaction, setOpenTransaction] = useState(false);
@@ -11,13 +11,13 @@ const Engagement = ({ handleOpen, onClose, data }) => {
   const [storeVisit, setStoreVisit] = useState();
   const [appVisit, setAppVisit] = useState();
 
-  console.log(data);
+  console.log(storeVisit);
 
   const getAllEngagementMetrics = async () => {
     const response = await fetchApiData(
       `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllEngagementMetrics/ByUserId/${data?._id}`
     );
-    console.log(response);
+    console.log(appVisit);
     setAllMetrics(response?.data);
   };
   const getStoreVisitFrequency = async () => {
@@ -34,6 +34,41 @@ const Engagement = ({ handleOpen, onClose, data }) => {
     console.log(response);
     setAppVisit(response?.data);
   };
+
+
+  function groupByOutletAndSortVisits(data) {
+    const groupedData = {};
+
+    data?.forEach(entry => {
+        const outletId = entry?.outletId._id;
+        if (!groupedData[outletId]) {
+            groupedData[outletId] = {
+                outletId: entry.outletId,
+                visits: []
+            };
+        }
+
+        groupedData[outletId].visits.push({
+            startTime: entry.startTime,
+            endTime: entry.endTime,
+            totalTimeSpent: entry.totalTimeSpent,
+            type: entry.type,
+            brandId: entry?.brandId
+        });
+    });
+
+    // Sort visits by startTime
+    Object.keys(groupedData).forEach(outletId => {
+        groupedData[outletId].visits.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+    });
+
+    // Convert groupedData object to an array
+    return Object.values(groupedData);
+}
+
+const newStoreData = groupByOutletAndSortVisits(storeVisit)
+
+console.log(newStoreData)
 
   // const getAverageVisitFrequency = async ()=>{
   //   const response = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAverageVisitFrequency/ByUserId/${data?._id}`)
@@ -121,28 +156,26 @@ const Engagement = ({ handleOpen, onClose, data }) => {
         <tbody>
           <tr>
             <td className="">
-              {appVisit?.map((data, i) => (
                 <div
-                  className="-mt-[150px]"
+                  className=""
                   style={{ color: "#121212B2", paddingTop: "20px" }}
-                  key={i}
+               
                 >
                   <span
                     style={{ color: "#0070BC", textDecoration: "underline" }}
                     className="cursor-pointer"
-                    onMouseOver={() => setOpenTransaction(true)}
+                    onMouseOver={() => setOpenTransaction(appVisit)}
                   >
-                    4 visits
+                    {appVisit?.length} visits
                   </span>{" "}
                   a month
                   <br />
-                  Last visit : Today, 10:30 pm
+                  Last visit : {getDateFromISOString(appVisit?.[0]?.startTime)+ " , " + formatTime2(appVisit?.[0]?.startTime) }
                 </div>
-              ))}
             </td>
 
             <td>
-              {storeVisit?.map((data, i) => (
+             
                 <div
                   style={{
                     paddingTop: "20px",
@@ -150,70 +183,33 @@ const Engagement = ({ handleOpen, onClose, data }) => {
                     flexDirection: "column",
                     gap: "10px",
                   }}
-                  key={i}
+                
                 >
-                  <div style={{ color: "#121212B2" }}>
-                    (1): Café Nero, Manchester Spinning Fields,
+                   {newStoreData?.map((data, i) => (
+                  <div style={{ color: "#121212B2" }}   key={i}>
+                    ({i+1}): {data?.outletId?.name}, {data?.outletId?.firstLineAddress},
                     <br />
-                    M4 2AJ –{" "}
+                   {data?.outletId?.city} –{" "}
                     <span
                       style={{ color: "#0070BC", textDecoration: "underline" }}
                       className="cursor-pointer"
-                      onMouseOver={() => setOpenTransaction(true)}
+                      onMouseOver={() => setOpenTransaction(data?.visits)}
                     >
-                      2 visits
+                      {data?.visits?.length} visits
                     </span>
                     .<br />
-                    Last visit to a store: Today, 10:30
+                    Last visit to a store: {getDateFromISOString(data?.visits[0]?.startTime)+ " , " + formatTime2(data?.visits[0]?.startTime) }
                   </div>
-                  <div style={{ color: "#121212B2" }}>
-                    (2): Café Nero, Manchester Spinning Fields,
-                    <br />
-                    M4 2AJ –{" "}
-                    <span
-                      style={{ color: "#0070BC", textDecoration: "underline" }}
-                      className="cursor-pointer"
-                      onMouseOver={() => setOpenTransaction(true)}
-                    >
-                      2 visits
-                    </span>
-                    .<br />
-                    Last visit to a store: Today, 10:30
-                  </div>
-                  <div style={{ color: "#121212B2" }}>
-                    (3): Café Nero, Manchester Spinning Fields,
-                    <br />
-                    M4 2AJ –{" "}
-                    <span
-                      style={{ color: "#0070BC", textDecoration: "underline" }}
-                      className="cursor-pointer"
-                      onMouseOver={() => setOpenTransaction(true)}
-                    >
-                      2 visits
-                    </span>
-                    .<br />
-                    Last visit to a store: Today, 10:30
-                  </div>
+                ))}
+                 
                 </div>
-              ))}
-              {/* <div style={{ color: "#121212B2" }}>
-                <span
-                  style={{ color: "#0070BC", textDecoration: "underline" }}
-                  className="cursor-pointer"
-                  onMouseOver={()=> setOpenTransaction(true)}
-                >
-                  4 visits
-                </span>{" "}
-                a month
-                <br />
-                Last visit : Today, 10:30 pm
-              </div> */}
+            
             </td>
           </tr>
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <HistoryDetails handleOpen={setOpenTransaction} />
+        <HistoryDetails handleOpen={setOpenTransaction} data={openTransaction}/>
       </DialogDefault>
     </div>
   );

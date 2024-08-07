@@ -57,12 +57,12 @@ const BookMark = ({ handleOpen, onClose, data }) => {
             <tr key={i}>
               <td className="">
                 <div className="bookmarkImage">
-                  <img src={data?.productId?.image} alt="" className="image1" />
+                  <img src={data?.bookMark?.productId?.image} alt="" className="image1" />
                   <div className="bookmarkText">
-                    <p>GIFT A {data?.productId?.name}</p>
+                    <p>GIFT A {data?.bookMark?.productId?.name}</p>
                     <p style={{ fontSize: "14px" }}>
-                      Gift a {data?.productId?.name} (UK Only) for £
-                      {data?.productId?.price}{" "}
+                      Gift a {data?.bookMark?.productId?.name} (UK Only) for £
+                      {data?.bookMark?.productId?.price}{" "}
                     </p>
                   </div>
                   <img
@@ -74,25 +74,25 @@ const BookMark = ({ handleOpen, onClose, data }) => {
                 </div>
                 {openMenu && <MenuCard3 onClose={() => setOpenMenu(false)} id={data?.userId}/>}
               </td>
-              <td>{getDateFromISOString(data?.createdAt)}</td>
+              <td>{getDateFromISOString(data?.bookMark?.createdAt)}</td>
               <td>
                 {" "}
                 <span
                   className="id-link"
-                  onClick={() => setOpenTransaction(true)}
+                  onClick={() => setOpenTransaction(data?.visit)}
                 >
-                  10 visits,
+                  {data?.visit?.length} visits,
                 </span>{" "}
                 <br />
                 Last Visit: Today, 10:30 pm
               </td>
-              <td>40 sec</td>
+              <td>{data?.totalTimeSpent/60} sec</td>
             </tr>
           ))}
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <HistoryDetails handleOpen={setOpenTransaction} />
+        <HistoryDetails handleOpen={setOpenTransaction} data={openTransaction}/>
       </DialogDefault>
     </div>
   );

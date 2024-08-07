@@ -4,7 +4,7 @@ import InfoHeader from "./InfoHeader";
 import { DialogDefault } from "../common/DilogBox";
 import BirthDayGift from "./BirthDayGift";
 import CustomizedBGift from "./CustomizedBGift";
-import { fetchApiData, formatDate3, getDateFromISOString } from "../../utiils";
+import { fetchApiData, getDateFromISOString } from "../../utiils";
 const Demographic = ({ handleOpen , data , onClose}) => {
   const [openGift, setOpenGift] = useState(false);
   const [openCGift, setOpenCGift] = useState(false);

@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
+import { fetchApiData } from "../../utiils";
 
-const RedemptionHistoryTable = () => {
+const RedemptionHistoryTable = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCustomerPointVoluntaryRedemptionHistory = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCustomerPointVoluntaryRedemptionHistory/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllCustomerPointVoluntaryRedemptionHistory();
+  }, []);
   return (
     <div>
       <table className="table2">

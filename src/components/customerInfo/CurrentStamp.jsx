@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
-const CurrentStamp = () => {
+import { fetchApiData } from "../../utiils";
+const CurrentStamp = ({data}) => {
+
+  const [dataInfo, setDataInfo] = useState();
+
+  const getAllCurrentStampVouchers = async () => {
+    const response = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCurrentStampVouchers/ByUserId/${data?._id}`
+    );
+    console.log(response);
+    setDataInfo(response?.data);
+  };
+
+  useEffect(() => {
+    getAllCurrentStampVouchers();
+  }, []);
   return (
     <div>
       <table className="table2">
