@@ -57,7 +57,11 @@ const BookMark = ({ handleOpen, onClose, data }) => {
             <tr key={i}>
               <td className="">
                 <div className="bookmarkImage">
-                  <img src={data?.bookMark?.productId?.image} alt="" className="image1" />
+                  <img
+                    src={data?.bookMark?.productId?.image}
+                    alt=""
+                    className="image1"
+                  />
                   <div className="bookmarkText">
                     <p>GIFT A {data?.bookMark?.productId?.name}</p>
                     <p style={{ fontSize: "14px" }}>
@@ -69,10 +73,18 @@ const BookMark = ({ handleOpen, onClose, data }) => {
                     src="./charm_menu-meatball.png"
                     alt=""
                     className="dot-image"
-                    onClick={() => setOpenMenu(!openMenu)}
+                    onClick={() => {
+                      if (openMenu === i + 1) setOpenMenu(false);
+                      else setOpenMenu(i + 1);
+                    }}
                   />
+                  {openMenu === i + 1 && (
+                    <MenuCard3
+                      onClose={() => setOpenMenu(false)}
+                      id={data?.userId}
+                    />
+                  )}
                 </div>
-                {openMenu && <MenuCard3 onClose={() => setOpenMenu(false)} id={data?.userId}/>}
               </td>
               <td>{getDateFromISOString(data?.bookMark?.createdAt)}</td>
               <td>
@@ -86,13 +98,16 @@ const BookMark = ({ handleOpen, onClose, data }) => {
                 <br />
                 Last Visit: Today, 10:30 pm
               </td>
-              <td>{data?.totalTimeSpent/60} sec</td>
+              <td>{data?.totalTimeSpent / 60} sec</td>
             </tr>
           ))}
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <HistoryDetails handleOpen={setOpenTransaction} data={openTransaction}/>
+        <HistoryDetails
+          handleOpen={setOpenTransaction}
+          data={openTransaction}
+        />
       </DialogDefault>
     </div>
   );

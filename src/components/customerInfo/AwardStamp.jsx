@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import { DialogDefault } from "../common/DilogBox";
 import "./index.scss";
+import useBouns from '../../hooks/useBouns';
 
-const AwardStamp = ({handleOpen}) => {
-    const [openSuccess, setSuccess] = useState(false);
+const AwardStamp = ({handleOpen , id , productId}) => {
+  const {     bouns,
+    handleChange,
+    setBounData,
+    openSuccess,
+    setSuccess,
+    handleCreateAwardFreeBonus,
+   } = useBouns()
+
     const [active , setActive] = useState(0)
   return (
  <div className="px-[24px] py-[16px] text-[black] font-[600] no-scrollbar" >
@@ -21,13 +29,22 @@ const AwardStamp = ({handleOpen}) => {
           <hr className="hr" />
       
       <div className="button-group">
-        <button className={active === 0 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=> setActive(0)}>
+        <button className={active === 0 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=>{
+           setActive(0)
+           setBounData({...bouns, totalNoOfStamps: 5})
+           }}>
           5 Stamps
         </button>
-        <button className={active === 1 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=> setActive(1)}>
+        <button className={active === 1 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=>{ 
+          setActive(1)
+          setBounData({...bouns, totalNoOfStamps: 10})
+          }}>
           10 Stamps
         </button>
-        <button className={active === 2 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=> setActive(2)}>
+        <button className={active === 2 ? "button2" : "button1"} style={{fontSize:"18px"}} onClick={()=> {
+          setActive(2)
+          setBounData({...bouns, totalNoOfStamps: 20})
+          }}>
           20 Stamps
         </button>
           </div>
@@ -35,28 +52,25 @@ const AwardStamp = ({handleOpen}) => {
       <div className="form-container">
         <div className="input-container">
           <label>Custom Stamps</label>
-          <input type="text" name="" id="" className="input" placeholder="" value="40 Stamps"/>
+          <input type="text" name="totalNoOfStamps" id="" className="input" placeholder=""      value={bouns?.totalNoOfStamps}
+            onChange={handleChange} />
         </div>
 
         <div className="input-container">
           <label>Description</label>
           <textarea
-            id="w3review"
-            name="w3review"
-            rows="3"
-            cols="50"
-                      className="input"
-                      value="Congratulations! You have been awarded 3 stamps for free. Get one more stamp on your next purchase and you will automatically received a voucher for your 10th cup absolutely free."
+     id="description"
+     name="description"
+     rows="3"
+     cols="50"
+     className="input"
+     value={bouns?.description}
+     onChange={handleChange} 
           />
         </div>
       </div>
       <div className="flex-center">
-        <button className="menuButton" onClick={() => {
-          setSuccess(true)
-          // setTimeout(()=>{
-          //   setSuccess(false)
-          // },2000)
-          }}>
+        <button className="menuButton" onClick={() =>handleCreateAwardFreeBonus(id , productId)}>
           SEND NOTIFICATION
         </button>
       </div>

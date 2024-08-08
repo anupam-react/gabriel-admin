@@ -18,13 +18,13 @@ const useBouns = () => {
     });
   };
 
-  const handleCreateAwardFreeBonus = async (userId) => {
+  const handleCreateAwardFreeBonus = async (userId , prodId) => {
     const formData = {
       userId,
       description: bouns?.description,
       totalNoOfStamps: bouns?.totalNoOfStamps,
-      noOfPoint: bouns?.noOfPoint,
-      productId: productId,
+      noOfPoint: bouns?.noOfPoint || 0,
+      productId: productId || prodId,
     };
 
     try {

@@ -3,7 +3,8 @@ import "./index.scss";
 import MenuCard2 from "./MenuCard2";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
-const AppPurchase = () => {
+import { formatTime2 } from "../../utiils";
+const AppPurchase = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   return (
@@ -22,25 +23,26 @@ const AppPurchase = () => {
           </tr>
         </thead>
         <tbody>
+          {data?.map((d, i)=>(
           <tr>
             <td>
-              <p>Coffee</p>
+              <p>{d?.productId?.name}</p>
             </td>
             <td>
-              <div>£3.30</div>
+              <div>£{d?.orderId?.price}</div>
             </td>
             <td>Coupon</td>
-            <td>2</td>
+            <td>{d?.orderId?.quantity}</td>
             <td>Linked Card</td>
             <td>
               <span
                 className="id-link"
-                onClick={() => setOpenTransaction(true)}
+                onClick={() => setOpenTransaction(d)}
               >
-                Ta9rrgh4u4
+                 {d?._id}
               </span>
             </td>
-            <td>13:30 pm</td>
+            <td>{formatTime2(d?.date)}</td>
             <td className="flex justify-center">
               <div style={{ position: "relative", width: "120px" }}>
                 <img src="./Group 38061.png" alt="" />
@@ -58,7 +60,10 @@ const AppPurchase = () => {
                 <img
                   src="./Group 38060.png"
                   alt=""
-                  onClick={() => setOpenMenu(!openMenu)}
+                  onClick={() =>{ 
+                    if(openMenu === i+1) setOpenMenu(false) 
+                    else setOpenMenu(i+1)
+                  }}
                   style={{
                     position: "absolute",
                     top: "18%",
@@ -66,110 +71,15 @@ const AppPurchase = () => {
                     cursor: "pointer",
                   }}
                 />
-                {openMenu && <MenuCard2 />}
+              {openMenu === i+1 && <MenuCard2 data={d}/>}
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <p>Donut</p>
-            </td>
-            <td>
-              <div>£10.40</div>
-            </td>
-            <td>Percentage Discount</td>
-            <td>1</td>
-            <td>Linked Card</td>
-            <td>
-              <span
-                className="id-link"
-                onClick={() => setOpenTransaction(true)}
-              >
-                Ta9rrgh4u4
-              </span>
-            </td>
-            <td>13:30 pm</td>
-            <td className="flex justify-center">
-              <div style={{ position: "relative", width: "120px" }}>
-                <img src="./Group 38061.png" alt="" />
-                <img
-                  src="./Group 38060.png"
-                  alt=""
-                  on
-                  style={{
-                    position: "absolute",
-                    top: "18%",
-                    right: "18%",
-                    cursor: "pointer",
-                  }}
-                />
-                <img
-                  src="./Group 38060.png"
-                  alt=""
-                  onClick={() => setOpenMenu(!openMenu)}
-                  style={{
-                    position: "absolute",
-                    top: "18%",
-                    right: "18%",
-                    cursor: "pointer",
-                  }}
-                />
-                {/* {openMenu && <MenuCard2 />} */}
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Ice-Tea</p>
-            </td>
-            <td>
-              <div>Stamp Reward</div>
-            </td>
-            <td></td>
-            <td>1</td>
-            <td>Stamp Reward</td>
-            <td>
-              <span
-                className="id-link"
-                onClick={() => setOpenTransaction(true)}
-              >
-                Ta9rrgh4u4
-              </span>
-            </td>
-            <td>13:30 pm</td>
-            <td className="flex justify-center">
-              <div style={{ position: "relative", width: "120px" }}>
-                <img src="./Group 38061.png" alt="" />
-                <img
-                  src="./Group 38060.png"
-                  alt=""
-                  on
-                  style={{
-                    position: "absolute",
-                    top: "18%",
-                    right: "18%",
-                    cursor: "pointer",
-                  }}
-                />
-                <img
-                  src="./Group 38060.png"
-                  alt=""
-                  onClick={() => setOpenMenu(!openMenu)}
-                  style={{
-                    position: "absolute",
-                    top: "18%",
-                    right: "18%",
-                    cursor: "pointer",
-                  }}
-                />
-                {/* {openMenu && <MenuCard2 />} */}
-              </div>
-            </td>
-          </tr>
+          ))}
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} />
+        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

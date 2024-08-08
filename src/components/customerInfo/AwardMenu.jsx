@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import AwardStamp from "./AwardStamp";
-import TargetPoints from "./TargetPoints";
+import AwardCustomer from "./AwardCustomer";
 
-const AwardMenu = () => {
+const AwardMenu = ({data}) => {
   const [openGift, setOpenGift] = useState(false);
   const [openOffer, setOpenOffer] = useState(false);
+  console.log(data)
   return (
     <div className="award-menu">
       <button className="menuButton3" onClick={() => setOpenGift(true)}>
@@ -15,10 +16,10 @@ const AwardMenu = () => {
         Send Target Point Promotions
       </button>
       <DialogDefault open={openGift} handleOpen={setOpenGift}>
-        <AwardStamp handleOpen={setOpenGift} />
+        <AwardStamp handleOpen={setOpenGift} id={data?.brandId?._id} productId={data?.productId?._id}/>
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <TargetPoints handleOpen={setOpenOffer} />
+        <AwardCustomer handleOpen={setOpenOffer} id={data?.brandId?._id}/>
       </DialogDefault>
     </div>
   );

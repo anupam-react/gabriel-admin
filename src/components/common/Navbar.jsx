@@ -36,7 +36,7 @@ const Navbar = ({data}) => {
         <img
           src={data?.image}
           alt="profile"
-          className="rounded-full w-14 h-12"
+          className="rounded-full w-14 h-14"
           />
           <div>
           <p className="font-semibold">{data?.fullName || data?.firstName + " " + data?.lastName}</p>

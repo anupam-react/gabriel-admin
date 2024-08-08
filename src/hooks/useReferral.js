@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createApiData,
-  fetchApiData,
-  updateApiData,
 } from "../utiils/index.js";
 import { useRecoilState } from "recoil";
 import { referralState } from "../components/atoms/referralState.js";
-
-
 
 const useReferral = () => {
   const [referralData, setReferralData] = useRecoilState(referralState);

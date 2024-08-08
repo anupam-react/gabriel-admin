@@ -9,7 +9,7 @@ const Promotion2 = ({data}) => {
   return (
     <div>
       <p className="font-semibold text-xl pb-4">Recommended Promotion type</p>
-          <div onClick={()=> navigate('/marketing/review-campaign-cupon')} className="rounded-lg cursor-pointer shadow-md flex flex-col justify-center items-center bg-white p-4 w-80">
+          <div onClick={()=> navigate('/marketing/review-campaign-cupon')} className="rounded-lg cursor-pointer shadow-md flex flex-col justify-center items-center bg-white p-4 w-80 h-[330px]">
         
        <CircularProgressbar
         value={data}

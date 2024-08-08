@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
-const ClaimHistoryTable = ({data}) => {
+const ClaimHistoryTable = ({ data }) => {
   const [openTransaction, setOpenTransaction] = useState(false);
 
   const [dataInfo, setDataInfo] = useState();
 
-  const getAllCustomerPointEarnedFromMoneyTransferRewards = async () => {
+  const getAllPointClaimHistory = async () => {
     const response = await fetchApiData(
       `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllPointClaimHistory/ByUserId/${data?._id}`
     );
@@ -17,7 +17,7 @@ const ClaimHistoryTable = ({data}) => {
   };
 
   useEffect(() => {
-    getAllCustomerPointEarnedFromMoneyTransferRewards();
+    getAllPointClaimHistory();
   }, []);
   return (
     <div>
@@ -32,56 +32,46 @@ const ClaimHistoryTable = ({data}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <p>1500 Pts</p>
-            </td>
-            <td>30/11/2023</td>
-            <td>
-              <div className="table-flex">
-                <img src="./Group 527.png" alt="" style={{ width: "80px" }} />
-                <p>
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
-                  <span
-                    className="id-link"
-                    onClick={() => setOpenTransaction(true)}
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </p>
-              </div>
-            </td>
-            <td>01</td>
-            <td>VCID474</td>
-          </tr>
-          <tr>
-            <td>
-              <p>4000 Pts</p>
-            </td>
-            <td>30/11/2023</td>
-            <td>
-              <div className="table-flex">
-                <img src="./Group 527.png" alt="" style={{ width: "80px" }} />
-                <p>
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
-                  <span
-                    className="id-link"
-                    onClick={() => setOpenTransaction(true)}
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </p>
-              </div>
-            </td>
-            <td>01</td>
-            <td>VCID474</td>
-          </tr>
+          {dataInfo?.map((data, i) => (
+            <tr key={i}>
+              <td>
+                <p>{data?.userSpendMyPointId?.noOfPoint} Pts</p>
+              </td>
+              <td>{getDateFromISOString(data?.date)}</td>
+              <td>
+                <div className="table-flex">
+                  <img
+                    src={data?.productId?.image}
+                    alt=""
+                    className="rounded-md"
+                    style={{ width: "80px" }}
+                  />
+                  <p>
+                    {data?.productId?.name}{" "}
+                    {getDateFromISOString(data?.transactionId?.date)},{" "}
+                    {formatTime2(data?.transactionId?.date)},
+                    <span
+                      className="id-link"
+                      onClick={() => setOpenTransaction(true)}
+                    >
+                      {" "}
+                      See transaction
+                    </span>
+                  </p>
+                </div>
+              </td>
+              <td>01</td>
+              <td>VCID474</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} />
+        <TransactionDetails
+          handleOpen={setOpenTransaction}
+          userData={openTransaction?.brandId}
+          data={openTransaction?.orderId}
+        />
       </DialogDefault>
     </div>
   );

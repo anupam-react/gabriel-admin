@@ -21,8 +21,7 @@ import MenuCard4 from "./MenuCard4";
 import ProductDetails from "./ProductDetails";
 import { formatDate3 } from "../../utiils";
 
-
-const CustomeInfo = ({ handleOpen , customerInfo , mostViewProd}) => {
+const CustomeInfo = ({ handleOpen, customerInfo, mostViewProd }) => {
   const [openLoyality, setOpenLoyality] = useState(false);
   const [openDemographic, setOpenDemographic] = useState(false);
   const [openEngagement, setOpenEngagement] = useState(false);
@@ -33,11 +32,10 @@ const CustomeInfo = ({ handleOpen , customerInfo , mostViewProd}) => {
   const [openVerification, setOpenVerification] = useState(false);
   const [openOffer, setOpenOffer] = useState(false);
   const [openReturn, setOpenReturn] = useState(false);
-  const [isView , setView] = useState(false)
-  const [isOpenProd , setOpenProd] = useState(false)
+  const [isView, setView] = useState(false);
+  const [isOpenProd, setOpenProd] = useState(false);
 
-
-  console.log(mostViewProd)
+  console.log(mostViewProd);
 
   const statisticData = [
     {
@@ -61,23 +59,7 @@ It helps assess customer spending habits and business performance.`,
 It factors in the revenue generated from a customer, the duration of the relationship, and the costs associated with serving the customer..`,
     },
   ];
-  // const mostViewProd = [
-  //   {
-  //     title: "Coffee",
 
-  //     image: "./Group 527.png",
-  //   },
-  //   {
-  //     title: "Donuts",
-
-  //     image: "./Group 528.png",
-  //   },
-  //   {
-  //     title: "Coffee",
-
-  //     image: "./Group 527.png",
-  //   },
-  // ];
   const data = [
     {
       image: "./carbon_user-avatar-filled (1).png",
@@ -161,7 +143,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader onClose={() => handleOpen(false)} data={customerInfo}/>
+      <InfoHeader onClose={() => handleOpen(false)} data={customerInfo} />
       <div style={{ paddingTop: "40px", paddingBottom: "30px" }}>
         <p style={{ color: "#0070BC", fontWeight: 600 }}>CUSTOMER INSIGHTS</p>
         <hr className="hr3" />
@@ -178,7 +160,10 @@ It factors in the revenue generated from a customer, the duration of the relatio
       </div>
       <div className="pt-4 flex justify-between gap-6">
         <div>
-          <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
+          <p
+            className="text-xl text-center font-[600] pb-4"
+            style={{ color: "black" }}
+          >
             Points System
           </p>
           <div className="flex flex-col gap-4">
@@ -218,7 +203,10 @@ It factors in the revenue generated from a customer, the duration of the relatio
           </div>
         </div>
         <div>
-          <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
+          <p
+            className="text-xl text-center font-[600] pb-4"
+            style={{ color: "black" }}
+          >
             Stamp System
           </p>
           <div className="flex flex-col gap-4">
@@ -249,10 +237,13 @@ It factors in the revenue generated from a customer, the duration of the relatio
           </div>
         </div>
         <div>
-          <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
+          <p
+            className="text-xl text-center font-[600] pb-4"
+            style={{ color: "black" }}
+          >
             Birthday
           </p>
-          <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4 min-w-48 ">
+          <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4  min-w-[300px] ">
             <img src="./image 700 (2).png" alt="" />
             <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
               {formatDate3(customerInfo?.birthDay)}
@@ -260,14 +251,17 @@ It factors in the revenue generated from a customer, the duration of the relatio
           </div>
         </div>
         <div>
-          <p className="text-xl font-[600] pb-4" style={{ color: "black" }}>
+          <p
+            className="text-xl text-center font-[600] pb-4"
+            style={{ color: "black" }}
+          >
             Loaction
           </p>
           <div>
-            <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4 min-w-48 ">
+            <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4  min-w-[300px] ">
               <img src="./image 700 (3).png" alt="" />
               <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
-               {customerInfo?.location}
+                {customerInfo?.location}
               </p>
             </div>
           </div>
@@ -286,41 +280,46 @@ It factors in the revenue generated from a customer, the duration of the relatio
           Most Viewed Products
         </p>
         <div className="most-view">
-          {mostViewProd?.map((d, i)=>(
-          <div className="" key={i}>
-            <div className="relative">
-
-            <img src={d?.products?.image} alt="" className="cursor-pointer" onClick={()=> setOpenProd(d?.products)}/>
-            <img
-              src="../Group (9).png"
-              alt=""
-              className="absolute top-[30px] right-[40px] cursor-pointer"
-              onClick={()=>{
-                if(isView === i) setView(-1)
-                else setView(i)
-              }}
-            />
-             {isView === i && (
-                      <div className="absolute top-[50px] right-[40px] cursor-pointer" ref={divRef}>
-                     {/* <p className="viewProd text-[14px]">View Product</p> */}
-                     <MenuCard4 onClose={()=> handleOpen(false)}/>
-                      </div>
-                    )}
+          {mostViewProd?.map((d, i) => (
+            <div className="" key={i}>
+              <div className="relative">
+                <img
+                  src={d?.products?.image}
+                  alt=""
+                  className="cursor-pointer w-[250px] h-[150px] rounded-lg"
+                  onClick={() => setOpenProd(d?.products)}
+                />
+                <img
+                  src="../Group (9).png"
+                  alt=""
+                  className="absolute top-[10px] right-[20px] cursor-pointer"
+                  onClick={() => {
+                    if (isView === i) setView(-1);
+                    else setView(i);
+                  }}
+                />
+                {isView === i && (
+                  <div
+                    className="absolute top-[50px] right-[40px] cursor-pointer"
+                    ref={divRef}
+                  >
+                    {/* <p className="viewProd text-[14px]">View Product</p> */}
+                    <MenuCard4 onClose={() => handleOpen(false)} />
+                  </div>
+                )}
+              </div>
+              <p>{d?.products?.name}</p>
             </div>
-            <p>{d?.products?.name}</p>
-          </div>
-
           ))}
-     
         </div>
       </div>
       <div className="progress-rotation">
-        <RotaionProgress data={customerInfo?.retentionRate}/>
-        <LifeCycleStage2 data={customerInfo?.LifeCycleStage}/>
-        <Promotion2 data={customerInfo?.recommendedPromotionType}/>
+        <RotaionProgress data={customerInfo?.retentionRate} />
+        <LifeCycleStage2 data={customerInfo?.LifeCycleStage} />
+        <Promotion2 data={customerInfo?.recommendedPromotionType} />
       </div>
       <div style={{ margin: "30px 0px" }}>
-        <BarChart data={customerInfo?.favouriteTimeOfTheDay}/>
+        <BarChart data={customerInfo?.favouriteTimeOfTheDay} />
       </div>
       <div style={{ color: "black", margin: "30px 0px" }}>
         <p style={{ fontSize: "20px", fontWeight: 600 }}>Other Details</p>
@@ -372,37 +371,79 @@ It factors in the revenue generated from a customer, the duration of the relatio
         </div>
       </div> */}
       <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
-        <ProductDetails handleOpen={setOpenProd} data={isOpenProd}/>
+        <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
       </DialogDefault>
       <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
-        <Demographic handleOpen={setOpenDemographic} setOpenInfo={handleOpen} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <Demographic
+          handleOpen={setOpenDemographic}
+          setOpenInfo={handleOpen}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
-        <Loyality handleOpen={setOpenLoyality} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <Loyality
+          handleOpen={setOpenLoyality}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
-        <Engagement handleOpen={setOpenEngagement} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <Engagement
+          handleOpen={setOpenEngagement}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
-        <Promotions handleOpen={setOpenPromotions} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <Promotions
+          handleOpen={setOpenPromotions}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
-        <RefferalActivity handleOpen={setOpenReferral} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <RefferalActivity
+          handleOpen={setOpenReferral}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionHistory handleOpen={setOpenTransaction} data={customerInfo?.User1} onClose={()=> handleOpen(false)} />
+        <TransactionHistory
+          handleOpen={setOpenTransaction}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
-        <BookMark handleOpen={setOpenBookmark} setOpenInfo={handleOpen} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <BookMark
+          handleOpen={setOpenBookmark}
+          setOpenInfo={handleOpen}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
-        <Verification handleOpen={setOpenVerification} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <Verification
+          handleOpen={setOpenVerification}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
-        <OffersTable handleOpen={setOpenOffer} data={customerInfo?.User1} onClose={()=> handleOpen(false)}/>
+        <OffersTable
+          handleOpen={setOpenOffer}
+          data={customerInfo?.User1}
+          onClose={() => handleOpen(false)}
+        />
       </DialogDefault>
       <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
-        <ReturnForm handleOpen={setOpenReturn} onClose={()=> handleOpen(false)}  data={customerInfo?.User1}/>
+        <ReturnForm
+          handleOpen={setOpenReturn}
+          onClose={() => handleOpen(false)}
+          data={customerInfo?.User1}
+        />
       </DialogDefault>
     </div>
   );

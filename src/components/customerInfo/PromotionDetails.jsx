@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.scss";
-const PromotionDetails = ({ image, type, name, handleOpen }) => {
+import { formatTime2, getDateFromISOString } from "../../utiils";
+const PromotionDetails = ({ image, type, name, date, expiry, handleOpen }) => {
 
   
   const data1 = [
@@ -16,17 +17,17 @@ const PromotionDetails = ({ image, type, name, handleOpen }) => {
     },
     {
       title: "Date",
-      value: "05/12/2023",
+      value: getDateFromISOString(date),
     
     },
     {
       title: "Promotion Time",
-      value: "11:05 pm",
+      value: formatTime2(date),
     
     },
     {
       title: "Expiry",
-      value: "05/12/2023,12:00 AM",
+      value: getDateFromISOString(expiry) + "," + formatTime2(expiry),
     
     },
     
@@ -41,32 +42,11 @@ const PromotionDetails = ({ image, type, name, handleOpen }) => {
         onClick={() => handleOpen(false)}
       />
       <img src={image} alt="" className="details-image" />
-      {/* <div className="details-info2">
-        <div className="info2">
-          <p>Product</p>
-          <p>{name}</p>
-        </div>
-        <div className="info2">
-          <p>Promotion Type and Value ID</p>
-          <p> {type}</p>
-        </div>
-        <div className="info2">
-          <p>Date</p>
-          <p>05/12/2023</p>
-        </div>
-        <div className="info2">
-          <p>Promotion Time</p>
-          <p className="text-right">11:05 pm </p>
-        </div>
-        <div className="info2">
-          <p>Expiry</p>
-          <p>05/12/2023,12:00 AM</p>
-        </div>
-      </div> */}
+
       <div className="flex justify-center items-center w-full">
       <div className="flex flex-col gap-[20px]">
           {data1?.map((d, i) => (
-            <div className="flex justify-between ">
+            <div className="flex justify-between " key={i}>
               <p className="w-[250px]">{d?.title}</p>
               <span className="px-[20px]">:</span>
               <p style={{width:"50%"}}>{d?.value}</p>

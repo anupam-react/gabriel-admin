@@ -44,7 +44,7 @@ const LifeCycleStage = ({data}) => {
     return (
         <div>
             <p className="font-semibold text-xl pb-4">Life Cycle Stage</p>
-                <div className="rounded-lg shadow-md flex justify-center items-center bg-white p-4 w-80">
+                <div className="rounded-lg shadow-md flex justify-center items-center bg-white p-4 w-80 h-[330px]">
                 <Doughnut data={data1} options={options}/>
                 </div>
             </div>

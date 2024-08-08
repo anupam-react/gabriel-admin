@@ -79,7 +79,7 @@ const RefferalTable = ({data}) => {
                 open={openTransaction}
                 handleOpen={setOpenTransaction}
               >
-                <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.productId}/>
+                <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.orderId}/>
               </DialogDefault>
     </div>
   );

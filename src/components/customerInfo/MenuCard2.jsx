@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 
-const MenuCard2 = () => {
+const MenuCard2 = ({data}) => {
   const [openView, setOpenView] = useState(false);
   const [openShare, setOpenShare] = useState(false);
   const [openPrint, setOpenPrint] = useState(false);
+
   return (
     <div className="menu-container2">
       <button className="menuButton3" onClick={() => setOpenView(true)}>
@@ -18,7 +19,7 @@ const MenuCard2 = () => {
         Print
       </button>
       <DialogDefault open={openView} handleOpen={setOpenView}>
-        <TransactionDetails isButton={false} handleOpen={setOpenView} />
+        <TransactionDetails isButton={false} handleOpen={setOpenView} userData={data?.brandId} data={data?.orderId}/>
       </DialogDefault>
       <DialogDefault open={openShare} handleOpen={setOpenShare}>
         <div className="details-container">

@@ -29,12 +29,13 @@ const RedeemedStamp = ({data}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {dataInfo?.map((data, i)=>(
+          <tr key={i}>
             <td>
-              <div style={{ color: "#000000", fontWeight: 600 }}>01</div>
+              <div style={{ color: "#000000", fontWeight: 600 }}>{i+1}</div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>VCI89585279 5279</div>
+              <div style={{ color: "#000000B2" }}>{data?.stampSystemId?._id}</div>
             </td>
             <td>
               <div style={{ color: "#000000B2" }}>
@@ -44,35 +45,16 @@ const RedeemedStamp = ({data}) => {
             </td>
             <td>
               <div style={{ display:"flex" , justifyContent:"center" }}>
-                <img src="./Group 598.png" alt=""  />
+              <img src={data?.productId?.image} alt="" className="w-[200px] rounded-lg" />
               </div>
             </td>
             <td>
               <div style={{ color: "#000000B2" }}>Café Nero, <br /> Manchester Spinning Fields, M6 3AJ</div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <div style={{ color: "#000000", fontWeight: 600 }}>02</div>
-            </td>
-            <td>
-              <div style={{ color: "#000000B2" }}>VCI89585279 5279</div>
-            </td>
-            <td>
-              <div style={{ color: "#000000B2" }}>
-                07/12/2023,
-                <br /> 3:00 pm
-              </div>
-            </td>
-            <td>
-              <div style={{ display:"flex" , justifyContent:"center" }}>
-                <img src="./Group 598.png" alt=""  />
-              </div>
-            </td>
-            <td>
-               <div style={{ color: "#000000B2" }}>Café Nero, <br /> Manchester Spinning Fields,  M6 3AJ</div>
-            </td>
-          </tr>
+
+          ))}
+         
         </tbody>
       </table>
     </div>

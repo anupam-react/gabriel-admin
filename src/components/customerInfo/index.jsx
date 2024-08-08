@@ -219,11 +219,9 @@ It's calculated by dividing the total number of items sold by the total number o
           </div>
         </div>
       </div>
-      <div className="flex justify-between my-6">
+      <div className="flex flex-wrap justify-between gap-2 my-6">
       <RotaionProgress data={dashboard?.retentionRate} />
       <LifeCycleStage data={dashboard?.LifeCycleStage}/>
-      </div>
-      <div>
         <Promotion data={dashboard?.recommendedPromotionType}/>
       </div>
       <div className="my-6">

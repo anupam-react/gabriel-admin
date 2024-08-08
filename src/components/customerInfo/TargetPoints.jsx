@@ -132,7 +132,7 @@ const TargetPoints = ({handleOpen}) => {
         </button>
       </div>
       <DialogDefault open={openSuccess} handleOpen={setSuccess}>
-      <AwardOffer handleOpen={setSuccess} />
+            <AwardOffer handleOpen={setSuccess} />
       </DialogDefault>
     </div>
   )

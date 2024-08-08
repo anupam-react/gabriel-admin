@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
 const RedemptionHistoryTable = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
@@ -32,13 +32,14 @@ const RedemptionHistoryTable = ({data}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>30/11/2023</td>
+          {dataInfo?.map((data, i)=>(
+          <tr key={i}>
+            <td>{getDateFromISOString(data?.date)}</td>
             <td>
               <div className="table-flex">
-                <img src="./Group 527.png" alt="" style={{ width: "80px" }} />
+                <img src={data?.productId?.image} alt="" className="rounded-md" style={{ width: "80px" }} />
                 <p>
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
+                {data?.productId?.name} {getDateFromISOString(data?.transactionId?.date)}, {formatTime2(data?.transactionId?.date)}
                   <span
                     className="id-link"
                     onClick={() => setOpenTransaction(true)}
@@ -51,29 +52,11 @@ const RedemptionHistoryTable = ({data}) => {
             </td>
             <td>01</td>
             <td>VCID474</td>
-            <td>Café Nero, Manchester Spinning Fields, M6 3AJ</td>
+            <td>{data?.purchaseBy === "App" ? "N/A" : "Café Nero, Manchester Spinning Fields, M6 3AJ"}</td>
           </tr>
-          <tr>
-            <td>30/11/2023</td>
-            <td>
-              <div className="table-flex">
-                <img src="./Group 527.png" alt="" style={{ width: "80px" }} />
-                <p>
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
-                  <span
-                    className="id-link"
-                    onClick={() => setOpenTransaction(true)}
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </p>
-              </div>
-            </td>
-            <td>01</td>
-            <td>VCID474</td>
-            <td>Café Nero, Manchester Spinning Fields, M6 3AJ</td>
-          </tr>
+
+          ))}
+         
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
