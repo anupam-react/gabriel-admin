@@ -47,7 +47,7 @@ const SellingCard = ({data ,selectedOption, handleChange , open , setOpen , hand
       <p className="text-[#0070BC] text-xl font-semibold">TOP SELLING ITEMS</p>
       <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen} handleSave={handleSave}/>
       <div className="flex flex-col gap-6 my-4">
-        {data?.map((d, i) => (
+        {data?.slice(0, 4)?.map((d, i) => (
           <div className="flex gap-4">
             <p className="underline text-[22px] rank font-semibold">#{i + 1}</p>
             <img
@@ -75,7 +75,7 @@ const SellingCard = ({data ,selectedOption, handleChange , open , setOpen , hand
       <DialogDefault open={openProduct} handleOpen={setOpenProduct}>
         <div className="p-8 rounded-md text-black bg-[#F5F5F5] w-[60vw] overflow-auto">
           <div className="flex justify-between">
-            {productData?.map((data, i) => (
+            {data?.slice(4)?.map((data, i) => (
               <div className="relative">
                 <div
                   className="bg-[#FFFFFF] shadow rounded-md p-4 w-[250px]"
@@ -99,9 +99,9 @@ const SellingCard = ({data ,selectedOption, handleChange , open , setOpen , hand
                     />
                   </div>
                   <div className="flex flex-col items-center font-semibold">
-                    <img src={data?.image} alt="" />
+                    <img src={data?.productImage} alt="" />
                     <p>{data?.price}</p>
-                    <p>{data?.name}</p>
+                    <p>{data?.productName}</p>
                   </div>
                 </div>
                 {isReportopen === i && (

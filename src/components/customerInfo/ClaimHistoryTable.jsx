@@ -37,7 +37,7 @@ const ClaimHistoryTable = ({ data }) => {
               <td>
                 <p>{data?.userSpendMyPointId?.noOfPoint} Pts</p>
               </td>
-              <td>{getDateFromISOString(data?.date)}</td>
+              <td>{getDateFromISOString(data?.createdAt)}</td>
               <td>
                 <div className="table-flex">
                   <img
@@ -52,7 +52,7 @@ const ClaimHistoryTable = ({ data }) => {
                     {formatTime2(data?.transactionId?.date)},
                     <span
                       className="id-link"
-                      onClick={() => setOpenTransaction(true)}
+                      onClick={() => setOpenTransaction(data)}
                     >
                       {" "}
                       See transaction
@@ -69,8 +69,7 @@ const ClaimHistoryTable = ({ data }) => {
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
         <TransactionDetails
           handleOpen={setOpenTransaction}
-          userData={openTransaction?.brandId}
-          data={openTransaction?.orderId}
+          userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}
         />
       </DialogDefault>
     </div>

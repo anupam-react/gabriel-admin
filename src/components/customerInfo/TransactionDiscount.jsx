@@ -3,7 +3,7 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 import ProductDetails3 from "./ProductDetails3";
-const TransactionDiscount = ({ handleOpen }) => {
+const TransactionDiscount = ({ handleOpen , data }) => {
   const [openProduct, setProduct] = useState(false);
   const [openProductInfo, setProductInfo] = useState(false);
   const [isDownload, setDownload] = useState(false);
@@ -26,6 +26,8 @@ const TransactionDiscount = ({ handleOpen }) => {
           </tr>
         </thead>
         <tbody>
+          {data?.map((d, i)=>(
+
           <tr>
             <td style={{ width: "100px" }}>Dunkins (60%)</td>
             <td>
@@ -61,76 +63,8 @@ const TransactionDiscount = ({ handleOpen }) => {
               </div>
             </td>
           </tr>
-          <tr>
-            <td style={{ width: "100px" }}>Dunkins (60%)</td>
-            <td>
-              <div className="flex items-center justify-between gap-4">
-                <img
-                  src="../image 711.png"
-                  alt=""
-                  className="cursor-pointer"
-                  onClick={() => setProductInfo(true)}
-                />
-                <div className="text-left">
-                  Purchased , Yesterday, 10:30 pm <br />
-                  <span
-                    className="text-[#0070BC] underline cursor-pointer "
-                    onClick={() => {
-                      setProduct(true);
-                    }}
-                  >
-                    See Transaction.
-                  </span>{" "}
-                </div>
-                <img
-                  src="../Vector (42).png"
-                  alt=""
-                  className="h-fit cursor-pointer"
-                  onClick={() => {
-                    setDownload(true);
-                    setTimeout(() => {
-                      setDownload(false);
-                    }, 2000);
-                  }}
-                />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td style={{ width: "100px" }}>Dunkins (60%)</td>
-            <td>
-              <div className="flex items-center justify-between gap-4">
-                <img
-                  src="../image 711.png"
-                  alt=""
-                  className="cursor-pointer"
-                  onClick={() => setProductInfo(true)}
-                />
-                <div className="text-left">
-                  Purchased , Yesterday, 10:30 pm <br />
-                  <span
-                    className="text-[#0070BC] underline cursor-pointer"
-                    onClick={() => {
-                      setProduct(true);
-                    }}
-                  >
-                    See Transaction.
-                  </span>{" "}
-                </div>
-                <img
-                  src="../Vector (42).png"
-                  alt=""
-                  className="h-fit cursor-pointer"
-                  onClick={() => {
-                    setDownload(true);
-                    setTimeout(() => {
-                      setDownload(false);
-                    }, 2000);
-                  }}
-                />
-              </div>
-            </td>
-          </tr>
+          ))}
+       
         </tbody>
       </table>
       <hr />

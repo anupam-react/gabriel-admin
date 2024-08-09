@@ -14,8 +14,8 @@ const useCusomerInfo = () => {
     const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomerInfoDashboard`)
     setDashboard(data?.data)
   }
-  const getCustomer = async ()=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomer`)
+  const getCustomer = async (search="", fromDate="" , toDate="" , page="", limit="", studentEmailVerification="")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomer?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&studentEmailVerification=${studentEmailVerification}`)
     setCustomer(data?.data?.docs)
   }
   const getCustomerInfoForParticularUser = async (id)=>{
@@ -42,7 +42,7 @@ const useCusomerInfo = () => {
     mostViewProd,
     getMostViewProductByUserId,
     getCustomerInfoForParticularUser,
-
+    getCustomer,
     isOpenInfo, setOpenInfo
   };
 };

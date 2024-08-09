@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { DatePickerComp2 } from "./DatePickerComp2";
 import "./index.scss";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-const Filter = ({ closeDrawer, open }) => {
+const Filter = ({ closeDrawer, open , getCustomer }) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleCheckboxChange = (group) => {
+    setSelectedOption(group);
+  };
+
   return (
     <React.Fragment>
       <Drawer
@@ -58,11 +66,13 @@ const Filter = ({ closeDrawer, open }) => {
             <div className="calender">
               <div>
                 <p>From</p>
-                <DatePickerComp2 />
+                <DatePickerComp2  startDate={startDate}
+                    setStartDate={setStartDate}/>
               </div>
               <div>
                 <p>To</p>
-                <DatePickerComp2 />
+                <DatePickerComp2  startDate={endDate}
+                    setStartDate={setEndDate}/>
               </div>
             </div>
             <p className="joint-date">Referral Source</p>
@@ -72,8 +82,8 @@ const Filter = ({ closeDrawer, open }) => {
                   Marketing Campaign
                   <input
                     type="checkbox"
-                    // checked={isChecked}
-                    // onChange={handleCheckboxChange}
+                    checked={selectedOption === 'Marketing campaign'}
+                    onChange={()=>handleCheckboxChange('Marketing campaign')}
                   />
                   <span class="checkmark"></span>
                 </label>
@@ -83,8 +93,8 @@ const Filter = ({ closeDrawer, open }) => {
                   Organic Means
                   <input
                     type="checkbox"
-                    // checked={isChecked}
-                    // onChange={handleCheckboxChange}
+                    checked={selectedOption === 'Organic means'}
+                    onChange={()=>handleCheckboxChange('Organic means')}
                   />
                   <span class="checkmark"></span>
                 </label>
@@ -95,17 +105,19 @@ const Filter = ({ closeDrawer, open }) => {
           <div className="button-container">
             <button
               className="button2"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                  getCustomer("", startDate , endDate);
+                  closeDrawer()
+                }}
             >
               APPLY
             </button>
             <button
               className="button4"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                  getCustomer();
+                  closeDrawer()
+                }}
             >
               RESET
             </button>

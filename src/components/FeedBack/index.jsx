@@ -74,7 +74,7 @@ const FeedBack = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map((item , i) => {
+            {currentTableData?.map((item , i) => {
               return (
                   <tr>
                     <td>
@@ -106,7 +106,7 @@ const FeedBack = () => {
                          
                         >
                           <p>{item?.userId?.fullName || item?.userId?.firstName + " " + item?.userId?.lastName}</p>
-                          ID:{item?._id}
+                          ID: {item?.userId?.refferalCode}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]">

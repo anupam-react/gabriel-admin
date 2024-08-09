@@ -1,13 +1,43 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './index.scss'
 import { DialogDefault } from '../common/DilogBox'
 import { formatTime2, getDateFromISOString } from '../../utiils'
-const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => {
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas';
+const TransactionDetails = ({handleOpen , isButton= true , userData , brandData, data}) => {
 
   const [openDownload , setOpenDownload] = useState(false)
   const [openShare , setOpenShare] = useState(false)
+
+  const receiptRef = useRef();
+
+  const generatePDF = () => {
+    const input = receiptRef.current;
+
+    html2canvas(input, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 295; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('receipt.pdf');
+    });
+  };
   return (
-     <div className='details-container'>
+     <div className='details-container' ref={receiptRef}>
      <p className="details-title pb-8">Transaction Details</p>
         <img
           src="./Mask group (2).png"
@@ -17,15 +47,15 @@ const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => 
       />
       <div className='h-[60vh] overflow-y-scroll no-scrollbar'>
       <div className='flex items-center justify-center gap-2'>
-          <img src="../Ellipse 9.png" alt="" className='w-[75px] h-[75px]'/>
+          <img src={brandData?.image || "../Ellipse 9.png" } alt="" className='w-[75px] h-[75px]'/>
           <div>
-            <p className='text-[#121212] font-semibold text-[24px]'>Cafe Elite</p>
-            <p className='text-[#121212]'>Cafe Elite</p>
+            <p className='text-[#121212] font-semibold text-[24px]'>{brandData?.fullName}</p>
+            <p className='text-[#121212]'>{brandData?.fullName}</p>
           </div>
 
       </div>
-          <p className='text-[#8F8F8F] text-center pb-2'>Address : Lorem ipsum , 23-10
-         <p> Contact : 11233455</p>
+          <p className='text-[#8F8F8F] text-center pb-2'>Address :  23-10
+         <p> Contact : {brandData?.phone}</p>
           </p>
          <div className='border border-[#000000] border-dashed w-[400px]'></div>
          <p className='text-[#121212] text-[24px] font-[500] text-center'>RECEIPT</p>
@@ -67,7 +97,7 @@ const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => 
         </div>
         <div className='info2'>
           <p>Discount</p>
-          <p>£5.0</p>
+          <p>£{data?.offerDiscount}</p>
         </div>
         <div className='info2'>
           <p>VAT(Registration No)</p>
@@ -103,7 +133,9 @@ const TransactionDetails = ({handleOpen , isButton= true , userData , data}) => 
          
         {isButton && <div className='button-container3'>
               <button className='menuButton4' onClick={()=>{
+                generatePDF()
                 setOpenDownload(true)
+
                 setTimeout(()=>{
                   setOpenDownload(false)
                 },2000)

@@ -243,7 +243,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
           >
             Birthday
           </p>
-          <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4  min-w-[300px] ">
+          <div className="rounded-lg shadow-md p-6 justify-center items-center bg-white flex h-32 gap-4  min-w-[300px] ">
             <img src="./image 700 (2).png" alt="" />
             <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
               {formatDate3(customerInfo?.birthDay)}
@@ -255,10 +255,10 @@ It factors in the revenue generated from a customer, the duration of the relatio
             className="text-xl text-center font-[600] pb-4"
             style={{ color: "black" }}
           >
-            Loaction
+            Location
           </p>
           <div>
-            <div className="rounded-lg shadow-md p-6 items-center bg-white flex h-32 gap-4  min-w-[300px] ">
+            <div className="rounded-lg shadow-md p-6 items-center justify-center bg-white flex h-32 gap-4  min-w-[300px] ">
               <img src="./image 700 (3).png" alt="" />
               <p style={{ color: "black", fontWeight: 600, fontSize: "24px" }}>
                 {customerInfo?.location}
@@ -333,43 +333,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
           </div>
         </div>
       </div>
-      {/* <div style={{ color: "black", margin: "30px 0px" }}>
-        <div className="basket">
-          <p style={{ color: "#000000B2", paddingBottom: "10px" }}>
-            Basket Analysis
-          </p>
-          <div className="basket-container">
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <img src="./image 705.png" alt="" />
-              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-                Lorem Ipsum
-              </p>
-            </div>
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <p
-                style={{
-                  color: "#FEA82F",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                }}
-              >
-                +
-              </p>
-              <img src="./image 705.png" alt="" />
-              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-                Lorem Ipsum
-              </p>
-            </div>
-            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-              <p style={{ color: "#FEA82F", fontSize: "18px" }}>+</p>
-              <img src="./image 705.png" alt="" />
-              <p style={{ color: "black", fontWeight: 600, fontSize: "18px" }}>
-                Lorem Ipsum
-              </p>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      
       <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
         <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
       </DialogDefault>

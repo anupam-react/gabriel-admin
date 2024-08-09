@@ -40,7 +40,7 @@ const Transaction = ({ onClose, data }) => {
               <div>{data?.productId?.name}</div>
             </td>
             <td>
-              {data?.purchaseBy === "App"  ? "N/A" : 
+              {data?.purchaseBy === "App"  ? "App" : 
               
               <div>
                 05/12/2023, 6:00 pm Transaction
@@ -142,7 +142,7 @@ const Transaction = ({ onClose, data }) => {
         <AwardCustomer handleOpen={setOpenPoint} id={data?._id}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.productId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

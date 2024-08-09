@@ -45,7 +45,6 @@ const Verification = ({ handleOpen , onClose , data}) => {
         <thead>
           <tr>
             <th>Student ID</th>
-            <th>Institution Email</th>
             <th>Status</th>
             <th>Date</th>
             <th>Notification</th>
@@ -57,21 +56,15 @@ const Verification = ({ handleOpen , onClose , data}) => {
               <div className="flex justify-center">
                 <img src={data?.image || "./carbon_user-avatar-filled (2).png"} alt=""  className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {dataInfo?._id}</p>
+              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {dataInfo?.studentEmail}</p>
             </td>
-            <td>
-              {" "}
-              <span className="text-[#121212] font-[500]" >
-             {dataInfo?.studentEmail}
-              </span>{" "}
-
-            </td>
+           
             <td>
             <span className={data?.studentEmailVerification ? "text-[#3BB54A] underline" : "text-[#FC0005] underline"} >
-              {data?.studentEmailVerification ?   "Verified" : "Not Verified"}
+              {dataInfo?.studentEmailVerification ?   "Verified" : "Not Verified"}
               </span>{" "}
             </td>
-            <td>{data?.studentEmailVerification ? getDateFromISOString(data?.studentEmailDate) : "N/A"}</td>
+            <td> {getDateFromISOString(dataInfo?.studentEmailDate)}</td>
             <td>
               {" "}
               <button

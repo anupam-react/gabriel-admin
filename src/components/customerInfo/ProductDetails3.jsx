@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import InventoryProduct from "./InventoryProduct";
-const ProductDetails3 = ({ handleOpen }) => {
+import { getDateFromISOString } from "../../utiils";
+const ProductDetails3 = ({ handleOpen , data }) => {
   const [openProduct, setProduct] = useState(false);
   return (
     <div className="details-container">
@@ -14,7 +15,7 @@ const ProductDetails3 = ({ handleOpen }) => {
         onClick={() => handleOpen(false)}
       />
       <img
-        src="../image 711.png"
+       src={data?.image}
         alt=""
         className="details-image"
         onClick={() => setProduct(true)}
@@ -26,35 +27,35 @@ const ProductDetails3 = ({ handleOpen }) => {
             Product <span className="pl-4">:</span>
           </p>
 
-          <p>Dunkins Coffee</p>
+          <p>{data?.name}</p>
         </div>
         <div className="info2">
           <p>
             Price <span className="pl-4">:</span>
           </p>
 
-          <p>£200</p>
+          <p>£{data?.price}</p>
         </div>
         <div className="info2">
           <p>
             Date <span className="pl-4">:</span>
           </p>
 
-          <p>10/12/2023</p>
+          <p>{getDateFromISOString(data?.createdAt)}</p>
         </div>
         <div className="info2">
           <p>
             Available in store <span className="pl-4">:</span>
           </p>
 
-          <div className="text-[#00B050]">Yes</div>
+          <div className="text-[#00B050]">{data?.inStore ? "YES" : "NO"}</div>
         </div>
         <div className="info2">
           <p>
             Available in online <span className="pl-4">:</span>
           </p>
 
-          <div className="text-[#121212]">NO</div>
+          <div className="text-[#121212]">{data?.online ? "YES": "NO"}</div>
         </div>
       </div>
       <DialogDefault open={openProduct} handleOpen={setProduct}>

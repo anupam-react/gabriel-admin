@@ -6,7 +6,8 @@ import AddProfile from "../DigitalReceipt/AddProfile";
 import usePromoCode from "../../hooks/usePromoCode";
 import { calculateDateGap, formatDate2 } from "../../utiils";
 
-const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
+const CreatePromo = ({ open, setOpen, handleOpen,    handleCreatePromocode,
+  handleUpdatePromocode, edit=false }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [selectStaff, setSelectStaff] = useState([])
   const {
@@ -17,8 +18,6 @@ const CreatePromo = ({ open, setOpen, handleOpen, edit=false }) => {
     expiryDate , setExpiryDate,
     setPromocodeData,
     handleChange,
-    handleCreatePromocode,
-    handleUpdatePromocode,
     openSuccess, setOpenSuccess,
   } = usePromoCode()
 

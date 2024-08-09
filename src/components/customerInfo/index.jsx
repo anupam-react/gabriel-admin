@@ -12,6 +12,8 @@ import InfoCard2 from "./InfoCard2";
 const CustomerInfo = () => {
   const {  
     dashboard,
+    customer,
+    getCustomer,
   } = useCusomerInfo()
 
   const [isOpen, setIsOpen] = useState(false)
@@ -84,36 +86,7 @@ This metric is crucial for understanding revenue contributions per customer.`,
           </button>
         </div>
       </div>
-      {/* <div className="flex gap-6 mt-8">
-        <select
-          id="countries"
-          // value={selectedOption}
-          // onChange={handleChange}
-          className="rounded-lg shadow-md text-gray-900 text-sm  border-none block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          {customerType?.map((data, i) => (
-            <>
-              <option className="font-semibold" key={i} value={data?.value}>
-                {data?.label}
-              </option>
-            </>
-          ))}
-        </select>
-        <select
-          id="countries"
-          // value={selectedOption}
-          // onChange={handleChange}
-          className="rounded-lg shadow-md text-gray-900 text-sm  border-none block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          {customerSubCat?.map((data, i) => (
-            <>
-              <option className="font-semibold" key={i} value={data?.value}>
-                {data?.label}
-              </option>
-            </>
-          ))}
-        </select>
-      </div> */}
+    
       <div className="mt-8">
         <p className="text-2xl font-[500] pb-4">Statistics</p>
         <div className="flex gap-6">
@@ -228,9 +201,9 @@ It's calculated by dividing the total number of items sold by the total number o
         <BarChart data={dashboard?.favouriteTimeOfTheDay}/>
       </div>
       <div>
-        <PaginatedTable  />
+        <PaginatedTable customer={customer}/>
       </div>
-      <Filter closeDrawer={closeDrawer} open={isOpen} />
+      <Filter closeDrawer={closeDrawer} open={isOpen} getCustomer={getCustomer}/>
     </div>
   );
 };

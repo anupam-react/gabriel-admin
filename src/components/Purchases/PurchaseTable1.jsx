@@ -75,7 +75,7 @@ const PurchaseTable1 = ({data}) => {
                          
                         >
                           <p>{item?.user?.fullName || item?.user?.firstName + " " + item?.user?.lastName}</p>
-                          ID:{item?._id}
+                          ID:{item?.user?.refferalCode}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]" >

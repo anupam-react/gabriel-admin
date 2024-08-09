@@ -57,7 +57,7 @@ const CurrentStamp = ({ data }) => {
                 <div style={{ color: "#000000B2" }}>
                   {" "}
                   {getDateFromISOString(data?.expireDate)}, <br />{" "}
-                  {getDateFromISOString(data?.expireDate)}
+                  {formatTime2(data?.expireDate)}
                 </div>
               </td>
             </tr>

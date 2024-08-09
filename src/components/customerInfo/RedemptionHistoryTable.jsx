@@ -42,7 +42,7 @@ const RedemptionHistoryTable = ({data}) => {
                 {data?.productId?.name} {getDateFromISOString(data?.transactionId?.date)}, {formatTime2(data?.transactionId?.date)}
                   <span
                     className="id-link"
-                    onClick={() => setOpenTransaction(true)}
+                    onClick={() => setOpenTransaction(data)}
                   >
                     {" "}
                     See transaction
@@ -60,7 +60,7 @@ const RedemptionHistoryTable = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} />
+        <TransactionDetails handleOpen={setOpenTransaction}  userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

@@ -8,9 +8,9 @@ import "./index.scss";
 import useCusomerInfo from "../../hooks/useCusomerInfo";
 import { getDateFromISOString } from "../../utiils";
 
-const PaginatedTable = () => {
+const PaginatedTable = ({customer}) => {
   const {  
-    customer,
+
     customerInfo,
     mostViewProd,
     getCustomerInfoForParticularUser,
@@ -64,7 +64,7 @@ const PaginatedTable = () => {
           </tr>
         </thead>
         <tbody>
-          {currentTableData.map((item, i) => {
+          {currentTableData?.map((item, i) => {
             return (
               <tr key={i}>
                 <td className="w-1/2">
@@ -98,8 +98,8 @@ const PaginatedTable = () => {
                     <p className="profileId text-left" >
                   {item?.fullName || item?.firstName + " " + item?.lastName }
                     </p>
-                    <p className="profileId">
-                      ID:{item?._id}
+                    <p className="profileId text-left">
+                      ID:{item?.refferalCode}
                     </p>
 
                     </div>

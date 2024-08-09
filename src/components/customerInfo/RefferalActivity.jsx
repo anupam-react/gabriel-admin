@@ -68,7 +68,7 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
               <div className="flex justify-center">
                 <img src={data?.user?.image || "./carbon_user-avatar-filled (2).png"} alt="" className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {data?.user?._id}</p>
+              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {data?.user?.refferalCode}</p>
             </td>
             <td>
               <div style={{ color: "#000000", fontWeight: 600 }}>

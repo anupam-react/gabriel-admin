@@ -19,6 +19,8 @@ const PromoCode = () => {
     handleReactivePromocode,
     handleDeactivePromocode,
     handleDeletePromocode,
+    handleCreatePromocode,
+    handleUpdatePromocode,
     getPromoCodeById,
     getPromoCodeByToken
   } = usePromoCode()
@@ -217,8 +219,10 @@ const PromoCode = () => {
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           getPromoCodeByToken={getPromoCodeByToken}/>}
-      <CreatePromo open={open} setOpen={setOpen} handleOpen={handleOpen} />
-      <CreatePromo open={isEdit} edit={isEdit} setOpen={setEdit} handleOpen={handleOpen2} />
+      <CreatePromo open={open} setOpen={setOpen} handleOpen={handleOpen}    handleCreatePromocode={handleCreatePromocode}
+    handleUpdatePromocode={handleUpdatePromocode}/>
+      <CreatePromo open={isEdit} edit={isEdit} setOpen={setEdit} handleOpen={handleOpen2} andleCreatePromocode={handleCreatePromocode}
+    handleUpdatePromocode={handleUpdatePromocode}/>
       <MegaSale
         open={openReactive}
         setOpen={setOpenReactive}

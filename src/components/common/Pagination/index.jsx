@@ -19,7 +19,7 @@ const Pagination = props => {
     pageSize
   });
 
-  if (currentPage === 0 || paginationRange.length < 2) {
+  if (currentPage === 0 || paginationRange?.length < 2) {
     return null;
   }
 
@@ -31,7 +31,7 @@ const Pagination = props => {
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
+  let lastPage = paginationRange[paginationRange?.length - 1];
   return (
     <div className='flex justify-between mt-10'>
       <p className='w-20'>PAGE {currentPage}</p>

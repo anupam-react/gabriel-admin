@@ -94,7 +94,7 @@ const LoyaltyProgram = () => {
       <div className="mt-4">
         <div>
           <p className="py-4 font-semibold text-xl">My Stamp Cards</p>
-          <div className="flex flex-wrap justify-between gap-4">
+          <div className="flex flex-wrap gap-4">
             {stamps?.map((d, i) => (
               <LoyalityCard
                 image={d?.productId?.image}
@@ -106,7 +106,7 @@ const LoyaltyProgram = () => {
         </div>
         <div>
           <p className="py-4 font-semibold text-xl">My Saving</p>
-          <div className="flex flex-wrap justify-between gap-4">
+          <div className="flex flex-wrap gap-4">
             {saving?.map((d, i) => (
               <LoyalityCard image={d?.image} key={i} text={d?.title} />
             ))}
@@ -114,7 +114,7 @@ const LoyaltyProgram = () => {
         </div>
         <div>
           <p className="py-4 font-semibold text-xl">Spend My Points</p>
-          <div className="flex flex-wrap justify-between gap-4">
+          <div className="flex flex-wrap gap-4">
             {points?.map((d, i) => (
               <LoyalityCard
                 image={d?.image}

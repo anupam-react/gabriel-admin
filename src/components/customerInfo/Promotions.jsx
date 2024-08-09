@@ -7,7 +7,7 @@ import TransactionCupon from "./TransactionCupon";
 import TransactionDiscount from "./TransactionDiscount";
 import ProductDetails3 from "./ProductDetails3";
 import TransactionDetails from "./TransactionDetails";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
 const Promotions = ({ handleOpen , onClose , data}) => {
   const [openProduct, setOpenproduct] = useState(false);
@@ -68,14 +68,14 @@ const Promotions = ({ handleOpen , onClose , data}) => {
           <tr>
             <td style={{ width: "100px" }}>Percentage Discount</td>
             <td style={{ textAlign: "left", paddingLeft: "50px" }}>
-              30 Purchases made on discounts –{" "}
+              {dataInfo?.percentageDiscount?.length} Purchases made on discounts –{" "}
               <span
                 style={{
                   color: "#0070BC",
                   textDecoration: "underline",
                   cursor: "pointer",
                 }}
-                onClick={()=>setOpenDiscount(true)}
+                onClick={()=>setOpenDiscount(dataInfo?.percentageDiscount)}
               >
                 {" "}
                 See Transactions
@@ -85,14 +85,14 @@ const Promotions = ({ handleOpen , onClose , data}) => {
           <tr>
             <td style={{ width: "100px" }}>Coupons</td>
             <td style={{ textAlign: "left", paddingLeft: "50px" }}>
-              Redeemed 30 Coupons –{" "}
+              Redeemed {dataInfo?.coupons?.length} Coupons –{" "}
               <span
                 style={{
                   color: "#0070BC",
                   textDecoration: "underline",
                   cursor: "pointer",
                 }}
-                onClick={()=>setOpenCupon(true)}
+                onClick={()=>setOpenCupon(dataInfo?.coupons)}
               >
                 {" "}
                 See Transactions
@@ -102,138 +102,91 @@ const Promotions = ({ handleOpen , onClose , data}) => {
           <tr>
             <td style={{ width: "100px" }}>Featured Deals</td>
             <td>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "20px",
-                  marginLeft: "40px",
-                }}
-              >
-                <img
-                  src="./image 711.png"
-                  alt=""
-                  style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
-                />
-                <div className="text-left">
-                  Viewed{" "}
-                  <span
-                    style={{
-                      color: "#0070BC",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    30 times
-                  </span>
-                  ,<br />
-                  Last view: Yesterday, 10:30 pm
-                </div>
+          {dataInfo?.featuredDeals?.map((data, i)=>(
+            <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                marginLeft: "40px",
+              }}
+            >
+              <img
+                src={data?.productId?.image}
+                alt=""
+                 className="rounded-lg"
+                style={{ cursor: "pointer", width: "180px" }}
+                onClick={() => setOpenproduct(data?.productId)}
+              />
+              <div className="text-left">
+                Viewed{" "}
+                <span
+                  style={{
+                    color: "#0070BC",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setOpenHistory(true)}
+                >
+                  30 times
+                </span>
+                ,<br />
+                Last view: Yesterday, 10:30 pm
               </div>
-              <hr className="hr5" />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "20px",
-                  marginLeft: "40px",
-                }}
-              >
-                <img
-                  src="./image 711.png"
-                  alt=""
-                  style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
-                />
-                <div className="text-left">
-                  Viewed{" "}
-                  <span
-                    style={{
-                      color: "#0070BC",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    30 times
-                  </span>
-                  ,<br />
-                  Last view: Yesterday, 10:30 pm
-                </div>
-              </div>
+            </div>
+            <hr className="hr5" />
+            </>
+          )) }
+           
             </td>
           </tr>
           <tr>
             <td style={{ width: "100px" }}>Make A Saving</td>
             <td>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "20px",
-                  marginLeft: "40px",
-                }}
-              >
-                <img
-                  src="./image 711 (1).png"
-                  alt=""
-                  style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
-                />
-                <div className="text-left">
-                  Viewed{" "}
-                  <span
-                    style={{
-                      color: "#0070BC",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    30 times
-                  </span>
-                  ,<br />
-                  Last view: Yesterday, 10:30 pm
-                </div>
+            {dataInfo?.makeASaving?.map((data, i)=>(
+            <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                marginLeft: "40px",
+              }}
+            >
+              <img
+                src={data?.productId?.image}
+                alt=""
+                className="rounded-lg"
+                style={{ cursor: "pointer", width: "180px" }}
+                onClick={() => setOpenproduct(data?.productId)}
+              />
+              <div className="text-left">
+                Viewed{" "}
+                <span
+                  style={{
+                    color: "#0070BC",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setOpenHistory(true)}
+                >
+                  30 times
+                </span>
+                ,<br />
+                Last view: Yesterday, 10:30 pm
               </div>
-              <hr className="hr5" />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "20px",
-                  marginLeft: "40px",
-                }}
-              >
-                <img
-                  src="./image 711 (1).png"
-                  alt=""
-                  style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
-                />
-                <div className="text-left">
-                  Viewed{" "}
-                  <span
-                    style={{
-                      color: "#0070BC",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setOpenHistory(true)}
-                  >
-                    30 times
-                  </span>
-                  ,<br />
-                  Last view: Yesterday, 10:30 pm
-                </div>
-              </div>
+            </div>
+            <hr className="hr5" />
+            </>
+          )) }
             </td>
           </tr>
           <tr>
             <td style={{ width: "100px" }}>Buy 1 Get 1 Free Deal</td>
             <td>
+            {dataInfo?.BuyGetFree?.map((data, i)=>(
+              <>
               <div
                 style={{
                   display: "flex",
@@ -243,12 +196,13 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                 }}
               >
                 <img
-                  src="./Group 38188.png"
+                  src={data?.productId?.image}
                   alt=""
+                  className="rounded-lg"
                   style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
+                  onClick={() => setOpenproduct(data?.productId)}
                 />
-                <div className="text-left cursor-pointer" onClick={()=> setOpenTransaction(true)}>
+                <div className="text-left cursor-pointer" onClick={()=> setOpenTransaction(data)}>
                   Bought 2 times,
                   <span
                     style={{
@@ -264,6 +218,15 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                 </div>
               </div>
               <hr className="hr5" />
+              </>
+                  ))}
+            </td>
+          </tr>
+          <tr>
+            <td style={{ width: "100px" }}>Offer</td>
+            <td>
+            {dataInfo?.Offer?.map((data, i)=>(
+              <>
               <div
                 style={{
                   display: "flex",
@@ -273,13 +236,14 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                 }}
               >
                 <img
-                  src="./Group 38188.png"
+                  src={data?.productId?.image}
                   alt=""
+                  className="rounded-lg"
                   style={{ cursor: "pointer", width: "180px" }}
-                  onClick={() => setOpenproduct(true)}
+                  onClick={() => setOpenproduct(data?.productId)}
                 />
-                <div className="text-left cursor-pointer" onClick={()=> setOpenTransaction(true)}>
-                  Bought 2 times,
+                <div className="text-left cursor-pointer" onClick={()=> setOpenTransaction(data)}>
+                  Bought 1 times,
                   <span
                     style={{
                       color: "#0070BC",
@@ -290,27 +254,30 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                     see transactions
                   </span>
                   .<br />
-                  Last purchase: Yesterday, 2:00 pm
+                  Last purchase: {getDateFromISOString(data?.orderId?.createdAt)} , {formatTime2(data?.orderId?.createdAt)}
                 </div>
               </div>
+              <hr className="hr5" />
+              </>
+                  ))}
             </td>
           </tr>
         </tbody>
       </table>
       <DialogDefault open={openProduct} handleOpen={setOpenproduct}>
-        <ProductDetails3 handleOpen={setOpenproduct} />
+        <ProductDetails3 handleOpen={setOpenproduct} data={openProduct}/>
       </DialogDefault>
       <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
         <HistoryDetails handleOpen={setOpenHistory} />
       </DialogDefault>
       <DialogDefault open={openCupon} handleOpen={setOpenCupon}>
-        <TransactionCupon handleOpen={setOpenCupon} />
+        <TransactionCupon handleOpen={setOpenCupon} data={openCupon}/>
       </DialogDefault>
       <DialogDefault open={openDiscount} handleOpen={setOpenDiscount}>
-        <TransactionDiscount handleOpen={setOpenDiscount} />
+        <TransactionDiscount handleOpen={setOpenDiscount} data={openDiscount}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} />
+        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );
