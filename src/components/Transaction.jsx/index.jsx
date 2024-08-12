@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TransactionCard from "./TransactionCard";
 import SellingCard from "./SellingCard";
 import { BarChart } from "./BarChart";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import LoyalityCard from "./LoyalityCard";
 import { LineChart } from "./LineChart";
 import ReportPage from "./ReportPage";
@@ -132,7 +132,7 @@ const Transaction = () => {
     {
       title: "AVERAGE TRANSACTION VALUE",
       image: "./image 52.png",
-      amount: averageTransaction,
+      amount: Math.round(averageTransaction),
       footerTitle: "SPENT PER TRANSACTION",
       handleChange: handleChange3,
       selectedOption: selectedOption3,
@@ -193,7 +193,7 @@ const Transaction = () => {
             <p className="text-[#0070BC] font-semibold text-lg ">
             TIME BASED ANALYTICS
             </p>
-            <Select selectedOption={selectedOption5}  handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5} handleSave={getTimeBaseAnalytics}/>
+            <Select1 selectedOption={selectedOption5}  handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5} handleSave={getTimeBaseAnalytics}/>
           </div>
           </div>
           <div className="w-[650px] h-[350px]">
@@ -208,7 +208,7 @@ const Transaction = () => {
             <p className="text-[#0070BC] font-semibold text-lg ">
               CUSTOMER LOYALTY METRICS
             </p>
-            <Select  selectedOption={selectedOption6}  handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
+            <Select1  selectedOption={selectedOption6}  handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
           </div>
           <div className="w-[650px] h-[350px]">
             <LineChart />

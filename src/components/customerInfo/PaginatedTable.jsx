@@ -99,13 +99,13 @@ const PaginatedTable = ({customer}) => {
                   {item?.fullName || item?.firstName + " " + item?.lastName }
                     </p>
                     <p className="profileId text-left">
-                      ID:{item?.refferalCode}
+                      ID:{item?.Id}
                     </p>
 
                     </div>
                     {isOpenMenu === item?._id && (
                       <div className="menu-Main">
-                        <MenuCard onClose={()=> setOpenMenu(false)} isOpenMenu={isOpenMenu} data={item?.userId}/>
+                        <MenuCard onClose={()=> setOpenMenu(false)} isOpenMenu={isOpenMenu} data={item}/>
                       </div>
                     )}
                   </div>

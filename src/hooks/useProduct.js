@@ -46,7 +46,7 @@ const useProduct = () => {
 
   const navigate = useNavigate();
 
-  async function getProduct(search="", fromDate="", toDate="", page="", limit="", maxStock="", minStock="", maxPrice="", minPrice="") {
+  async function getProduct(search="", fromDate="", toDate="", page=1, limit=1000, maxStock="", minStock="", maxPrice="", minPrice="") {
     const data = await fetchApiData(
       `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
     );

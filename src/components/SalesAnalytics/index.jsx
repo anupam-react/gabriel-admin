@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TransactionCard from "../Transaction.jsx/TransactionCard";
 import { LineChart2 } from "./LineChart2";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import { BarChart2 } from "./BarChart2";
 import { LineChart3 } from "./LineChart3";
 import ReportPage2 from "./ReportPage2";
@@ -192,7 +192,7 @@ const SalesAnalytics = () => {
           <p className="text-[#0070BC] font-semibold text-xl ">
             SALES BY CATEGORY / DEPARTMENT
           </p>
-          <Select selectedOption={selectedOption1}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1} handleSave={getSaleByCategory}/>
+          <Select1 selectedOption={selectedOption1}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1} handleSave={getSaleByCategory}/>
         </div>
         <div className="w-full">
           <LineChart2 data={saleCategory} />
@@ -204,7 +204,7 @@ const SalesAnalytics = () => {
             SALES BY LOCATION <span className="text-[#000000B2]">( Total</span>{" "}
             <span className="text-[#000000] font-semibold">57 OUTLETS )</span>
           </p>
-          <Select selectedOption={selectedOption2}  handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}  handleSave={getSaleByLocation}/>
+          <Select1 selectedOption={selectedOption2}  handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}  handleSave={getSaleByLocation}/>
         </div>
         <div className="w-full">
           <BarChart2 data={saleLocation}/>
@@ -216,7 +216,7 @@ const SalesAnalytics = () => {
             <p className="text-[#0070BC] font-semibold text-xl ">
               SALES TREND OVER TIME
             </p>
-            <Select selectedOption={selectedOption3}  handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getSaleTrendOverTime}/>
+            <Select1 selectedOption={selectedOption3}  handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getSaleTrendOverTime}/>
           </div>
           <div className="w-full h-full">
             <LineChart3 data={saleTrendOver}/>

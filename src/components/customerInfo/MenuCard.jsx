@@ -8,6 +8,8 @@ import Bouns from './Bouns'
 
 import Invitation from './Invitation';
 const MenuCard = ({onClose,  data }) => {
+
+  console.log(data)
     const [openGift , setOpenGift] = useState(false)
     const [openOffer , setOpenOffer] = useState(false)
     const [openPromotions , setOpenPromotions] = useState(false)

@@ -19,22 +19,28 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["Hot Chocolate", "Coffee", "Wine", "Tea", "Cake"];
 
 
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Products",
-      data: [200, 400, 300, 500, 400],
-      backgroundColor: ["#4472C4", "#ED7D31", "#00B0F0", "#7030A0", "#00B050"],
-    },
-  ],
-};
 
-export function BarChart4() {
+
+
+export function BarChart4({data}) {
+  console.log(data)
+  const labels = data?.map((data)=> data?.subCategoryName);
+
+  const dataset = {
+    labels,
+    datasets: [
+      {
+        label: "Products ",
+        data: data?.map((data)=> data?.totalSales),
+        backgroundColor: "#FEA82F",
+      },
+    ],
+  };
+
+
   const options = {
     scales: {
       x: {
@@ -65,5 +71,5 @@ export function BarChart4() {
       }
     }
   };
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={dataset} />;
 }

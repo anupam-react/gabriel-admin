@@ -41,12 +41,12 @@ const CustomeInfo = ({ handleOpen, customerInfo, mostViewProd }) => {
     {
       title: "Average Spend",
       image: "./image 701.png",
-      amount: customerInfo?.averageTotalSpend,
+      amount: Math.round(customerInfo?.averageTotalSpend),
     },
     {
       title: "Average Basket Size",
       image: "./image 700 (1).png",
-      amount: `£${customerInfo?.averageBasketSize}`,
+      amount: `£${Math.round(customerInfo?.averageBasketSize)}`,
       text: `Customer Average Transaction Value (ATV) is a metric that measures the average amount spent per transaction by customers with a business, calculated by dividing total sales revenue by the number of transactions within a specific time frame. 
 It helps assess customer spending habits and business performance.`,
     },
@@ -143,7 +143,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
         />
       </div>
       <hr className="hr2" />
-      <InfoHeader onClose={() => handleOpen(false)} data={customerInfo} />
+      <InfoHeader onClose={() => handleOpen(false)} data={customerInfo?.User1} />
       <div style={{ paddingTop: "40px", paddingBottom: "30px" }}>
         <p style={{ color: "#0070BC", fontWeight: 600 }}>CUSTOMER INSIGHTS</p>
         <hr className="hr3" />

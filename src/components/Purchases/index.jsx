@@ -6,11 +6,14 @@ import PurchasesReport from "./PurchasesReport";
 import PromoFilter from "../PromoCode/PromoFilter";
 import "./index.scss";
 import usePurchases from "../../hooks/usePurchases";
+import PurchasesFilter from "./PurchasesFilter";
 const Purchases = () => {
-  const { purchasesApp , purchasesStore}= usePurchases()
+  const { purchasesApp , purchasesStore , getPurchasesApp,
+    getPurchasesStore}= usePurchases()
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [range, setRange] = useState([0, 5000]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const handleOpen = () => setOpen(!open);
   const closeDrawer = () => setIsOpen(false);
@@ -36,6 +39,12 @@ const Purchases = () => {
             type="text"
             className="border-none w-80 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getPurchasesApp(e.target.value);
+              getPurchasesStore(e.target.value);
+            }}
           />
         </div>
         <div className="flex">
@@ -69,9 +78,10 @@ const Purchases = () => {
           In-Store Purchases
         </button>
       </div>
-      {activeLink === 1 ? <PurchaseTable2 data={purchasesStore}/> : <PurchaseTable1 data={purchasesApp}/>}
+      {activeLink === 1 ? <PurchaseTable2 data={purchasesStore} getPurchasesStore={getPurchasesStore}/> : <PurchaseTable1 data={purchasesApp} getPurchasesApp={getPurchasesApp}/>}
       <PurchasesReport open={open} setOpen={setOpen} handleOpen={handleOpen} />
-      {isOpen && <PromoFilter closeDrawer={closeDrawer} open={isOpen} />}
+      {isOpen && <PurchasesFilter closeDrawer={closeDrawer} open={isOpen}  getPurchasesApp={getPurchasesApp}
+    getPurchasesStore={getPurchasesStore}/>}
     </div>
   );
 };

@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import "./index.scss";
+import { bounsState } from "../atoms/bounsState";
+import { useRecoilState } from "recoil";
+import useNotification from "../../hooks/useNotification";
+import { getDateFromISOString } from "../../utiils";
 
 const BounsPreview = ({ handleOpen , handleClose }) => {
+  const { 
+    handleNotification } = useNotification()
+  const [bonus, setBounData] = useRecoilState(bounsState);
+
+  console.log(bonus)
+
   const [openSuccess, setSuccess] = useState(false);
   return (
     <div className="gift-container no-scrollbar" style={{height:"400px"}}>
@@ -27,14 +37,15 @@ const BounsPreview = ({ handleOpen , handleClose }) => {
             name="w3review"
             rows="3"
             cols="50"
-            placeholder="Congratulations! You have been awarded # 200 bonus points on your last #ProductName purchase"
+            value={`Congratulations! You have been awarded ${bonus?.noOfPoint || bonus?.totalNoOfStamps} bonus points on your last ${bonus?.Product?.name} purchase`}
                       className="input"
-                      value=""
           />
         </div>
       </div>
       <div className="flex-center">
-        <button className="menuButton" onClick={() =>{ 
+        <button className="menuButton" onClick={() =>{
+          
+    handleNotification(bonus?.data?.userId, "Award Free Bonus",  `Congratulations! You have been awarded ${bonus?.data?.noOfPoint || bonus?.data?.totalNoOfStamps} bonus points on your last ${bonus?.Product?.name} purchase`, getDateFromISOString(bonus?.data?.createdAt))
           setSuccess(true)
           setTimeout(()=>{
             setSuccess(false)

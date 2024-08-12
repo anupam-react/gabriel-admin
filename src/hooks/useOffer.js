@@ -14,23 +14,7 @@ const useOffer = () => {
   const [openSuccess, setSuccess] = useState(false);
 
 
-//   async function getMarketingCampaignByToken() {
-//     const data = await fetchApiData(
-//       "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignByToken"
-//     );
 
-//     setCampaigns(data?.data);
-//   }
-
-//   const getMarketingCampaignById = async (id) => {
-//     const data = await fetchApiData(
-//       `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaign/${id}`
-//     );
-//     console.log(data?.data);
-//     setCampaignData(data?.data);
-//     // setActivationDate(data?.data?.activationDate)
-//     // setExpiryDate(data?.data?.expiryDate)
-//   };
 
 
   const handleChange = (e) => {

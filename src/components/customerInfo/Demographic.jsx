@@ -57,12 +57,12 @@ const Demographic = ({ handleOpen , data , onClose}) => {
             <div className="flex justify-center">
                 <img src={dataInfo?.image || "./carbon_user-avatar-filled (2).png"} alt="" className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <div style={{ color: "#121212B2" }}> ID : {dataInfo?.refferalCode}</div>
+              <div style={{ color: "#121212B2" }}> ID : {dataInfo?.Id}</div>
             </td>
             <td>
               <div style={{ color: "#0070BC", textDecoration: "underline" }}>
                 {" "}
-                ID : {dataInfo?.refferalCode}
+                ID : {dataInfo?.Id}
               </div>
             </td>
             <td>

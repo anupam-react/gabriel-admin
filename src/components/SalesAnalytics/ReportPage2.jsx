@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import { useNavigate } from "react-router-dom";
 
 const ReportPage2 = ({ open, setOpen, handleOpen }) => {
@@ -128,7 +128,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+                      <Select1 selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+                      <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
                     </div>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
+                      <Select1 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
                     </div>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
+                      <Select1 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption5} handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
+                      <Select1 selectedOption={selectedOption5} handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
                     </div>
                   </div>
                 </div>
@@ -203,7 +203,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption6} handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
+                      <Select1 selectedOption={selectedOption6} handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
                     </div>
                   </div>
                 </div>

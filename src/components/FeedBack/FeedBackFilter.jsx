@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
-import { Slider } from "@material-tailwind/react";
+import { formatDate2 } from "../../utiils";
 
-const FeedBackFilter = ({ closeDrawer, open }) => {
+
+const FeedBackFilter = ({ closeDrawer, open , getAllFeedback }) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   return (
     <React.Fragment>
       <Drawer
@@ -51,236 +54,34 @@ const FeedBackFilter = ({ closeDrawer, open }) => {
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2  startDate={startDate}
+                    setStartDate={setStartDate}/>
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 />
+                  <DatePickerComp2  startDate={endDate}
+                    setStartDate={setEndDate}/>
                 </div>
               </div>
-              {/* <p className="joint-date mt-[40px]">Feedback Type</p>
-              <div className="checkbox-container">
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    UX Feedback
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Transaction Experience
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Loyalty & Rewards Program Feedback
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Security & Privacy Feedback
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Customer Support Experience
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Feature Requests
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Technical Issues
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Comparative Feedback
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Usability in Partnered Retailers
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    Educational Resources & Guidance
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <p className="joint-date mt-[40px]">Ratings</p>
-              <div className="checkbox-container">
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    <div className="flex items-center gap-4">
-                      <p>5 Stars</p>
-                      <div className="flex gap-1">
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    <div className="flex items-center gap-4">
-                      <p>4 Stars</p>
-                      <div className="flex gap-1">
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    <div className="flex items-center gap-4">
-                      <p>3 Stars</p>
-                      <div className="flex gap-1">
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    <div className="flex items-center gap-4">
-                      <p>2 Stars</p>
-                      <div className="flex gap-1">
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div className="checkbox-filter">
-                  <label className="checkbox1 text1 ">
-                    <div className="flex items-center gap-4">
-                      <p>1 Stars</p>
-                      <div className="flex gap-1">
-                        <img src="./image 680.png" alt="" className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      // checked={isChecked}
-                      // onChange={handleCheckboxChange}
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div> */}
+
             </div>
           </div>
           <div className="button-container">
             <button
               className="button2"
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                  getAllFeedback("", formatDate2(endDate) , formatDate2(startDate))
+                  closeDrawer()
+                }}
             >
               APPLY
             </button>
             <button
               className="button4"
-              onClick={closeDrawer}
-              //   onClick={() => {
-              //     setOpenAlert(true);
-              //   }}
+                onClick={() => {
+                  getAllFeedback()
+                  closeDrawer()
+                }}
             >
               RESET
             </button>

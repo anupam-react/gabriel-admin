@@ -3,30 +3,32 @@ import "./index.scss";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
-import SelectRetailer from "./SelectRetailer";
-import SelectItem from "./SelectItem";
 
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./SliderRangeFilter.css";
 import { formatDate2 } from "../../utiils";
+import SelectRetailer from "../PromoCode/SelectRetailer";
+import SelectItem from "../PromoCode/SelectItem";
+
 
 // import AddProfile from "./AddProfile";
-const PromoFilter = ({ closeDrawer, open , 
-   range,
-  setRange,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  setOpenCustom,
-  openCustom,
-  selectedOption,
-  setSelectedOption,
-  getPromoCodeByToken }) => {
+const PurchasesFilter = ({
+  closeDrawer,
+  open,
+  getPurchasesApp,
+  getPurchasesStore,
+}) => {
+  
   const [openRetailer, setOpenRetailer] = useState(false);
   const [openItem, setOpenItem] = useState(false);
-
+  const [range, setRange] = useState([0, 5000]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [productId, setProductId] = useState(false);
+  const [outletId, setOutletId] = useState(false);
+  const [productInfo , setProductInfo] = useState()
+  const [outletInfo , setOutletInfo] = useState()
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
@@ -88,11 +90,17 @@ const PromoFilter = ({ closeDrawer, open ,
               <div className="calender">
                 <div>
                   <p>From</p>
-                  <DatePickerComp2 startDate={startDate} setStartDate={setStartDate}/>
+                  <DatePickerComp2
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                  />
                 </div>
                 <div>
                   <p>To</p>
-                  <DatePickerComp2 startDate={endDate} setStartDate={setEndDate}/>
+                  <DatePickerComp2
+                    startDate={endDate}
+                    setStartDate={setEndDate}
+                  />
                 </div>
               </div>
 
@@ -148,6 +156,7 @@ const PromoFilter = ({ closeDrawer, open ,
                   <input
                     id="countries"
                     placeholder="Outlet"
+                    value={outletInfo}
                     className="rounded shadow-md mb-4 cursor-pointer bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
 
@@ -166,6 +175,7 @@ const PromoFilter = ({ closeDrawer, open ,
                   <input
                     id="countries"
                     placeholder="Select Item"
+                    value={productInfo}
                     className="rounded shadow-md mb-4 cursor-pointer bg-[#EEEEEE80] text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
 
@@ -180,28 +190,61 @@ const PromoFilter = ({ closeDrawer, open ,
                   <SelectRetailer
                     onClose={() => setOpenRetailer(false)}
                     show={openRetailer}
+                    setOutletId={setOutletId}
+                    setOutlet={setOutletInfo}
+                    
                   />
                 )}
                 {openItem && (
                   <SelectItem
                     onClose={() => setOpenItem(false)}
                     show={openItem}
+                    setProductId={setProductId}
+                    setProductInfo={setProductInfo}
                   />
                 )}
               </div>
             </div>
           </div>
           <div className="button-container">
-            <button className="button2" onClick={()=>{
-              getPromoCodeByToken("",formatDate2(startDate), formatDate2(endDate), 1,1000, range[0], range[1] )
-              closeDrawer()
-            }}>
+            <button
+              className="button2"
+              onClick={() => {
+                getPurchasesApp(
+                  "",
+                  formatDate2(startDate),
+                  formatDate2(endDate),
+                  1,
+                  1000,
+                  range[0],
+                  range[1],
+                  productId,
+                  outletId
+                );
+                getPurchasesStore(
+                  "",
+                  formatDate2(startDate),
+                  formatDate2(endDate),
+                  1,
+                  1000,
+                  range[0],
+                  range[1],
+                  productId,
+                  outletId
+                );
+                closeDrawer();
+              }}
+            >
               APPLY
             </button>
-            <button className="button4" onClick={()=>{
-              getPromoCodeByToken()
-              closeDrawer()
-              }}>
+            <button
+              className="button4"
+              onClick={() => {
+                getPurchasesApp();
+                getPurchasesStore()
+                closeDrawer();
+              }}
+            >
               RESET
             </button>
           </div>
@@ -211,4 +254,4 @@ const PromoFilter = ({ closeDrawer, open ,
   );
 };
 
-export default PromoFilter;
+export default PurchasesFilter;

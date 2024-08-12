@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import Select2 from "../common/Select2";
 import  DatePickerComp  from "../common/DatePickerComp";
 import { BarChart3 } from "./BarChart3";
@@ -7,11 +7,18 @@ import { LineChart4 } from "./LineChart4";
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
 import Select3 from "../common/Select3";
+import Select from "react-select";
 import useComparison from "../../hooks/useComparison";
 
 
 const Comparison = () => {
-  const { saleComp } = useComparison()
+  const { saleComp ,     saleproductComp,   category,
+    selectedCat,
+    catId,
+    handleCategory,
+    getTotalSaleByProductSubcategory } = useComparison()
+
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
@@ -93,7 +100,7 @@ const Comparison = () => {
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-10">
         <div className="flex justify-between items-center w-full">
-          <Select selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+          <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
         </div>
         <p className="text-[#0070BC] font-semibold text-xl uppercase">
         Sales Comparisons 
@@ -134,21 +141,27 @@ const Comparison = () => {
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center gap-4 w-full">
         <Select2 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
-         
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
-            className="rounded shadow-md bg-[#EEEEEE80] text-[#000000B2] font-semibold text-sm  border-none block w-[250px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option className="font-semibold">Breverages</option>
-          </select>
+         <div className="w-[200px]">
+        <Select
+            className="input-loyalty2"
+            styles={{ width: "100px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
+
+         </div>
         </div>
         <p className="text-[#0070BC] text-[18px] font-semibold">Total Sales VS Product SubCategories</p>
         <div className="w-full">
-          <BarChart4 />
+          <BarChart4 data={saleproductComp}/>
         </div>
       </div>
 

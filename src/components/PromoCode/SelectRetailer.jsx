@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import "./index.scss";
-const SelectRetailer = ({onClose , show}) => {
-
+import useOutlate from "../../hooks/useOutlate";
+const SelectRetailer = ({onClose , show , setOutletId , setOutlet}) => {
+  const { outlate }= useOutlate();
   const popupRef = useRef();
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,31 +31,21 @@ const SelectRetailer = ({onClose , show}) => {
         <img src="./image 2 (3).svg" alt="search" className="w-6 h-6" />
         <input type="text" className="search w-[150px]" placeholder="Search" />
       </div>
-      <div className="h-[200px] overflow-auto p-4 mt-6 ">
-        <div className="flex justify-between items-center ">
-          <div className="flex gap-4 items-center">
-            <img src="./Ellipse 11 (1).png" alt="" />
-            <p>DUNKIN’</p>
+      <div className="h-[200px] overflow-auto p-4 flex flex-col gap-6 ">
+        {outlate?.docs?.map((d, i)=>(
+        <div className="flex justify-between items-center cursor-pointer" key={i} onClick={()=>{
+          setOutlet(d?.name)
+           setOutletId(d?._id)
+           onClose()
+           }} >
+          <div className="flex gap-6 items-center">
+            <img src={d?.image} alt="" className="w-[40px] h-[40px] rounded-full"/>
+            <p>{d?.name}</p>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-6">
-          <div className="flex gap-4 items-center">
-            <img src="./Ellipse 11 (2).png" alt="" />
-            <p>Starbucks</p>
-          </div>
-        </div>
-        <div className="flex justify-between items-center  mt-6">
-          <div className="flex gap-4 items-center">
-            <img src="./Ellipse 11 (1).png" alt="" />
-            <p>DUNKIN’</p>
-          </div>
-        </div>
-        <div className="flex justify-between items-center mt-6">
-          <div className="flex gap-4 items-center">
-            <img src="./Ellipse 11 (2).png" alt="" />
-            <p>Starbucks</p>
-          </div>
-        </div>
+
+        ))}
+     
       </div>
       </div>
     </div>

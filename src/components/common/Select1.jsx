@@ -4,7 +4,7 @@ import DatePickerComp from "./DatePickerComp";
 import { formatDate2 } from "../../utiils";
 
 
-const Select = ({selectedOption , handleChange , open , setOpen , handleSave=()=>{} }) => {
+const Select1 = ({selectedOption , handleChange , open , setOpen , handleSave=()=>{} }) => {
   
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -74,4 +74,4 @@ const Select = ({selectedOption , handleChange , open , setOpen , handleSave=()=
   );
 };
 
-export default Select;
+export default Select1;

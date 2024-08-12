@@ -5,6 +5,8 @@ import BounsPreview from "./BounsPreview";
 import CatalogueProduct from "./CatalogueProduct";
 import useBouns from "../../hooks/useBouns";
 const Bouns = ({ handleOpen , id , onClose}) => {
+
+  console.log(id)
   const { 
     bouns,
     handleChange,

@@ -28,7 +28,7 @@ const TransactionDiscount = ({ handleOpen , data }) => {
         <tbody>
           {data?.map((d, i)=>(
 
-          <tr>
+          <tr key={i}>
             <td style={{ width: "100px" }}>Dunkins (60%)</td>
             <td>
               <div className="flex items-center justify-between gap-4">

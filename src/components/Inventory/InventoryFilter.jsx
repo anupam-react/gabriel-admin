@@ -197,7 +197,7 @@ const InventoryFilter = ({ closeDrawer, open , range,
             <button
               className="button2"
                 onClick={() => {
-                 getProduct("",formatDate2(startDate), formatDate2(endDate), "","", range1[0], range1[1], range[0], range[1])
+                 getProduct("",formatDate2(startDate), formatDate2(endDate), 1,1000, range1[0], range1[1], range[0], range[1])
                   closeDrawer()
                 }}
             >

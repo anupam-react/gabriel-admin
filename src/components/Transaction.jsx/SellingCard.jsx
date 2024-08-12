@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import ReportPage from "./ReportPage";
 import { DialogDefault } from "../common/DilogBox";
 
@@ -45,7 +45,7 @@ const SellingCard = ({data ,selectedOption, handleChange , open , setOpen , hand
   return (
     <div className="shadow-xl rounded-md bg-white flex flex-col items-center gap-4 py-4 px-4 w-[23vw]">
       <p className="text-[#0070BC] text-xl font-semibold">TOP SELLING ITEMS</p>
-      <Select selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen} handleSave={handleSave}/>
+      <Select1 selectedOption={selectedOption}  handleChange={handleChange} open={open} setOpen={setOpen} handleSave={handleSave}/>
       <div className="flex flex-col gap-6 my-4">
         {data?.slice(0, 4)?.map((d, i) => (
           <div className="flex gap-4">

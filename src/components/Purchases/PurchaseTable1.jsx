@@ -9,7 +9,7 @@ import usePurchases from "../../hooks/usePurchases";
 import useCusomerInfo from "../../hooks/useCusomerInfo";
 
 
-const PurchaseTable1 = ({data}) => {
+const PurchaseTable1 = ({data , getPurchasesApp}) => {
 
   const {singlePurchases ,  getPurchasesStoreId }  = usePurchases()
   const {  
@@ -46,9 +46,9 @@ const PurchaseTable1 = ({data}) => {
           <tbody>
             {currentTableData?.map((item , i) => {
               return (
-                <tr>
+                <tr key={i}>
                    <td>
-                      <div className="flex items-center justify-center gap-6 relative">
+                      <div className="flex items-center gap-6 relative ml-6">
                       <div className="relative">
                     <div className="profile-image cursor-pointer" onClick={() =>{ 
                          getCustomerInfoForParticularUser(item?.user?._id)
@@ -75,7 +75,7 @@ const PurchaseTable1 = ({data}) => {
                          
                         >
                           <p>{item?.user?.fullName || item?.user?.firstName + " " + item?.user?.lastName}</p>
-                          ID:{item?.user?.refferalCode}
+                          ID:{item?.user?.Id}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]" >
@@ -88,7 +88,7 @@ const PurchaseTable1 = ({data}) => {
                   <td onClick={()=> {
                     getPurchasesStoreId(item?._id)
                     setOpenTrans(true)
-                    }} className="font-semibold text-[#0070BC] underline cursor-pointer">{item?.orderId}</td>
+                    }} className="font-semibold text-[#0070BC] underline cursor-pointer">{item?.user?.refferalCode}</td>
 
                   <td>
                    {getDateFromISOString(item?.createdAt)} <span className="text-[#0070BC]">({formatTime2(item?.createdAt)})</span>
@@ -96,17 +96,17 @@ const PurchaseTable1 = ({data}) => {
                   <td>
                     <div className="flex items-center gap-3">
                       <img
-                        src={item?.productId?.image}
+                        src={item?.product?.image}
                         alt=""
                         className="h-10 w-10 rounded-full"
                       />
                       <div>
-                        <p className="font-semibold text-left">{item?.productId?.name}</p>
-                        <p className="text-[#000000B2] text-left">{item?.productId?.nutrition}</p>
+                        <p className="font-semibold text-left">{item?.product?.name}</p>
+                        <p className="text-[#000000B2] text-left">{item?.product?.nutrition}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="font-semibold text-[#000000B2]">{item?.productId?._id}</td>
+                  <td className="font-semibold text-[#000000B2]">{item?.product?._id}</td>
                 </tr>
               );
             })}
@@ -124,7 +124,7 @@ const PurchaseTable1 = ({data}) => {
         <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo}/>
       </DialogDefault>
        <DialogDefault open={isOpenTrans} handleOpen={setOpenTrans}>
-        <TransactionDetails handleOpen={setOpenTrans} userData={singlePurchases?.user} data={singlePurchases}/>
+        <TransactionDetails handleOpen={setOpenTrans} brandData={singlePurchases?.outletId} userData={singlePurchases?.user} data={singlePurchases}/>
       </DialogDefault>
     </div>
   );

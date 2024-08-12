@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
-import Select from "../common/Select";
+import Select1 from "../common/Select1";
 import { useNavigate } from "react-router-dom";
 
 const PurchasesReport = ({ open, setOpen, handleOpen }) => {
@@ -91,7 +91,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+                      <Select1 selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+                      <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
                     </div>
                   </div>
                 </div>

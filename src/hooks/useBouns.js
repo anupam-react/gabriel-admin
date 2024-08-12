@@ -33,7 +33,7 @@ const useBouns = () => {
         formData
       );
 
-      setBounData(response?.data);
+      setBounData(response);
       setSuccess(true);
     } catch (error) {
       console.log(error);

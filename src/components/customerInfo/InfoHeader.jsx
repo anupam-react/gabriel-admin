@@ -26,7 +26,7 @@ const InfoHeader = ({onClose , data}) => {
         )}
         <div>
           <p>Moneychat</p>
-          <p>ID : MC12345</p>
+          <p>ID : {data?.Id}</p>
         </div>
       </div>
       {/* <div className="header-profile">

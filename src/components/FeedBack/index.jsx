@@ -11,11 +11,12 @@ import StarRating from "./StarRating";
 import useCusomerInfo from "../../hooks/useCusomerInfo";
 
 const FeedBack = () => {
-  const { feedback } = useFeedback()
+  const { feedback , getAllFeedback } = useFeedback()
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isOpenInfo, setOpenInfo] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   let PageSize = 3;
@@ -50,6 +51,11 @@ const FeedBack = () => {
             type="text"
             className="border-none w-64 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getAllFeedback(e.target.value);
+            }}
           />
         </div>
         <div className="flex">
@@ -76,15 +82,15 @@ const FeedBack = () => {
           <tbody>
             {currentTableData?.map((item , i) => {
               return (
-                  <tr>
+                  <tr key={i}>
                     <td>
                       <div className="flex items-center justify-center gap-6 relative">
                       <div className="relative">
                     <div className="profile-image cursor-pointer" onClick={() =>{
-                      getCustomerInfoForParticularUser(item?.userId?._id)
+                      getCustomerInfoForParticularUser(item?.user?._id)
                        setOpenInfo(true)
                        }}>
-                      <img src={item?.userId?.image || "./carbon_user-avatar-filled.png"} alt=""/>
+                      <img src={item?.user?.image || "./carbon_user-avatar-filled.png"} alt=""/>
                     </div>
                       <img
                         src="./solar_menu-dots-bold (1).png"
@@ -100,17 +106,17 @@ const FeedBack = () => {
                         <p
                           className="profileId font-semibold text-left text-[#000000B2]"
                           onClick={() =>{
-                            getCustomerInfoForParticularUser(item?.userId?._id)
+                            getCustomerInfoForParticularUser(item?.user?._id)
                              setOpenInfo(true)
                             }}
                          
                         >
-                          <p>{item?.userId?.fullName || item?.userId?.firstName + " " + item?.userId?.lastName}</p>
-                          ID: {item?.userId?.refferalCode}
+                          <p>{item?.user?.fullName || item?.user?.firstName + " " + item?.user?.lastName}</p>
+                          ID: {item?.user?.Id}
                         </p>
                         {isOpenMenu === i && (
                           <div className="absolute top-0 z-20 md:-right-[260px] lg:-right-[250px] xl:-right-[230px]">
-                            <MenuCard onClose={()=> setOpenMenu(false)} data={item?.userId}/>
+                            <MenuCard onClose={()=> setOpenMenu(false)} data={item?.user}/>
                           </div>
                         )}
                       </div>
@@ -153,7 +159,7 @@ const FeedBack = () => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      {isOpen && <FeedBackFilter closeDrawer={closeDrawer} open={isOpen} />}
+      {isOpen && <FeedBackFilter closeDrawer={closeDrawer} open={isOpen} getAllFeedback={getAllFeedback}/>}
       <CustomerFeedBack open={open} setOpen={setOpen} handleOpen={handleOpen} />
       <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
         <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo}/>

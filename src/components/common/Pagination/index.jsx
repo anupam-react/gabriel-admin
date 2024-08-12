@@ -31,7 +31,7 @@ const Pagination = props => {
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange?.length - 1];
+  let lastPage = paginationRange?.[paginationRange?.length - 1];
   return (
     <div className='flex justify-between mt-10'>
       <p className='w-20'>PAGE {currentPage}</p>
@@ -49,7 +49,7 @@ const Pagination = props => {
         <p>PREVIOUS</p>
         </div>
       </li>
-      {paginationRange.map(pageNumber => {
+      {paginationRange?.map(pageNumber => {
         if (pageNumber === DOTS) {
           return <li className="pagination-item dots">&#8230;</li>;
         }

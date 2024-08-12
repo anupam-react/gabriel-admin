@@ -161,7 +161,7 @@ const DigitalReceipt = () => {
                               " " +
                               item?.userId?.lastName}{" "}
                           </p>
-                          ID: {item?.userId?.refferalCode}
+                          ID: {item?.userId?.Id}
                         </p>
                       </div>
                     </td>

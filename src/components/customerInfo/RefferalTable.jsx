@@ -40,10 +40,10 @@ const RefferalTable = ({data}) => {
               <div className="flex justify-center">
                 <img src={data?.user?.image || "./carbon_user-avatar-filled (2).png"} alt="" className="w-[40px] h-[40px] rounded-full"/>
               </div>
-              <p>ID : {data?.user?.refferalCode}</p>
+              <p>ID : {data?.user?.Id}</p>
             </td>
             <td>
-              <div>{data?.user?.refferalCode}</div>
+              <div>{data?.user?.Id}</div>
             </td>
             <td>
               <div>

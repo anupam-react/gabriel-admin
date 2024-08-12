@@ -83,12 +83,12 @@ const Transaction = ({ onClose, data }) => {
                 >
                   Award Free Bonus
                 </button>
-                <button
+                {/* <button
                   className="menuButton4"
                   onClick={() => setOpenPoint(true)}
                 >
                   Send Target Point Promotions
-                </button>
+                </button> */}
               </div>
             </td>
           </tr>
