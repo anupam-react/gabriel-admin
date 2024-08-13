@@ -4,11 +4,12 @@ import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import Notification from "./Notification";
 import { fetchApiData, getDateFromISOString } from "../../utiils";
+import MenuCard3 from "./MenuCard3";
 
 const Verification = ({ handleOpen , onClose , data}) => {
   const [openPromotion, setOpenPromotion] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
-
+  const [openMenu, setOpenMenu] = useState(false);
   const [dataInfo, setDataInfo] = useState()
 
   console.log(data)
@@ -44,7 +45,8 @@ const Verification = ({ handleOpen , onClose , data}) => {
       <table className="table2">
         <thead>
           <tr>
-            <th>Student ID</th>
+            <th>Student</th>
+            <th>Educational Institution</th>
             <th>Status</th>
             <th>Date</th>
             <th>Notification</th>
@@ -53,10 +55,31 @@ const Verification = ({ handleOpen , onClose , data}) => {
         <tbody>
           <tr>
             <td>
-              <div className="flex justify-center">
-                <img src={data?.image || "./carbon_user-avatar-filled (2).png"} alt=""  className="w-[40px] h-[40px] rounded-full"/>
+              <div className="flex justify-center ">
+                <div className="relative w-[60px] h-[60px]">
+
+                <img src={data?.image || "./carbon_user-avatar-filled (2).png"} alt=""  className="w-[60px] h-[60px] rounded-full"/>
+                <img
+                    src="./charm_menu-meatball.png"
+                    alt=""
+                    className="absolute h-[18px] top-3 right-2 cursor-pointer"
+                    onClick={() => {
+                      setOpenMenu(!openMenu);
+                    }}
+                  />
+                  {openMenu && (
+                    <MenuCard3
+                      onClose={() => setOpenMenu(false)}
+                      id={data?._id}
+                    />
+                  )}
+                </div>
+
               </div>
-              <p style={{ color: "#121212", fontWeight: 600 }}>ID : {dataInfo?.studentEmail}</p>
+             
+            </td>
+            <td>
+             <p className="text-[#121212]">Univercity Of Manchester</p> 
             </td>
            
             <td>

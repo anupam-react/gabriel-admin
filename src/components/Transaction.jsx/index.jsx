@@ -151,7 +151,7 @@ const Transaction = () => {
           alt=""
           className="h-8 w-8 cursor-pointer"
         /> */}
-        <div
+        {/* <div
           className="flex items-center px-6 h-12"
           style={{
             backgroundColor: "#FFFF",
@@ -172,7 +172,7 @@ const Transaction = () => {
             <img src="./Mask group (8).png" alt="" className="w-5 h-5" />
             <p className="text-[#0070BC] font-semibold">FILTERS</p>
           </button>
-        </div>
+        </div> */}
         <div className="flex">
           <button className="export flex gap-2" onClick={() => setOpen(true)}>
             <img src="./Mask group (7).svg" alt="" className="w-5 h-5" />

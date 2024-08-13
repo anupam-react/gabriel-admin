@@ -14,7 +14,7 @@ const ProductDetails = ({handleOpen , data}) => {
           className="cross-image2"
           onClick={() => handleOpen(false)}
       />
-      <img src={data?.image || "../image 713 (1).png"} alt="" className='details-image' onClick={()=>setProduct(true)} />
+      <img src={data?.image} alt="" className='details-image' onClick={()=>setProduct(true)} />
       <hr className='my-4 bg-[#A2A2A2] w-full'/>
       <div className='details-info'>
         <div className='info2'>

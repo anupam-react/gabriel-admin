@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import Select from "react-select";
+import usePointSystem from "../../hooks/usePointSystem";
 const PointSystemForm = () => {
   const [openSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
+ const {
+  setSubCategoryId,
+  category,
+  subcategory,
+  selectedCat,
+  selectedSubCat,
+   setSubCat,
+  handleCategory,
+ } = usePointSystem()
+
   return (
     <div>
       <p className="loyalty-form-header">
@@ -12,32 +24,39 @@ const PointSystemForm = () => {
       </p>
       <div className="loyalty-form-container">
         <div className="mt-4">
+        <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Product Category</p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              Beverages
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
         </div>
         <div className="mt-4">
-          <p className="text-lg font-semibold pb-2">
-            Choose Product sub-category
-          </p>
-          <select
-            id="countries"
-            // value={selectedOption}
-            // onChange={handleChange}
+          <p className="text-lg font-semibold pb-2">Choose Product sub-category</p>
+          <Select
             className="input-loyalty2"
-          >
-            <option className="font-semibold" value="custom">
-              Coffees , Milkshakes ,Hot Chocolate (In dropdown)
-            </option>
-          </select>
+            styles={{ width: "20px" }}
+            value={selectedSubCat}
+            options={subcategory?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={subcategory?.[0]?._id}
+            onChange={(e) => {
+              setSubCat(e);
+              setSubCategoryId(e.value);
+            }}
+          />
+        </div>
+         
         </div>
         <div className="loyalty-button-container">
           <button

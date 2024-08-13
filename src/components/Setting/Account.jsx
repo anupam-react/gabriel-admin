@@ -34,6 +34,8 @@ const Account = () => {
     setEmails,
     password,
     setPassword,
+    securityQuestion , setSecurityQuestion,
+    securityAnswer , setSecurityAnswer,
     handleUpdateProfile,
   } = useProfile();
 
@@ -51,7 +53,25 @@ const Account = () => {
   const [isAddEmp, setAddEmp] = useState(false);
   const [openAddEmp, setOpenAddEmp] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [showSecurity, setShowSecurity] = useState(false);
   const [isView, setIsView] = useState(false);
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
+  
+  const securityQuestions = [
+    'What is your mother’s maiden name?',
+    'What was the name of your first pet?',
+    'What was your first car?',
+    'What elementary school did you attend?',
+    'In what city were you born?',
+  ];
+
+  const handleSave = () => {
+    console.log('Security Question:', question);
+    console.log('Answer:', answer);
+    handleUpdateProfile()
+    setShowSecurity(false);
+  };
 
   console.log(profile);
 
@@ -103,7 +123,9 @@ const Account = () => {
               <span
                 onClick={() => {
                   handleUpdateProfile();
+                 
                   setIsEditing(false);
+                
                 }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
@@ -142,7 +164,8 @@ const Account = () => {
             {isEditing === 2 ? (
               <span
                 onClick={() => {
-                  handleUpdateProfile();
+                  // handleUpdateProfile();
+                  setShowSecurity(true)
                   setIsEditing(false);
                 }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
@@ -1049,6 +1072,49 @@ const Account = () => {
           <p className="text-center text-lg">
             You’ve successfully added an employee
           </p>
+        </div>
+      </DialogDefault>
+      <DialogDefault open={showSecurity} handleOpen={setShowSecurity}>
+      <div className="p-4">
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Security Question</h2>
+            <label className="block mb-2">
+              <span className="text-[#0070BC]">Choose a question:</span>
+              <select 
+                value={securityQuestion}
+                onChange={(e) => setSecurityQuestion(e.target.value)}
+                className="block w-full mt-1 rounded border-gray-300"
+              >
+                <option value="" disabled>Select a question</option>
+                {securityQuestions.map((q, index) => (
+                  <option key={index} value={q}>{q}</option>
+                ))}
+              </select>
+            </label>
+            <label className="block mb-4">
+              <span className="text-gray-700">Your Answer:</span>
+              <input 
+                type="text"
+                value={securityAnswer}
+                onChange={(e) => setSecurityAnswer(e.target.value)}
+                className="block w-full mt-1 rounded border-gray-300"
+              />
+            </label>
+            <div className="flex justify-end">
+              <button 
+                onClick={() => setShowSecurity(false)}
+                className="px-4 py-2 mr-2 bg-gray-300 rounded"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleSave}
+                className="px-4 py-2 bg-blue-600 text-white rounded"
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </div>
       </DialogDefault>
     </div>

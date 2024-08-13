@@ -4,6 +4,7 @@ import InventoryCard from "./InventoryCard";
 import InventoryFilter from "./InventoryFilter";
 import { useNavigate } from "react-router-dom";
 import useProduct from "../../hooks/useProduct";
+import Select from "react-select";
 const Inventory = () => {
   const {
     product,
@@ -15,6 +16,9 @@ const Inventory = () => {
     setStartDate,
     endDate,
     setEndDate,
+    fetchSubCategory,
+    category,
+    subcategory,
     getProduct,
   } = useProduct();
 
@@ -23,51 +27,19 @@ const Inventory = () => {
   const [openCustom , setOpenCustom] = useState(false)
   const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCat, setCat] = useState(null);
+  const [selectedSubCat, setSubCat] = useState(null);
 
   const closeDrawer = () => setIsOpen(false);
   const navigate = useNavigate();
-  const data = [
-    {
-      image: "./Rectangle 8765 (3).png",
-      price: "£5",
-      name: "Butter Croissant",
-    },
-    {
-      image: "./Rectangle 8765 (4).png",
-      price: "£15",
-      name: "Salted Caramel Muffin",
-    },
-    {
-      image: "./Rectangle 8765 (5).png",
-      price: "£75",
-      name: "Flat White",
-    },
-    {
-      image: "./Rectangle 8765 (6).png",
-      price: "£25",
-      name: "Cinnamon Swirf",
-    },
-    {
-      image: "./Rectangle 8765 (7).png",
-      price: "£55",
-      name: "Ginger Cookie Latte Iced",
-    },
-    {
-      image: "./Rectangle 8765 (8).png",
-      price: "£12",
-      name: "Chocolate Croissant",
-    },
-    {
-      image: "./Rectangle 8765 (9).png",
-      price: "£5",
-      name: "Milk Chocolate Cookie",
-    },
-    {
-      image: "./Rectangle 8765 (10).png",
-      price: "£115",
-      name: "Salted Caramel Frozen coffee",
-    },
-  ];
+
+  const handleCategory = (event) => {
+    setCat(event);
+    getProduct("","","","","","","","","",event.value)
+    fetchSubCategory(event.value);
+  };
+
+
   return (
     <div>
       <div className="flex justify-between  items-start gap-10">
@@ -139,27 +111,39 @@ const Inventory = () => {
           )}
         </div>
       </div>
-      <div className="flex gap-6">
-        <select
-          id="countries"
-          // value={selectedOption}
-          // onChange={handleChange}
-          className="rounded-lg shadow-md text-gray-900 text-sm  border-none block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          <option className="font-semibold" value="CATEGORY">
-            CATEGORY
-          </option>
-        </select>
-        <select
-          id="countries"
-          // value={selectedOption}
-          // onChange={handleChange}
-          className="rounded-lg shadow-md text-gray-900 text-sm  border-none block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          <option className="font-semibold" value="SUB-CATEGORY">
-            SUB-CATEGORY
-          </option>
-        </select>
+      <div className="flex gap-6 mt-4">
+        <div className="w-[250px]">
+      <Select
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder="CATEGORY"
+          />
+        </div>
+        <div className="w-[250px]">
+        <Select
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedSubCat}
+            options={subcategory?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={subcategory?.[0]?._id}
+            onChange={(e) => {
+              setSubCat(e);
+              getProduct("","","","","","","","","","", e.value)
+            }}
+                 placeholder="SUB-CATEGORY"
+          />
+
+        </div>
       </div>
       <div className="card-main">
         {product?.docs?.map((d, i) => (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createApiData, fetchApiData, updateApiData } from "../utiils";
-import { successToast } from "../components/Toast";
+import { successToast, warnToast } from "../components/Toast";
 
 const useProduct = () => {
   const [openSuccess, setSuccess] = useState(false);
@@ -46,9 +46,9 @@ const useProduct = () => {
 
   const navigate = useNavigate();
 
-  async function getProduct(search="", fromDate="", toDate="", page=1, limit=1000, maxStock="", minStock="", maxPrice="", minPrice="") {
+  async function getProduct(search="", fromDate="", toDate="", page=1, limit=1000, maxStock="", minStock="", maxPrice="", minPrice="", categoryId ="", subCategoryId="") {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}&categoryId=${categoryId}&subCategoryId=${subCategoryId}`
     );
     setProduct(data?.data);
   }
@@ -96,7 +96,10 @@ const useProduct = () => {
 
   const handleCreateProduct = async (event) => {
     event.preventDefault();
-
+    if (!image || !name || !description || !nutrition || !sku || !price || !brand || !quantity || !dimension || !returnPolicy || 
+      !shippingInfo || !productColor || !productSize || !online || !inStore || !keywords || !outletId || !categoryId || !subCategoryId) {
+      return warnToast("Fill all the fields");
+    }
     const formData = new FormData();
     formData.append("image", image);
     formData.append("name", name);
@@ -143,7 +146,7 @@ const useProduct = () => {
   };
   const handleUpdateProduct = async (event) => {
     event.preventDefault();
-
+   
     const formData = new FormData();
     formData.append("image", image || productInfo?.image);
     formData.append("name", name || productInfo?.name);
@@ -274,6 +277,7 @@ const useProduct = () => {
     range1, setRange1,
     startDate, setStartDate,
     endDate, setEndDate,
+    fetchSubCategory,
     getProduct,
     getProductById,
     handleCreateProduct,

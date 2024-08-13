@@ -3,6 +3,7 @@ import "./index.css";
 import useRegister from "../../hooks/useRegister";
 import Select from "react-select";
 import { useState } from "react";
+import IconSelect from "./IconSelect";
 const RegisterForm1 = () => {
  const { 
   name,
@@ -39,28 +40,20 @@ const [selectedSubCat, setSubCat] = useState(null);
     { option: "USA", value: "USA" },
    
   ];
-  // const categoryOptions = [
-  //   { option: "Shopping & Fashion", value: "shopping" },
-  //   { option: "Food and Drink", value: "food" },
-  //   { option: "Arts & Entertainment", value: "arts" },
-  //   { option: "Finance & Banking", value: "finance" },
-  //   { option: "Fitness", value: "fitness" },
-  //   { option: "Health & Beauty", value: "health" },
-  //   { option: "Travel & Hotels", value: "travel" },
-  // ];
-  // const subCategoryOptions = [
-  //   { option: "Electronics", value: "electronics" },
-  //   { option: "Home and Garden", value: "home" },
-  //   { option: "Sporting Goods", value: "sports" },
-  //   { option: "Books and Stationery", value: "books" },
-  //   { option: "Jewellery", value: "jewellery" },
-  //   { option: "Pet Supplies", value: "pet" },
-  //   { option: "Furniture", value: "furniture" },
-  //   { option: "Books & Comic Book Shops", value: "shops" },
-  //   { option: "Speciality Food Stores", value: "food" },
-  //   { option: "Boutique Wine and Spirits", value: "wine" },
-  //   { option: "Craft and Hobby Store", value: "hobby" },
-  // ];
+
+  const options = [
+    { value: 'electronics', label: 'Electronics' },
+    { value: 'home_garden', label: 'Home and Garden' },
+    { value: 'sporting_goods', label: 'Sporting Goods' },
+    { value: 'books_stationery', label: 'Books and Stationery' },
+    { value: 'jewellery', label: 'Jewellery' },
+    { value: 'pet_supplies', label: 'Pet Supplies' },
+    { value: 'furniture', label: 'Furniture' },
+    { value: 'books_comic_shops', label: 'Books & Comic Book Shops' },
+    { value: 'speciality_food_stores', label: 'Speciality Food Stores' },
+    { value: 'boutique_wine_spirits', label: 'Boutique Wine and Spirits' },
+    { value: 'craft_hobby_store', label: 'Craft and Hobby Store' },
+  ];
   return (
     <div className="flex justify-center items-center h-[100vh] w-full">
       <div className="w-2/6 px-4 bg-white border z-50 border-gray-200 rounded shadow-xl sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -199,26 +192,16 @@ const [selectedSubCat, setSubCat] = useState(null);
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <p className="text-xl font-bold text-center">Business Categories</p>
+            <p className="text-xl font-bold text-center">Business Industry</p>
             <p className="text-sm text-center">
               Please provide the following Information to Continue!
             </p>
             <div className="custom-select">
               
-                <Select
-                        className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        styles={{ width: "20px" }}
-                        value={selectedCat}
-                        options={category?.map(user => ({
-                          value: user._id,
-                          label: user?.name
-                        }))}
-                        defaultValue={category?.[0]?._id}
-                        onChange={handleCategory}
-                    />
+            <IconSelect selectedOption={selectedCat} handleChange={handleCategory}/>
             </div>
             <p className="text-xl font-bold text-center">
-              Select Sub-Categories
+            Business Type
             </p>
             <p className="text-sm text-center">
               Please provide the following Information to Continue!
@@ -228,11 +211,8 @@ const [selectedSubCat, setSubCat] = useState(null);
                         className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         styles={{ width: "20px" }}
                         value={selectedSubCat}
-                        options={subcategory?.map(user => ({
-                          value: user._id,
-                          label: user?.name
-                        }))}
-                        defaultValue={subcategory?.[0]?._id}
+                        options={options}
+                        defaultValue={options?.[0]?.value}
                         onChange={(e) => {
                           setSubCat(e)
                           setSubCategoryId(e.value)

@@ -6,7 +6,6 @@ import { BarChart3 } from "./BarChart3";
 import { LineChart4 } from "./LineChart4";
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
-import Select3 from "../common/Select3";
 import Select from "react-select";
 import useComparison from "../../hooks/useComparison";
 
@@ -73,14 +72,14 @@ const Comparison = () => {
     <div>
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">Comparison</p>
-        <div className="flex">
+        <div className="flex mb-6">
           <button className="export flex gap-2" onClick={() => setOpen(true)}>
             <img src="./Mask group (7).svg" alt="" className="w-5 h-5" />
             <p>REPORT</p>
           </button>
         </div>
       </div>
-      <div className="shadow-xl rounded-lg bg-white my-6 p-6 ">
+      {/* <div className="shadow-xl rounded-lg bg-white my-6 p-6 ">
         <p className="text-[#0070BC] font-semibold">DATE RANGE</p>
         <div className="mt-6 flex justify-between">
           <div>
@@ -97,7 +96,7 @@ const Comparison = () => {
             <DatePickerComp />
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-10">
         <div className="flex justify-between items-center w-full">
           <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
@@ -129,7 +128,7 @@ const Comparison = () => {
           </div>
         </div>
         <div className="flex justify-between items-center w-full">
-        <Select2 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
+        <Select2 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} />
           <div className="flex gap-4">
             <p className="text-[#000000B2]">To :</p>
           <DatePickerComp />
@@ -142,15 +141,15 @@ const Comparison = () => {
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
         <div className="flex justify-between items-center gap-4 w-full">
-        <Select2 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
+        <Select2 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4} handleSave={getTotalSaleByProductSubcategory}/>
          <div className="w-[200px]">
         <Select
             className="input-loyalty2"
             styles={{ width: "100px" }}
             value={selectedCat}
-            options={category?.map((user) => ({
-              value: user._id,
-              label: user?.name,
+            options={category?.map((item) => ({
+              value: item._id,
+              label: item?.name,
             }))}
             defaultValue={category?.[0]?._id}
             onChange={handleCategory}

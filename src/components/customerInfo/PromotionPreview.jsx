@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
-import useOffer from "../../hooks/useOffer";
 import { formatDate3 } from "../../utiils";
+import usePromotion from "../../hooks/usePromotion";
 const PromotionPreview = ({handleOpen, isPay = false }) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
   const {
-    offerData,
-  } = useOffer();
+    promotionData,
+    setPromotionData
+  } = usePromotion();
+
+  const handlePay = ()=>{
+    navigate("/customer/payment/customer") 
+    setPromotionData("")
+  }
   return (
     <div className="gift-container no-scrollbar">
         <div className="gift-main">
@@ -28,18 +34,18 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
       <div className="ad-container">
        
       <div className="flex flex-col gap-3 items-center">
-        <p className="text-[#121212] text-[20px] font-semibold">Percentage Discount</p>
+        <p className="text-[#121212] text-[20px] font-semibold">{promotionData?.type === "PercentageDiscount" ? "Percentage Discount" : promotionData?.type}</p>
       
       <div className="cardContainer">
-      <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
-      <p>{offerData?.description}</p>
+      <img src={promotionData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p>{promotionData?.description}</p>
       </div>
       <div className="flex gap-6 items-center">
-        <p className="text-[#0070BC]">Exp : {formatDate3(offerData?.expireDate)}</p>
+        <p className="text-[#0070BC]">Exp : {formatDate3(promotionData?.expireDate)}</p>
       <div>
               <div className="flex justify-end gap-2">
                 <img src="../mdi_gift.png" alt="" />
-                <p className="font-semibold"> : {offerData?.rewardPoints}</p>
+                <p className="font-semibold"> : {promotionData?.rewardPoints}</p>
                 <img src="../image 698 (3).png" alt="" />
               </div>
             </div>
@@ -49,7 +55,7 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
               className="loyalty-button1 mt-6"
               style={{ width: "fit-content" , width:"300px" }}
               onClick={()=>{
-                isPay ? navigate("/customer/payment/customer") :  setSuccess(true)
+                isPay ? handlePay() :  setSuccess(true)
               }}
             >
               {isPay ? "Pay £1" : "Send to Customer’s Offer Folder"}

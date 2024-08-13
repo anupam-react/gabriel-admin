@@ -137,7 +137,7 @@ const PromoFilter = ({ closeDrawer, open ,
                 </div>
               </div>
 
-              <div className="mt-10 ">
+              {/* <div className="mt-10 ">
                 <p className="text-lg font-semibold pb-4">Outlet</p>
                 <div
                   className="relative"
@@ -188,7 +188,7 @@ const PromoFilter = ({ closeDrawer, open ,
                     show={openItem}
                   />
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="button-container">

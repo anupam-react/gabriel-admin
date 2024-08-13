@@ -54,6 +54,7 @@ const useOffer = () => {
       return error;
     }
   };
+  
   const handleCreatePromotion = async (userId) => {
     const formData = new FormData();
     formData.append('userId', userId);
@@ -64,6 +65,7 @@ const useOffer = () => {
     formData.append('typeOfReward', offerData?.typeOfReward);
     formData.append('rewardPoints', offerData?.rewardPoints);
     formData.append('description', offerData?.description);
+    formData.append('discount', offerData?.discount);
     formData.append('image', offerData?.image);
     
     try {

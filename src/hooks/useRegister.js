@@ -39,8 +39,6 @@ const useRegister = () => {
   const handleCategory = (event)=>{
     setCat(event)
     setCategoryId(event.value);
-    fetchSubCategory(event.value)
-
   }
 
 
@@ -61,8 +59,8 @@ const useRegister = () => {
        phone,
        country,
        password,
-       categoryId,
-       subCategoryId
+      //  categoryId,
+      //  subCategoryId
      }
 
 

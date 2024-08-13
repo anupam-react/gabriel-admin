@@ -60,7 +60,7 @@ const BookMark = ({ handleOpen, onClose, data }) => {
                   <img
                     src={data?.bookMark?.productId?.image}
                     alt=""
-                    className="image1"
+                    className="image1 rounded-lg"
                   />
                   <div className="bookmarkText">
                     <p>GIFT A {data?.bookMark?.productId?.name}</p>

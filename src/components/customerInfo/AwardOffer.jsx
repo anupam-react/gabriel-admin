@@ -3,14 +3,52 @@ import { DialogDefault } from "../common/DilogBox";
 import AwardCustomer from "./AwardCustomer";
 import "./index.scss";
 import PromotionPreview from "./PromotionPreview";
-import useOffer from "../../hooks/useOffer";
+import { getDateFromISOString } from "../../utiils";
+import usePromotion from "../../hooks/usePromotion";
 const AwardOffer = ({handleOpen}) => {
   const [openCustom, setOpenCustom] = useState(false);
   const [openSuccess, setSuccess] = useState(false);
   const {
-    offerData,
-  } = useOffer();
+    promotionData,
+  } = usePromotion();
   const data = [
+    {
+      title: "Promotion Type",
+      value: promotionData?.type === "PercentageDiscount" ? "Percentage Discount" : promotionData?.type,
+      handleCLick: () => {
+         handleOpen(false);
+      },
+    },
+    {
+      title: "Decription",
+      value: promotionData?.description,
+      handleCLick: () => {
+         handleOpen(false);
+      },
+    },
+    {
+      title: "Reward Type",
+      value: promotionData?.typeOfReward,
+      handleCLick: () => {
+         handleOpen(false);
+      },
+    },
+    {
+      title: "Reward Value",
+      value: promotionData?.rewardPoints,
+      handleCLick: () => {
+         handleOpen(false);
+      },
+    },
+    {
+      title: "Expiration Date",
+      value:  getDateFromISOString(promotionData?.expireDate),
+      handleCLick: () => {
+         handleOpen(false);
+      },
+    },
+  ];
+  const data2 = [
     {
       title: "Promotion Type",
       value: "Percentage DIscount",
@@ -20,28 +58,22 @@ const AwardOffer = ({handleOpen}) => {
     },
     {
       title: "Decription",
-      value: offerData?.description,
+      value: promotionData?.description,
       handleCLick: () => {
          handleOpen(false);
       },
     },
     {
-      title: "Reward Type",
-      value: offerData?.typeOfReward,
+      title: "Condition Of Use",
+      value: promotionData?.typeOfReward,
       handleCLick: () => {
          handleOpen(false);
       },
     },
-    {
-      title: "Reward Value",
-      value: offerData?.rewardPoints,
-      handleCLick: () => {
-         handleOpen(false);
-      },
-    },
+    
     {
       title: "Expiration Date",
-      value:  offerData?.expireDate,
+      value:  getDateFromISOString(promotionData?.expireDate),
       handleCLick: () => {
          handleOpen(false);
       },
@@ -62,10 +94,12 @@ const AwardOffer = ({handleOpen}) => {
       </div>
       <hr className="hr" />
       <div className="cardContainer">
-      <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
-      <p>{offerData?.description}</p>
+      <img src={promotionData?.image} alt="" className="h-[100px] w-[150px]"/>
+      <p>{promotionData?.discount + "% " + promotionData?.description}</p>
       </div>
       <div className="footer-Main">
+        {promotionData?.type !== "Buy 1 get 1 free" ? 
+        <>
         {data?.map((d, i) => (
           <div className="footer-container">
             <p>{d?.title}</p>
@@ -73,7 +107,20 @@ const AwardOffer = ({handleOpen}) => {
             <p>{d?.value}</p>
             <button className="edit-button" onClick={d?.handleCLick}>Edit</button>
           </div>
+        ))} 
+        </>
+        :
+        <>
+        {data2?.map((d, i) => (
+          <div className="footer-container">
+            <p>{d?.title}</p>
+            <p>:</p>
+            <p>{d?.value}</p>
+            <button className="edit-button" onClick={d?.handleCLick}>Edit</button>
+          </div>
         ))}
+        </>
+      }
       </div>
       <button className="menuButton" onClick={() => setSuccess(true)}>
       See Promotion Preview

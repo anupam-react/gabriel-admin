@@ -33,6 +33,7 @@ const useComparison = () => {
 
   const handleCategory = (event) => {
     setCat(event);
+    getTotalSaleByProductSubcategory("","", event.value)
     setCatId(event.value);
   };
 

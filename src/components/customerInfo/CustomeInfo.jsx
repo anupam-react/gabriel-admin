@@ -304,7 +304,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
                     ref={divRef}
                   >
                     {/* <p className="viewProd text-[14px]">View Product</p> */}
-                    <MenuCard4 onClose={() => handleOpen(false)} />
+                    <MenuCard4 onClose={() => handleOpen(false)} data={d}/>
                   </div>
                 )}
               </div>
