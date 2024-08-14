@@ -13,6 +13,7 @@ const CustomizedBGift = ({ handleOpen , id}) => {
     setProductId,
     setOfferData,
     handleCreateUserRewards,
+    handleUpdateUserRewards
   } = useOffer();
   const [openUploadImage, setUploadImage] = useState(false);
 
@@ -71,6 +72,17 @@ const CustomizedBGift = ({ handleOpen , id}) => {
 
     
         <div className="input-container">
+          <label>Discount</label>
+          <input
+            type="text"
+            name="discount"
+            id="discount"
+            className="input"
+            value={offerData?.discount}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="input-container">
           <label>Enter Birthday Meassage!</label>
           <input
             type="text"
@@ -86,7 +98,15 @@ const CustomizedBGift = ({ handleOpen , id}) => {
       <div className="flex-center">
         <button
           className="menuButton"
-          onClick={()=>handleCreateUserRewards(id, "BirthDay")}
+          onClick={()=>{
+            if(offerData?._id){
+              handleUpdateUserRewards(id, "BirthDay", offerData?._id)
+            }
+            else{
+
+              handleCreateUserRewards(id, "BirthDay")
+            }
+          }}
         >
           Save & Next
         </button>

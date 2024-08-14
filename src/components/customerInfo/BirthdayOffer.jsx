@@ -38,7 +38,7 @@ const BirthdayOffer = ({ handleOpen, isOffer = false , onClose }) => {
       <hr className="hr" />
       <div className="cardContainer px-10 py-4">
         <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
-        <p className="text-center">{offerData?.description}</p>
+        <p className="text-center">{offerData?.discount}% Birthday Spacial Discount</p>
       </div>
       <div className="footer-Main">
         {data?.map((d, i) => (

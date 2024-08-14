@@ -59,8 +59,8 @@ const useRegister = () => {
        phone,
        country,
        password,
-      //  categoryId,
-      //  subCategoryId
+      categoryId,
+      subCategoryId
      }
 
 

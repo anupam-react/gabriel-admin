@@ -29,7 +29,6 @@ const usePromotion = () => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
-    // formData.append('message', promotionData?.message);
    if(promotionData?.expireDate) formData.append('expireDate', promotionData?.expireDate);
    formData.append('type', promotionData?.type || "PercentageDiscount");
    if(promotionData?.typeOfReward) formData.append('typeOfReward', promotionData?.typeOfReward);

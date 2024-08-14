@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import useCampaign from "../../hooks/useCampaign";
 import { initialState } from "../atoms/campaignState";
+import { getDateFromISOString } from "../../utiils";
 
 const MarketingEdit1 = () => {
   const { campaignData , setCampaignData} = useCampaign()
@@ -15,21 +16,21 @@ const MarketingEdit1 = () => {
   const data1 = [
     {
       title: "Campaign Type",
-      value: "Percentage DIscount",
+      value: campaignData?.typeOfCampaign,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
       title: "Description",
-      value: "50% discount coupon on all hot drinks",
+      value: campaignData?.description,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
       title: "Location",
-      value: "4517 Washington Ave. Manchester, Kentucky 39495",
+      value: campaignData?.targetLocation,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
@@ -38,7 +39,7 @@ const MarketingEdit1 = () => {
   const data2 = [
     {
       title: "Campaign Duration",
-      value: "5 Days",
+      value: `${campaignData?.noOfDays} Days`,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
@@ -46,14 +47,14 @@ const MarketingEdit1 = () => {
 
     {
       title: "Product Category",
-      value: "Hot Drinks",
+      value: campaignData?.categoryId,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
     },
     {
       title: "Expiry Date",
-      value: "25-jan-2024",
+      value: getDateFromISOString(campaignData?.expireDate),
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
@@ -61,7 +62,7 @@ const MarketingEdit1 = () => {
 
     {
       title: "Campaign Cost",
-      value: "£1",
+      value: `£${campaignData?.noOfDays * 1}`,
       handleCLick: () => {
         navigate("/marketing/newCampaign");
       },
@@ -102,13 +103,13 @@ const MarketingEdit1 = () => {
           <div className="footer-container2">
             <p>Customer Gained Till</p>
             <span>:</span>
-            <p>300 Cutomers</p>
+            <p>{campaignData?.estimateReachMin} Cutomers</p>
             <button className="edit-button2 invisible">Edit</button>
           </div>
           <div className="footer-container2">
             <p>Estimated Reach</p>
             <span>:</span>
-            <p>5000 Cutomers</p>
+            <p>{campaignData?.estimateReachMax} Cutomers</p>
             <button className="edit-button2 invisible">Edit</button>
           </div>
           {data2?.map((d, i) => (

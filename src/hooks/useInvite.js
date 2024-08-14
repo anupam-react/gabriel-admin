@@ -8,6 +8,7 @@ import {
 import { useRecoilState } from "recoil";
 
 import { inviteState } from "../components/atoms/inviteState.js";
+import { warnToast } from "../components/Toast/index.js";
 
 
 
@@ -28,17 +29,50 @@ const useInvite = () => {
   };
 
   const handleCreateEventInvite = async (userId ) => {
+    if(!userId || !productId || !inviteData?.customMessage || !inviteData?.expireDate || !inviteData?.exclusiveLink || !inviteData?.image || !inviteData?.referUser || !inviteData?.discount) {
+      return warnToast("Fill all the fields");
+    }
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
-    formData.append('customMessage', inviteData?.message);
+    formData.append('customMessage', inviteData?.customMessage);
     formData.append('expireDate', inviteData?.expireDate);
     formData.append('exclusiveLink', inviteData?.exclusiveLink);
     formData.append('image', inviteData?.image);
+    formData.append('referUser', inviteData?.referUser);
+    formData.append('discount', inviteData?.discount);
     
     try {
       const response = await createApiData(
         "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createEventInvite",
+        formData
+      );
+
+      setInviteData(response?.data)
+      setOpenOffer(true)
+
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+  const handleUpdateEventInvite = async (userId, id ) => {
+    if(!userId || !productId || !inviteData?.customMessage || !inviteData?.expireDate ||  !inviteData?.exclusiveLink || !inviteData?.image || !inviteData?.referUser || !inviteData?.discount) {
+      return warnToast("Fill all the fields");
+    }
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('productId', productId);
+    formData.append('customMessage', inviteData?.customMessage);
+    formData.append('expireDate', inviteData?.expireDate);
+    formData.append('exclusiveLink', inviteData?.exclusiveLink);
+    formData.append('image', inviteData?.image);
+    formData.append('referUser', inviteData?.referUser);
+    formData.append('discount', inviteData?.discount);
+    
+    try {
+      const response = await updateApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/updateEventInvite/${id}`,
         formData
       );
 
@@ -56,8 +90,9 @@ const useInvite = () => {
     handleChange,
     setInviteData,
     openOffer, setOpenOffer,
+    productId, setProductId,
     handleCreateEventInvite,
-    productId, setProductId
+    handleUpdateEventInvite
   };
 };
 

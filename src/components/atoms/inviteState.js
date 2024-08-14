@@ -8,6 +8,9 @@ export const initialState = {
   expireDate: "",
   exclusiveLink: "",
   image: {},
+  referUser: "points",
+  discount: "",
+
   };
 export const inviteState = atom({
   key: 'inviteState', // unique ID (with respect to other atoms/selectors)

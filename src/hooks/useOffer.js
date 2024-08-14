@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {
   createApiData,
+  updateApiData,
 } from "../utiils";
 import { useRecoilState } from "recoil";
 import { offerState } from "../components/atoms/offerState.js";
+import { warnToast } from "../components/Toast/index.js";
 
 
 
@@ -27,16 +29,15 @@ const useOffer = () => {
   };
 
   const handleCreateUserRewards = async (userId , type) => {
+    if(!userId || !productId || !offerData?.message || ! offerData?.discount || !offerData?.description || !offerData?.image) {
+      return warnToast("Fill all the fields");
+    }
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
     formData.append('message', offerData?.message);
-    // formData.append('expireDate', offerData?.expireDate);
     formData.append('type', type);
-    // formData.append('price', offerData?.price);
-    // formData.append('typeOfReward', offerData?.typeOfReward);
-    // formData.append('amount', offerData?.amount);
-    // formData.append('discount', offerData?.discount);
+    formData.append('discount', offerData?.discount);
     formData.append('description', offerData?.description);
     formData.append('image', offerData?.image);
     
@@ -55,22 +56,19 @@ const useOffer = () => {
     }
   };
   
-  const handleCreatePromotion = async (userId) => {
+  const handleUpdateUserRewards = async (userId , type, id) => {
     const formData = new FormData();
     formData.append('userId', userId);
     formData.append('productId', productId);
-    // formData.append('message', offerData?.message);
-    formData.append('expireDate', offerData?.expireDate);
-    formData.append('type', offerData?.type);
-    formData.append('typeOfReward', offerData?.typeOfReward);
-    formData.append('rewardPoints', offerData?.rewardPoints);
-    formData.append('description', offerData?.description);
+    formData.append('message', offerData?.message);
+    formData.append('type', type);
     formData.append('discount', offerData?.discount);
+    formData.append('description', offerData?.description);
     formData.append('image', offerData?.image);
     
     try {
-      const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createUserRewards",
+      const response = await updateApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/updateUserRewards/${id}`,
         formData
       );
 
@@ -91,7 +89,7 @@ const useOffer = () => {
     setOfferData,
     openOffer, setOpenOffer,
     handleCreateUserRewards,
-    handleCreatePromotion,
+    handleUpdateUserRewards,
     productId, setProductId,
     openSuccess, setSuccess
   };

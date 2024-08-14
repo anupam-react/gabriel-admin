@@ -20,17 +20,14 @@ const MarketingReviewCampaignFeatured = () => {
     },
     {
       title: "Product Title",
-      value: "Dunkin Dozen Day",
+      value: campaignData?.title,
      handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
     {
       title: "Description",
-      value: `Get any 12 donuts for just
-£12.Available all day in store
-on the 12th of every month.its
-the sweetest deal you can get.`,
+      value: campaignData?.description,
      handleCLick: () => {
             navigate("/marketing/newCampaign");
         },

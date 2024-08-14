@@ -47,9 +47,9 @@ const MarktingAdPreviewFeatured = () => {
              <div>
             <div className="font-bold mt-2 text-[20px]">
             <p className="pb-2 ">
-            The Dunkin Dozen Day!
+           {campaignData?.title}
             </p>
-            <p className="pb-2 w-[400px]">Get any 12 donuts for just £12. Get any 12 donuts for just £12. Available all day in store, on the 12th of every month. It’s the sweetest deal you can get.</p>
+            <p className="pb-2 w-[400px]">{campaignData?.description}</p>
 
             <button
               className="loyalty-button1"

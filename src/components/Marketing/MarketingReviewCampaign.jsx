@@ -78,7 +78,11 @@ const MarketingReviewCampaign = () => {
           <div className="">
           <div className="cardContainer" style={{width:"480px"}}>
         <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+        {campaignData?.typeOfCampaign === "Percentage Discount" ? 
+         <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p> :
+
+        <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p>
+      }
       </div>
             {/* <img src="../Group 38237.png" alt="" /> */}
           </div>

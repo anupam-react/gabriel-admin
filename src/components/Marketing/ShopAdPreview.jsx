@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
+import useCampaign from "../../hooks/useCampaign";
 const ShopAdPreview = ({ isPay = false }) => {
+  const {campaignData } = useCampaign();
   const [isSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -87,7 +89,7 @@ const ShopAdPreview = ({ isPay = false }) => {
                 style={{ width: "100%" }}
                 onClick={handleSubmit}
               >
-                {isPay ? "Pay £1" : "Run  Campaign"}
+                {isPay ? `Pay £${campaignData?.noOfDays}` : "Run  Campaign"}
               </button>
             </div>
           </div>

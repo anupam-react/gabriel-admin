@@ -31,19 +31,23 @@ const MarktingAdPreview = ({ isPay = false }) => {
               <div className="">
               <div className="cardContainer" style={{width:"480px"}}>
         <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p>
+        {campaignData?.typeOfCampaign === "Percentage Discount" ? 
+         <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p> :
+
+        <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p>
+      }
       </div>
               </div>
               <div className="flex justify-end gap-2 mt-2">
                 <img src="../mdi_gift.png" alt="" />
-                <p className="font-semibold"> : 500</p>
+                <p className="font-semibold"> : {campaignData?.noOfPoints}</p>
                 <img src="../image 698 (3).png" alt="" />
               </div>
             </div>
           </div>
           <div className="font-bold mt-2 text-lg">
             <p className="pb-2 ">
-              Buy Any Hot Drinks Today And Double Your Points.
+            {campaignData?.description}
             </p>
             <p className="pb-2">Exp: {formatDate(campaignData?.expireDate)}</p>
 
@@ -52,7 +56,7 @@ const MarktingAdPreview = ({ isPay = false }) => {
               style={{ width: "260px" }}
               onClick={handleSubmit}
             >
-              {isPay ? "Pay £1" : "Run  Campaign"}
+              {isPay ? `Pay £${campaignData?.noOfDays}` : "Run  Campaign"}
             </button>
           </div>
         </div>

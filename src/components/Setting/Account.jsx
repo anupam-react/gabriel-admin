@@ -184,7 +184,7 @@ const Account = () => {
             )}
           </div>
 
-          <div className="relative">
+          {/* <div className="relative">
             <img
               src="./image 59.png"
               alt=""
@@ -198,7 +198,7 @@ const Account = () => {
             >
               <option className="font-semibold">Security Question</option>
             </select>
-          </div>
+          </div> */}
           <div
             className="relative w-[50vw]"
             onClick={() => setAddEmp(!isAddEmp)}
@@ -633,7 +633,7 @@ const Account = () => {
         </p>
         <div>
           <p className="text-[#000000]">Bank Account</p>
-          <label className="containerLogin font-semibold">
+          {/* <label className="containerLogin font-semibold">
             I prefer to get paid through my
             <span className="px-2 text-[#000000]"> UK Bank Account </span>{" "}
             <input
@@ -642,7 +642,7 @@ const Account = () => {
               onChange={handleCheckboxChange}
             />
             <span class="checkmark"></span>
-          </label>
+          </label> */}
           {isChecked ? (
             <div className="flex flex-col gap-4">
               <div className="relative w-[50vw] group ">

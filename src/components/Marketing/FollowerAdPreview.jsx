@@ -1,7 +1,9 @@
 import React from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
+import useCampaign from "../../hooks/useCampaign";
 const FollowerAdPreview = ({ isPay = false }) => {
+  const { campaignData } = useCampaign()
   const navigate = useNavigate();
   const handleSubmit = () => {
     isPay
@@ -49,9 +51,10 @@ const FollowerAdPreview = ({ isPay = false }) => {
               <p className="font-bold py-4">
                 Follow us Cafe Coffee Day  to see the latest trends and offers
               </p>
-              <div className="campaign-image">
-                <img src="../Group 38236.png" alt="" />
-              </div>
+              <div className="cardContainer" style={{width:"350px"}}>
+        <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
+        
+      </div>
 
               <div className="font-bold my-4">
                 <div className="flex justify-between gap-6 items-center">
@@ -60,7 +63,7 @@ const FollowerAdPreview = ({ isPay = false }) => {
                     <div>
                       <div className="flex gap-2 items-center">
                         <img src="../ph_heart.png" alt="" />
-                        <p>300</p>
+                        <p>{campaignData?.a}</p>
                       </div>
                       <p>Followers</p>
                     </div>
@@ -72,7 +75,7 @@ const FollowerAdPreview = ({ isPay = false }) => {
                 style={{ width: "100%" }}
                 onClick={handleSubmit}
               >
-                {isPay ? "Pay £1" : "Run  Campaign"}
+                {isPay ? `Pay £${campaignData?.noOfDays}` : "Run  Campaign"}
               </button>
             </div>
           </div>

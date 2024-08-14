@@ -5,6 +5,7 @@ import { fetchApiData } from "../utiils";
 const useComparison = () => {
   const [saleComp, setSaleComp] = useState([])
   const [saleproductComp, setSaleProductComp] = useState([])
+  const [roasCamp, setRoasCamp] = useState([])
   const [category, setCategory] = useState([])
   const [selectedCat, setCat] = useState(null);
   const [catId, setCatId] = useState(null);
@@ -24,11 +25,17 @@ const useComparison = () => {
     console.log(data)
     setSaleProductComp(data?.data)
   }
+  const getRorVsCampaignType = async (startDate="", endDate="" , categoryId="")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getRorVsCampaignType?startDate=${startDate}&endDate=${endDate}&categoryId=${categoryId}`)
+    console.log(data)
+    setRoasCamp(data?.data)
+  }
 
   useEffect(()=>{
     getSaleComparision()
     getTotalSaleByProductSubcategory()
     getCategory()
+    getRorVsCampaignType()
   },[])
 
   const handleCategory = (event) => {
@@ -44,8 +51,10 @@ const useComparison = () => {
     category,
     selectedCat,
     catId,
+    roasCamp,
     handleCategory,
-    getTotalSaleByProductSubcategory
+    getTotalSaleByProductSubcategory,
+    getRorVsCampaignType
   };
 };
 

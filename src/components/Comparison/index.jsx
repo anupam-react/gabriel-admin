@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import Select1 from "../common/Select1";
 import Select2 from "../common/Select2";
-import  DatePickerComp  from "../common/DatePickerComp";
+
 import { BarChart3 } from "./BarChart3";
-import { LineChart4 } from "./LineChart4";
+import LineChart4  from "./LineChart4";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
 import Select from "react-select";
 import useComparison from "../../hooks/useComparison";
+import { formatDate2 } from "../../utiils";
 
 
 const Comparison = () => {
-  const { saleComp ,     saleproductComp,   category,
+  const { saleComp ,  roasCamp,   saleproductComp,   category,
     selectedCat,
     catId,
     handleCategory,
-    getTotalSaleByProductSubcategory } = useComparison()
+    getTotalSaleByProductSubcategory, getRorVsCampaignType } = useComparison()
 
 
   const [open, setOpen] = useState(false);
@@ -30,6 +35,9 @@ const Comparison = () => {
   const [openCustom2, setOpenCustom2] = useState(false);
   const [openCustom3, setOpenCustom3] = useState(false);
   const [openCustom4, setOpenCustom4] = useState(false);
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   
   const handleChange1 = (event) => {
@@ -124,19 +132,37 @@ const Comparison = () => {
           </select>
           <div className="flex gap-4">
             <p className="text-[#000000B2]">From :</p>
-          <DatePickerComp />
+            <DatePicker
+        showIcon
+        toggleCalendarOnIconClick
+        dateFormat="dd/MM/yyyy"
+        selected={startDate}
+        className='rounded-md shadow border-none'
+      onChange={(date) => {
+        setStartDate(date)
+      }}
+    />
           </div>
         </div>
         <div className="flex justify-between items-center w-full">
-        <Select2 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} />
+        <Select2 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getTotalSaleByProductSubcategory}/>
           <div className="flex gap-4">
             <p className="text-[#000000B2]">To :</p>
-          <DatePickerComp />
+            <DatePicker
+        showIcon
+        toggleCalendarOnIconClick
+        dateFormat="dd/MM/yyyy"
+        selected={endDate}
+        className='rounded-md shadow border-none'
+      onChange={(date) =>{
+         setEndDate(date)
+         getRorVsCampaignType(formatDate2(startDate), formatDate2(date))
+        }}
+    />
           </div>
         </div>
-        <p className="text-[#0070BC] text-[18px] font-semibold">ROAS VS CAMPAIGN TYPE</p>
         <div className="w-full">
-          <LineChart4 />
+         <LineChart4 data={roasCamp}/>
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">

@@ -20,18 +20,18 @@ const MarketingReviewCampaignFree = () => {
     },
     {
       title: "Description",
-      value: "Buu 1 Get 1 Free Offer coupon on all hot drinks",
+      value: campaignData?.description,
         handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
-    {
-      title: "Reward Type",
-      value: campaignData,
-        handleCLick: () => {
-            navigate("/marketing/newCampaign");
-        },
-    },
+    // {
+    //   title: "Reward Type",
+    //   value: campaignData,
+    //     handleCLick: () => {
+    //         navigate("/marketing/newCampaign");
+    //     },
+    // },
     {
       title: "Expriy Date",
       value: getDateFromISOString(campaignData?.expireDate),

@@ -13,7 +13,15 @@ export const initialState = {
     estimateReachMax: "",
     locationLat: "",
     locationLong: "",
-    image:""
+    image:"",
+    title:"",
+    description:"",
+    noOfDays:"",
+    rewardType:"Points",
+    noOfPoints:"",
+    audienceSelection:"",
+    productIds:[],
+    categoryId:[]
   };
 export const campaignState = atom({
   key: 'campaignState', // unique ID (with respect to other atoms/selectors)

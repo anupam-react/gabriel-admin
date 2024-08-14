@@ -29,13 +29,13 @@ const InvitationPreview = ({ handleOpen , onClose }) => {
     <hr className="hr" />
     <div className="cardContainer">
     <img src={inviteData?.image} alt="" className="h-[100px] w-[150px]"/>
-    <p className="text-center">{inviteData?.description}</p>
+    <p className="text-center">{inviteData?.discount}% Birthday Spacial Discount</p>
     </div>
     <div className="footer-Main">
         <div className="footer-container">
           <p style={{width:"fit-content"}}>Custom Message</p>
           <p>:</p>
-          <p style={{width:"200px"}}>{inviteData?.message}</p>
+          <p style={{width:"200px"}}>{inviteData?.customMessage}</p>
           <button
             className="edit-button"
             onClick={() => {

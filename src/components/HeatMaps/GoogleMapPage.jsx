@@ -14,8 +14,10 @@ const containerStyle = {
   height: "500px",
 };
 
-export function GoogleMapPage() {
-  const { allOutlate } = useHeatMap();
+export function GoogleMapPage({allOutlate}) {
+
+
+
   const [activeMarker, setActiveMarker] = useState({});
 
   const [oulateData , setOutelateData]= useState([])
@@ -31,6 +33,14 @@ export function GoogleMapPage() {
     setActiveMarker(index);
     if(showingInfoWindow === index) return;
     setShowingInfoWindow(index);
+  };
+
+  const handleMouseOver = (markerId) => {
+    setActiveMarker(markerId);
+  };
+
+  const handleMouseOut = () => {
+    setActiveMarker(null);
   };
 
   const onClose = () => {
@@ -108,9 +118,9 @@ export function GoogleMapPage() {
     >
       {allOutlate?.map((location, index) => (
       <Marker
-      key={index+1}
-        onMouseOver={()=>onMarkerClick(index+1)}
-        onMouseOut={onClose}
+      key={location?.outletId}
+      onMouseOver={() => handleMouseOver(location?.outletId)}
+      onMouseOut={handleMouseOut}
         icon={{
           url: "./Component 62.png",
         }}
@@ -119,11 +129,9 @@ export function GoogleMapPage() {
           lng: location?.locationCordinate?.coordinates[1],
         }}
       >
-        {showingInfoWindow === index+1 && (
+        {activeMarker === location?.outletId && (
           <InfoWindow
-            marker={activeMarker}
-            visible={showingInfoWindow === index+1}
-            onClose={onClose}
+            onCloseClick={handleMouseOut}
           >
             <OutlateInfo data={location}/>
           </InfoWindow>

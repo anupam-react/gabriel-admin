@@ -1,15 +1,12 @@
 import React from "react";
 import "./index.scss";
 import CampaignCard1 from "./CampaignCard1";
-import CampaignCard2 from "./CampaignCard2";
 import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 const Marketing = () => {
-  const { campaigns ,    liveCampaign,
-    pastCampaign, } = useCampaign();
+  const { campaigns, liveCampaign, pastCampaign } = useCampaign();
   const navigate = useNavigate();
-  
- 
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -30,7 +27,7 @@ const Marketing = () => {
             <p>Live Campaigns</p>
             <div className="live-dot"></div>
           </div>
-          {liveCampaign?.map((data , i)=>(
+          {liveCampaign?.map((data, i) => (
             <CampaignCard1
               image={data?.couponImage}
               title={data?.typeOfCampaign}
@@ -39,7 +36,6 @@ const Marketing = () => {
               isLive={true}
               data={data}
             />
-
           ))}
           {/* <CampaignCard1
             image="Untitled (1).png"
@@ -65,16 +61,15 @@ const Marketing = () => {
               <p>Past Campaigns</p>
               <div className="Past-dot"></div>
             </div>
-            {pastCampaign?.map((data , i)=>(
-            <CampaignCard1
-              image={data?.couponImage}
-              title={data?.typeOfCampaign}
-              isGift={true}
-              data={data}
-              isButton={true}
-            />
-
-          ))}
+            {pastCampaign?.map((data, i) => (
+              <CampaignCard1
+                image={data?.couponImage}
+                title={data?.typeOfCampaign}
+                isGift={true}
+                data={data}
+                isButton={true}
+              />
+            ))}
             {/* <CampaignCard1
               image="./Untitled (1).png"
               title="% Discount"

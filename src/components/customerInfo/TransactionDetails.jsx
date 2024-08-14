@@ -4,6 +4,7 @@ import { DialogDefault } from "../common/DilogBox";
 import { formatTime2, getDateFromISOString } from "../../utiils";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import axios from "axios";
 const TransactionDetails = ({
   handleOpen,
   isButton = true,
@@ -21,28 +22,49 @@ const TransactionDetails = ({
   const generatePDF = () => {
     const input = receiptRef.current;
 
-    html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
+    // Apply zoom-out using CSS transform
+     // Capture the entire page content as an image
+     html2canvas(input, {
+      scale: 1, // Capture at 100% scale
+      useCORS: true, // Allow cross-origin content
+      allowTaint: true, // Allow tainted (cross-origin) content
+      scrollY: -window.scrollY, // Capture full page even if scrolled
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
       const imgWidth = 210; // A4 width in mm
-      const pageHeight = 295; // A4 height in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save("receipt.pdf");
-    });
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('full-page.pdf'); // Automatically download the PDF
+      
+      // Optional: Upload the PDF and get a shareable link
+      const pdfBlob = pdf.output('blob');
+      sharePDF(pdfBlob);
+      });
   };
+
+  // Function to handle sharing the PDF
+  const sharePDF = (pdfBlob) => {
+    const formData = new FormData();
+    formData.append('file', pdfBlob, 'receipt.pdf');
+
+    // Replace this URL with your server's upload endpoint
+    axios.post('https://your-server.com/upload', formData)
+      .then(response => {
+        console.log('PDF uploaded successfully', response.data);
+
+        // Create a shareable link
+        const shareLink = response.data.fileUrl;
+
+        // You can share this link using WhatsApp, Email, etc.
+        const whatsappLink = `https://wa.me/?text=Check out this PDF: ${shareLink}`;
+        window.open(whatsappLink);
+      })
+      .catch(error => {
+        console.error('Error uploading PDF:', error);
+      });
+  };
+
   return (
     <div className="details-container" ref={receiptRef}>
       <p className="details-title pb-8">Transaction Details</p>
@@ -52,7 +74,7 @@ const TransactionDetails = ({
         className="cross-image2"
         onClick={() => handleOpen(false)}
       />
-      <div className="h-[60vh] overflow-y-scroll no-scrollbar">
+      <div className="h-[60vh] overflow-y-scroll no-scrollbar" >
         <div className="flex items-center justify-center gap-2">
           <img
             src={brandData?.image || "../Ellipse 9.png"}

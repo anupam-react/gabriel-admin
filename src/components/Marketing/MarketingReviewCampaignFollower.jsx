@@ -20,21 +20,21 @@ const MarketingReviewCampaignFollower = () => {
     },
     {
       title: "Description",
-      value: "50% discount coupon on all hot drinks",
+      value: campaignData?.description,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
     {
       title: "Audience",
-      value: `1500`,
+      value: campaignData?.audienceSelection,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
     {
       title: "Campaign Duration",
-      value: `25-jan-2024`,
+      value: campaignData?.noOfDays,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },

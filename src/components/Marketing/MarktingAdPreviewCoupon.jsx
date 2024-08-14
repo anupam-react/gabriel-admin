@@ -33,23 +33,23 @@ const MarktingAdPreviewCoupon = ({ isPay = false }) => {
               </div>
               <div className="flex justify-end gap-2 mt-2">
                 <img src="../mdi_gift.png" alt="" />
-                <p className="font-semibold"> : 500</p>
+                <p className="font-semibold"> : {campaignData?.noOfPoints}</p>
                 <img src="../image 698 (3).png" alt="" />
               </div>
             </div>
           </div>
           <div className="font-bold mt-2 text-lg">
             <p className="pb-2 ">
-              Buy Any Hot Drinks Today And Double Your Points.
+             {campaignData?.description}
             </p>
-            <p className="pb-2">Exp: 05 Jan 2024</p>
+            <p className="pb-2">Exp: {formatDate(campaignData?.expireDate)}</p>
 
             <button
               className="loyalty-button1"
               style={{ width: "260px" }}
               onClick={handleSubmit}
             >
-              {isPay ? "Pay £1" : "Run  Campaign"}
+              {isPay ? `Pay £${campaignData?.noOfDays}` : "Run  Campaign"}
             </button>
           </div>
         </div>

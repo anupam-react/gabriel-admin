@@ -13,6 +13,8 @@
     "chart.js": "^4.4.2",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
+    "highcharts": "^11.4.6",
+    "highcharts-react-official": "^3.2.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "rc-slider": "^10.6.2",

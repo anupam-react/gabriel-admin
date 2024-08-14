@@ -6,7 +6,10 @@ import CatalogueProduct from "../customerInfo/CatalogueProduct";
 import CustomOption from "./CustomOption";
 import useCampaign from "../../hooks/useCampaign";
 const NewCampaign = () => {
-  const { campaignData , setProductId, handleChange , setCampaignData , handleCreateCampaign , handleUpdateCampaign} = useCampaign()
+  const { campaignData ,  selectedCat, 
+    selectProduct, setSelectProduct, setProductId,    handleProduct,
+    handleCategory, handleChange ,  category,
+    product, setCampaignData , handleCreateCampaign , handleUpdateCampaign} = useCampaign()
   const [selectUserType, setSelectUserType] = useState("")
   const navigate = useNavigate();
   const handleSelect = (event) => {
@@ -121,6 +124,12 @@ const NewCampaign = () => {
             onChange={handleChange} />
         </div>
         <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
+            onChange={handleChange} />
+        </div>
+        
+        <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Conditions Of Use</p>
           <select
             id="countries"
@@ -142,6 +151,41 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+        {campaignData?.conditionOfUse ==="Select specific product attached to Coupon ( Burger)" ?
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product</p>
+          <Select
+    
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectProduct}
+            options={product?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={product?.[0]?._id}
+            onChange={handleProduct}
+            placeholder=""
+          />
+        </div> :
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product Categories</p>
+          <Select
+                 isMulti
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user?._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
+        </div>
+
+        }
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
           <Select
@@ -261,6 +305,11 @@ const NewCampaign = () => {
             onChange={handleChange} />
         </div>
         <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
+            onChange={handleChange} />
+        </div>
+        <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Conditions Of Use</p>
           <select
             id="countries"
@@ -282,6 +331,41 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+        {campaignData?.conditionOfUse ==="Select specific product attached to Coupon ( Burger)" ?
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product</p>
+          <Select
+    
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectProduct}
+            options={product?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={product?.[0]?._id}
+            onChange={handleProduct}
+            placeholder=""
+          />
+        </div> :
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product Categories</p>
+          <Select
+                 isMulti
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user?._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
+        </div>
+
+        }
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
           <Select
@@ -400,10 +484,10 @@ const NewCampaign = () => {
           </p>
           <select
             id="countries"
-            // value={campaignData?.typeOfCampaign}
-            // onChange={handleChange}
+            value={campaignData?.rewardType}
+            onChange={handleChange}
             className="input-loyalty2"
-            name="typeOfCampaign"
+            name="rewardType"
           >
             {RewardOptions?.map((data, i) => (
               <>
@@ -422,17 +506,22 @@ const NewCampaign = () => {
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            name="targetLocation"
+            name="description"
             id=""
             rows="4"
-            value={campaignData?.targetLocation}
+            value={campaignData?.description}
             onChange={handleChange}
           ></textarea>
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
+            onChange={handleChange} />
         </div>
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Number Of Points To Reward</p>
-          <input type="text" className="input-loyalty2" name="locationLong"
+          <input type="text" className="input-loyalty2" name="noOfPoints" value={campaignData?.noOfPoints}
             onChange={handleChange} />
         </div>
         
@@ -458,6 +547,42 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+
+        {campaignData?.conditionOfUse ==="Select specific product attached to Coupon ( Burger)" ?
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product</p>
+          <Select
+    
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectProduct}
+            options={product?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={product?.[0]?._id}
+            onChange={handleProduct}
+            placeholder=""
+          />
+        </div> :
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product Categories</p>
+          <Select
+                 isMulti
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user?._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
+        </div>
+
+        }
        
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
@@ -535,10 +660,16 @@ const NewCampaign = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={()=>
+            onClick={()=>{
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
               navigate("/marketing/review-offer")
-            }
-            // onClick={handleCreateCampaign}
+             
+            }}
+  
           >
             Next
           </button>
@@ -573,10 +704,10 @@ const NewCampaign = () => {
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            name="targetLocation"
+            name="description"
             id=""
             rows="4"
-            value={campaignData?.targetLocation}
+            value={campaignData?.description}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -587,6 +718,12 @@ const NewCampaign = () => {
             onChange={handleChange} />
         </div>
         
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
+            onChange={handleChange} />
+        </div>
+
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Conditions of use</p>
           <select
@@ -609,6 +746,42 @@ const NewCampaign = () => {
             ))}
           </select>
         </div>
+
+        {campaignData?.conditionOfUse ==="Select specific product attached to Coupon ( Burger)" ?
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product</p>
+          <Select
+    
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectProduct}
+            options={product?.map((user) => ({
+              value: user._id,
+              label: user?.name,
+            }))}
+            defaultValue={product?.[0]?._id}
+            onChange={handleProduct}
+            placeholder=""
+          />
+        </div> :
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Choose Product Categories</p>
+          <Select
+                 isMulti
+            className="input-loyalty2"
+            styles={{ width: "20px" }}
+            value={selectedCat}
+            options={category?.map((user) => ({
+              value: user?._id,
+              label: user?.name,
+            }))}
+            defaultValue={category?.[0]?._id}
+            onChange={handleCategory}
+            placeholder=""
+          />
+        </div>
+
+        }
        
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose Type of Customers</p>
@@ -682,8 +855,15 @@ const NewCampaign = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={()=>
+            onClick={()=>{
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
               navigate("/marketing/review-free")
+              
+            }
             }
             
           >
@@ -718,7 +898,7 @@ const NewCampaign = () => {
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Featured product title</p>
-          <input type="text" className="input-loyalty2" name="expireDate"  
+          <input type="text" className="input-loyalty2" name="title" value={campaignData?.title} 
             onChange={handleChange} />
         </div>
        
@@ -726,12 +906,18 @@ const NewCampaign = () => {
           <p className="text-lg font-semibold pb-2">Description</p>
           <textarea
             className="input-loyalty2"
-            name="targetLocation"
+            name="description"
             id=""
             rows="4"
-            value={campaignData?.targetLocation}
+            value={campaignData?.description}
             onChange={handleChange}
           ></textarea>
+        </div>
+
+        <div className="mt-4">
+          <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
+            onChange={handleChange} />
         </div>
 
         <div className="mt-4">
@@ -794,6 +980,7 @@ const NewCampaign = () => {
           <button
             className="loyalty-button2"
             onClick={() => {
+
               navigate("/marketing");
             }}
           >
@@ -802,7 +989,14 @@ const NewCampaign = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={()=> navigate("/marketing/review-featured")}
+            onClick={()=>{ 
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
+              navigate("/marketing/review-featured")
+            }}
           >
             Next
           </button>
@@ -816,10 +1010,10 @@ const NewCampaign = () => {
           <p className="text-lg font-semibold pb-2">Enter description</p>
           <textarea
             className="input-loyalty2"
-            name="targetLocation"
+            name="description"
             id=""
             rows="4"
-            value={campaignData?.targetLocation}
+            value={campaignData?.description}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -841,7 +1035,7 @@ const NewCampaign = () => {
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Audience Selection</p>
-          <input type="text" className="input-loyalty2" name="expireDate"  
+          <input type="text" className="input-loyalty2" name="audienceSelection"  value={campaignData?.audienceSelection}
             onChange={handleChange} />
         </div>
        
@@ -849,7 +1043,7 @@ const NewCampaign = () => {
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
-          <input type="text" className="input-loyalty2" name="expireDate"
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
             onChange={handleChange} />
         </div>
         
@@ -915,7 +1109,13 @@ const NewCampaign = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={()=> navigate('/marketing/review-follower')}
+            onClick={()=>{ 
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
+              navigate('/marketing/review-follower')}}
           >
             Next
           </button>
@@ -929,10 +1129,10 @@ const NewCampaign = () => {
           <p className="text-lg font-semibold pb-2">Enter description</p>
           <textarea
             className="input-loyalty2"
-            name="targetLocation"
+            name="description"
             id=""
             rows="4"
-            value={campaignData?.targetLocation}
+            value={campaignData?.description}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -954,15 +1154,16 @@ const NewCampaign = () => {
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Audience Selection</p>
-          <input type="text" className="input-loyalty2" name="expireDate"  
+          <input type="text" className="input-loyalty2" name="audienceSelection"  value={campaignData?.audienceSelection}
             onChange={handleChange} />
         </div>
+       
        
       
 
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Add Campaign Duration</p>
-          <input type="text" className="input-loyalty2" name="expireDate"
+          <input type="text" className="input-loyalty2" name="noOfDays" value={campaignData?.noOfDays}
             onChange={handleChange} />
         </div>
         
@@ -1028,7 +1229,13 @@ const NewCampaign = () => {
           <button
             className="loyalty-button1"
             style={{ width: "150px" }}
-            onClick={()=> navigate("/marketing/review-shop")}
+            onClick={()=>{ 
+              if(campaignData?._id){
+                handleUpdateCampaign(campaignData?._id)
+              }else{
+                handleCreateCampaign()
+              }
+              navigate("/marketing/review-shop")}}
           >
             Next
           </button>

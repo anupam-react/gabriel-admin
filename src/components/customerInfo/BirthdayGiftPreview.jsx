@@ -41,7 +41,7 @@ const BirthdayGiftPreview = ({ handleOpen , onClose }) => {
       <div className="flex flex-col items-center gap-4">
       <div className="cardContainer" >
       <img src={offerData?.image} alt="" className="h-[100px] w-[150px]"/>
-      <p>{offerData?.description}</p>
+      <p>{offerData?.discount}% Birthday Spacial Discount</p>
       </div>
       <div >
         {data?.map((d, i) => (

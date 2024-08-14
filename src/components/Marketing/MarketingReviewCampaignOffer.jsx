@@ -27,21 +27,21 @@ const MarketingReviewCampaignOffer = () => {
     },
     {
       title: "Reward Type",
-      value: campaignData?.discountValue,
+      value: campaignData?.rewardType,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
     {
       title: "Description",
-      value: campaignData?.discountValue,
+      value: campaignData?.description,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },
     },
     {
       title: "No of Points Reward",
-      value: campaignData?.discountValue,
+      value: campaignData?.noOfPoints,
       handleCLick: () => {
             navigate("/marketing/newCampaign");
         },

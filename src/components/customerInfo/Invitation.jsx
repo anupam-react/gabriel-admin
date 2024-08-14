@@ -11,9 +11,12 @@ const Invitation = ({ handleOpen , id , onClose}) => {
     handleChange,
     setInviteData,
     openOffer, setOpenOffer,
+    handleUpdateEventInvite,
     handleCreateEventInvite,
     setProductId
   } = useInvite()
+
+  console.log(inviteData)
 
   const [openUploadImage, setUploadImage] = useState(false);
 
@@ -59,7 +62,7 @@ const Invitation = ({ handleOpen , id , onClose}) => {
           <label>Custom Message</label>
           <textarea
             id="message"
-            name="message"
+            name="customMessage"
             rows="4"
             cols="50"
             value={inviteData?.customMessage}
@@ -82,6 +85,32 @@ const Invitation = ({ handleOpen , id , onClose}) => {
           />
         </div>
         <div className="input-container">
+          <label>Discount</label>
+          <input
+            type="text"
+            name="discount"
+            id=""
+            className="input"
+            placeholder=""
+            value={inviteData?.discount}
+            onChange={handleChange}
+            // value="https://www.Moneychat.com/slic e/referralvoucher"
+          />
+        </div>
+        <div className="input-container">
+          <label>Choose Refer User Reward Type</label>
+          <select
+            id="countries"
+            name="referUser"
+            value={inviteData?.referUser}
+            onChange={handleChange}
+            className="rounded shadow-md text-gray-900 text-sm  border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option className="font-semibold" value="points">Points</option>
+            <option className="font-semibold" value="free">Free</option>
+          </select>
+        </div>
+        <div className="input-container">
           <label>Expiry Date</label>
           <input
             type="text"
@@ -97,7 +126,15 @@ const Invitation = ({ handleOpen , id , onClose}) => {
       <div className="flex-center">
         <button
           className="menuButton"
-          onClick={() => handleCreateEventInvite(id)}
+          onClick={() =>{ 
+            if(inviteData?._id){
+              handleUpdateEventInvite(id, inviteData?._id)
+            }else{
+              handleCreateEventInvite(id)
+
+            }
+
+          }}
         >
          See Invitation Review
         </button>
