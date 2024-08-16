@@ -60,6 +60,7 @@ const CustomOption = (props) => {
           value={selectedOption}
           onChange={handleChange}
           defaultValue={options?.[0]?.value}
+          placeholder="Business Type"
         />
         {/* You can display the selected option or use it elsewhere */}
       </div>

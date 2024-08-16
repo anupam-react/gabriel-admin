@@ -15,7 +15,7 @@ const useSetting = () => {
     const [maximumFailedTransactionStatus , setMaximumFailedTransactionStatus] = useState("")
     const [maximumFailedTransactionValueCrossed , setMaximumFailedTransactionValueCrossed] = useState("")
 
-    const handleUpdateNotification = async (id) => {
+    const handleUpdateNotification = async () => {
         const formData = {
             receiveNotificationSms,
             receiveNotificationEmail
@@ -34,7 +34,7 @@ const useSetting = () => {
         }
       };
 
-    const handleUpdateCommunication = async (id) => {
+    const handleUpdateCommunication = async () => {
         const formData = {
             communicationNotificationEmail,
             communicationNotificationSms

@@ -144,7 +144,7 @@ const RefferalActivity = ({ handleOpen , onClose , data }) => {
         <ProductDetails2 handleOpen={setOpenproduct} data={openProduct}/>
       </DialogDefault>
       <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
-        <TransactionDetails handleOpen={setOpenHistory} userData={openHistory?.user} data={openHistory?.orderId}/>
+        <TransactionDetails handleOpen={setOpenHistory} userData={openHistory?.user} brandData={openHistory?.brandId} data={openHistory?.orderId}/>
       </DialogDefault>
     </div>
   );

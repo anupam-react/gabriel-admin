@@ -24,7 +24,7 @@ const AppPurchase = ({data}) => {
         </thead>
         <tbody>
           {data?.map((d, i)=>(
-          <tr>
+          <tr key={i}>
             <td>
               <p>{d?.productId?.name}</p>
             </td>
@@ -79,7 +79,7 @@ const AppPurchase = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.brandId} data={openTransaction?.orderId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} brandData={openTransaction?.brandId} userData={openTransaction?.user} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

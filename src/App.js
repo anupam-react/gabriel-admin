@@ -66,6 +66,7 @@ import MarketingReviewCampaignFollower from "./components/Marketing/MarketingRev
 import FollowerAdPreview from "./components/Marketing/FollowerAdPreview.jsx";
 import MarketingReviewCampaignShop from "./components/Marketing/MarketingReviewCampaignShop.jsx";
 import MarktingAdPreviewCoupon from "./components/Marketing/MarktingAdPreviewCoupon.jsx";
+import ThankYouPage from "./components/Marketing/ThankYouPage.jsx";
 
 function App() {
   return (
@@ -224,6 +225,7 @@ function App() {
             path="/marketing/shop-campaign"
             element={<ShopAdPreview isPay={true} />}
           />
+        
           <Route path="/setting" element={<Setting />} />
           <Route path="/setting/notifications" element={<Notifications />} />
           <Route path="/setting/report" element={<ReportSetting />} />
@@ -234,6 +236,10 @@ function App() {
           <Route path="/notification" element={<Notification />} />
         </Route>
         <Route path="/" element={<Initialpage />} />
+        <Route
+            path="/:id"
+            element={<ThankYouPage />}
+          />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/documents" element={<Document />} />

@@ -24,3 +24,7 @@ export const initialState1 = {
     key: 'singlePointsState', // unique ID (with respect to other atoms/selectors)
     default: {}, // default value (aka initial value)
   });
+  export const pointSystemState = atom({
+    key: 'pointSystemState', // unique ID (with respect to other atoms/selectors)
+    default: {}, // default value (aka initial value)
+  });

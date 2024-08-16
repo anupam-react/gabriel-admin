@@ -5,13 +5,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import useProduct from "../../hooks/useProduct";
 import usePromoteProduct from "../../hooks/usePromoteProduct";
 import { formatDate } from "../../utiils";
+import { initialState } from "../atoms/campaignState";
+import usePayment from "../../hooks/usePayment";
 const AdPreview = ({ isPay = false }) => {
   const {id} = useParams()
   const {getProductById , productInfo} = useProduct()
-  const { campaignData} = usePromoteProduct()
+  const { campaignData , setCampaignData} = usePromoteProduct()
   useEffect(()=>{
     getProductById(id);
   },[id])
+
+  const {handlePayment} = usePayment()
+
+  const sendpayment = ()=>{
+    handlePayment(campaignData?._id)
+    setCampaignData(initialState)
+  }
   const data = {
     image: productInfo?.image,
     price: `£${productInfo?.price}`,
@@ -21,7 +30,7 @@ const AdPreview = ({ isPay = false }) => {
   };
   const navigate = useNavigate();
   const handleSubmit = () => {
-    isPay ? navigate("/inventory/payment/inventory") : navigate(`/inventory/ad-confirm/${id}`);
+    isPay ? sendpayment() : navigate(`/inventory/ad-confirm/${id}`);
   };
   return (
     <div>

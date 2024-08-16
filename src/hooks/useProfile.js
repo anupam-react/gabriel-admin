@@ -9,6 +9,8 @@ const useProfile = () => {
   const [password , setPassword] = useState("")
   const [securityQuestion , setSecurityQuestion] = useState("")
   const [securityAnswer , setSecurityAnswer] = useState("")
+  const [categoryId , setCategoryId] = useState("")
+  const [subCategoryId , setSubCategoryId] = useState("")
 
 
   const getProfile = async () => {
@@ -46,8 +48,10 @@ const useProfile = () => {
       if(phones) formData.phone = phones
       if(emails) formData.email = emails
       if(password) formData.password = password
-      if(password) formData.securityQuestion = securityQuestion
-      if(password) formData.securityAnswer = securityAnswer
+      if(securityQuestion) formData.securityQuestion = securityQuestion
+      if(securityAnswer) formData.securityAnswer = securityAnswer
+      if(categoryId) formData.categoryId = categoryId
+      if(subCategoryId) formData.subCategoryId = subCategoryId
     
 
 
@@ -71,6 +75,8 @@ const useProfile = () => {
     password , setPassword,
     securityQuestion , setSecurityQuestion,
     securityAnswer , setSecurityAnswer,
+    categoryId , setCategoryId,
+    subCategoryId , setSubCategoryId,
     handleUpdateProfile,
     handleUpdateProfileImage
   };

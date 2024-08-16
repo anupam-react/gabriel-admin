@@ -15,6 +15,7 @@ const PointSystemForm = () => {
   selectedSubCat,
    setSubCat,
   handleCategory,
+  handlePoint
  } = usePointSystem()
 
   return (
@@ -71,7 +72,7 @@ const PointSystemForm = () => {
           <button
             className="loyalty-button1"
             onClick={() => {
-          
+              handlePoint()
               setSuccess(true);
               setTimeout(()=> {
                 navigate("/loyalty")

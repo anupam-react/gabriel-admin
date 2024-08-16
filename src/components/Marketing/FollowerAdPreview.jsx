@@ -2,14 +2,22 @@ import React from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
+import { initialState } from "../atoms/campaignState";
+import usePayment from "../../hooks/usePayment";
 const FollowerAdPreview = ({ isPay = false }) => {
-  const { campaignData } = useCampaign()
+  const { campaignData , setCampaignData} = useCampaign()
   const navigate = useNavigate();
+  const {handlePayment} = usePayment()
   const handleSubmit = () => {
     isPay
-      ? navigate("/marketing/payment/customer")
+      ? sendpayment()
       : navigate("/marketing/ad-follower-confirm");
   };
+
+  const sendpayment = ()=>{
+    handlePayment(campaignData?._id)
+    setCampaignData(initialState)
+  }
   return (
     <div>
       <div className="flex justify-between items-center mb-6">

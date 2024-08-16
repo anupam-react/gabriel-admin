@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createApiData, fetchApiData } from "../utiils";
-import { successToast } from "../components/Toast";
-import { useRecoilState } from "recoil";
-import { singleStampState, stampState } from "../components/atoms/LoyalityState";
+
 
 const usePointSystem = () => {
-  const [stampData , setStampData] = useRecoilState(stampState)
-  const [singleStampData , setSingleStampData] = useRecoilState(singleStampState)
-  const [productId, setProductId] = useState("");;
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
   const [category, setCategory] = useState();
@@ -43,52 +38,34 @@ const usePointSystem = () => {
     fetchCategory();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const val = type === "checkbox" ? checked : value;
-    setStampData({
-      ...stampData,
-      [name]: val,
-    });
-  };
+
 
   const handleCategory = (event) => {
     setCat(event);
-    setStampData({...stampData , categoryId : event.value});
+  setCategoryId(event.value)
     fetchSubCategory(event.value);
   };
 
-  // const handleStamp = async (event) => {
-  //   event.preventDefault();
+  const handlePoint = async (event) => {
+    // event.preventDefault();
 
-  //   const formData = {
-  //     productId: productId,
-  //     description : stampData?.description,
-  //     totalNoOfStamps: stampData?.totalNoOfStamps,
-  //     subCategoryId: stampData?.subCategoryId,
-  //     categoryId: stampData?.categoryId,
-  //   };
+    const formData = {
+      subCategoryId: subCategoryId,
+      categoryId: categoryId,
+    };
 
-  //   try {
-  //     const response = await createApiData(
-  //       "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createStampSystem",
-  //       formData
-  //     );
-  //     successToast("Create Successfully");
-  //     getStampById(response?.data?._id)
-  //     navigate("/loyalty/stamp-system/preview");
-  //   } catch (error) {
-  //     console.log(error);
-  //     return error;
-  //   }
-  // };
+    try {
+      const response = await createApiData(
+        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/attachedPointSystem",
+        formData
+      );
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
   return {
-    singleStampData,
-    stampData,
-    handleChange,
-    setStampData,
-    setProductId,
     categoryId,
     setCategoryId,
     subCategoryId,
@@ -97,6 +74,7 @@ const usePointSystem = () => {
     subcategory,
     selectedCat,
     selectedSubCat, setSubCat,
+    handlePoint,
     handleCategory,
   };
 };

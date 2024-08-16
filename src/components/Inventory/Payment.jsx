@@ -4,9 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 
 import usePromoteProduct from "../../hooks/usePromoteProduct";
+import usePayment from "../../hooks/usePayment";
+import { initialState } from "../atoms/campaignState";
 
 const Payment = () => {
-  const { campaignData} = usePromoteProduct()
+  const { campaignData , setCampaignData} = usePromoteProduct()
+  const {handlePayment} = usePayment()
   console.log(campaignData)
   const { path } = useParams()
   const [isSuccess, setSuccess] = useState(false);
@@ -14,19 +17,21 @@ const Payment = () => {
   const [isLive, setLive] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = () => {
-    setSuccess(true);
-    setTimeout(() => {
-      setSuccess(false);
-      setReview(true);
-    }, 1000);
-    setTimeout(() => {
-      setReview(false);
-      setLive(true);
-    }, 2000);
-    setTimeout(() => {
-      setLive(false);
-      navigate(`/${path}`);
-    }, 3000);
+    handlePayment(campaignData?._id)
+    setCampaignData(initialState)
+    // setSuccess(true);
+    // setTimeout(() => {
+    //   setSuccess(false);
+    //   setReview(true);
+    // }, 1000);
+    // setTimeout(() => {
+    //   setReview(false);
+    //   setLive(true);
+    // }, 2000);
+    // setTimeout(() => {
+    //   setLive(false);
+    //   navigate(`/${path}`);
+    // }, 3000);
   };
 
   return (

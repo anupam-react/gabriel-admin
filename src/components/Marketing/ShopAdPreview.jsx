@@ -3,15 +3,23 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import useCampaign from "../../hooks/useCampaign";
+import usePayment from "../../hooks/usePayment";
+import { initialState } from "../atoms/campaignState";
 const ShopAdPreview = ({ isPay = false }) => {
-  const {campaignData } = useCampaign();
+  const {campaignData , setCampaignData } = useCampaign();
   const [isSuccess, setSuccess] = useState(false);
   const navigate = useNavigate();
+  const {handlePayment} = usePayment()
   const handleSubmit = () => {
     isPay
-      ? navigate("/marketing/payment/marketing")
+      ? sendpayment()
       : navigate("/marketing/shop-campaign");
   };
+
+  const sendpayment = ()=>{
+    handlePayment(campaignData?._id)
+    setCampaignData(initialState)
+  }
   return (
     <div>
       <div className="flex justify-between items-center mb-6">

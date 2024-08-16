@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 import ProductDetails from "./ProductDetails";
-import { fetchApiData } from "../../utiils";
+import { fetchApiData, getDateFromISOString } from "../../utiils";
 
 const MoneyTransferTable = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
@@ -34,14 +34,15 @@ const MoneyTransferTable = ({data}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {dataInfo?.map((d, i)=>(
+          <tr key={i}>
             <td>
               <p>£15</p>
             </td>
             <td>
-              <div>1500</div>
+              <div>{d?.points}</div>
             </td>
-            <td>30/11/2023</td>
+            <td>{getDateFromISOString(d?.date)}</td>
             <td>
               <div className="table-flex">
                 <img src="./Group 527.png" alt="" className="cursor-pointer" style={{ width: "100px" }} onClick={() => setOpenDetails(true)}/>
@@ -64,36 +65,9 @@ const MoneyTransferTable = ({data}) => {
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <p>£15</p>
-            </td>
-            <td>
-              <div>1500</div>
-            </td>
-            <td>30/11/2023</td>
-            <td>
-              <div className="table-flex">
-                <img src="./Group 527.png" alt="" className="cursor-pointer" style={{ width: "100px" }} onClick={() => setOpenDetails(true)}/>
-                <p className="cursor-pointer" onClick={() => setOpenTransaction(true)}>
-                  <span
-                    style={{ color: "#3BB54A", textDecoration: "underline" }}
-                  >
-                    Claimed
-                  </span>{" "}
-                  <br />
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
-                  <span
-                    className="id-link"
-                    
-                  >
-                    {" "}
-                    See transaction
-                  </span>
-                </p>
-              </div>
-            </td>
-          </tr>
+
+          ))}
+        
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>

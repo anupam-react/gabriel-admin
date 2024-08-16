@@ -5,6 +5,10 @@ import { DialogDefault } from "../common/DilogBox";
 import useAccount from "../../hooks/useAccount";
 import useProfile from "../../hooks/useProfile";
 import useDocument from "../../hooks/useDocument";
+import axios from "axios";
+import { successToast } from "../Toast";
+import IconSelect from "../Register/IconSelect";
+import Select from "react-select";
 const Account = () => {
   const {
     fname,
@@ -34,8 +38,14 @@ const Account = () => {
     setEmails,
     password,
     setPassword,
-    securityQuestion , setSecurityQuestion,
-    securityAnswer , setSecurityAnswer,
+    securityQuestion,
+    setSecurityQuestion,
+    securityAnswer,
+    setSecurityAnswer,
+    categoryId,
+    setCategoryId,
+    subCategoryId,
+    setSubCategoryId,
     handleUpdateProfile,
   } = useProfile();
 
@@ -46,7 +56,18 @@ const Account = () => {
     setBusinessBank,
     sortCode,
     setSortCode,
-    handleAccountDocument
+    businessLicense,
+    setBusinessLicense,
+    certificateOfInCorporation,
+    setCertificateOfInCorporation,
+    ownerOperatorId,
+    setOwnerOperatorId,
+    proofOfAddress,
+    setProofOfAddress,
+    vatRegNo,
+    setVatRegNo,
+    handleAccountDocument,
+    handleAccountDocumentImage,
   } = useDocument();
 
   const [isChecked, setIsChecked] = useState(false);
@@ -55,22 +76,43 @@ const Account = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showSecurity, setShowSecurity] = useState(false);
   const [isView, setIsView] = useState(false);
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
-  
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [selectedSubCat, setSubCat] = useState(null);
+  const [selectedCat, setCat] = useState(null);
+
   const securityQuestions = [
-    'What is your mother’s maiden name?',
-    'What was the name of your first pet?',
-    'What was your first car?',
-    'What elementary school did you attend?',
-    'In what city were you born?',
+    "What is your mother’s maiden name?",
+    "What was the name of your first pet?",
+    "What was your first car?",
+    "What elementary school did you attend?",
+    "In what city were you born?",
+  ];
+
+  const options = [
+    { value: "electronics", label: "Electronics" },
+    { value: "home_garden", label: "Home and Garden" },
+    { value: "sporting_goods", label: "Sporting Goods" },
+    { value: "books_stationery", label: "Books and Stationery" },
+    { value: "jewellery", label: "Jewellery" },
+    { value: "pet_supplies", label: "Pet Supplies" },
+    { value: "furniture", label: "Furniture" },
+    { value: "books_comic_shops", label: "Books & Comic Book Shops" },
+    { value: "speciality_food_stores", label: "Speciality Food Stores" },
+    { value: "boutique_wine_spirits", label: "Boutique Wine and Spirits" },
+    { value: "craft_hobby_store", label: "Craft and Hobby Store" },
   ];
 
   const handleSave = () => {
-    console.log('Security Question:', question);
-    console.log('Answer:', answer);
-    handleUpdateProfile()
+    console.log("Security Question:", question);
+    console.log("Answer:", answer);
+    handleUpdateProfile();
     setShowSecurity(false);
+  };
+
+  const handleCategory = (event) => {
+    setCat(event);
+    setCategoryId(event.value);
   };
 
   console.log(profile);
@@ -78,6 +120,65 @@ const Account = () => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  const handleFileInputChange1 = async (event) => {
+    console.log(event);
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully");
+    console.log(data?.data?.data);
+    setBusinessLicense(data?.data?.data);
+    handleAccountDocumentImage(data?.data?.data);
+  };
+
+  const handleFileInputChange2 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    console.log(data?.data);
+    successToast("Image Uplaod Successfully");
+    setCertificateOfInCorporation(data?.data?.data);
+    handleAccountDocumentImage("", data?.data?.data);
+  };
+
+  const handleFileInputChange3 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully");
+    setOwnerOperatorId(data?.data?.data);
+    handleAccountDocumentImage("", "", data?.data?.data);
+  };
+  const handleFileInputChange4 = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+    const data = await axios.post(
+      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      formData
+    );
+    successToast("Image Uplaod Successfully");
+    setProofOfAddress(data?.data?.data);
+    handleAccountDocumentImage("", "", "", data?.data?.data);
+  };
+
   const navigate = useNavigate();
   return (
     <div>
@@ -123,9 +224,8 @@ const Account = () => {
               <span
                 onClick={() => {
                   handleUpdateProfile();
-                 
+
                   setIsEditing(false);
-                
                 }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
@@ -165,7 +265,7 @@ const Account = () => {
               <span
                 onClick={() => {
                   // handleUpdateProfile();
-                  setShowSecurity(true)
+                  setShowSecurity(true);
                   setIsEditing(false);
                 }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
@@ -307,7 +407,7 @@ const Account = () => {
           </div>
         </div>
         <p className="pt-4 text-black">My Documents</p>
-        <div className="flex gap-2 items-center">
+        {/* <div className="flex gap-2 items-center">
           <img src="./image 671.png" alt="" className="w-5 h-5" />
           <p className="text-[#FC0005]">
             {" "}
@@ -317,14 +417,14 @@ const Account = () => {
               Remaining Documents!
             </span>
           </p>
-        </div>
-        <div className="flex gap-2 items-center">
+        </div> */}
+        {/* <div className="flex gap-2 items-center">
           <p className="text-black">Business Registration & Licensing</p>
           <div className="text-[#FC0005] flex items-center gap-2">
             <img src="./image 671.png" alt="" className="w-5 h-5" />
             <p>Missing</p>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-4">
           <div className="flex gap-[20px]">
@@ -372,14 +472,19 @@ const Account = () => {
                   <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
                   <p className="text-sm">UPLOAD</p>
                 </div>
-                <input id="dropzone-file3" type="file" className="hidden" />
+                <input
+                  id="dropzone-file3"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileInputChange1}
+                />
               </label>
             </div>
           </div>
           <div className="flex gap-[20px]">
             <div className="relative">
               <img
-                src="./image 671.png"
+                src="./image 52 (2).png"
                 alt=""
                 className="w-5 h-5 absolute top-2 left-4"
               />
@@ -389,7 +494,7 @@ const Account = () => {
                 id="email"
                 placeholder="Certificate of Incorporation"
                 className="account-input"
-                style={{ border: "1px solid red" }}
+                // style={{ border: "1px solid red" }}
                 required
                 // value={password}
                 // onChange={(e) => setPassword(e.target.value)}
@@ -407,7 +512,12 @@ const Account = () => {
                   <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
                   <p className="text-sm">UPLOAD</p>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                <input
+                  id="dropzone-file"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileInputChange2}
+                />
               </label>
             </div>
           </div>
@@ -459,7 +569,12 @@ const Account = () => {
                   <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
                   <p className="text-sm">UPLOAD</p>
                 </div>
-                <input id="dropzone-file1" type="file" className="hidden" />
+                <input
+                  id="dropzone-file1"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileInputChange3}
+                />
               </label>
             </div>
           </div>
@@ -507,15 +622,20 @@ const Account = () => {
                   <img src="./Mask group (5).svg" alt="" className="w-6 h-6" />
                   <p className="text-sm">UPLOAD</p>
                 </div>
-                <input id="dropzone-file2" type="file" className="hidden" />
+                <input
+                  id="dropzone-file2"
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileInputChange4}
+                />
               </label>
             </div>
           </div>
         </div>
-        <div className="text-[#FC0005] flex items-center gap-2 ml-[10vw]">
+        {/* <div className="text-[#FC0005] flex items-center gap-2 ml-[10vw]">
           <img src="./image 671.png" alt="" className="w-5 h-5" />
           <p>Missing</p>
-        </div>
+        </div> */}
       </div>
       <div className="supportContainer">
         <p className="text-[#0070BC] font-semibold">BUSINESS INFORMATION</p>
@@ -533,15 +653,18 @@ const Account = () => {
               placeholder="Business Name"
               className="account-input"
               required
-              //  value={profile?.email}
+              value={ fullName || profile?.fullName}
               onClick={() => {
                 setIsEditing(4);
               }}
-              // onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
             />
             {isEditing === 4 ? (
               <span
-                onClick={() => setIsEditing(false)}
+                onClick={() => {
+                  handleUpdateProfile();
+                  setIsEditing(false);
+                }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
                 SAVE
@@ -564,29 +687,31 @@ const Account = () => {
               alt=""
               className="w-5 h-6 absolute top-2 left-4"
             />
-            <select
-              id="countries"
-              //   value={selectedOption}
-              //   onChange={handleChange}
-              className="account-input"
-            >
-              <option className="font-semibold">Business Type</option>
-            </select>
+            <div className="account-input">
+              <IconSelect
+                selectedOption={selectedCat}
+                handleChange={handleCategory}
+              />
+            </div>
           </div>
           <div className="relative">
             <img
               src="./image 57.png"
               alt=""
-              className="w-5 h-5 absolute top-2 left-4"
+              className="w-5 h-5 absolute top-4 left-4"
             />
-            <select
-              id="countries"
-              //   value={selectedOption}
-              //   onChange={handleChange}
+            <Select
               className="account-input"
-            >
-              <option className="font-semibold">Industry</option>
-            </select>
+              styles={{ width: "20px" }}
+              value={selectedSubCat}
+              options={options}
+              defaultValue={options?.[0]?.value}
+              placeholder="Industry"
+              onChange={(e) => {
+                setSubCat(e);
+                setSubCategoryId(e.value);
+              }}
+            />
           </div>
           <div className="relative w-[50vw] group ">
             <img
@@ -601,15 +726,18 @@ const Account = () => {
               placeholder="VAT REG. No"
               className="account-input"
               required
-              //  value={profile?.email}
+              value={vatRegNo}
               onClick={() => {
                 setIsEditing(5);
               }}
-              // onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setVatRegNo(e.target.value)}
             />
             {isEditing === 5 ? (
               <span
-                onClick={() => setIsEditing(false)}
+                onClick={() => {
+                  handleAccountDocument();
+                  setIsEditing(false);
+                }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
               >
                 SAVE
@@ -667,11 +795,11 @@ const Account = () => {
                 />
                 {isEditing === 6 ? (
                   <span
-                    onClick={() =>{
-                      handleAccountDocument()
-                       setIsEditing(false)}}
+                    onClick={() => {
+                      handleAccountDocument();
+                      setIsEditing(false);
+                    }}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
-                 
                   >
                     SAVE
                   </span>
@@ -726,8 +854,9 @@ const Account = () => {
                 {isEditing === 9 ? (
                   <span
                     onClick={() => {
-                      handleAccountDocument()
-                      setIsEditing(false)}}
+                      handleAccountDocument();
+                      setIsEditing(false);
+                    }}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
                   >
                     SAVE
@@ -768,8 +897,9 @@ const Account = () => {
                 {isEditing === 6 ? (
                   <span
                     onClick={() => {
-                      handleAccountDocument()
-                      setIsEditing(false)}}
+                      handleAccountDocument();
+                      setIsEditing(false);
+                    }}
                     className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
                   >
                     SAVE
@@ -1075,25 +1205,29 @@ const Account = () => {
         </div>
       </DialogDefault>
       <DialogDefault open={showSecurity} handleOpen={setShowSecurity}>
-      <div className="p-4">
+        <div className="p-4">
           <div>
             <h2 className="text-lg font-semibold mb-4">Security Question</h2>
             <label className="block mb-2">
               <span className="text-[#0070BC]">Choose a question:</span>
-              <select 
+              <select
                 value={securityQuestion}
                 onChange={(e) => setSecurityQuestion(e.target.value)}
                 className="block w-full mt-1 rounded border-gray-300"
               >
-                <option value="" disabled>Select a question</option>
+                <option value="" disabled>
+                  Select a question
+                </option>
                 {securityQuestions.map((q, index) => (
-                  <option key={index} value={q}>{q}</option>
+                  <option key={index} value={q}>
+                    {q}
+                  </option>
                 ))}
               </select>
             </label>
             <label className="block mb-4">
               <span className="text-gray-700">Your Answer:</span>
-              <input 
+              <input
                 type="text"
                 value={securityAnswer}
                 onChange={(e) => setSecurityAnswer(e.target.value)}
@@ -1101,13 +1235,13 @@ const Account = () => {
               />
             </label>
             <div className="flex justify-end">
-              <button 
+              <button
                 onClick={() => setShowSecurity(false)}
                 className="px-4 py-2 mr-2 bg-gray-300 rounded"
               >
                 Cancel
               </button>
-              <button 
+              <button
                 onClick={handleSave}
                 className="px-4 py-2 bg-blue-600 text-white rounded"
               >

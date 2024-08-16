@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 import { formatDate } from "../../utiils";
 import { DialogDefault } from "../common/DilogBox";
+import { initialState } from "../atoms/campaignState";
 const MarktingAdPreviewFeatured = () => {
-  const { campaignData } = useCampaign()
+  const { campaignData , setCampaignData} = useCampaign()
   const [isSuccess, setSuccess] = useState(false);
   const [isReview, setReview] = useState(false);
   const [isLive, setLive] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = () => {
+    setCampaignData(initialState)
     setSuccess(true)
     setTimeout(() => {
       setSuccess(false);

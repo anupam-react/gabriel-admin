@@ -7,6 +7,8 @@ const TransactionCupon = ({handleOpen , data}) => {
   const [openProduct, setProduct] = useState(false);
   const [openProductInfo, setProductInfo] = useState(false);
   const [isDownload, setDownload] = useState(false);
+
+  console.log(data)
   return (
     <div className=''>
       <div className='trans-header p-6'>
@@ -30,13 +32,13 @@ const TransactionCupon = ({handleOpen , data}) => {
         <tbody>
           {data?.map((d, i)=>(
           <tr key={i}>
-            <td style={{ width: "100px" }}>Dunkins
+            <td style={{ width: "100px" }}>{d?.productId?.name}
             (#1234567)</td>
           <td>
             <div className='flex items-center justify-between gap-4'>
-              <img src="../image 711 (2).png" alt="" className='cursor-pointer' onClick={()=> setProductInfo(true)}/>
+              <img src={d?.productId?.image} alt="" className='cursor-pointer w-[200px] h-[100px] rounded-lg' onClick={()=> setProductInfo(d?.productId)}/>
               <div className="text-left">Redeemed , Yesterday, 10:30 pm <br/>
-              <span className='text-[#0070BC] underline cursor-pointer' onClick={()=>{setProduct(true)}}>See Transaction.</span> </div>
+              <span className='text-[#0070BC] underline cursor-pointer' onClick={()=>{setProduct(d)}}>See Transaction.</span> </div>
               <img src="../Vector (42).png" alt="" className='h-fit cursor-pointer' onClick={()=> {
       setDownload(true)
       setTimeout(()=>{
@@ -64,10 +66,10 @@ const TransactionCupon = ({handleOpen , data}) => {
 
       </div>
       <DialogDefault open={openProduct} handleOpen={setProduct}>
-            <TransactionDetails isProdInfo={true} handleOpen={setProduct}/> 
+            <TransactionDetails handleOpen={setProduct} userData={openProduct?.user} brandData={openProduct?.brandId} data={openProduct?.orderId}/> 
         </DialogDefault>
       <DialogDefault open={openProductInfo} handleOpen={setProductInfo}>
-            <ProductDetails3 isProdInfo={true} handleOpen={setProductInfo}/> 
+            <ProductDetails3 data={openProductInfo} handleOpen={setProductInfo}/> 
         </DialogDefault>
       <DialogDefault open={isDownload} handleOpen={setDownload}>
       <div className="alert">

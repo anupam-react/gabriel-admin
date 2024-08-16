@@ -1,0 +1,50 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { errorToast, successToast } from "../components/Toast";
+import { createApiData } from "../utiils";
+
+
+
+const usePayment = () => {
+
+
+  const navigate = useNavigate();
+
+
+  const handlePayment = async (id) => {
+    try {
+      const response = await createApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/paymentForMarketingCampaign/${id}`
+      );
+      window.location.href = response?.session?.url;
+    } catch (error) {
+      console.log(error);
+      errorToast(error);
+      return error;
+    }
+  };
+  const handlePaymentSuccess = async (id) => {
+    try {
+      const response = await createApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/successForMarketingCampaign/${id}`
+      );
+    } catch (error) {
+      console.log(error);
+      errorToast(error);
+      return error;
+    }
+  };
+
+
+
+
+ 
+
+  return {
+    handlePayment,
+    handlePaymentSuccess
+  };
+};
+
+export default usePayment;

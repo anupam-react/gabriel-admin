@@ -3,12 +3,19 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
 import { formatDate } from "../../utiils";
+import usePayment from "../../hooks/usePayment";
+import { initialState } from "../atoms/campaignState";
 const MarktingAdPreviewCoupon = ({ isPay = false }) => {
-  const { campaignData } = useCampaign()
+  const { campaignData , setCampaignData} = useCampaign()
+  const {handlePayment} = usePayment()
   const navigate = useNavigate();
   const handleSubmit = () => {
-    isPay ? navigate("/marketing/payment/customer") : navigate("/marketing/ad-confirm-coupon");
+    isPay ? sendpayment() : navigate("/marketing/ad-confirm-coupon");
   };
+  const sendpayment = ()=>{
+    handlePayment(campaignData?._id)
+    setCampaignData(initialState)
+  }
   return (
     <div>
       <div className="flex justify-between items-center mb-6">

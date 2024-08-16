@@ -13,6 +13,7 @@ const useDocument = () => {
   const [accountNumber, setAccountNumber] = useState("");
   const [businessBank, setBusinessBank] = useState("");
   const [sortCode, setSortCode] = useState("");
+  const [vatRegNo, setVatRegNo] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const navigate = useNavigate();
@@ -50,7 +51,36 @@ const useDocument = () => {
       return error;
     }
   };
+
   const handleAccountDocument = async (event) => {
+    // event.preventDefault();
+    let id = sessionStorage.getItem("userId");
+
+    console.log(accountNumber)
+
+    const formData = {}
+   if(accountNumber) formData.accountNumber = accountNumber
+   if(businessBank) formData.businessBank = businessBank
+   if(sortCode) formData.sortCode = sortCode
+   if(vatRegNo) formData.vatRegNo = vatRegNo
+    const headers = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/addDocument/${id}`,
+        formData,
+      );
+      successToast("Add Document Successfully");
+    } catch (error) {
+      console.log(error);
+      errorToast(error);
+      return error;
+    }
+  };
+  const handleAccountDocumentImage = async (businessLicense, certificateOfInCorporation, ownerOperatorId, proofOfAddress) => {
     // event.preventDefault();
     let id = sessionStorage.getItem("userId");
 
@@ -61,9 +91,6 @@ const useDocument = () => {
    if(certificateOfInCorporation) formData.certificateOfInCorporation = certificateOfInCorporation
    if(ownerOperatorId) formData.ownerOperatorId = ownerOperatorId
    if(proofOfAddress) formData.proofOfAddress =proofOfAddress
-   if(accountNumber) formData.accountNumber = accountNumber
-   if(businessBank) formData.businessBank = businessBank
-   if(sortCode) formData.sortCode = sortCode
     const headers = {
       headers: {
         "Content-Type": "application/json",
@@ -92,9 +119,11 @@ const useDocument = () => {
     accountNumber, setAccountNumber,
     businessBank, setBusinessBank,
     sortCode, setSortCode,
+    vatRegNo, setVatRegNo,
     isSuccess,
     handleDocuments,
-    handleAccountDocument
+    handleAccountDocument,
+    handleAccountDocumentImage
   };
 };
 
