@@ -17,7 +17,7 @@ const LoyaltyProgram = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOpen = () => setOpen(!open);
   const closeDrawer = () => setIsOpen(false);
@@ -42,6 +42,13 @@ const LoyaltyProgram = () => {
             type="text"
             className="border-none w-80 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
             placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              getStampSystemByToken(e.target.value)
+              getMakeASavingByToken(e.target.value)
+              getSpendMyPointByToken(e.target.value)
+            }}
           />
         </div>
         <div className="flex">

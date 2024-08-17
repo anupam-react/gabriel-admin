@@ -9,10 +9,14 @@ import "./SliderRangeFilter.css";
 import Select from "react-select";
 import { fetchApiData, formatDate } from "../../utiils";
 import useOutlate from "../../hooks/useOutlate";
-import useLoyality from "../../hooks/useLoyality";
-const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
+
+const LoyaltyFilter = ({
+  closeDrawer,
+  open,
+  getStampSystemByToken,
   getMakeASavingByToken,
-  getSpendMyPointByToken,}) => {
+  getSpendMyPointByToken,
+}) => {
   const { outlate } = useOutlate();
 
   const [isActive, setActive] = useState(1);
@@ -314,6 +318,7 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
                   getStampSystemByToken(
                     "",
                     "",
+                    "",
                     productId,
                     pointEarn,
                     subCategoryId,
@@ -328,6 +333,7 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
                   getMakeASavingByToken(
                     "",
                     "",
+                    "",
                     productId,
                     pointEarn,
                     subCategoryId,
@@ -340,6 +346,7 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
                   );
                 else if (isActive === 4)
                   getSpendMyPointByToken(
+                    "",
                     "",
                     "",
                     productId,
@@ -357,12 +364,15 @@ const LoyaltyFilter = ({ closeDrawer, open , getStampSystemByToken,
             >
               APPLY
             </button>
-            <button className="button4" onClick={()=>{
-              getStampSystemByToken("");
-              getMakeASavingByToken("")
-              getSpendMyPointByToken("")
-              closeDrawer()
-              }}>
+            <button
+              className="button4"
+              onClick={() => {
+                getStampSystemByToken("");
+                getMakeASavingByToken("");
+                getSpendMyPointByToken("");
+                closeDrawer();
+              }}
+            >
               RESET
             </button>
           </div>

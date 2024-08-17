@@ -5,6 +5,18 @@ import { formatTime2, getDateFromISOString } from "../../utiils";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  PDFDownloadLink,
+  pdf,
+  Image,
+} from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
+
 const TransactionDetails = ({
   handleOpen,
   isButton = true,
@@ -15,43 +27,147 @@ const TransactionDetails = ({
   const [openDownload, setOpenDownload] = useState(false);
   const [openShare, setOpenShare] = useState(false);
 
-  console.log(brandData)
+  console.log(brandData);
 
   const receiptRef = useRef();
+
+  const pdfRef = useRef();
+
+  const styles = StyleSheet.create({
+    page: {
+      // padding: 30,
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      textAlign: "left",
+    },
+    section: {
+      marginBottom: 10,
+    },
+    header: {
+      fontSize: 20,
+      textAlign: "center",
+      marginBottom: 20,
+    },
+    text: {
+      fontSize: 12,
+    },
+    bold: {
+      fontWeight: "bold",
+    },
+    image: {
+      width: 60,
+      height: 60,
+      borderRadius: 50,
+    },
+    image1: {
+      width: 200,
+      height: 50,
+    },
+
+    footer: {
+      marginTop: 20,
+      textAlign: "center",
+    },
+    thank: {
+      textAlign: "center",
+      marginBottom: 20,
+    },
+  });
+
+  // Create Document Component
+  const ReceiptFormat = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.header}>
+          <Image style={styles.image} src={brandData?.image}></Image>
+          <Text>{brandData?.name}</Text>
+        </View>
+        <View>
+          <View style={styles.section}>
+            <Text style={styles.text}>
+              Address: {brandData?.firstLineAddress}
+            </Text>
+            <Text style={styles.text}>Contact : {brandData?.phone}</Text>
+            <Text style={styles.text}>Receipt No: {data?._id}</Text>
+            <Text style={styles.text}>
+              Date & Time:{" "}
+              {data?.dateUploaded ||
+                getDateFromISOString(data?.createdAt) +
+                  " , " +
+                  formatTime2(data?.createdAt)}
+            </Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.text}>
+              Name:{" "}
+              {userData?.fullName ||
+                userData?.firstName + " " + userData?.lastName}
+            </Text>
+            <Text style={styles.text}>Items: {data?.productId?.name}</Text>
+            <Text style={styles.text}>
+              Price: £{data?.price} * {data?.quantity}
+            </Text>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.text}>Total: £{data?.total}</Text>
+            <Text style={styles.text}>Discount: £{data?.offerDiscount}</Text>
+            <Text style={styles.text}>VAT(Registration No): 123456</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.text}>Rewards Points Earned: 01</Text>
+            <Text style={styles.text}>Rewards Stamps Earned: 01</Text>
+            <Text style={styles.text}>Payment Method: Linked Card</Text>
+          </View>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.thank}>Thank you!</Text>
+          <Image style={styles.image1} src="../Frame 38456.png"></Image>
+        </View>
+      </Page>
+    </Document>
+  );
+
+  const handleDownload = async () => {
+    const blob = await pdf(<ReceiptFormat />).toBlob();
+    saveAs(blob, "receipt.pdf");
+  };
 
   const generatePDF = () => {
     const input = receiptRef.current;
 
     // Apply zoom-out using CSS transform
-     // Capture the entire page content as an image
-     html2canvas(input, {
+    // Capture the entire page content as an image
+    html2canvas(input, {
       scale: 1, // Capture at 100% scale
       useCORS: true, // Allow cross-origin content
       allowTaint: true, // Allow tainted (cross-origin) content
       scrollY: -window.scrollY, // Capture full page even if scrolled
     }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save('full-page.pdf'); // Automatically download the PDF
-      
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("full-page.pdf"); // Automatically download the PDF
+
       // Optional: Upload the PDF and get a shareable link
-      const pdfBlob = pdf.output('blob');
+      const pdfBlob = pdf.output("blob");
       sharePDF(pdfBlob);
-      });
+    });
   };
 
   // Function to handle sharing the PDF
   const sharePDF = (pdfBlob) => {
     const formData = new FormData();
-    formData.append('file', pdfBlob, 'receipt.pdf');
+    formData.append("file", pdfBlob, "receipt.pdf");
 
     // Replace this URL with your server's upload endpoint
-    axios.post('https://your-server.com/upload', formData)
-      .then(response => {
-        console.log('PDF uploaded successfully', response.data);
+    axios
+      .post("https://your-server.com/upload", formData)
+      .then((response) => {
+        console.log("PDF uploaded successfully", response.data);
 
         // Create a shareable link
         const shareLink = response.data.fileUrl;
@@ -60,8 +176,8 @@ const TransactionDetails = ({
         const whatsappLink = `https://wa.me/?text=Check out this PDF: ${shareLink}`;
         window.open(whatsappLink);
       })
-      .catch(error => {
-        console.error('Error uploading PDF:', error);
+      .catch((error) => {
+        console.error("Error uploading PDF:", error);
       });
   };
 
@@ -74,12 +190,12 @@ const TransactionDetails = ({
         className="cross-image2"
         onClick={() => handleOpen(false)}
       />
-      <div className="h-[60vh] overflow-y-scroll no-scrollbar" >
+      <div className="h-[60vh] overflow-y-scroll no-scrollbar">
         <div className="flex items-center justify-center gap-2">
           <img
             src={brandData?.image || "../Ellipse 9.png"}
             alt=""
-            className="w-[75px] h-[75px]"
+            className="w-[75px] h-[75px] rounded-full"
           />
           <div>
             <p className="text-[#121212] font-semibold text-[24px]">
@@ -129,14 +245,7 @@ const TransactionDetails = ({
               £{data?.price} * {data?.quantity}
             </p>
           </div>
-          {/* <div className='info2'>
-          <p>Lorem</p>
-          <p>£15</p>
-        </div>
-        <div className='info2'>
-          <p>Lorem</p>
-          <p>£15</p>
-        </div> */}
+
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
           <div className="info2">
             <p className="text-[#121212] font-semibold">Total</p>
@@ -184,7 +293,7 @@ const TransactionDetails = ({
           <button
             className="menuButton4"
             onClick={() => {
-              generatePDF();
+              handleDownload();
               setOpenDownload(true);
 
               setTimeout(() => {

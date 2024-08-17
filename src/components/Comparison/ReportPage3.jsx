@@ -3,18 +3,22 @@ import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select1 from "../common/Select1";
 import { useNavigate } from "react-router-dom";
+import useComparison from "../../hooks/useComparison";
 
 const ReportPage3 = ({ open, setOpen, handleOpen }) => {
+  const { report,     getComparisonReport,
+    getRORReport,
+    getSaleCategoryReport,} = useComparison()
   const navigate = useNavigate();
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
   const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedOption4, setSelectedOption4] = useState("");
+ 
 
   const [openCustom1, setOpenCustom1] = useState(false);
   const [openCustom2, setOpenCustom2] = useState(false);
   const [openCustom3, setOpenCustom3] = useState(false);
-  const [openCustom4, setOpenCustom4] = useState(false);
+
 
 
   const handleChange1 = (event) => {
@@ -22,7 +26,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom1(true);
     }else{
-      
+      getComparisonReport(event.target.value)
     }
   };
   const handleChange2 = (event) => {
@@ -30,7 +34,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom2(true);
     }else{
-     
+      getRORReport(event.target.value)
 
     }
   };
@@ -39,19 +43,11 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom3(true);
     }else{
-     
+      getSaleCategoryReport(event.target.value)
 
     }
   };
-  const handleChange4 = (event) => {
-    setSelectedOption4(event.target.value);
-    if (event.target.value === "custom") {
-      setOpenCustom4(true);
-    }else{
-     
 
-    }
-  };
 
 
 
@@ -111,7 +107,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+                      <Select1 selectedOption={selectedOption1} handleSave={getComparisonReport}  handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
                     </div>
                   </div>
                 </div>
@@ -126,7 +122,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+                      <Select1 selectedOption={selectedOption2} handleSave={getRORReport} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
                     </div>
                   </div>
                 </div>
@@ -141,7 +137,7 @@ const ReportPage3 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
+                      <Select1 selectedOption={selectedOption3} handleSave={getSaleCategoryReport} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
                     </div>
                   </div>
                 </div>

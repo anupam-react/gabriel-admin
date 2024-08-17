@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchApiData } from "../utiils";
+import { createApiData, fetchApiData } from "../utiils";
 
 
 const useComparison = () => {
@@ -9,6 +9,7 @@ const useComparison = () => {
   const [category, setCategory] = useState([])
   const [selectedCat, setCat] = useState(null);
   const [catId, setCatId] = useState(null);
+  const [report, setReport] = useState()
 
   const getSaleComparision = async ()=>{
     const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparision?type=weekly`)
@@ -30,6 +31,24 @@ const useComparison = () => {
     console.log(data)
     setRoasCamp(data?.data)
   }
+  const getComparisonReport = async (type="All", startDate="", endDate="" , typeOfData="" )=>{
+    const data = await createApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparisionReport?type=${type}&typeOfData=SaleComparision&startDate=${startDate}&endDate=${endDate}`)
+    console.log(data)
+    window.open(data?.url)
+    setReport(data)
+  }
+  const getRORReport = async (type="All", startDate="", endDate="" , typeOfData="" )=>{
+    const data = await createApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparisionReport?type=${type}&typeOfData=rorVsCampaign&startDate=${startDate}&endDate=${endDate}`)
+    console.log(data)
+    window.open(data?.url)
+    setReport(data)
+  }
+  const getSaleCategoryReport = async (type="All", startDate="", endDate="" )=>{
+    const data = await createApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparisionReport?type=${type}&typeOfData=SaleCategory&startDate=${startDate}&endDate=${endDate}`)
+    console.log(data)
+    window.open(data?.url)
+    setReport(data)
+  }
 
   useEffect(()=>{
     getSaleComparision()
@@ -47,6 +66,10 @@ const useComparison = () => {
 
   return {
     saleComp,
+    report,
+    getComparisonReport,
+    getRORReport,
+    getSaleCategoryReport,
     saleproductComp,
     category,
     selectedCat,

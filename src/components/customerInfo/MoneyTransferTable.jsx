@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 import ProductDetails from "./ProductDetails";
-import { fetchApiData, getDateFromISOString } from "../../utiils";
+import { fetchApiData, formatDate, formatDate2, formatTime2, getDateFromISOString } from "../../utiils";
 
 const MoneyTransferTable = ({data}) => {
   const [openTransaction, setOpenTransaction] = useState(false);
@@ -37,7 +37,7 @@ const MoneyTransferTable = ({data}) => {
           {dataInfo?.map((d, i)=>(
           <tr key={i}>
             <td>
-              <p>£15</p>
+              <p>£{d?.transactionId?.amount}</p>
             </td>
             <td>
               <div>{d?.points}</div>
@@ -45,15 +45,15 @@ const MoneyTransferTable = ({data}) => {
             <td>{getDateFromISOString(d?.date)}</td>
             <td>
               <div className="table-flex">
-                <img src="./Group 527.png" alt="" className="cursor-pointer" style={{ width: "100px" }} onClick={() => setOpenDetails(true)}/>
-                <p className="cursor-pointer" onClick={() => setOpenTransaction(true)}>
+                <img src={d?.transactionId?.productId?.image} alt="" className="cursor-pointer" style={{ width: "100px" }} onClick={() => setOpenDetails(d?.transactionId?.productId)}/>
+                <p className="cursor-pointer" onClick={() => setOpenTransaction(d?.transactionId)}>
                   <span
                     style={{ color: "#3BB54A", textDecoration: "underline" }}
                   >
                     Claimed
                   </span>{" "}
                   <br />
-                  HoneyComb Mocha 09/12/2023,11:00 am{" "}
+                  {d?.transactionId?.productId?.name} {getDateFromISOString(d?.userRewardsId?.claimDate)},{formatTime2(d?.userRewardsId?.claimDate)}{" "}
                   <span
                     className="id-link"
                     
@@ -71,10 +71,10 @@ const MoneyTransferTable = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} />
+        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
       <DialogDefault open={openDetails} handleOpen={setOpenDetails}>
-        <ProductDetails handleOpen={setOpenDetails} />
+        <ProductDetails handleOpen={setOpenDetails} data={openDetails}/>
       </DialogDefault>
     </div>
   );

@@ -4,11 +4,25 @@ import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 import ProductDetails3 from "./ProductDetails3";
 import { formatTime2, getDateFromISOString } from "../../utiils";
-const TransactionDiscount = ({ handleOpen , data }) => {
+import ReceiptFormat from "./ReceiptFormat";
+import { pdf } from "@react-pdf/renderer";
+
+const TransactionDiscount = ({ handleOpen, data }) => {
   const [openProduct, setProduct] = useState(false);
   const [openProductInfo, setProductInfo] = useState(false);
   const [isDownload, setDownload] = useState(false);
-  console.log(data)
+  console.log(data);
+
+  const handleDownload = async (data) => {
+    const blob = await pdf(
+      <ReceiptFormat
+        userData={data?.user}
+        brandData={data?.brandId}
+        data={data?.orderId}
+      />
+    ).toBlob();
+    saveAs(blob, "receipt.pdf");
+  };
   return (
     <div className="">
       <div className="trans-header p-6">
@@ -28,47 +42,50 @@ const TransactionDiscount = ({ handleOpen , data }) => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((d, i)=>(
-
-          <tr key={i}>
-            <td style={{ width: "100px" }}>{d?.productId?.name} ({d?.marketingCampaignId?.discountValue}%)</td>
-            <td>
-              <div className="flex items-center justify-between gap-4">
-                <img
-                  src={d?.productId?.image}
-                  alt=""
-                  className="cursor-pointer w-[200px] h-[100px] rounded-lg"
-                  onClick={() => setProductInfo(d?.productId)}
-                />
-                <div className="text-left">
-                  Purchased , {getDateFromISOString(d?.orderId?.createdAt) +
-                  " , " +
-                  formatTime2(d?.orderId?.createdAt)} <br />
-                  <span
-                    className="text-[#0070BC] underline cursor-pointer"
+          {data?.map((d, i) => (
+            <tr key={i}>
+              <td style={{ width: "100px" }}>
+                {d?.productId?.name} ({d?.marketingCampaignId?.discountValue}%)
+              </td>
+              <td>
+                <div className="flex items-center justify-between gap-4">
+                  <img
+                    src={d?.productId?.image}
+                    alt=""
+                    className="cursor-pointer w-[200px] h-[100px] rounded-lg"
+                    onClick={() => setProductInfo(d?.productId)}
+                  />
+                  <div className="text-left">
+                    Purchased ,{" "}
+                    {getDateFromISOString(d?.orderId?.createdAt) +
+                      " , " +
+                      formatTime2(d?.orderId?.createdAt)}{" "}
+                    <br />
+                    <span
+                      className="text-[#0070BC] underline cursor-pointer"
+                      onClick={() => {
+                        setProduct(d);
+                      }}
+                    >
+                      See Transaction.
+                    </span>{" "}
+                  </div>
+                  <img
+                    src="../Vector (42).png"
+                    alt=""
+                    className="h-fit cursor-pointer"
                     onClick={() => {
-                      setProduct(d);
+                      setDownload(d);
+                      handleDownload(d);
+                      setTimeout(() => {
+                        setDownload(false);
+                      }, 2000);
                     }}
-                  >
-                    See Transaction.
-                  </span>{" "}
+                  />
                 </div>
-                <img
-                  src="../Vector (42).png"
-                  alt=""
-                  className="h-fit cursor-pointer"
-                  onClick={() => {
-                    setDownload(true);
-                    setTimeout(() => {
-                      setDownload(false);
-                    }, 2000);
-                  }}
-                />
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
           ))}
-       
         </tbody>
       </table>
       <hr />
@@ -86,10 +103,15 @@ const TransactionDiscount = ({ handleOpen , data }) => {
         </button>
       </div>
       <DialogDefault open={openProduct} handleOpen={setProduct}>
-        <TransactionDetails handleOpen={setProduct} userData={openProduct?.user} brandData={openProduct?.brandId} data={openProduct?.orderId} />
+        <TransactionDetails
+          handleOpen={setProduct}
+          userData={openProduct?.user}
+          brandData={openProduct?.brandId}
+          data={openProduct?.orderId}
+        />
       </DialogDefault>
       <DialogDefault open={openProductInfo} handleOpen={setProductInfo}>
-        <ProductDetails3  data={openProductInfo} handleOpen={setProductInfo} />
+        <ProductDetails3 data={openProductInfo} handleOpen={setProductInfo} />
       </DialogDefault>
       <DialogDefault open={isDownload} handleOpen={setDownload}>
         <div className="alert">

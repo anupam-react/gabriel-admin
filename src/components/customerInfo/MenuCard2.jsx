@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { DialogDefault } from "../common/DilogBox";
 import TransactionDetails from "./TransactionDetails";
 
@@ -15,9 +15,11 @@ const MenuCard2 = ({data}) => {
       <button className="menuButton3" onClick={() => setOpenShare(true)}>
         Share
       </button>
-      <button className="menuButton3" onClick={() => setOpenPrint(true)}>
+      <button className="menuButton3" >
         Print
       </button>
+
+  
       <DialogDefault open={openView} handleOpen={setOpenView}>
         <TransactionDetails isButton={false} handleOpen={setOpenView} userData={data?.user} brandData={data?.brandId} data={data?.orderId}/>
       </DialogDefault>
