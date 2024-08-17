@@ -6,6 +6,7 @@ import ProductDetails3 from "./ProductDetails3";
 import { formatTime2, getDateFromISOString } from "../../utiils";
 import ReceiptFormat from "./ReceiptFormat";
 import { pdf } from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
 
 const TransactionDiscount = ({ handleOpen, data }) => {
   const [openProduct, setProduct] = useState(false);
