@@ -17,17 +17,18 @@ const useComparison = () => {
     setSaleComp(data)
   }
   const getCategory = async ()=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory`)
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/SubCategory/all/Subcategory`)
     console.log(data)
-    setCategory(data?.data)
+    const subCategories = data?.data?.flatMap(item => item?.subCategory);
+    setCategory(subCategories)
   }
-  const getTotalSaleByProductSubcategory = async (startDate="", endDate="" , categoryId="")=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getTotalSaleByProductSubcategory?startDate=${startDate}&endDate=${endDate}&categoryId=${categoryId}`)
+  const getTotalSaleByProductSubcategory = async (type="All", startDate="", endDate="" , categoryId="")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getTotalSaleByProductSubcategory?type=${type}&startDate=${startDate}&endDate=${endDate}&categoryId=${categoryId}`)
     console.log(data)
     setSaleProductComp(data?.data)
   }
-  const getRorVsCampaignType = async (startDate="", endDate="" , categoryId="")=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getRorVsCampaignType?startDate=${startDate}&endDate=${endDate}&categoryId=${categoryId}`)
+  const getRorVsCampaignType = async (type="All",startDate="", endDate="" , categoryId="")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getRorVsCampaignType?type=${type}&startDate=${startDate}&endDate=${endDate}&categoryId=${categoryId}`)
     console.log(data)
     setRoasCamp(data?.data)
   }
@@ -58,9 +59,7 @@ const useComparison = () => {
   },[])
 
   const handleCategory = (event) => {
-    setCat(event);
-    getTotalSaleByProductSubcategory("","", event.value)
-    setCatId(event.value);
+  
   };
 
 
@@ -75,6 +74,8 @@ const useComparison = () => {
     selectedCat,
     catId,
     roasCamp,
+    setCat,
+    setCatId,
     handleCategory,
     getTotalSaleByProductSubcategory,
     getRorVsCampaignType

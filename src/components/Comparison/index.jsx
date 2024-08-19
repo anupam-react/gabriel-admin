@@ -19,6 +19,8 @@ const Comparison = () => {
   const { saleComp ,  roasCamp,   saleproductComp,   category,
     selectedCat,
     catId,
+    setCat,
+    setCatId,
     handleCategory,
     getTotalSaleByProductSubcategory, getRorVsCampaignType } = useComparison()
 
@@ -63,7 +65,7 @@ const Comparison = () => {
       setOpenCustom3(true);
     }else{
      
-
+      getRorVsCampaignType(event.target.value)
     }
   };
   const handleChange4 = (event) => {
@@ -71,7 +73,7 @@ const Comparison = () => {
     if (event.target.value === "custom") {
       setOpenCustom4(true);
     }else{
-     
+      getTotalSaleByProductSubcategory(event.target.value)
 
     }
   };
@@ -145,7 +147,7 @@ const Comparison = () => {
           </div>
         </div>
         <div className="flex justify-between items-center w-full">
-        <Select2 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getTotalSaleByProductSubcategory}/>
+        <Select1 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getTotalSaleByProductSubcategory}/>
           <div className="flex gap-4">
             <p className="text-[#000000B2]">To :</p>
             <DatePicker
@@ -156,7 +158,7 @@ const Comparison = () => {
         className='rounded-md shadow border-none'
       onChange={(date) =>{
          setEndDate(date)
-         getRorVsCampaignType(formatDate2(startDate), formatDate2(date))
+         getRorVsCampaignType("custom",formatDate2(startDate), formatDate2(date))
         }}
     />
           </div>
@@ -167,18 +169,22 @@ const Comparison = () => {
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
         <div className="flex justify-between items-center gap-4 w-full">
-        <Select2 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4} handleSave={getTotalSaleByProductSubcategory}/>
+        <Select1 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4} handleSave={getTotalSaleByProductSubcategory}/>
          <div className="w-[200px]">
         <Select
             className="input-loyalty2"
             styles={{ width: "100px" }}
             value={selectedCat}
             options={category?.map((item) => ({
-              value: item._id,
+              value: item?._id,
               label: item?.name,
             }))}
             defaultValue={category?.[0]?._id}
-            onChange={handleCategory}
+            onChange={(event)=>{
+              setCat(event);
+              getTotalSaleByProductSubcategory(selectedOption4,"","", event.value)
+              setCatId(event.value);
+            }}
             placeholder=""
           />
 

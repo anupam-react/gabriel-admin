@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchApiData } from "../utiils";
+import { createApiData, fetchApiData } from "../utiils";
 
 
 const useTransaction = () => {
@@ -8,6 +8,7 @@ const useTransaction = () => {
   const [averageTransaction, setAverageTransaction] = useState([])
   const [topSellingItems, setTopSellingItems] = useState([])
   const [timeBaseAnalytics, setTimeBaseAnalytics] = useState([])
+  const [report, setReport] = useState() 
 
   const getTransactionSaleVolume = async (type = "All" ,startDate ="", endDate="")=>{
 
@@ -37,11 +38,12 @@ const useTransaction = () => {
     setTimeBaseAnalytics(data?.data)
   }
 
-  async function getTransactionFilter(fromDate="2024-01-30", toDate="2024-06-30", min="" , max="" ) {
-    const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/Dashboard/transactionData`
+  async function getTransactionReport(typeOfData="",type="All" , fromDate="", toDate="" ) {
+    const data = await createApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getTransactionReport?type=${type}&startDate=${fromDate}&endDate=${toDate}&typeOfData=${typeOfData}`
     );
-   
+    window.open(data?.pdfLink)
+   setReport(data?.pdfLink)
   }
 
 
@@ -52,8 +54,7 @@ const useTransaction = () => {
     getAverageTransactionValue()
     getTopSellingItems()
     getTimeBaseAnalytics()
-    getTransactionFilter()
-
+  
   },[])
 
   return {
@@ -67,7 +68,8 @@ const useTransaction = () => {
     getAverageTransactionValue,
     getTopSellingItems,
     getTimeBaseAnalytics,
-    getTransactionFilter
+    getTransactionReport
+    
   };
 };
 

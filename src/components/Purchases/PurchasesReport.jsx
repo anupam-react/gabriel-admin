@@ -3,8 +3,12 @@ import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select1 from "../common/Select1";
 import { useNavigate } from "react-router-dom";
+import usePurchases from "../../hooks/usePurchases";
 
 const PurchasesReport = ({ open, setOpen, handleOpen }) => {
+
+  const {    getApppReport,
+    getInstoreReport} = usePurchases()
   const navigate = useNavigate();
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
@@ -20,7 +24,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom1(true);
     }else{
-      
+      getApppReport(event.target.value)
     }
   };
   const handleChange2 = (event) => {
@@ -28,7 +32,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom2(true);
     }else{
-     
+      getInstoreReport(event.target.value)
 
     }
   };
@@ -91,7 +95,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+                      <Select1 selectedOption={selectedOption1} handleSave={getApppReport} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
                     </div>
                   </div>
                 </div>
@@ -106,7 +110,7 @@ const PurchasesReport = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+                      <Select1 selectedOption={selectedOption2} handleSave={getInstoreReport} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
                     </div>
                   </div>
                 </div>

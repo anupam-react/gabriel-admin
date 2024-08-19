@@ -3,8 +3,12 @@ import "../Transaction.jsx/index.css";
 import { DialogDefault } from "../common/DilogBox";
 import Select1 from "../common/Select1";
 import { useNavigate } from "react-router-dom";
+import useSales from "../../hooks/useSales";
+import Select4 from "../common/Select4";
 
 const ReportPage2 = ({ open, setOpen, handleOpen }) => {
+
+  const { getSalesReport }= useSales()
   const navigate = useNavigate();
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
@@ -24,7 +28,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom1(true);
     }else{
-      
+      getSalesReport("transactionCount",event.target.value)
     }
   };
   const handleChange2 = (event) => {
@@ -32,7 +36,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom2(true);
     }else{
-     
+      getSalesReport("transactionCount",event.target.value)
 
     }
   };
@@ -42,7 +46,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
       setOpenCustom3(true);
     }else{
      
-
+      getSalesReport("averageTransactionCount",event.target.value)
     }
   };
   const handleChange4 = (event) => {
@@ -50,7 +54,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom4(true);
     }else{
-     
+      getSalesReport("transactionCount",event.target.value)
 
     }
   };
@@ -60,7 +64,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
       setOpenCustom5(true);
     }else{
       
-
+      getSalesReport("transactionCount",event.target.value)
     }
   };
   const handleChange6 = (event) => {
@@ -68,6 +72,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom6(true);
     }else{
+      getSalesReport("transactionCount",event.target.value)
     }
   };
 
@@ -128,7 +133,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption1} handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
+                      <Select4 selectedOption={selectedOption1} handleSave={getSalesReport} typeOfData="topSelling" handleChange={handleChange1} open={openCustom1} setOpen={setOpenCustom1}/>
                     </div>
                   </div>
                 </div>
@@ -143,7 +148,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+                      <Select4 selectedOption={selectedOption2} handleSave={getSalesReport} typeOfData="transactionCount" handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
                     </div>
                   </div>
                 </div>
@@ -158,7 +163,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
+                      <Select4 selectedOption={selectedOption3} handleSave={getSalesReport} typeOfData="averageTransactionCount" handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3}/>
                     </div>
                   </div>
                 </div>
@@ -173,7 +178,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
+                      <Select4 selectedOption={selectedOption4} handleSave={getSalesReport} typeOfData="topSelling" handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4}/>
                     </div>
                   </div>
                 </div>
@@ -188,7 +193,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption5} handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
+                      <Select4 selectedOption={selectedOption5} handleSave={getSalesReport} typeOfData="topSelling" handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
                     </div>
                   </div>
                 </div>
@@ -203,7 +208,7 @@ const ReportPage2 = ({ open, setOpen, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select1 selectedOption={selectedOption6} handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
+                      <Select4 selectedOption={selectedOption6} handleSave={getSalesReport} typeOfData="topSelling" handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
                     </div>
                   </div>
                 </div>

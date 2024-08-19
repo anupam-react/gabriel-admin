@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchApiData } from "../utiils";
+import { createApiData, fetchApiData } from "../utiils";
 
 const useSales = () => {
   const [saleCategory, setSaleCategory] = useState([]);
@@ -7,6 +7,7 @@ const useSales = () => {
   const [transactionCount, setTransactionCount] = useState([]);
   const [saleLocation, setSaleLocation] = useState([]);
   const [saleTrendOver, setSaleTrendOver] = useState([]);
+  const [report, setReport] = useState() 
 
   const getSaleByCategory = async (
     type = "All",
@@ -96,6 +97,14 @@ const useSales = () => {
     }
   };
 
+  async function getSalesReport(typeOfData="",type="All" , fromDate="", toDate="" ) {
+    const data = await createApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleAnalyticsReport?type=${type}&startDate=${fromDate}&endDate=${toDate}&typeOfData=${typeOfData}`
+    );
+    window.open(data?.pdfLink)
+   setReport(data?.pdfLink)
+  }
+
   useEffect(() => {
     getSaleByCategory();
     getSaleByLocation();
@@ -117,7 +126,8 @@ const useSales = () => {
     getSaleByLocation,
     getSaleTrendOverTime,
     getSaleAnalyticsTotalRevenue,
-    getSaleAnalyticsTransactionCount
+    getSaleAnalyticsTransactionCount,
+    getSalesReport
   };
 };
 

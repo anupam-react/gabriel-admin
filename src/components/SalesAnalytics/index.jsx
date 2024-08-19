@@ -137,7 +137,7 @@ const SalesAnalytics = () => {
     {
       title: "AVERAGE TRANSACTION VALUE",
       image: "./image 52.png",
-      amount: averageTransaction,
+      amount: Math.round(averageTransaction),
       footerTitle: "SPENT PER TRANSACTION",
       handleChange: handleChange4,
       selectedOption: selectedOption4,

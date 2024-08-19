@@ -22,7 +22,6 @@ const Transaction = () => {
     getAverageTransactionValue,
     getTopSellingItems,
     getTimeBaseAnalytics,
-    getTransactionFilter
    } = useTransaction()
 
   const [open, setOpen] = useState(false);
