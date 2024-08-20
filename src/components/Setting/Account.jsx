@@ -9,6 +9,8 @@ import axios from "axios";
 import { successToast } from "../Toast";
 import IconSelect from "../Register/IconSelect";
 import Select from "react-select";
+import { CardElement, useStripe } from "@stripe/react-stripe-js";
+
 const Account = () => {
   const {
     fname,
@@ -27,6 +29,8 @@ const Account = () => {
     success,
     setSuccess,
     handleAddStaff,
+    handleCreateCard,
+    error
   } = useAccount();
   const {
     profile,
@@ -80,7 +84,7 @@ const Account = () => {
   const [answer, setAnswer] = useState("");
   const [selectedSubCat, setSubCat] = useState(null);
   const [selectedCat, setCat] = useState(null);
-
+  const stripe = useStripe();
   const securityQuestions = [
     "What is your mother’s maiden name?",
     "What was the name of your first pet?",
@@ -180,6 +184,10 @@ const Account = () => {
   };
 
   const navigate = useNavigate();
+
+
+
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -1008,7 +1016,7 @@ const Account = () => {
           )}
         </div>
         <p className="text-[#000000]">Debit Card</p>
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <div className="relative w-[50vw] group ">
             <img
               src="./Rectangle 78.png"
@@ -1072,11 +1080,18 @@ const Account = () => {
               </select>
             </div>
           </div>
-        </div>
-        <div className="account-add-button">
-          <img src="./Mask group (17).png" alt="" />
+        </div> */}
+       
+        <form onSubmit={handleCreateCard}>
+      <CardElement />
+      <button className="account-add-button" type="submit" disabled={!stripe}>
+      <img src="./Mask group (17).png" alt="" />
           <p>ADD NEW PAYMENT METHOD</p>
-        </div>
+        {/* {isProcessing ? "Processing..." : "Save Card"} */}
+      </button>
+      {error && <div>{error}</div>}
+      {success && <div>Card saved successfully!</div>}
+    </form>
       </div>
       <DialogDefault open={openAddEmp} handleOpen={setOpenAddEmp}>
         <div className="p-4">

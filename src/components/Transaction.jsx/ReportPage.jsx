@@ -54,7 +54,7 @@ const ReportPage = ({ open, setOpenReport, handleOpen }) => {
       setOpenCustom4(true);
     }else{
      
-      getTransactionReport("topSelling",event.target.value )
+      getTransactionReport("topSelling",event.target.value)
     }
   };
   const handleChange5 = (event) => {
@@ -62,7 +62,7 @@ const ReportPage = ({ open, setOpenReport, handleOpen }) => {
     if (event.target.value === "custom") {
       setOpenCustom5(true);
     }else{
-      getTransactionReport()
+      getTransactionReport("timeBasedData",event.target.value)
 
     }
   };
@@ -191,7 +191,7 @@ const ReportPage = ({ open, setOpenReport, handleOpen }) => {
                     </span>
                     <div className="flex items-center gap-4">
                       <p className="text-[#000000B2] font-[600]">Date Range</p>
-                      <Select4 selectedOption={selectedOption5} handleSave={getTransactionReport} typeOfData="topSelling" handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
+                      <Select4 selectedOption={selectedOption5} handleSave={getTransactionReport} typeOfData="timeBasedData" handleChange={handleChange5} open={openCustom5} setOpen={setOpenCustom5}/>
                     </div>
                   </div>
                 </div>
