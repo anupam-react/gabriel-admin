@@ -15,10 +15,6 @@ const useOffer = () => {
   const [openOffer, setOpenOffer] = useState(false);
   const [openSuccess, setSuccess] = useState(false);
 
-
-
-
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
@@ -29,7 +25,7 @@ const useOffer = () => {
   };
 
   const handleCreateUserRewards = async (userId , type) => {
-    if(!userId || !productId || !offerData?.message || ! offerData?.discount || !offerData?.description || !offerData?.image) {
+    if(!userId || !productId || !offerData?.message || !offerData?.description || !offerData?.image) {
       return warnToast("Fill all the fields");
     }
     const formData = new FormData();
