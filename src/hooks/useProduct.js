@@ -31,7 +31,7 @@ const useProduct = () => {
   const [inStore, setInStore] = useState("yes");
   const [keywords, setKeywords] = useState("");
 
-  const [outletId, setOutletId] = useState("");
+  const [outletId, setOutletId] = useState([]);
   const [selectedOutlate, setSelectOutlate] = useState(null);
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
@@ -80,8 +80,9 @@ const useProduct = () => {
   }, []);
 
   const handleOutlate = (event) => {
+    console.log(event)
     setSelectOutlate(event);
-    setOutletId(event.value);
+    setOutletId(event?.map((data)=> data?.value));
   };
 
   const handleCategory = (event) => {
@@ -95,9 +96,10 @@ const useProduct = () => {
   }, []);
 
   const handleCreateProduct = async (event) => {
+    console.log(image , name , description , nutrition , sku , price , brand , quantity , dimension , returnPolicy , shippingInfo, productColor, productSize , online , inStore , keywords , outletId , categoryId , subCategoryId)
     event.preventDefault();
     if (!image || !name || !description || !nutrition || !sku || !price || !brand || !quantity || !dimension || !returnPolicy || 
-      !shippingInfo || !productColor || !productSize || !online || !inStore || !keywords || !outletId || !categoryId || !subCategoryId) {
+      !shippingInfo || !productColor || !productSize || !online || !inStore || !keywords || !outletId?.length || !categoryId || !subCategoryId) {
       return warnToast("Fill all the fields");
     }
     const formData = new FormData();
