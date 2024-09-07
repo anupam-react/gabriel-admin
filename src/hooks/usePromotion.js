@@ -5,9 +5,6 @@ import {
 import { useRecoilState } from "recoil";
 import { promotionState } from "../components/atoms/offerState";
 
-
-
-
 const usePromotion = () => {
   const [promotionData, setPromotionData] = useRecoilState(promotionState);
   const [productId, setProductId] = useState("");
@@ -23,8 +20,6 @@ const usePromotion = () => {
     });
   };
 
-
-  
   const handleCreatePromotion = async (userId) => {
     const formData = new FormData();
     formData.append('userId', userId);

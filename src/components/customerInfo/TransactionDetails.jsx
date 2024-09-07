@@ -22,6 +22,7 @@ const TransactionDetails = ({
   isButton = true,
   userData,
   brandData,
+  allData,
   data,
 }) => {
   const [openDownload, setOpenDownload] = useState(false);
@@ -266,16 +267,16 @@ const TransactionDetails = ({
           </div>
           <div className="info2">
             <p>Points</p>
-            <p>00</p>
+            <p>{allData?.coupon?.rewardPoints}</p>
           </div>
           <div className="info2">
             <p>Stamps</p>
-            <p>01</p>
+            <p>{allData?.coupon?.rewardStamps}</p>
           </div>
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
           <div className="info2">
             <p>Payment Method</p>
-            <p>Linked Card</p>
+            <p>{allData?.paymentMethod}</p>
           </div>
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
         </div>

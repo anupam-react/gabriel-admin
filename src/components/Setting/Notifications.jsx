@@ -6,7 +6,8 @@ const Notifications = () => {
   const {    
      receiveNotificationSms , setReceiveNotificationSms,
     receiveNotificationEmail , setReceiveNotificationEmail,
-    handleUpdateNotification} = useSetting()
+    handleUpdateNotification
+  } = useSetting()
   const navigate = useNavigate();
   return (
     <div>

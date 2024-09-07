@@ -79,7 +79,7 @@ const AppPurchase = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} brandData={openTransaction?.brandId} userData={openTransaction?.user} data={openTransaction?.orderId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} allData={openTransaction} brandData={openTransaction?.brandId} userData={openTransaction?.user} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

@@ -21,7 +21,7 @@ const MenuCard2 = ({data}) => {
 
   
       <DialogDefault open={openView} handleOpen={setOpenView}>
-        <TransactionDetails isButton={false} handleOpen={setOpenView} userData={data?.user} brandData={data?.brandId} data={data?.orderId}/>
+        <TransactionDetails isButton={false} handleOpen={setOpenView} allData={data} userData={data?.user} brandData={data?.brandId} data={data?.orderId}/>
       </DialogDefault>
       <DialogDefault open={openShare} handleOpen={setOpenShare}>
         <div className="details-container">

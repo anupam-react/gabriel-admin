@@ -71,7 +71,7 @@ const MoneyTransferTable = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} allData={openTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
       <DialogDefault open={openDetails} handleOpen={setOpenDetails}>
         <ProductDetails handleOpen={setOpenDetails} data={openDetails}/>

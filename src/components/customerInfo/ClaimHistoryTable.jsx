@@ -69,7 +69,7 @@ const ClaimHistoryTable = ({ data }) => {
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
         <TransactionDetails
           handleOpen={setOpenTransaction}
-          userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}
+          userData={openTransaction?.user} allData={openTransaction} brandData={openTransaction?.brandId} data={openTransaction?.orderId}
         />
       </DialogDefault>
     </div>

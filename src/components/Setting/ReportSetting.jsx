@@ -76,6 +76,7 @@ const ReportSetting = () => {
           <div className="flex justify-between items-center px-6 h-12 input-loyalty">
             <div className="flex gap-6">
               <img src="../image 73.png" alt="search" className="w-6 h-6" />
+              <img src={image} alt="search" className="w-6 h-6" />
               <p>{image?.name}</p>
             </div>
             <label

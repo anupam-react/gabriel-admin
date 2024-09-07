@@ -1,16 +1,9 @@
-import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { errorToast, successToast } from "../components/Toast";
+import { errorToast } from "../components/Toast";
 import { createApiData } from "../utiils";
 
-
-
 const usePayment = () => {
-
-
   const navigate = useNavigate();
-
 
   const handlePayment = async (id) => {
     try {
@@ -36,14 +29,9 @@ const usePayment = () => {
     }
   };
 
-
-
-
- 
-
   return {
     handlePayment,
-    handlePaymentSuccess
+    handlePaymentSuccess,
   };
 };
 

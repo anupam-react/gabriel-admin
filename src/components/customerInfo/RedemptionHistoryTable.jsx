@@ -60,7 +60,7 @@ const RedemptionHistoryTable = ({data}) => {
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction}  userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} allData={openTransaction}  userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

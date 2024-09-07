@@ -142,7 +142,7 @@ const Transaction = ({ onClose, data }) => {
         <AwardCustomer handleOpen={setOpenPoint} id={data?._id}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <TransactionDetails handleOpen={setOpenTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
+        <TransactionDetails handleOpen={setOpenTransaction} allData={openTransaction} userData={openTransaction?.user} brandData={openTransaction?.brandId} data={openTransaction?.orderId}/>
       </DialogDefault>
     </div>
   );

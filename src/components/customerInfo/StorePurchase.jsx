@@ -82,6 +82,7 @@ const StorePurchase = ({ data }) => {
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
         <TransactionDetails
           handleOpen={setOpenTransaction}
+          allData={openTransaction}
           userData={openTransaction?.user}
           brandData={openTransaction?.brandId}
           data={openTransaction?.orderId}

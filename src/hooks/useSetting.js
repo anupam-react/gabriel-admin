@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { updateApiData } from '../utiils';
+import React, { useEffect, useState } from 'react'
+import { fetchApiData, updateApiData } from '../utiils';
 
 const useSetting = () => {
 
@@ -14,6 +14,29 @@ const useSetting = () => {
     const [isMaximumFailedTransactionValueCrossed , setIsMaximumFailedTransactionValueCrossed] = useState(false)
     const [maximumFailedTransactionStatus , setMaximumFailedTransactionStatus] = useState("")
     const [maximumFailedTransactionValueCrossed , setMaximumFailedTransactionValueCrossed] = useState("")
+    const [profile, setProfile] = useState();
+
+    const getProfile = async () => {
+      const data = await fetchApiData(
+        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProfile`
+      );
+      setProfile(data?.data);
+      setReceiveNotificationSms(data?.data?.receiveNotificationSms)
+      setReceiveNotificationEmail(data?.data?.receiveNotificationEmail)
+      setCommunicationNotificationEmail(data?.data?.communicationNotificationEmail)
+      setCommunicationNotificationSms(data?.data?.communicationNotificationSms)
+      setAutomaticReportSchedule(data?.data?.automaticReportSchedule)
+      setSendReportTo(data?.data?.sendReportTo)
+      setImage(data?.data?.exportLocation)
+      setIsMaximumFailedTransactionValueCrossed(data?.data?.isMaximumFailedTransactionValueCrossed)
+      setIsMaximumFailedTransactionStatus(data?.data?.isMaximumFailedTransactionStatus)
+      setMaximumFailedTransactionStatus(data?.data?.maximumFailedTransactionStatus)
+      setMaximumFailedTransactionValueCrossed(data?.data?.maximumFailedTransactionValueCrossed)
+    };
+
+    useEffect(()=>{
+      getProfile()
+    },[])
 
     const handleUpdateNotification = async () => {
         const formData = {
@@ -91,6 +114,7 @@ const useSetting = () => {
     isMaximumFailedTransactionValueCrossed , setIsMaximumFailedTransactionValueCrossed,
     maximumFailedTransactionStatus , setMaximumFailedTransactionStatus,
     maximumFailedTransactionValueCrossed , setMaximumFailedTransactionValueCrossed,
+    profile,
     handleUpdateReport,
     handleUpdateNotification,
     handleUpdateCommunication
