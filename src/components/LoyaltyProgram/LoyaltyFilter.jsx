@@ -19,7 +19,7 @@ const LoyaltyFilter = ({
 }) => {
   const { outlate } = useOutlate();
 
-  const [isActive, setActive] = useState(1);
+  const [isActive, setActive] = useState(2);
   const [range, setRange] = useState([0, 5000]);
   const [productId, setProductId] = useState("");
   const [categoryId, setCategoryId] = useState("");
@@ -148,12 +148,12 @@ const LoyaltyFilter = ({
                 />
               </div>
               <div className="filterbutton-group mt-4">
-                <button
+                {/* <button
                   className={isActive === 1 ? "button2" : "button1"}
                   onClick={() => setActive(1)}
                 >
                   Point System
-                </button>
+                </button> */}
                 <button
                   className={isActive === 2 ? "button2" : "button1"}
                   onClick={() => setActive(2)}

@@ -26,9 +26,10 @@ const LoyaltyProgram = () => {
 
   return (
     <div>
-      <p className="text-2xl font-bold mb-6">Loyalty Program Management</p>
+      
       <div className="flex justify-between items-center mb-4">
-        <div
+      <p className="text-2xl font-bold mb-6">Loyalty Program Management</p>
+        {/* <div
           className="flex items-center px-6 h-12"
           style={{
             backgroundColor: "#FFFF",
@@ -50,7 +51,7 @@ const LoyaltyProgram = () => {
               getSpendMyPointByToken(e.target.value)
             }}
           />
-        </div>
+        </div> */}
         <div className="flex">
           <button
             className="flex items-center gap-2"

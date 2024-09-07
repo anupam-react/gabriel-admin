@@ -304,7 +304,7 @@ const TransactionDetails = ({
           >
             Download Receipt
           </button>
-          <button
+          {/* <button
             className="menuButton4"
             onClick={() => {
               setOpenShare(true);
@@ -314,7 +314,7 @@ const TransactionDetails = ({
             }}
           >
             Share Receipt
-          </button>
+          </button> */}
         </div>
       )}
       <DialogDefault open={openDownload} handleOpen={setOpenDownload}>
