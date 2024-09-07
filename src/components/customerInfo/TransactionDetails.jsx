@@ -81,7 +81,7 @@ const TransactionDetails = ({
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Image style={styles.image} src={brandData?.image}></Image>
+          <Image style={styles.image} src={brandData?.image || "../Ellipse 9.png"}></Image>
           <Text>{brandData?.name}</Text>
         </View>
         <View>
@@ -90,7 +90,7 @@ const TransactionDetails = ({
               Address: {brandData?.firstLineAddress}
             </Text>
             <Text style={styles.text}>Contact : {brandData?.phone}</Text>
-            <Text style={styles.text}>Receipt No: {data?._id}</Text>
+            <Text style={styles.text}>Receipt No: {data?.orderId}</Text>
             <Text style={styles.text}>
               Date & Time:{" "}
               {data?.dateUploaded ||
@@ -117,9 +117,9 @@ const TransactionDetails = ({
             <Text style={styles.text}>VAT(Registration No): 123456</Text>
           </View>
           <View style={styles.section}>
-            <Text style={styles.text}>Rewards Points Earned: 01</Text>
-            <Text style={styles.text}>Rewards Stamps Earned: 01</Text>
-            <Text style={styles.text}>Payment Method: Linked Card</Text>
+            <Text style={styles.text}>Rewards Points Earned: {allData?.coupon?.rewardPoints || 0}</Text>
+            <Text style={styles.text}>Rewards Stamps Earned: {allData?.coupon?.rewardStamps || 0}</Text>
+            <Text style={styles.text}>Payment Method: {allData?.paymentMethod}</Text>
           </View>
         </View>
         <View style={styles.footer}>
@@ -217,7 +217,7 @@ const TransactionDetails = ({
         <div className="details-info text-[#8F8F8F]">
           <div className="info2">
             <p>Receipt No</p>
-            <p>{data?._id}</p>
+            <p>{data?.orderId}</p>
           </div>
           <div className="info2">
             <p>Date & Time</p>
@@ -263,15 +263,15 @@ const TransactionDetails = ({
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
           <div className="info2">
             <p className="text-[#121212] font-semibold">Rewards</p>
-            <p className="text-[#121212] font-semibold">01</p>
+            <p className="text-[#121212] font-semibold">{(+allData?.coupon?.rewardPoints || 0) + (+allData?.coupon?.rewardStamps || 0)}</p>
           </div>
           <div className="info2">
             <p>Points</p>
-            <p>{allData?.coupon?.rewardPoints}</p>
+            <p>{allData?.coupon?.rewardPoints || 0}</p>
           </div>
           <div className="info2">
             <p>Stamps</p>
-            <p>{allData?.coupon?.rewardStamps}</p>
+            <p>{allData?.coupon?.rewardStamps || 0}</p>
           </div>
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
           <div className="info2">

@@ -98,7 +98,7 @@ const TransactionCupon = ({ handleOpen, data }) => {
       <DialogDefault open={openProduct} handleOpen={setProduct}>
         <TransactionDetails
           handleOpen={setProduct}
-          allData={openTransaction}
+          allData={openProduct}
           userData={openProduct?.user}
           brandData={openProduct?.brandId}
           data={openProduct?.orderId}
