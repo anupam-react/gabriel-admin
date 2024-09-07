@@ -7,8 +7,8 @@ const useFeedback = () => {
 
 
 
-  const getAllFeedback = async (search="", customEndDate="", customStartDate="", page=1,limit=1000,)=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/allRating?search=${search}&customEndDate=${customEndDate}&customStartDate=${customStartDate}&page=${page}&limit=${limit}`)
+  const getAllFeedback = async (search="",type="custom",  customEndDate="", customStartDate="", page=1,limit=1000, )=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/allRating?search=${search}&customEndDate=${customEndDate}&customStartDate=${customStartDate}&page=${page}&limit=${limit}&type=${type}`)
     setAllFeedback(data?.data)
   }
   

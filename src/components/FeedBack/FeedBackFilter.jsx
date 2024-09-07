@@ -3,11 +3,22 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { DatePickerComp2 } from "../customerInfo/DatePickerComp2";
 import { formatDate2 } from "../../utiils";
+import Select1 from "../common/Select1";
 
 
 const FeedBackFilter = ({ closeDrawer, open , getAllFeedback }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [selectedOption2, setSelectedOption2] = useState("");
+  const [openCustom2, setOpenCustom2] = useState(false);
+  const handleChange2 = (event) => {
+    setSelectedOption2(event.target.value);
+    if (event.target.value === "custom") {
+      setOpenCustom2(true);
+    } else {
+      getAllFeedback(event.target.value);
+    }
+  };
   return (
     <React.Fragment>
       <Drawer
@@ -40,16 +51,13 @@ const FeedBackFilter = ({ closeDrawer, open , getAllFeedback }) => {
             <div className="p-2">
               <div className="mt-4">
                 <p className="text-lg font-semibold pb-4">Date Range</p>
-                <select
-                  id="countries"
-                  // value={selectedOption}
-                  // onChange={handleChange}
-                  className="input-loyalty"
-                >
-                  <option className="font-semibold" value="custom">
-                    CUSTOM
-                  </option>
-                </select>
+                <Select1
+            selectedOption={selectedOption2}
+            handleChange={handleChange2}
+            open={openCustom2}
+            setOpen={setOpenCustom2}
+            handleSave={getAllFeedback}
+          />
               </div>
               <div className="calender">
                 <div>
@@ -70,7 +78,7 @@ const FeedBackFilter = ({ closeDrawer, open , getAllFeedback }) => {
             <button
               className="button2"
                 onClick={() => {
-                  getAllFeedback("", formatDate2(endDate) , formatDate2(startDate))
+                  getAllFeedback("",selectedOption2,  formatDate2(endDate) , formatDate2(startDate))
                   closeDrawer()
                 }}
             >

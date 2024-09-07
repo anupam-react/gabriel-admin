@@ -3,10 +3,9 @@ import Select1 from "../common/Select1";
 import Select2 from "../common/Select2";
 
 import { BarChart3 } from "./BarChart3";
-import LineChart4  from "./LineChart4";
+import LineChart4 from "./LineChart4";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 import { BarChart4 } from "./BarChart4";
 import ReportPage3 from "./ReportPage3";
@@ -14,16 +13,21 @@ import Select from "react-select";
 import useComparison from "../../hooks/useComparison";
 import { formatDate2 } from "../../utiils";
 
-
 const Comparison = () => {
-  const { saleComp ,  roasCamp,   saleproductComp,   category,
+  const {
+    saleComp,
+    roasCamp,
+    saleproductComp,
+    category,
     selectedCat,
     catId,
     setCat,
     setCatId,
     handleCategory,
-    getTotalSaleByProductSubcategory, getRorVsCampaignType } = useComparison()
-
+    getSaleComparision,
+    getTotalSaleByProductSubcategory,
+    getRorVsCampaignType,
+  } = useComparison();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -41,40 +45,35 @@ const Comparison = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  
   const handleChange1 = (event) => {
     setSelectedOption1(event.target.value);
     if (event.target.value === "custom") {
       setOpenCustom1(true);
-    }else{
-      
+    } else {
     }
   };
   const handleChange2 = (event) => {
     setSelectedOption2(event.target.value);
     if (event.target.value === "custom") {
       setOpenCustom2(true);
-    }else{
-     
-
+    } else {
+      getSaleComparision(event.target.value);
     }
   };
   const handleChange3 = (event) => {
     setSelectedOption3(event.target.value);
     if (event.target.value === "custom") {
       setOpenCustom3(true);
-    }else{
-     
-      getRorVsCampaignType(event.target.value)
+    } else {
+      getRorVsCampaignType(event.target.value);
     }
   };
   const handleChange4 = (event) => {
     setSelectedOption4(event.target.value);
     if (event.target.value === "custom") {
       setOpenCustom4(true);
-    }else{
-      getTotalSaleByProductSubcategory(event.target.value)
-
+    } else {
+      getTotalSaleByProductSubcategory(event.target.value);
     }
   };
 
@@ -109,13 +108,19 @@ const Comparison = () => {
       </div> */}
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-10">
         <div className="flex justify-between items-center w-full">
-          <Select1 selectedOption={selectedOption2} handleChange={handleChange2} open={openCustom2} setOpen={setOpenCustom2}/>
+          <Select1
+            selectedOption={selectedOption2}
+            handleChange={handleChange2}
+            open={openCustom2}
+            setOpen={setOpenCustom2}
+            handleSave={getSaleComparision}
+          />
         </div>
         <p className="text-[#0070BC] font-semibold text-xl uppercase">
-        Sales Comparisons 
+          Sales Comparisons
         </p>
         <div className="w-[600px]">
-          <BarChart3 data={saleComp}/>
+          <BarChart3 data={saleComp || []} />
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6 my-6">
@@ -129,70 +134,94 @@ const Comparison = () => {
             <option className="font-semibold">ALL</option>
             <option className="font-semibold">CREATE AN OFFER</option>
             <option className="font-semibold">PERCENTAGE DISCOUNT</option>
-            <option className="font-semibold" selected>COUPONS</option>
+            <option className="font-semibold" selected>
+              COUPONS
+            </option>
             <option className="font-semibold">BUY 1 GET 1 FREE</option>
           </select>
           <div className="flex gap-4">
             <p className="text-[#000000B2]">From :</p>
             <DatePicker
-        showIcon
-        toggleCalendarOnIconClick
-        dateFormat="dd/MM/yyyy"
-        selected={startDate}
-        className='rounded-md shadow border-none'
-      onChange={(date) => {
-        setStartDate(date)
-      }}
-    />
+              showIcon
+              toggleCalendarOnIconClick
+              dateFormat="dd/MM/yyyy"
+              selected={startDate}
+              className="rounded-md shadow border-none"
+              onChange={(date) => {
+                setStartDate(date);
+              }}
+            />
           </div>
         </div>
         <div className="flex justify-between items-center w-full">
-        <Select1 selectedOption={selectedOption3} handleChange={handleChange3} open={openCustom3} setOpen={setOpenCustom3} handleSave={getTotalSaleByProductSubcategory}/>
+          <Select1
+            selectedOption={selectedOption3}
+            handleChange={handleChange3}
+            open={openCustom3}
+            setOpen={setOpenCustom3}
+            handleSave={getTotalSaleByProductSubcategory}
+          />
           <div className="flex gap-4">
             <p className="text-[#000000B2]">To :</p>
             <DatePicker
-        showIcon
-        toggleCalendarOnIconClick
-        dateFormat="dd/MM/yyyy"
-        selected={endDate}
-        className='rounded-md shadow border-none'
-      onChange={(date) =>{
-         setEndDate(date)
-         getRorVsCampaignType("custom",formatDate2(startDate), formatDate2(date))
-        }}
-    />
+              showIcon
+              toggleCalendarOnIconClick
+              dateFormat="dd/MM/yyyy"
+              selected={endDate}
+              className="rounded-md shadow border-none"
+              onChange={(date) => {
+                setEndDate(date);
+                getRorVsCampaignType(
+                  "custom",
+                  formatDate2(startDate),
+                  formatDate2(date)
+                );
+              }}
+            />
           </div>
         </div>
         <div className="w-full">
-         <LineChart4 data={roasCamp}/>
+          <LineChart4 data={roasCamp} />
         </div>
       </div>
       <div className="shadow-xl rounded-lg bg-white flex flex-col items-center gap-3 py-4 px-6">
         <div className="flex justify-between items-center gap-4 w-full">
-        <Select1 selectedOption={selectedOption4} handleChange={handleChange4} open={openCustom4} setOpen={setOpenCustom4} handleSave={getTotalSaleByProductSubcategory}/>
-         <div className="w-[200px]">
-        <Select
-            className="input-loyalty2"
-            styles={{ width: "100px" }}
-            value={selectedCat}
-            options={category?.map((item) => ({
-              value: item?._id,
-              label: item?.name,
-            }))}
-            defaultValue={category?.[0]?._id}
-            onChange={(event)=>{
-              setCat(event);
-              getTotalSaleByProductSubcategory(selectedOption4,"","", event.value)
-              setCatId(event.value);
-            }}
-            placeholder=""
+          <Select1
+            selectedOption={selectedOption4}
+            handleChange={handleChange4}
+            open={openCustom4}
+            setOpen={setOpenCustom4}
+            handleSave={getTotalSaleByProductSubcategory}
           />
-
-         </div>
+          <div className="w-[200px]">
+            <Select
+              className="input-loyalty2"
+              styles={{ width: "100px" }}
+              value={selectedCat}
+              options={category?.map((item) => ({
+                value: item?._id,
+                label: item?.name,
+              }))}
+              defaultValue={category?.[0]?._id}
+              onChange={(event) => {
+                setCat(event);
+                getTotalSaleByProductSubcategory(
+                  selectedOption4,
+                  "",
+                  "",
+                  event.value
+                );
+                setCatId(event.value);
+              }}
+              placeholder=""
+            />
+          </div>
         </div>
-        <p className="text-[#0070BC] text-[18px] font-semibold">Total Sales VS Product SubCategories</p>
+        <p className="text-[#0070BC] text-[18px] font-semibold">
+          Total Sales VS Product SubCategories
+        </p>
         <div className="w-full">
-          <BarChart4 data={saleproductComp}/>
+          <BarChart4 data={saleproductComp} />
         </div>
       </div>
 

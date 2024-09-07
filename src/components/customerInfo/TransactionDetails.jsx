@@ -302,7 +302,7 @@ const TransactionDetails = ({
               }, 2000);
             }}
           >
-            Download Reciept
+            Download Receipt
           </button>
           <button
             className="menuButton4"
@@ -313,7 +313,7 @@ const TransactionDetails = ({
               }, 2000);
             }}
           >
-            Share Reciept
+            Share Receipt
           </button>
         </div>
       )}

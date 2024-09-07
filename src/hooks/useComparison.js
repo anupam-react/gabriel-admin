@@ -11,8 +11,8 @@ const useComparison = () => {
   const [catId, setCatId] = useState(null);
   const [report, setReport] = useState()
 
-  const getSaleComparision = async ()=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparision?type=weekly`)
+  const getSaleComparision = async (type="All")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleComparision?type=${type}`)
     console.log(data)
     setSaleComp(data)
   }
@@ -78,7 +78,8 @@ const useComparison = () => {
     setCatId,
     handleCategory,
     getTotalSaleByProductSubcategory,
-    getRorVsCampaignType
+    getRorVsCampaignType,
+    getSaleComparision
   };
 };
 
