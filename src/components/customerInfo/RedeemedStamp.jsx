@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { fetchApiData } from '../../utiils';
+import { fetchApiData, formatTime2, getDateFromISOString } from '../../utiils';
+import { DialogDefault } from '../common/DilogBox';
+import ProductDetails from './ProductDetails';
 
 const RedeemedStamp = ({data}) => {
 
   const [dataInfo, setDataInfo] = useState();
+  const [isOpenProd, setOpenProd] = useState(false);
 
   const getAllRedeemedStampVouchers = async () => {
     const response = await fetchApiData(
@@ -35,21 +38,21 @@ const RedeemedStamp = ({data}) => {
               <div style={{ color: "#000000", fontWeight: 600 }}>{i+1}</div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>{data?.stampSystemId?._id}</div>
+              <div style={{ color: "#000000B2" }}>{data?.Id}</div>
             </td>
             <td>
               <div style={{ color: "#000000B2" }}>
-                07/12/2023,
-                <br /> 3:00 pm
+              {getDateFromISOString(data?.redeemedDate)},
+                  <br /> {formatTime2(data?.redeemedDate)}
               </div>
             </td>
             <td>
-              <div style={{ display:"flex" , justifyContent:"center" }}>
-              <img src={data?.productId?.image} alt="" className="w-[200px] rounded-lg" />
+              <div style={{ display:"flex" , justifyContent:"center" }}   >
+              <img src={data?.productId?.image} alt="" className="w-[250px] rounded-lg h-[130px] cursor-pointer" onClick={() => setOpenProd(data?.productId)}/>
               </div>
             </td>
             <td>
-              <div style={{ color: "#000000B2" }}>Café Nero, <br /> Manchester Spinning Fields, M6 3AJ</div>
+              <div style={{ color: "#000000B2" }}>{data?.purchaseBy === "App" ? "N/A" : data?.outletId?.firstLineAddress + " , " + data?.outletId?.secondLineAddress + " , " + data?.outletId?.city }</div>
             </td>
           </tr>
 
@@ -57,6 +60,9 @@ const RedeemedStamp = ({data}) => {
          
         </tbody>
       </table>
+      <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
+        <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
+      </DialogDefault>
     </div>
   )
 }

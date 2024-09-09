@@ -21,6 +21,8 @@ const Bouns = ({ handleOpen , id , onClose}) => {
   const [activeOption , setActiveOption] = useState(0)
   const [activePoins , setActivePoints] = useState(0)
   const [activeStamps , setActiveStamps] = useState(0)
+  const [activeCustomStamp , setActiveCustomStamp] = useState(0)
+  const [activeCustomPoint , setActiveCustomPoint] = useState(0)
 
   return (
     <div className="gift-container  no-scrollbar">
@@ -43,21 +45,27 @@ const Bouns = ({ handleOpen , id , onClose}) => {
           }}></div>
         <p className="text-[20px] font-[500] ">Reward Points</p>
       </div>
-      <div className="button-group">
-        <button className={activePoins === 0 ? "button2" :"button1"} onClick={()=>{
+      <div className="button-group" style={{marginLeft:"20px"}}>
+ 
+        <button disabled={activeOption === 1 || activeCustomStamp} className={activeCustomStamp ? "inactiveButton" : activeOption === 1 ? "inactiveButton" : activePoins === 0 ? "button2" :"button1"} onClick={()=>{
           setActivePoints(0)
           setBounData({...bouns, noOfPoint: 50})
         }}>50 Points</button>
-        <button  className={activePoins === 1 ? "button2" :"button1"} onClick={()=>{
+        <button disabled={activeOption === 1 || activeCustomStamp}  className={activeCustomStamp ? "inactiveButton" : activeOption === 1 ? "inactiveButton" : activePoins === 1 ? "button2" :"button1"} onClick={()=>{
           setActivePoints(1)
           setBounData({...bouns, noOfPoint: 200})
         }}>200 Points</button>
-        <button  className={activePoins === 2 ? "button2" :"button1"} onClick={()=>{
+        <button  disabled={activeOption === 1 || activeCustomStamp} className={activeCustomStamp ? "inactiveButton" : activeOption === 1 ? "inactiveButton" : activePoins === 2 ? "button2" :"button1"} onClick={()=>{
           setActivePoints(2)
           setBounData({...bouns, noOfPoint: 300})
         }}>300 Points</button>
       </div>
       <div className="form-container">
+        <div style={{display:"flex" , alignItems:"center" , gap:"20px"}}>
+      <div className={activeCustomStamp ? "w-[20px] h-[20px] bg-[#00B050] rounded-full cursor-pointer" :"w-[20px] h-[20px] bg-[#8F8F8F] rounded-full cursor-pointer"} onClick={()=> {
+          setActiveCustomStamp(!activeCustomStamp)
+         
+          }}></div>
         <div className="input-container">
           <p className="text-[20px] font-[500]">Custom Points</p>
           <input
@@ -65,11 +73,14 @@ const Bouns = ({ handleOpen , id , onClose}) => {
             name="noOfPoint"
             id=""
             className="input"
+            style={{width:"520px"}}
             placeholder=""
-            disabled={activeOption === 1}
+            disabled={activeOption === 1 || !activeCustomStamp}
             value={bouns?.noOfPoint}
            onChange={handleChange} 
           />
+        </div>
+
         </div>
         <div className="flex gap-3 items-center">
           <div className={activeOption === 1 ? "w-[20px] h-[20px] bg-[#00B050] rounded-full cursor-pointer" :"w-[20px] h-[20px] bg-[#8F8F8F] rounded-full cursor-pointer"} onClick={()=> {
@@ -79,24 +90,25 @@ const Bouns = ({ handleOpen , id , onClose}) => {
           <p className="text-[20px] font-[500]">Reward Stamps</p>
         </div>
         <div className="button-group">
-          <button className={activeStamps === 0 ? "button2" :"button1"} onClick={()=>{
+          <button disabled={activeOption === 0 || activeCustomPoint} className={activeCustomPoint ? "inactiveButton" : activeOption === 0 ? "inactiveButton" : activeStamps === 0 ? "button2" :"button1"} onClick={()=>{
           setActiveStamps(0)
           setBounData({...bouns, totalNoOfStamps: 1})
         }}>1 Stamps</button>
-          <button className={activeStamps === 1 ? "button2" :"button1"} onClick={()=>{
+          <button disabled={activeOption === 0 || activeCustomPoint} className={activeCustomPoint ? "inactiveButton" : activeOption === 0 ? "inactiveButton" : activeStamps === 1 ? "button2" :"button1"} onClick={()=>{
           setActiveStamps(1)
           
           setBounData({...bouns, totalNoOfStamps: 2})
         }}>2 Stamps</button>
-          <button className={activeStamps === 2 ? "button2" :"button1"} onClick={()=>{
+          <button disabled={activeOption === 0 || activeCustomPoint} className={activeCustomPoint ? "inactiveButton" : activeOption === 0 ? "inactiveButton" : activeStamps === 2 ? "button2" :"button1"} onClick={()=>{
           setActiveStamps(2)
           setBounData({...bouns, totalNoOfStamps: 3})
         }}>3 Stamps</button>
         </div>
-        <div className="catalogue">
-          <label>Select Product from catalogue</label>
-          <CatalogueProduct setProductId={setProductId}/>
-        </div>
+        <div style={{display:"flex" , alignItems:"center" , gap:"20px"}}>
+      <div className={activeCustomPoint ? "w-[20px] h-[20px] bg-[#00B050] rounded-full cursor-pointer" :"w-[20px] h-[20px] bg-[#8F8F8F] rounded-full cursor-pointer"} onClick={()=> {
+          setActiveCustomPoint(!activeCustomPoint)
+         
+          }}></div>
         <div className="input-container">
           <p className="text-[20px] font-[500]">Custom Stamps</p>
           <input
@@ -105,11 +117,18 @@ const Bouns = ({ handleOpen , id , onClose}) => {
             id=""
             className="input"
             placeholder=""
-            disabled={activeOption === 0}
+            style={{width:"520px"}}
+            disabled={activeOption === 0 || !activeCustomPoint}
             value={bouns?.totalNoOfStamps}
             onChange={handleChange} 
           />
         </div>
+        </div>
+        <div className="catalogue">
+          <label>Select Product from catalogue</label>
+          <CatalogueProduct setProductId={setProductId}/>
+        </div>
+      
         <div className="input-container">
           <label className="text-[20px] font-[500]">Description</label>
           <textarea

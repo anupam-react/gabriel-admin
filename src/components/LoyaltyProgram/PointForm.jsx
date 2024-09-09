@@ -72,8 +72,11 @@ const PointForm = () => {
         <div className="mt-4">
           <p className="text-lg font-semibold pb-2">Choose outlet</p>
           <Select
+           
+            isMulti
+
             className="input-loyalty2"
-            styles={{ width: "20px" }}
+            classNamePrefix="select"
             value={selectedOutlate}
             options={outlate?.docs?.map((user) => ({
               value: user._id,
@@ -81,6 +84,7 @@ const PointForm = () => {
             }))}
             defaultValue={outlate?.docs?.[0]?._id}
             onChange={handleOutlate}
+            placeholder="Ex : Outlet - 01 , Outlet - 02"
           />
         </div>
         <div className="mt-4">

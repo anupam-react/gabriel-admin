@@ -31,15 +31,15 @@ const AppPurchase = ({data}) => {
             <td>
               <div>£{d?.orderId?.price}</div>
             </td>
-            <td>Coupon</td>
+            <td>{d?.promotionType}</td>
             <td>{d?.orderId?.quantity}</td>
-            <td>Linked Card</td>
+            <td>{d?.paymentMethod}</td>
             <td>
               <span
                 className="id-link"
                 onClick={() => setOpenTransaction(d)}
               >
-                 {d?._id}
+                 {d?.Id}
               </span>
             </td>
             <td>{formatTime2(d?.date)}</td>

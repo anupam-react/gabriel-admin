@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 import { formatTime2, getDateFromISOString, getWeekday } from "../../utiils";
-const HistoryDetails = ({ handleOpen , data }) => {
+const HistoryDetails = ({ handleOpen , data , isTimeSpent = true , isType = true }) => {
   return (
     <div className="details-container">
       <p className="details-title"  style={{paddingBottom:"30px"}}>Visit History</p>
@@ -14,21 +14,21 @@ const HistoryDetails = ({ handleOpen , data }) => {
       <table className="history-table">
         <thead>
           <tr className="text-[#000000B2]">
-            <th>Visit Type</th>
+           {isType && <th>Visit Type</th>}
             <th>Day</th>
             <th>Date</th>
             <th>Timing</th>
-            <th className="w-fit">Time Spent</th>
+           {isTimeSpent && <th className="w-fit">Time Spent</th>}
           </tr>
         </thead>
         <tbody>
           {data?.map((d, i)=>(
           <tr key={i}>
-            <td>{d?.type === "app" ? "Online" : "Instore"}</td>
+         { isType &&  <td>{d?.type === "app" ? "Online" : "Instore"}</td>}
             <td>{getWeekday(d?.startTime)}</td>
             <td>{getDateFromISOString(d?.startTime)}</td>
             <td>{formatTime2(d?.startTime)}</td>
-            <td>{Math.round(d?.totalTimeSpent / 60)} Sec</td>
+          { isTimeSpent &&  <td>{Math.round(d?.totalTimeSpent / 60)} Sec</td>}
           </tr>
 
           ))}

@@ -60,13 +60,13 @@ const Promotions = ({ handleOpen , onClose , data}) => {
       <table className="table2">
         <thead>
           <tr>
-            <th>Participation Type</th>
+            <th>Promotion Type</th>
             <th>Participation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style={{ width: "100px" }}>Percentage Discount</td>
+            <td style={{ width: "100px"}}>Percentage Discount</td>
             <td style={{ textAlign: "left", paddingLeft: "50px" }}>
               {dataInfo?.percentageDiscount?.length} Purchases made on discounts –{" "}
               <span
@@ -103,7 +103,7 @@ const Promotions = ({ handleOpen , onClose , data}) => {
             <td style={{ width: "100px" }}>Featured Deals</td>
             <td>
           {dataInfo?.featuredDeals?.map((data, i)=>(
-            <>
+            <div key={i}>
             <div
               style={{
                 display: "flex",
@@ -136,7 +136,7 @@ const Promotions = ({ handleOpen , onClose , data}) => {
               </div>
             </div>
             <hr className="hr5" />
-            </>
+            </div>
           )) }
            
             </td>
@@ -174,7 +174,7 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                   30 times
                 </span>
                 ,<br />
-                Last view: Yesterday, 10:30 pm
+                Last view: {getDateFromISOString(data?.createdAt)} , {formatTime2(data?.createdAt)}
               </div>
             </div>
             <hr className="hr5" />
@@ -214,7 +214,7 @@ const Promotions = ({ handleOpen , onClose , data}) => {
                     see transactions
                   </span>
                   .<br />
-                  Last purchase: Yesterday, 2:00 pm
+                  Last purchase: {getDateFromISOString(data?.orderId?.createdAt)} , {formatTime2(data?.orderId?.createdAt)}
                 </div>
               </div>
               <hr className="hr5" />
@@ -268,12 +268,12 @@ const Promotions = ({ handleOpen , onClose , data}) => {
         <ProductDetails3 handleOpen={setOpenproduct} data={openProduct}/>
       </DialogDefault>
       <DialogDefault open={openHistory} handleOpen={setOpenHistory}>
-        <HistoryDetails handleOpen={setOpenHistory} />
+        <HistoryDetails handleOpen={setOpenHistory} isType={false}/>
       </DialogDefault>
-      <DialogDefault open={openCupon} handleOpen={setOpenCupon}>
+      <DialogDefault open={openCupon} handleOpen={setOpenCupon} size={"lg"}>
         <TransactionCupon handleOpen={setOpenCupon} data={openCupon}/>
       </DialogDefault>
-      <DialogDefault open={openDiscount} handleOpen={setOpenDiscount}>
+      <DialogDefault open={openDiscount} handleOpen={setOpenDiscount} size={"lg"}>
         <TransactionDiscount handleOpen={setOpenDiscount} data={openDiscount}/>
       </DialogDefault>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>

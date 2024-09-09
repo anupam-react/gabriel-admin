@@ -35,7 +35,7 @@ const ClaimHistoryTable = ({ data }) => {
           {dataInfo?.map((data, i) => (
             <tr key={i}>
               <td>
-                <p>{data?.userSpendMyPointId?.noOfPoint} Pts</p>
+                <p>{data?.userSpendMyPointId?.noOfPoint || 0} Pts</p>
               </td>
               <td>{getDateFromISOString(data?.createdAt)}</td>
               <td>
@@ -61,7 +61,7 @@ const ClaimHistoryTable = ({ data }) => {
                 </div>
               </td>
               <td>01</td>
-              <td>VCID474</td>
+              <td>{data?.Id}</td>
             </tr>
           ))}
         </tbody>

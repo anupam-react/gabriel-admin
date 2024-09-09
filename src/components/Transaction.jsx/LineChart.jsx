@@ -54,26 +54,41 @@ const options = {
   }
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', "August" , "September", "October", "November", "December"];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'NEW CUSTOMERS',
-      data: [400, 340,470,500,800,900,400,500,800,900,400],
-      borderColor: '#FEA82F',
-      backgroundColor: '#FEA82F',
-    },
-    {
-      label: 'OLD CUSTOMERS',
-      data: [500, 440,430,540,870,700,450,800,700,850,450],
-      borderColor: '#FD575B',
-      backgroundColor: '#FD575B',
-    },
-  ],
+const monthNames = {
+  1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
+  7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'
 };
+export function LineChart({data}) {
+  const newData =  Object.keys(monthNames).map(month => {
+    const salesRecord = data?.newCustomerSales?.find(item => item?.month == month);
+    return salesRecord ? salesRecord?.totalSales : 0;
+});
 
-export function LineChart() {
-  return <Line options={options} data={data} />;
+  const dataSet = {
+    labels,
+    datasets: [
+      {
+        label: 'NEW CUSTOMERS',
+        data:  Object.keys(monthNames).map(month => {
+          const salesRecord = data?.newCustomerSales?.find(item => item?.month == month);
+          return salesRecord ? salesRecord?.totalSales : 0;
+      }),
+        borderColor: '#FEA82F',
+        backgroundColor: '#FEA82F',
+      },
+      {
+        label: 'OLD CUSTOMERS',
+        data:  Object.keys(monthNames).map(month => {
+          const salesRecord = data?.oldCustomerSales?.find(item => item?.month == month);
+          return salesRecord ? salesRecord?.totalSales : 0;
+      }),
+        borderColor: '#FD575B',
+        backgroundColor: '#FD575B',
+      },
+    ],
+  };
+  
+  return <Line options={options} data={dataSet} />;
 }

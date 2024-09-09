@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
+import { DialogDefault } from "../common/DilogBox";
+import ProductDetails from "./ProductDetails";
 const CurrentStamp = ({ data }) => {
   const [dataInfo, setDataInfo] = useState();
+  const [isOpenProd, setOpenProd] = useState(false);
 
   const getAllCurrentStampVouchers = async () => {
     const response = await fetchApiData(
@@ -35,7 +38,7 @@ const CurrentStamp = ({ data }) => {
               </td>
               <td>
                 <div style={{ color: "#000000B2" }}>
-                  {data?.stampSystemId?._id}
+                  {data?.Id}
                 </div>
               </td>
               <td>
@@ -45,11 +48,11 @@ const CurrentStamp = ({ data }) => {
                 </div>
               </td>
               <td>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div  onClick={() => setOpenProd(data?.productId)} className="cursor-pointer" style={{ display: "flex", justifyContent: "center" }}>
                   <img
                     src={data?.productId?.image}
                     alt=""
-                    className="w-[200px] rounded-lg"
+                    className="w-[250px] rounded-lg h-[130px]"
                   />
                 </div>
               </td>
@@ -64,6 +67,9 @@ const CurrentStamp = ({ data }) => {
           ))}
         </tbody>
       </table>
+      <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
+        <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
+      </DialogDefault>
     </div>
   );
 };

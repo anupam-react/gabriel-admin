@@ -337,7 +337,7 @@ It factors in the revenue generated from a customer, the duration of the relatio
       <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
         <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
       </DialogDefault>
-      <DialogDefault open={openDemographic} handleOpen={setOpenDemographic}>
+      <DialogDefault open={openDemographic} handleOpen={setOpenDemographic} size={"xxl"}>
         <Demographic
           handleOpen={setOpenDemographic}
           setOpenInfo={handleOpen}
@@ -345,42 +345,42 @@ It factors in the revenue generated from a customer, the duration of the relatio
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openLoyality} handleOpen={setOpenLoyality}>
+      <DialogDefault open={openLoyality} handleOpen={setOpenLoyality} size={"xxl"}>
         <Loyality
           handleOpen={setOpenLoyality}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openEngagement} handleOpen={setOpenEngagement}>
+      <DialogDefault open={openEngagement} handleOpen={setOpenEngagement} size={"xxl"}>
         <Engagement
           handleOpen={setOpenEngagement}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openPromotions} handleOpen={setOpenPromotions}>
+      <DialogDefault open={openPromotions} handleOpen={setOpenPromotions} size={"xxl"}>
         <Promotions
           handleOpen={setOpenPromotions}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openReferral} handleOpen={setOpenReferral}>
+      <DialogDefault open={openReferral} handleOpen={setOpenReferral} size={"xxl"}>
         <RefferalActivity
           handleOpen={setOpenReferral}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
+      <DialogDefault open={openTransaction} handleOpen={setOpenTransaction} size={"xxl"}>
         <TransactionHistory
           handleOpen={setOpenTransaction}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openBookmark} handleOpen={setOpenBookmark}>
+      <DialogDefault open={openBookmark} handleOpen={setOpenBookmark} size={"xxl"}>
         <BookMark
           handleOpen={setOpenBookmark}
           setOpenInfo={handleOpen}
@@ -388,21 +388,21 @@ It factors in the revenue generated from a customer, the duration of the relatio
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openVerification} handleOpen={setOpenVerification}>
+      <DialogDefault open={openVerification} handleOpen={setOpenVerification} size={"xxl"}>
         <Verification
           handleOpen={setOpenVerification}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openOffer} handleOpen={setOpenOffer}>
+      <DialogDefault open={openOffer} handleOpen={setOpenOffer} size={"xxl"}>
         <OffersTable
           handleOpen={setOpenOffer}
           data={customerInfo?.User1}
           onClose={() => handleOpen(false)}
         />
       </DialogDefault>
-      <DialogDefault open={openReturn} handleOpen={setOpenReturn}>
+      <DialogDefault open={openReturn} handleOpen={setOpenReturn} size={"xxl"}>
         <ReturnForm
           handleOpen={setOpenReturn}
           onClose={() => handleOpen(false)}

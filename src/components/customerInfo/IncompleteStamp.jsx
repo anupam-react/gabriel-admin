@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AwardMenu from "./AwardMenu";
 import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
+import { DialogDefault } from "../common/DilogBox";
+import ProductDetails from "./ProductDetails";
 
 const IncompleteStamp = ({ data }) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
+  const [isOpenProd, setOpenProd] = useState(false);
 
   const [dataInfo, setDataInfo] = useState();
 
@@ -46,12 +49,14 @@ const IncompleteStamp = ({ data }) => {
                     style={{
                       position: "relative",
                     }}
-                    className="w-[200px]"
+                    className="w-[300px]"
+                   
                   >
                     <img
                       src={data?.productId?.image}
                       alt=""
-                      className="w-[200px] rounded-lg"
+                      className="w-[300px] rounded-lg h-[150px] cursor-pointer"
+                       onClick={() => setOpenProd(data?.productId)} 
                     />
                     <img
                       src="./Vector (3).png"
@@ -74,6 +79,9 @@ const IncompleteStamp = ({ data }) => {
           ))}
         </tbody>
       </table>
+      <DialogDefault open={isOpenProd} handleOpen={setOpenProd}>
+        <ProductDetails handleOpen={setOpenProd} data={isOpenProd} />
+      </DialogDefault>
     </div>
   );
 };

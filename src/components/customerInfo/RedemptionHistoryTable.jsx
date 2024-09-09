@@ -51,8 +51,8 @@ const RedemptionHistoryTable = ({data}) => {
               </div>
             </td>
             <td>01</td>
-            <td>VCID474</td>
-            <td>{data?.purchaseBy === "App" ? "N/A" : "Café Nero, Manchester Spinning Fields, M6 3AJ"}</td>
+            <td>{data?.Id}</td>
+            <td>{data?.purchaseBy === "App" ? "N/A" : data?.outletId?.firstLineAddress + " , " + data?.outletId?.secondLineAddress + " , " + data?.outletId?.city }</td>
           </tr>
 
           ))}

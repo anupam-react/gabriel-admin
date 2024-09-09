@@ -10,6 +10,7 @@ const Engagement = ({ handleOpen, onClose, data }) => {
   const [allMetrics, setAllMetrics] = useState();
   const [storeVisit, setStoreVisit] = useState();
   const [appVisit, setAppVisit] = useState();
+  const [isTimeSpent, setIsTimeSpent] = useState();
 
   console.log(storeVisit);
 
@@ -164,7 +165,10 @@ console.log(newStoreData)
                   <span
                     style={{ color: "#0070BC", textDecoration: "underline" }}
                     className="cursor-pointer"
-                    onMouseOver={() => setOpenTransaction(appVisit)}
+                    onMouseOver={() => { 
+                      setOpenTransaction(appVisit)
+                      setIsTimeSpent(true)
+                    }}
                   >
                     {appVisit?.length} visits
                   </span>{" "}
@@ -193,7 +197,10 @@ console.log(newStoreData)
                     <span
                       style={{ color: "#0070BC", textDecoration: "underline" }}
                       className="cursor-pointer"
-                      onMouseOver={() => setOpenTransaction(data?.visits)}
+                      onMouseOver={() =>{
+                         setOpenTransaction(data?.visits)
+                         setIsTimeSpent(false)
+                        }}
                     >
                       {data?.visits?.length} visits
                     </span>
@@ -209,7 +216,7 @@ console.log(newStoreData)
         </tbody>
       </table>
       <DialogDefault open={openTransaction} handleOpen={setOpenTransaction}>
-        <HistoryDetails handleOpen={setOpenTransaction} data={openTransaction}/>
+        <HistoryDetails handleOpen={setOpenTransaction} data={openTransaction} isTimeSpent={isTimeSpent}/>
       </DialogDefault>
     </div>
   );

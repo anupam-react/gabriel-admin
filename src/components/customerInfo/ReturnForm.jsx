@@ -96,7 +96,7 @@ const ReturnForm = ({ handleOpen, onClose, data }) => {
         </tbody>
       </table>
 
-      <DialogDefault open={showDetails} handleOpen={setShowDetails}>
+      <DialogDefault open={showDetails} handleOpen={setShowDetails} size={"xxl"}>
         <div className="info-container">
           <div className="gift-main">
             <p className="title">Return & Exchange</p>

@@ -3,7 +3,7 @@ import InfoHeader from "./InfoHeader";
 import MenuCard3 from "./MenuCard3";
 import HistoryDetails from "./HistoryDetails";
 import { DialogDefault } from "../common/DilogBox";
-import { fetchApiData, getDateFromISOString } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 
 const BookMark = ({ handleOpen, onClose, data }) => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -96,9 +96,9 @@ const BookMark = ({ handleOpen, onClose, data }) => {
                   {data?.visit?.length} visits,
                 </span>{" "}
                 <br />
-                Last Visit: Today, 10:30 pm
+                Last Visit: {getDateFromISOString(data?.visit?.[0]?.endTime)+ " , " + formatTime2(data?.visit?.[0]?.endTime)}
               </td>
-              <td>{data?.totalTimeSpent / 60} sec</td>
+              <td>{Math.ceil(data?.totalTimeSpent / 60)} sec</td>
             </tr>
           ))}
         </tbody>
@@ -107,6 +107,7 @@ const BookMark = ({ handleOpen, onClose, data }) => {
         <HistoryDetails
           handleOpen={setOpenTransaction}
           data={openTransaction}
+          isType={false}
         />
       </DialogDefault>
     </div>

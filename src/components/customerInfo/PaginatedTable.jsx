@@ -124,7 +124,7 @@ const PaginatedTable = ({customer}) => {
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo}>
+      <DialogDefault open={isOpenInfo} handleOpen={setOpenInfo} size={"xxl"}>
         <CustomeInfo handleOpen={setOpenInfo} customerInfo={customerInfo} mostViewProd={mostViewProd}/>
       </DialogDefault>
     </>

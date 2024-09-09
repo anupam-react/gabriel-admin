@@ -12,7 +12,7 @@ const useSaving = () => {
   const [image, setImage] = useState("");
   const [termAndCondition, setTermAndCondition] = useState("");
   const [price, setPrice] = useState("");
-  const [outletId, setOutletId] = useState("");
+  const [outletId, setOutletId] = useState([]);
   const [productId, setProductId] = useState("");;
   const [selectedProduct, setSelectProduct] = useState(null);
   const [selectedOutlate, setSelectOutlate] = useState(null);
@@ -22,7 +22,7 @@ const useSaving = () => {
 
   const handleOutlate = (event) => {
     setSelectOutlate(event);
-    setOutletId(event.value);
+    setOutletId(event?.map((data)=> data?.value));
   };
 
   const getMakeASavingById = async (id) => {
@@ -41,7 +41,9 @@ const useSaving = () => {
     formData.append('price', price);
     formData.append('description', description);
     formData.append('productId', productId);
-    formData.append('outletId', outletId);
+    {outletId?.map((d , i)=>(
+      formData.append(`outletId[${i}]`, d)
+    ))}
     formData.append('termAndCondition', termAndCondition);
 
 

@@ -7,7 +7,7 @@ export function DialogDefault(props) {
 
   return (
     <>
-      <Dialog open={props.open} handler={props.handleOpen}>
+      <Dialog open={props.open} handler={props.handleOpen} size={props.size}>
       {props.children}
       </Dialog>
     </>

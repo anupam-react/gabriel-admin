@@ -22,6 +22,8 @@ const Transaction = () => {
     getAverageTransactionValue,
     getTopSellingItems,
     getTimeBaseAnalytics,
+    loyaltyMetrics,
+    getCustomerLoyaltyMetrics,
    } = useTransaction()
 
   const [open, setOpen] = useState(false);
@@ -100,6 +102,7 @@ const Transaction = () => {
     if (event.target.value === "custom") {
       setOpenCustom6(true);
     }else{
+      getCustomerLoyaltyMetrics(event.target.value)
     }
   };
 
@@ -145,33 +148,7 @@ const Transaction = () => {
     <div>
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">Transaction Data</p>
-        {/* <img
-          src="./Mask group (6).svg"
-          alt=""
-          className="h-8 w-8 cursor-pointer"
-        /> */}
-        {/* <div
-          className="flex items-center px-6 h-12"
-          style={{
-            backgroundColor: "#FFFF",
-            width: "25rem",
-            borderRadius: "12px",
-            color: "#8BA3CB",
-          }}
-        >
-          <img src="./image 2 (3).svg" alt="search" className="w-6 h-6" />
-          <input
-            type="text"
-            className="border-none w-80 bg-transparent outline-none focus:ring-0 focus:shadow-none focus:border-none"
-            placeholder="Search in Transaction Data"
-          />
-        </div>
-        <div className="flex">
-          <button  onClick={() => setIsOpen(true)} className="flex items-center gap-2" >
-            <img src="./Mask group (8).png" alt="" className="w-5 h-5" />
-            <p className="text-[#0070BC] font-semibold">FILTERS</p>
-          </button>
-        </div> */}
+        
         <div className="flex">
           <button className="export flex gap-2" onClick={() => setOpen(true)}>
             <img src="./Mask group (7).svg" alt="" className="w-5 h-5" />
@@ -207,10 +184,10 @@ const Transaction = () => {
             <p className="text-[#0070BC] font-semibold text-lg ">
               CUSTOMER LOYALTY METRICS
             </p>
-            <Select1  selectedOption={selectedOption6}  handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6}/>
+            <Select1  selectedOption={selectedOption6}  handleChange={handleChange6} open={openCustom6} setOpen={setOpenCustom6} handleSave={getCustomerLoyaltyMetrics}/>
           </div>
           <div className="w-[650px] h-[350px]">
-            <LineChart />
+            <LineChart data={loyaltyMetrics}/>
           </div>
         </div>
       </div>

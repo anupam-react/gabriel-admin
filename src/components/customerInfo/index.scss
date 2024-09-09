@@ -153,6 +153,13 @@
   border-radius: 10px;
   width: 280px;
 }
+.nonVerifyButton {
+  color: white;
+  background: gray;
+  padding: 6px 20px;
+  border-radius: 10px;
+  width: 280px;
+}
 .button-container2 {
   display: flex;
   flex-direction: column;
@@ -454,6 +461,16 @@
   background: linear-gradient(180deg, #fea82f 0%, #fd575b 100%);
   border: none;
 }
+.inactiveButton{
+  border: 1px solid black;
+  padding: 8px 40px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: white;
+  background: gray;
+  border: none;
+}
+
 .calender {
   display: flex;
   justify-content: space-between;
@@ -585,24 +602,24 @@
   padding: 16px 24px;
   color: black;
   font-weight: 500;
-  height: 100vh;
-  width: 100vw;
+  // height: 100vh;
+  // width: 100vw;
   overflow: auto;
   background-color: white;
   border: none;
   border-radius: 14px;
-  margin-left: -5vw;
+  // margin-left: -5vw;
 }
-@media only screen and (min-width: 1200px) {
-  .info-container {
-    margin-left: -18vw;
-  }
-}
-@media only screen and (min-width: 1319px) {
-  .info-container {
-    margin-left: -30vw;
-  }
-}
+// @media only screen and (min-width: 1200px) {
+//   .info-container {
+//     margin-left: -18vw;
+//   }
+// }
+// @media only screen and (min-width: 1319px) {
+//   .info-container {
+//     margin-left: -30vw;
+//   }
+// }
 .hr2 {
   background-color: black;
   margin: 20px 0px;

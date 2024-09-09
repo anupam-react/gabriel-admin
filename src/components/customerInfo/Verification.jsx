@@ -91,7 +91,7 @@ const Verification = ({ handleOpen , onClose , data}) => {
             <td>
               {" "}
               <button
-                className="menuButton6"
+                className={dataInfo?.studentEmailVerification ? "menuButton6" :"nonVerifyButton"}
                 onClick={() => setOpenPromotion(true)}
               >
                 Send Customized Student Promotion
@@ -153,7 +153,7 @@ const Verification = ({ handleOpen , onClose , data}) => {
       <DialogDefault open={openPromotion} handleOpen={setOpenPromotion}>
         <AwardCustomer
           handleOpen={setOpenPromotion}
-          title="Send Customized Student Promotion"
+          title="Send Promotion"
           id={dataInfo?._id}
         />
       </DialogDefault>

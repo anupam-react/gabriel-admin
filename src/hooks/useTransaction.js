@@ -8,6 +8,7 @@ const useTransaction = () => {
   const [averageTransaction, setAverageTransaction] = useState([])
   const [topSellingItems, setTopSellingItems] = useState([])
   const [timeBaseAnalytics, setTimeBaseAnalytics] = useState([])
+  const [loyaltyMetrics, setLoyaltyMetrics] = useState([])
   const [report, setReport] = useState() 
 
   const getTransactionSaleVolume = async (type = "All" ,startDate ="", endDate="")=>{
@@ -37,6 +38,10 @@ const useTransaction = () => {
     const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getTimeBaseAnalytics?type=${type}&startDate=${startDate}&endDate=${endDate}`)
     setTimeBaseAnalytics(data?.data)
   }
+  const getCustomerLoyaltyMetrics = async (type = "All",startDate ="", endDate ="")=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getCustomerLoyaltyMetrics?type=${type}&startDate=${startDate}&endDate=${endDate}`)
+    setLoyaltyMetrics(data?.data)
+  }
 
   async function getTransactionReport(typeOfData="",type="All" , fromDate="", toDate="" ) {
     const data = await createApiData(
@@ -54,7 +59,7 @@ const useTransaction = () => {
     getAverageTransactionValue()
     getTopSellingItems()
     getTimeBaseAnalytics()
-  
+    getCustomerLoyaltyMetrics()
   },[])
 
   return {
@@ -63,6 +68,8 @@ const useTransaction = () => {
     averageTransaction,
     topSellingItems,
     timeBaseAnalytics,
+    loyaltyMetrics,
+    getCustomerLoyaltyMetrics,
     getTransactionSaleVolume,
     getTransactionCount,
     getAverageTransactionValue,

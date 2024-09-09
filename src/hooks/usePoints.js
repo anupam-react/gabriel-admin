@@ -30,7 +30,7 @@ const usePoints = () => {
 
   const handleOutlate = (event) => {
     setSelectOutlate(event);
-    setOutletId(event.value);
+    setOutletId(event?.map((data)=> data?.value));
   };
 
   const handleMyPoints = async (event) => {
@@ -42,7 +42,9 @@ const usePoints = () => {
     formData.append('noOfPoint', noOfPoint);
     formData.append('description', description);
     formData.append('productId', productId);
-    formData.append('outletId', outletId);
+    {outletId?.map((d , i)=>(
+      formData.append(`outletId[${i}]`, d)
+    ))}
     formData.append('termAndCondition', termAndCondition);
 
 
