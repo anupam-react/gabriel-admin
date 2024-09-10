@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DialogDefault } from "../common/DilogBox";
 import { formatDate3 } from "../../utiils";
 import usePromotion from "../../hooks/usePromotion";
+import usePaymentReward from "../../hooks/usePaymentReward";
 const PromotionPreview = ({handleOpen, isPay = false }) => {
   const navigate = useNavigate();
   const [openSuccess, setSuccess] = useState(false);
@@ -12,8 +13,10 @@ const PromotionPreview = ({handleOpen, isPay = false }) => {
     setPromotionData
   } = usePromotion();
 
+  const  { handlePayment } = usePaymentReward()
+
   const handlePay = ()=>{
-    navigate("/customer/payment/customer") 
+    handlePayment(promotionData?._id)
     setPromotionData("")
   }
   return (

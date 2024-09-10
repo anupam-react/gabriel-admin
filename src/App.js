@@ -67,6 +67,7 @@ import FollowerAdPreview from "./components/Marketing/FollowerAdPreview.jsx";
 import MarketingReviewCampaignShop from "./components/Marketing/MarketingReviewCampaignShop.jsx";
 import MarktingAdPreviewCoupon from "./components/Marketing/MarktingAdPreviewCoupon.jsx";
 import ThankYouPage from "./components/Marketing/ThankYouPage.jsx";
+import ThankYouPageRewards from "./components/customerInfo/ThankYouPageRewards.jsx";
 
 function App() {
   return (
@@ -237,8 +238,12 @@ function App() {
         </Route>
         <Route path="/" element={<Initialpage />} />
         <Route
-            path="/:id"
+            path="/thanks/:id"
             element={<ThankYouPage />}
+          />
+        <Route
+            path="/thanks/:id"
+            element={<ThankYouPageRewards />}
           />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

@@ -3,6 +3,7 @@ import "./index.scss";
 import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 import { DialogDefault } from "../common/DilogBox";
 import ProductDetails from "./ProductDetails";
+import ImageCard from "./ImageCard";
 const CurrentStamp = ({ data }) => {
   const [dataInfo, setDataInfo] = useState();
   const [isOpenProd, setOpenProd] = useState(false);
@@ -48,12 +49,10 @@ const CurrentStamp = ({ data }) => {
                 </div>
               </td>
               <td>
-                <div  onClick={() => setOpenProd(data?.productId)} className="cursor-pointer" style={{ display: "flex", justifyContent: "center" }}>
-                  <img
-                    src={data?.productId?.image}
-                    alt=""
-                    className="w-[250px] rounded-lg h-[130px]"
-                  />
+                <div onClick={() => setOpenProd(data?.productId)} className="cursor-pointer" style={{ display: "flex", justifyContent: "center" }}>
+                  <ImageCard image={data?.productId?.image} stamps={data?.totalNoOfStamps} completeNoOfStamps={data?.completeNoOfStamps}/>
+                  
+            
                 </div>
               </td>
               <td>

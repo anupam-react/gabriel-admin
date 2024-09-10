@@ -58,7 +58,7 @@ const PromotionsTable = ({data}) => {
                 onClick={() => setOpenTransaction(data)}
               >
                 {" "}
-                ID: {data?.transactionId?._id}
+                ID: {data?.transactionId?.Id}
               </span>
             </td>
             <td>{data?.points} pts</td>

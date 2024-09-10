@@ -53,7 +53,7 @@ const RefferalTable = ({data}) => {
                   onClick={() => setOpenTransaction(data)}
                 >
                   {" "}
-                  ID: {data?.transactionId?._id}
+                  ID: {data?.transactionId?.Id}
                 </span>{" "}
               </div>
             </td>

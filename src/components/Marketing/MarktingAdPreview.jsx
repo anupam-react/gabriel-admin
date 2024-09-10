@@ -6,26 +6,40 @@ import { formatDate } from "../../utiils";
 import { initialState } from "../atoms/campaignState";
 import usePayment from "../../hooks/usePayment";
 const MarktingAdPreview = ({ isPay = false }) => {
-  const { campaignData , setCampaignData} = useCampaign()
-  const {handlePayment} = usePayment()
+  const { campaignData, setCampaignData } = useCampaign();
+  const { handlePayment } = usePayment();
   const navigate = useNavigate();
   const handleSubmit = () => {
-    isPay ?  sendpayment() : navigate("/marketing/ad-confirm");
+    isPay ? sendpayment() : navigate("/marketing/ad-confirm");
   };
 
-  const sendpayment = ()=>{
-    handlePayment(campaignData?._id)
-    setCampaignData(initialState)
-  }
+  const sendpayment = () => {
+    handlePayment(campaignData?._id);
+    setCampaignData(initialState);
+  };
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-2xl font-bold">
-          {isPay ? "Run Campaign" : campaignData?.typeOfCampaign === "Coupon" ? "Coupon Ad Preview" : campaignData?.typeOfCampaign === "Percentage Discount" ?  "Discount Ad Preview" : "Offer Ad Preview"}
+          {isPay
+            ? "Run Campaign"
+            : campaignData?.typeOfCampaign === "Coupon"
+            ? "Coupon Ad Preview"
+            : campaignData?.typeOfCampaign === "Percentage Discount"
+            ? "Discount Ad Preview"
+            : "Offer Ad Preview"}
         </p>
-        <button className="back" onClick={()=>  isPay ? navigate("/marketing/ad-preview") : navigate("/marketing/review-campaign")}> 
-        <img src="../back.png" alt="" />
-        Back</button>
+        <button
+          className="back"
+          onClick={() =>
+            isPay
+              ? navigate("/marketing/ad-preview")
+              : navigate("/marketing/review-campaign")
+          }
+        >
+          <img src="../back.png" alt="" />
+          Back
+        </button>
       </div>
       <div className="ad-container">
         <p className="text-[#121212] font-semibold text-xl pb-4">
@@ -37,14 +51,22 @@ const MarktingAdPreview = ({ isPay = false }) => {
             <img src="../image 720 (2).png" alt="" className="h-fit" />
             <div>
               <div className="">
-              <div className="cardContainer" style={{width:"480px"}}>
-        <img src={campaignData?.couponImage} alt="" className="w-[200px] h-[100px]" />
-        {campaignData?.typeOfCampaign === "Percentage Discount" ? 
-         <p className="font-[600] text-2xl">{campaignData?.discountValue}% Discount</p> :
-
-        <p className="font-[600] text-2xl">{campaignData?.typeOfCampaign}</p>
-      }
-      </div>
+                <div className="cardContainer" style={{ width: "480px" }}>
+                  <img
+                    src={campaignData?.couponImage}
+                    alt=""
+                    className="w-[200px] h-[100px]"
+                  />
+                  {campaignData?.typeOfCampaign === "Percentage Discount" ? (
+                    <p className="font-[600] text-2xl">
+                      {campaignData?.discountValue}% Discount
+                    </p>
+                  ) : (
+                    <p className="font-[600] text-2xl">
+                      {campaignData?.typeOfCampaign}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="flex justify-end gap-2 mt-2">
                 <img src="../mdi_gift.png" alt="" />
@@ -54,9 +76,7 @@ const MarktingAdPreview = ({ isPay = false }) => {
             </div>
           </div>
           <div className="font-bold mt-2 text-lg">
-            <p className="pb-2 ">
-            {campaignData?.description}
-            </p>
+            <p className="pb-2 ">{campaignData?.description}</p>
             <p className="pb-2">Exp: {formatDate(campaignData?.expireDate)}</p>
 
             <button

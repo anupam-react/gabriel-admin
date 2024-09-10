@@ -5,6 +5,7 @@ import LoyaltyReport from "./LoyaltyReport";
 import LoyaltyFilter from "./LoyaltyFilter";
 import { useNavigate } from "react-router-dom";
 import useLoyality from "../../hooks/useLoyality";
+import PointCard from "./PointCard";
 const LoyaltyProgram = () => {
   const {
     stamps,
@@ -107,6 +108,7 @@ const LoyaltyProgram = () => {
               <LoyalityCard
                 image={d?.productId?.image}
                 key={i}
+                stamps={d?.totalNoOfStamps}
                 text={d?.description}
               />
             ))}
@@ -127,9 +129,10 @@ const LoyaltyProgram = () => {
           <p className="py-4 font-semibold text-[24px]">Spend My Points</p>
           <div className="flex flex-wrap gap-4 justify-between">
             {points?.map((d, i) => (
-              <LoyalityCard
+              <PointCard
                 image={d?.image}
                 key={i}
+                point={d?.noOfPoint}
                 text={d?.productId?.name}
               />
             ))}

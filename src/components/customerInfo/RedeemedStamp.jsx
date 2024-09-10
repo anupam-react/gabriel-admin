@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchApiData, formatTime2, getDateFromISOString } from '../../utiils';
 import { DialogDefault } from '../common/DilogBox';
 import ProductDetails from './ProductDetails';
+import ImageCard from './ImageCard';
 
 const RedeemedStamp = ({data}) => {
 
@@ -47,9 +48,9 @@ const RedeemedStamp = ({data}) => {
               </div>
             </td>
             <td>
-              <div style={{ display:"flex" , justifyContent:"center" }}   >
-              <img src={data?.productId?.image} alt="" className="w-[250px] rounded-lg h-[130px] cursor-pointer" onClick={() => setOpenProd(data?.productId)}/>
-              </div>
+            <div onClick={() => setOpenProd(data?.productId)} className="cursor-pointer" style={{ display: "flex", justifyContent: "center" }}>
+                  <ImageCard image={data?.productId?.image} stamps={data?.totalNoOfStamps} completeNoOfStamps={data?.completeNoOfStamps}/>
+                </div>
             </td>
             <td>
               <div style={{ color: "#000000B2" }}>{data?.purchaseBy === "App" ? "N/A" : data?.outletId?.firstLineAddress + " , " + data?.outletId?.secondLineAddress + " , " + data?.outletId?.city }</div>

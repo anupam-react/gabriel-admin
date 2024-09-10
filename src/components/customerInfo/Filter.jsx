@@ -82,8 +82,8 @@ const Filter = ({ closeDrawer, open , getCustomer }) => {
                   Marketing Campaign
                   <input
                     type="checkbox"
-                    checked={selectedOption === 'Marketing campaign'}
-                    onChange={()=>handleCheckboxChange('Marketing campaign')}
+                    checked={selectedOption === 'Market campaign'}
+                    onChange={()=>handleCheckboxChange('Market campaign')}
                   />
                   <span class="checkmark"></span>
                 </label>
@@ -106,7 +106,7 @@ const Filter = ({ closeDrawer, open , getCustomer }) => {
             <button
               className="button2"
                 onClick={() => {
-                  getCustomer("", startDate , endDate);
+                  getCustomer("", startDate , endDate , selectedOption);
                   closeDrawer()
                 }}
             >

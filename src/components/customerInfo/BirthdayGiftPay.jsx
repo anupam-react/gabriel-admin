@@ -3,9 +3,11 @@ import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
 import { useNavigate } from "react-router-dom";
 import useOffer from "../../hooks/useOffer";
+import usePaymentReward from "../../hooks/usePaymentReward";
 
 const BirthdayGiftPay = ({ handleOpen }) => {
   const {  offerData }= useOffer();
+  const  { handlePayment } = usePaymentReward()
   const navigate = useNavigate("")
   const data = [
     
@@ -49,7 +51,7 @@ const BirthdayGiftPay = ({ handleOpen }) => {
           </div>
         ))}
           </div>
-           <button className="menuButton" onClick={()=> navigate('/customer/payment/customer')}>Pay £1</button>
+           <button className="menuButton" onClick={()=> handlePayment(offerData?._id)}>Pay £1</button>
 
       </div>
          
