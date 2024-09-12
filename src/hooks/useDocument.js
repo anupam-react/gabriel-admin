@@ -14,6 +14,7 @@ const useDocument = () => {
   const [businessBank, setBusinessBank] = useState("");
   const [sortCode, setSortCode] = useState("");
   const [vatRegNo, setVatRegNo] = useState("");
+  const [legalNameOfBusiness, setlegalNameOfBusiness] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const useDocument = () => {
     console.log(accountNumber)
 
     const formData = {}
+   if(legalNameOfBusiness) formData.legalNameOfBusiness = legalNameOfBusiness
    if(accountNumber) formData.accountNumber = accountNumber
    if(businessBank) formData.businessBank = businessBank
    if(sortCode) formData.sortCode = sortCode
@@ -118,6 +120,8 @@ const useDocument = () => {
     proofOfAddress, setProofOfAddress,
     accountNumber, setAccountNumber,
     businessBank, setBusinessBank,
+    legalNameOfBusiness,
+    setlegalNameOfBusiness,
     sortCode, setSortCode,
     vatRegNo, setVatRegNo,
     isSuccess,

@@ -30,7 +30,8 @@ const Account = () => {
     setSuccess,
     handleAddStaff,
     handleCreateCard,
-    error
+    error,
+    cardDetails
   } = useAccount();
   const {
     profile,
@@ -50,6 +51,7 @@ const Account = () => {
     setCategoryId,
     subCategoryId,
     setSubCategoryId,
+    
     handleUpdateProfile,
   } = useProfile();
 
@@ -68,6 +70,8 @@ const Account = () => {
     setOwnerOperatorId,
     proofOfAddress,
     setProofOfAddress,
+    legalNameOfBusiness,
+    setlegalNameOfBusiness,
     vatRegNo,
     setVatRegNo,
     handleAccountDocument,
@@ -106,6 +110,8 @@ const Account = () => {
     { value: "boutique_wine_spirits", label: "Boutique Wine and Spirits" },
     { value: "craft_hobby_store", label: "Craft and Hobby Store" },
   ];
+
+console.log(cardDetails)
 
   const handleSave = () => {
     console.log("Security Question:", question);
@@ -455,7 +461,7 @@ const Account = () => {
                 // onChange={(e) => setPassword(e.target.value)}
               />
 
-              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+              <span onClick={()=> {window.open(profile?.documentId?.businessLicense)}} className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
                 VIEW
               </span>
               {/* <img
@@ -485,29 +491,44 @@ const Account = () => {
                   type="file"
                   className="hidden"
                   onChange={handleFileInputChange1}
+                  
                 />
               </label>
             </div>
           </div>
           <div className="flex gap-[20px]">
-            <div className="relative">
+            <div className="relative w-[50vw] group ">
               <img
                 src="./image 52 (2).png"
                 alt=""
-                className="w-5 h-5 absolute top-2 left-4"
+                className="w-6 h-6 absolute top-2 left-4"
               />
               <input
-                type="email"
-                name="email"
-                id="email"
+                type="name"
+                name="name"
+                id="name"
                 placeholder="Certificate of Incorporation"
                 className="account-input"
-                // style={{ border: "1px solid red" }}
                 required
-                // value={password}
+                onClick={() => {
+                  setIsView(1);
+                }}
                 // onChange={(e) => setPassword(e.target.value)}
               />
+
+              <span onClick={()=> {window.open(profile?.documentId?.certificateOfInCorporation)}} className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+                VIEW
+              </span>
+              {/* <img
+                src=""
+                alt="view"
+                onClick={() => {
+                  setIsView(1);
+                }}
+                className="w-5 h-5 absolute top-2 right-[100px] cursor-pointer opacity-0 group-hover:opacity-100"
+              /> */}
             </div>
+
             <div className="">
               <label
                 for="dropzone-file"
@@ -525,10 +546,12 @@ const Account = () => {
                   type="file"
                   className="hidden"
                   onChange={handleFileInputChange2}
+                  
                 />
               </label>
             </div>
           </div>
+      
         </div>
         <p className="text-black">Identity Verification</p>
         <div className="flex flex-col gap-4">
@@ -552,7 +575,7 @@ const Account = () => {
                 // onChange={(e) => setPassword(e.target.value)}
               />
 
-              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+              <span onClick={()=> {window.open(profile?.documentId?.ownerOperatorId)}} className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
                 VIEW
               </span>
               {/* <img
@@ -606,7 +629,7 @@ const Account = () => {
                 // onChange={(e) => setPassword(e.target.value)}
               />
 
-              <span className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
+              <span onClick={()=> {window.open(profile?.documentId?.proofOfAddress)}} className="w-5 h-5 absolute top-2 right-[150px] font-semibold text-[#fea82f] cursor-pointer opacity-0 group-hover:opacity-100">
                 VIEW
               </span>
               {/* <img
@@ -661,16 +684,16 @@ const Account = () => {
               placeholder="Business Name"
               className="account-input"
               required
-              value={ fullName || profile?.fullName}
+              value={ legalNameOfBusiness || profile?.documentId?.legalNameOfBusiness}
               onClick={() => {
                 setIsEditing(4);
               }}
-              onChange={(e) => setFullName(e.target.value)}
+              onChange={(e) => setlegalNameOfBusiness(e.target.value)}
             />
             {isEditing === 4 ? (
               <span
                 onClick={() => {
-                  handleUpdateProfile();
+                  handleAccountDocument();
                   setIsEditing(false);
                 }}
                 className="text-green-500 font-semibold absolute top-2 right-4 cursor-pointer"
@@ -713,7 +736,7 @@ const Account = () => {
               styles={{ width: "20px" }}
               value={selectedSubCat}
               options={options}
-              defaultValue={options?.[0]?.value}
+              defaultValue={ profile?.category?.[0] || options?.[0]?.value}
               placeholder="Industry"
               onChange={(e) => {
                 setSubCat(e);
@@ -734,7 +757,7 @@ const Account = () => {
               placeholder="VAT REG. No"
               className="account-input"
               required
-              value={vatRegNo}
+              value={vatRegNo || profile?.documentId?.vatRegNo}
               onClick={() => {
                 setIsEditing(5);
               }}
@@ -794,7 +817,7 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  value={accountNumber}
+                  value={accountNumber || profile?.documentId?.accountNumber}
                   onChange={(e) => setAccountNumber(e.target.value)}
                   onClick={() => {
                     setIsEditing(6);
@@ -831,7 +854,7 @@ const Account = () => {
                 />
                 <select
                   id="countries"
-                  value={businessBank}
+                  value={businessBank || profile?.documentId?.businessBank}
                   onChange={(e) => setBusinessBank(e.target.value)}
                   className="account-input"
                 >
@@ -853,7 +876,7 @@ const Account = () => {
                   placeholder="Sort Code"
                   className="account-input"
                   required
-                  value={sortCode}
+                  value={sortCode || profile?.documentId?.sortCode}
                   onChange={(e) => setSortCode(e.target.value)}
                   onClick={() => {
                     setIsEditing(9);
@@ -896,7 +919,7 @@ const Account = () => {
                   placeholder="Account Number"
                   className="account-input"
                   required
-                  value={accountNumber}
+                  value={accountNumber || profile?.documentId?.accountNumber}
                   onChange={(e) => setAccountNumber(e.target.value)}
                   onClick={() => {
                     setIsEditing(6);

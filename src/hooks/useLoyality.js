@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from "react";
-import {  fetchApiData } from "../utiils";
+import {  createApiData, fetchApiData } from "../utiils";
 
 
 const useLoyality = () => {
   const [stamps, setStamps] = useState([]);
   const [saving, setSaving] = useState([]);
   const [points, setPoints] = useState([]);
+  const [report, setReport] = useState() 
 
 
   async function getStampSystemByToken(search="",page=1, limit=1000, productId="", pointEarned="", subCategoryId="", categoryId="", outletId="",minPrice="",maxPrice="",fromDate="", toDate="") {
@@ -35,6 +36,14 @@ const useLoyality = () => {
     setPoints(data?.data?.docs);
   }
 
+  async function getLoyalityReport(typeOfData="",type="All" , fromDate="", toDate="" ) {
+    const data = await createApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getLoyaltyProgramReport?type=${type}&startDate=${fromDate}&endDate=${toDate}&typeOfData=${typeOfData}`
+    );
+    window.open(data?.pdfLink)
+   setReport(data?.pdfLink)
+  }
+
 
 // https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getLoyaltyProgramFilterSerachByToken?page=1&limit=10&type=spendMyPoint 
 
@@ -53,6 +62,7 @@ const useLoyality = () => {
     getStampSystemByToken,
     getMakeASavingByToken,
     getSpendMyPointByToken,
+    getLoyalityReport
   };
 };
 

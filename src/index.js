@@ -9,7 +9,7 @@ import { RecoilRoot } from 'recoil';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51Kr67EJsxpRH9smiVHbxmogutwO92w8dmTUErkRtIsIo0lR7kyfyeVnULRoQlry9byYbS8Uhk5Mq4xegT2bB9n9F00hv3OFGM5');
+const stripePromise = loadStripe('pk_test_51PLUpsEcQKPc1Cwf9mn3PbaHcrDEiU1Ozo9fUwGsifU40asjgykoU6yM4ZTYOQWrpgNsEfHBjQf9CJKJuVrFzqc100UvDJOXuc');
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

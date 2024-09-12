@@ -4,12 +4,30 @@ import { PerformanceChart } from "./PerformanceChart";
 import { DialogDefault } from "../common/DilogBox";
 import { useNavigate, useParams } from "react-router-dom";
 import useCampaign from "../../hooks/useCampaign";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
   const {getMarketingCampaignById , campaignData} = useCampaign()
   const [openInfo, setOpenInfo] = useState(false);
+  const [location , setLocation] = useState()
+  const [viewPerformance , setviewPerformance] = useState([])
   const {id} = useParams()
+
+  async function getMarketingLocation() {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getReachedByLocation/${id}`
+    );
+    setLocation(data?.data);
+  }
+  async function getMarketingViewPerformance() {
+    const data = await fetchApiData(
+      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignLastWeekPerformance/${id}`
+    );
+    setviewPerformance(data?.data);
+  }
   useEffect(()=>{
     getMarketingCampaignById(id)
+    getMarketingLocation()
+    getMarketingViewPerformance()
   },[id])
   const navigate = useNavigate();
   return (
@@ -60,24 +78,24 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
           <div className="type-text">
             <p>People Reached</p>
             <span>:</span>
-            <p className="text-[#1BB4F0]">2000</p>
+            <p className="text-[#1BB4F0]">{viewPerformance?.performanceOverview?.peopleReached}</p>
           </div>
           <div className="type-text">
             <p>Current Sales</p>
             <span>:</span>
-            <p className="text-[#00B050]">£2500 </p>
+            <p className="text-[#00B050]">£{viewPerformance?.performanceOverview?.currentSales}</p>
           </div>
           <div className="type-text">
             <p>Ad Spent</p>
             <span>:</span>
-            <p className="text-[#FEA82F]">£{campaignData?.campaignCost} </p>
+            <p className="text-[#FEA82F]">£{viewPerformance?.performanceOverview?.adSpent}</p>
           </div>
           {isOfferCard && (
             <div className="type-text">
               <p>Current ROAS</p>
               <span>:</span>
               <div className="flex gap-2">
-                <div className="text-[#1BB4F0]">10.2</div>
+                <div className="text-[#1BB4F0]">{viewPerformance?.performanceOverview?.currentROAS}</div>
                 <img
                   src="../../Group 38355.png"
                   alt=""
@@ -94,40 +112,39 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
             <p className="text-[#131313]">Growth</p>
      
           </div>
-          <PerformanceChart />
+          <PerformanceChart data={viewPerformance?.dailyPerformance}/>
        
         </div>
         <div className="campaign-view-main">
           <p className="text-xl font-bold text-[#1BB4F0]">
             Reached by Location
           </p>
-          <div className="flex items-center gap-2">
-            <p>London</p>
+          {location?.map((d, i)=>(
+          <div className="flex items-center gap-2" key={i}>
+            <p>{d.location}</p>
             <p className="w-[200px] py-2 bg-[#0070BC] h-fit"></p>
-            <p>4000</p>
+            <p>{d?.total}</p>
           </div>
-          <div className="flex items-center gap-2">
-            <p>Manchester</p>
-            <p className="w-[200px] py-2 bg-[#FEA82F] h-fit"></p>
-            <p>2000</p>
-          </div>
+
+          ))}
+        
         </div>
         <div className="campaign-view-main">
           <p className="text-xl font-bold text-[#1BB4F0]">Details</p>
           <div className="type-text">
             <p>Ad Duration</p>
             <span>:</span>
-            <p className="text-[#1BB4F0]">25 days</p>
+            <p className="text-[#1BB4F0]">{campaignData?.noOfDays} days</p>
           </div>
           <div className="type-text">
             <p>Start Date</p>
             <span>:</span>
-            <p className="text-[#00B050]">08 Jan 2024 18:26 </p>
+            <p className="text-[#00B050]">{getDateFromISOString(campaignData?.createdAt) + " , " + formatTime2(campaignData?.createdAt)} </p>
           </div>
           <div className="type-text">
             <p>End date</p>
             <span>:</span>
-            <p className="text-[#FEA82F]">30 Jan 2024 18:26</p>
+            <p className="text-[#FEA82F]">{getDateFromISOString(campaignData?.expireDate) + " , " + formatTime2(campaignData?.expireDate)}</p>
           </div>
           <div className="type-text">
             <p>Created by</p>
@@ -142,7 +159,7 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
           <div className="type-text">
             <p>Current Amount Spent</p>
             <span>:</span>
-            <p className="text-[#FEA82F]">£250</p>
+            <p className="text-[#FEA82F]">£{campaignData?.campaignCost}</p>
           </div>
         </div>
         <div className="campaign-view-main">

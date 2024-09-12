@@ -41,7 +41,7 @@ const useAccount = () => {
     const data = await fetchApiData(
       'https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getUserPaymentMethod'
     );
-    setCardDetails(data?.data);
+    setCardDetails(data?.cardSaved);
   }
 
   useEffect(() => {
@@ -93,9 +93,9 @@ const useAccount = () => {
       }
   
 
-      console.log( response?.setupIntent?.client_secret)
+      console.log( response.client_secret?.client_secret)
       const { setupIntent, error } = await stripe.confirmCardSetup(
-        response?.setupIntent?.client_secret,
+        response?.client_secret?.client_secret,
         {
           payment_method: {
             card: cardElement,
@@ -135,9 +135,11 @@ const useAccount = () => {
     staff,
     success,
     error,
+    cardDetails,
     setSuccess,
     handleAddStaff,
-    handleCreateCard
+    handleCreateCard,
+
   };
 };
 

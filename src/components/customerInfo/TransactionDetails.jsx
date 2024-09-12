@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { DialogDefault } from "../common/DilogBox";
-import { formatTime2, getDateFromISOString } from "../../utiils";
+import { fetchApiData, formatTime2, getDateFromISOString } from "../../utiils";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
@@ -27,8 +27,25 @@ const TransactionDetails = ({
 }) => {
   const [openDownload, setOpenDownload] = useState(false);
   const [openShare, setOpenShare] = useState(false);
+  const [transactionData , setTransaction] = useState()
 
-  console.log(brandData);
+  console.log(userData)
+
+  console.log(transactionData?.vatRegNo);
+
+  const getTransaction = async (id)=>{
+    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/user/viewTransaction/${id}`)
+    setTransaction(data)
+  }
+
+  useEffect(()=>{
+    if(!allData?.transactionId){
+      getTransaction(allData?._id)
+    }else{
+      getTransaction(allData?.transactionId?._id)
+    }
+    
+  },[allData])
 
   const receiptRef = useRef();
 
@@ -114,7 +131,7 @@ const TransactionDetails = ({
           <View style={styles.section}>
             <Text style={styles.text}>Total: £{data?.total}</Text>
             <Text style={styles.text}>Discount: £{data?.offerDiscount}</Text>
-            <Text style={styles.text}>VAT(Registration No): 123456</Text>
+            <Text style={styles.text}>VAT(Registration No): {transactionData?.vatRegNo}</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.text}>Rewards Points Earned: {allData?.coupon?.rewardPoints || 0}</Text>
@@ -258,7 +275,7 @@ const TransactionDetails = ({
           </div>
           <div className="info2">
             <p>VAT(Registration No)</p>
-            <p>1234567</p>
+            <p>{transactionData?.vatRegNo}</p>
           </div>
           <div className="border border-[#000000] border-dashed w-[400px]"></div>
           <div className="info2">
