@@ -17,7 +17,7 @@ const usePromoteProduct = () => {
 
   const getMarketingCampaignById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaign/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaign/${id}`
     );
     console.log(data?.data);
     setCampaignData(data?.data);
@@ -54,7 +54,7 @@ const usePromoteProduct = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/createMarketingCampaign",
+        "https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/createMarketingCampaign",
         formData
       );
 
@@ -81,7 +81,7 @@ const usePromoteProduct = () => {
     if(campaignData?.locationLong)  formData.append('locationLong', campaignData?.locationLong || "");
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/updateMarketingCampaign/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/updateMarketingCampaign/${id}`,
         formData
       );
       setCampaignData(response?.data);

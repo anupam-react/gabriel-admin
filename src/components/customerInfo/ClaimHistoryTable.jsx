@@ -10,7 +10,7 @@ const ClaimHistoryTable = ({ data }) => {
 
   const getAllPointClaimHistory = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllPointClaimHistory/ByUserId/${data?._id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getAllPointClaimHistory/ByUserId/${data?._id}`
     );
     console.log(response);
     setDataInfo(response?.data);

@@ -44,7 +44,7 @@ const useInvite = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createEventInvite",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createEventInvite",
         formData
       );
 
@@ -72,7 +72,7 @@ const useInvite = () => {
     
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/updateEventInvite/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/updateEventInvite/${id}`,
         formData
       );
 

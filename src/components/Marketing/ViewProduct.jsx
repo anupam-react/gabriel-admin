@@ -14,13 +14,13 @@ const ViewProduct = ({ isOfferCard = false, isPast = false }) => {
 
   async function getMarketingLocation() {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getReachedByLocation/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getReachedByLocation/${id}`
     );
     setLocation(data?.data);
   }
   async function getMarketingViewPerformance() {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignLastWeekPerformance/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignLastWeekPerformance/${id}`
     );
     setviewPerformance(data?.data);
   }

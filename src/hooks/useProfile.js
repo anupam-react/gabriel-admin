@@ -15,7 +15,7 @@ const useProfile = () => {
 
   const getProfile = async () => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProfile`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProfile`
     );
     setProfile(data?.data);
     sessionStorage.setItem("userId", data?.data?._id);
@@ -31,7 +31,7 @@ const useProfile = () => {
 
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/business/updateProfile`,
+        `https://money-chat.com/api/api/v1/business/updateProfile`,
         formData
       );
    
@@ -57,7 +57,7 @@ const useProfile = () => {
 
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/business/updateProfile`,
+        `https://money-chat.com/api/api/v1/business/updateProfile`,
         formData
       );
    

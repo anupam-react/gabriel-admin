@@ -15,7 +15,7 @@ const CustomerGift = () => {
   const navigate = useNavigate();
 
   const getCustomer = async ()=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/Dashboard/getCustomer`)
+    const data = await fetchApiData(`https://money-chat.com/api/api/v1/Dashboard/getCustomer`)
     setCustomers(data?.data?.docs)
   }
 
@@ -48,7 +48,7 @@ const CustomerGift = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createUserRewards",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createUserRewards",
         formData
       );
 

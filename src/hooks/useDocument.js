@@ -37,7 +37,7 @@ const useDocument = () => {
     };
     try {
       const response = await axios.post(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/addDocument/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/addDocument/${id}`,
         formData,
       );
       successToast("Add Document Successfully");
@@ -72,7 +72,7 @@ const useDocument = () => {
     };
     try {
       const response = await axios.post(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/addDocument/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/addDocument/${id}`,
         formData,
       );
       successToast("Add Document Successfully");
@@ -100,7 +100,7 @@ const useDocument = () => {
     };
     try {
       const response = await axios.post(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/addDocument/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/addDocument/${id}`,
         formData,
       );
       successToast("Add Document Successfully");

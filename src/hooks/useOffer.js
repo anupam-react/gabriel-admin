@@ -39,7 +39,7 @@ const useOffer = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createUserRewards",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createUserRewards",
         formData
       );
 
@@ -64,7 +64,7 @@ const useOffer = () => {
     
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/updateUserRewards/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/updateUserRewards/${id}`,
         formData
       );
 

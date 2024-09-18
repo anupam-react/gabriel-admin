@@ -16,7 +16,7 @@ const useNotification = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/notification/sendNotification",
+        "https://money-chat.com/api/api/v1/notification/sendNotification",
         formData
       );
     } catch (error) {

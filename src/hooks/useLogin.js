@@ -30,7 +30,7 @@ const useLogin = () => {
     };
     try {
       const response = await axios.post(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/signin",
+        "https://money-chat.com/api/api/v1/brandLoyalty/signin",
         formData,
         headers
       );

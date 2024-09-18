@@ -27,7 +27,7 @@ const useSaving = () => {
 
   const getMakeASavingById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getMakeASavingById/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getMakeASavingById/${id}`
     );
     setSavingData(data?.data);
   };
@@ -49,7 +49,7 @@ const useSaving = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createMakeASaving",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createMakeASaving",
         formData
       );
       getMakeASavingById(response?.data?._id)

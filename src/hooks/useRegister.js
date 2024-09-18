@@ -21,12 +21,12 @@ const useRegister = () => {
   const navigate = useNavigate();
 
   async function fetchCategory() {
-    const data = await fetchApiData('https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory');
+    const data = await fetchApiData('https://money-chat.com/api/api/v1/admin/Category/allCategory');
     setCategory(data?.data);
   }
   async function fetchSubCategory(id) {
     if(id !=="" ){
-      const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`);
+      const data = await fetchApiData(`https://money-chat.com/api/api/v1/SubCategory/allSubcategoryById/${id}`);
       setSubcategory(data?.data);
 
     }
@@ -66,7 +66,7 @@ const useRegister = () => {
 
      try {
        const response = await axios.post(
-         "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/registration",
+         "https://money-chat.com/api/api/v1/brandLoyalty/registration",
         formData
        );
       // successToast("Regsiter Successfully");
@@ -89,7 +89,7 @@ const useRegister = () => {
 
      try {
        const response = await axios.post(
-         "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/forgetPassword",
+         "https://money-chat.com/api/api/v1/brandLoyalty/forgetPassword",
         formData
        );
       setIsSuccess(true);

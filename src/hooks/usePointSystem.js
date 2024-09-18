@@ -17,7 +17,7 @@ const usePointSystem = () => {
 
   async function fetchCategory() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+      "https://money-chat.com/api/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
@@ -26,7 +26,7 @@ const usePointSystem = () => {
   async function fetchSubCategory(id) {
     if (id !== "") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`
+        `https://money-chat.com/api/api/v1/SubCategory/allSubcategoryById/${id}`
       );
       setSubcategory(data?.data);
     }
@@ -56,7 +56,7 @@ const usePointSystem = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/attachedPointSystem",
+        "https://money-chat.com/api/api/v1/brandLoyalty/attachedPointSystem",
         formData
       );
     } catch (error) {

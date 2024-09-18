@@ -16,12 +16,12 @@ const useSales = () => {
   ) => {
     if (type === "custom") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleByCategory?type=${type}&startDate=${startDate}&endDate=${endDate}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleByCategory?type=${type}&startDate=${startDate}&endDate=${endDate}`
       );
       setSaleCategory(data?.data);
     } else {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleByCategory?type=${type}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleByCategory?type=${type}`
       );
       setSaleCategory(data?.data);
     }
@@ -33,12 +33,12 @@ const useSales = () => {
   ) => {
     if (type === "custom") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleByLocation?type=${type}&startDate=${startDate}&endDate=${endDate}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleByLocation?type=${type}&startDate=${startDate}&endDate=${endDate}`
       );
       setSaleLocation(data?.data);
     } else {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleByLocation?type=${type}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleByLocation?type=${type}`
       );
       setSaleLocation(data?.data);
     }
@@ -50,12 +50,12 @@ const useSales = () => {
   ) => {
     if (type === "custom") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleTrendOverTime?type=${type}&startDate=${startDate}&endDate=${endDate}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleTrendOverTime?type=${type}&startDate=${startDate}&endDate=${endDate}`
       );
       setSaleTrendOver(data?.data);
     } else {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleTrendOverTime?type=${type}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleTrendOverTime?type=${type}`
       );
       setSaleTrendOver(data?.data);
     }
@@ -68,12 +68,12 @@ const useSales = () => {
   ) => {
     if (type === "custom") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleAnalyticsTotalRevenue?type=${type}&startDate=${startDate}&endDate=${endDate}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleAnalyticsTotalRevenue?type=${type}&startDate=${startDate}&endDate=${endDate}`
       );
       setSaleTotalRevenue(data?.data);
     } else {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleAnalyticsTotalRevenue?type=${type}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleAnalyticsTotalRevenue?type=${type}`
       );
       setSaleTotalRevenue(data?.data);
     }
@@ -86,12 +86,12 @@ const useSales = () => {
   ) => {
     if (type === "custom") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleAnalyticsTransactionCount?type=${type}&startDate=${startDate}&endDate=${endDate}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleAnalyticsTransactionCount?type=${type}&startDate=${startDate}&endDate=${endDate}`
       );
       setTransactionCount(data?.data);
     } else {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/Dashboard/getSaleAnalyticsTransactionCount?type=${type}`
+        `https://money-chat.com/api/api/v1/Dashboard/getSaleAnalyticsTransactionCount?type=${type}`
       );
       setTransactionCount(data?.data);
     }
@@ -99,7 +99,7 @@ const useSales = () => {
 
   async function getSalesReport(typeOfData="",type="All" , fromDate="", toDate="" ) {
     const data = await createApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSaleAnalyticsReport?type=${type}&startDate=${fromDate}&endDate=${toDate}&typeOfData=${typeOfData}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getSaleAnalyticsReport?type=${type}&startDate=${fromDate}&endDate=${toDate}&typeOfData=${typeOfData}`
     );
     window.open(data?.pdfLink)
    setReport(data?.pdfLink)

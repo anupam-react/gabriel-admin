@@ -15,7 +15,7 @@ const InventoryMenu = ({ setOpenMenu , id , data }) => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    deleteApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/removeProduct/${id}`)
+    deleteApiData(`https://money-chat.com/api/api/v1/brandLoyalty/removeProduct/${id}`)
     setOpenDeleteConfirm(true);
     setTimeout(() => {
       setOpenMenu(false);

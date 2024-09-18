@@ -19,13 +19,13 @@ const useDigitalReceipt = () => {
 
   async function getDigitalReceiptByToken(search="", fromDate="", toDate="", page="", limit="", toSizeInMbNumber="", fromSizeInMbNumber="", documentType="") {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getDigitalReceiptByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&toSizeInMbNumber=${toSizeInMbNumber}&fromSizeInMbNumber=${fromSizeInMbNumber}&documentType=${documentType}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getDigitalReceiptByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&toSizeInMbNumber=${toSizeInMbNumber}&fromSizeInMbNumber=${fromSizeInMbNumber}&documentType=${documentType}`
     );
     setReceipt(data?.data?.docs);
   }
 
   const getDigitalReceiptById = async (id)=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getDigitalReceiptById/${id}`)
+    const data = await fetchApiData(`https://money-chat.com/api/api/v1/brandLoyalty/getDigitalReceiptById/${id}`)
     setReceiptInfo(data?.data)
   }
 

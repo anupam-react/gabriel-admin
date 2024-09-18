@@ -35,7 +35,7 @@ const usePromotion = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createUserTargetedPromotion",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createUserTargetedPromotion",
         formData
       );
 

@@ -18,7 +18,7 @@ const useSetting = () => {
 
     const getProfile = async () => {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProfile`
+        `https://money-chat.com/api/api/v1/brandLoyalty/getProfile`
       );
       setProfile(data?.data);
       setReceiveNotificationSms(data?.data?.receiveNotificationSms)
@@ -46,7 +46,7 @@ const useSetting = () => {
 
         try {
           const response = await updateApiData(
-            `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/notificationAndReportSetting`,
+            `https://money-chat.com/api/api/v1/brandLoyalty/notificationAndReportSetting`,
             formData
           );
        
@@ -65,7 +65,7 @@ const useSetting = () => {
 
         try {
           const response = await updateApiData(
-            `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/notificationAndReportSetting`,
+            `https://money-chat.com/api/api/v1/brandLoyalty/notificationAndReportSetting`,
             formData
           );
        
@@ -90,7 +90,7 @@ const useSetting = () => {
 
         try {
           const response = await updateApiData(
-            `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/notificationAndReportSetting`,
+            `https://money-chat.com/api/api/v1/brandLoyalty/notificationAndReportSetting`,
             formData
           );
        

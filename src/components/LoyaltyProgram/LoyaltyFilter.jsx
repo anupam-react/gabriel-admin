@@ -43,7 +43,7 @@ const LoyaltyFilter = ({
 
   async function fetchCategory() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+      "https://money-chat.com/api/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
@@ -57,7 +57,7 @@ const LoyaltyFilter = ({
   async function fetchSubCategory(id) {
     if (id !== "") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`
+        `https://money-chat.com/api/api/v1/SubCategory/allSubcategoryById/${id}`
       );
       setSubcategory(data?.data);
     }
@@ -74,7 +74,7 @@ const LoyaltyFilter = ({
     minPrice = ""
   ) {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}`
     );
     setProduct(data?.data);
   }

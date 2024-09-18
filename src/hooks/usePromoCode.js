@@ -33,7 +33,7 @@ const usePromoCode = () => {
 
   async function getPromoCodeByToken(search="", fromDate="", toDate="", page=1, limit=1000, maxAmount="", minAmount=""  ) {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/PromoCode/getPromoCodeByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxAmount=${maxAmount}&minAmount=${minAmount}`
+      `https://money-chat.com/api/api/v1/PromoCode/getPromoCodeByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxAmount=${maxAmount}&minAmount=${minAmount}`
     );
 
     setPromocodes(data?.data);
@@ -41,7 +41,7 @@ const usePromoCode = () => {
 
   const getPromoCodeById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/PromoCode/getPromoCodeById/${id}`
+      `https://money-chat.com/api/api/v1/PromoCode/getPromoCodeById/${id}`
     );
     console.log(data?.data);
     setPromocodeData(data?.data);
@@ -51,7 +51,7 @@ const usePromoCode = () => {
 
   async function getStaffByToken() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/Staff/getStaffByToken"
+      "https://money-chat.com/api/api/v1/Staff/getStaffByToken"
     );
     setStaff(data?.data);
   }
@@ -81,7 +81,7 @@ const usePromoCode = () => {
     console.log(formData);
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/PromoCode/addPromoCode",
+        "https://money-chat.com/api/api/v1/PromoCode/addPromoCode",
         formData
       );
       getPromoCodeByToken();
@@ -117,7 +117,7 @@ const usePromoCode = () => {
     };
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
+        `https://money-chat.com/api/api/v1/PromoCode/updatePromoCode/${id}`,
         formData
       );
       getPromoCodeByToken();
@@ -141,7 +141,7 @@ const usePromoCode = () => {
     };
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
+        `https://money-chat.com/api/api/v1/PromoCode/updatePromoCode/${id}`,
         formData
       );
       getPromoCodeByToken();
@@ -157,7 +157,7 @@ const usePromoCode = () => {
     };
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/PromoCode/updatePromoCode/${id}`,
+        `https://money-chat.com/api/api/v1/PromoCode/updatePromoCode/${id}`,
         formData
       );
       getPromoCodeByToken();
@@ -170,7 +170,7 @@ const usePromoCode = () => {
 
   const handleDeletePromocode = async (id) => {
     await deleteApiData(
-      `https://gabriel-backend.vercel.app/api/v1/PromoCode/removePromoCode/${id}`
+      `https://money-chat.com/api/api/v1/PromoCode/removePromoCode/${id}`
     );
     getPromoCodeByToken();
   };

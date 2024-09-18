@@ -48,21 +48,21 @@ const useProduct = () => {
 
   async function getProduct(search="", fromDate="", toDate="", page=1, limit=1000, maxStock="", minStock="", maxPrice="", minPrice="", categoryId ="", subCategoryId="") {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}&categoryId=${categoryId}&subCategoryId=${subCategoryId}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProductByToken?search=${search}&fromDate=${fromDate}&toDate=${toDate}&page=${page}&limit=${limit}&maxStock=${maxStock}&minStock=${minStock}&maxPrice=${maxPrice}&minPrice=${minPrice}&categoryId=${categoryId}&subCategoryId=${subCategoryId}`
     );
     setProduct(data?.data);
   }
 
   async function fetchCategory() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+      "https://money-chat.com/api/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
   async function fetchSubCategory(id) {
     if (id !== "") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`
+        `https://money-chat.com/api/api/v1/SubCategory/allSubcategoryById/${id}`
       );
       setSubcategory(data?.data);
     }
@@ -70,7 +70,7 @@ const useProduct = () => {
 
   const getProductById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductById/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProductById/${id}`
     );
     setProdInfo(data?.data);
   };
@@ -126,7 +126,7 @@ const useProduct = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createProduct",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createProduct",
         formData
       );
       successToast("Create Successfully");
@@ -176,7 +176,7 @@ const useProduct = () => {
 
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/updateProduct/${productInfo?._id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/updateProduct/${productInfo?._id}`,
         formData
       );
       successToast("Update Successfully");
@@ -193,7 +193,7 @@ const useProduct = () => {
   const handleMarkAsProductOutOfStock = async (id) => {
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/markAsProductOutOfStock/${id}`
+        `https://money-chat.com/api/api/v1/brandLoyalty/markAsProductOutOfStock/${id}`
       );
       successToast("Mark Out Of Stock Successfully");
     } catch (error) {
@@ -204,7 +204,7 @@ const useProduct = () => {
   const handleMarkAsProductAsHighlight = async (id) => {
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/markAsProductAsHighlight/${id}`
+        `https://money-chat.com/api/api/v1/brandLoyalty/markAsProductAsHighlight/${id}`
       );
       setOpenHighlights(true);
       setTimeout(() => {

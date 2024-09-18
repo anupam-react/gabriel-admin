@@ -34,7 +34,7 @@ const TransactionDetails = ({
   console.log(transactionData?.vatRegNo);
 
   const getTransaction = async (id)=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/user/viewTransaction/${id}`)
+    const data = await fetchApiData(`https://money-chat.com/api/api/v1/user/viewTransaction/${id}`)
     setTransaction(data)
   }
 

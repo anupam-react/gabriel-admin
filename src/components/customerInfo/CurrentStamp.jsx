@@ -10,7 +10,7 @@ const CurrentStamp = ({ data }) => {
 
   const getAllCurrentStampVouchers = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllCurrentStampVouchers/ByUserId/${data?._id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getAllCurrentStampVouchers/ByUserId/${data?._id}`
     );
     console.log(response);
     setDataInfo(response?.data);

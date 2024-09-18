@@ -8,7 +8,7 @@ const usePaymentReward = () => {
   const handlePayment = async (id) => {
     try {
       const response = await createApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/paymentForUserRewards/${id}`
+        `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/paymentForUserRewards/${id}`
       );
       window.location.href = response?.session?.url;
     } catch (error) {
@@ -20,7 +20,7 @@ const usePaymentReward = () => {
   const handlePaymentSuccess = async (id) => {
     try {
       const response = await createApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/successForUserRewards/${id}`
+        `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/successForUserRewards/${id}`
       );
     } catch (error) {
       console.log(error);

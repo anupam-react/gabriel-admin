@@ -6,7 +6,7 @@ const Support = () => {
   const [faq, setFaq] = useState([])
   async function getFaq() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/static/faq/All"
+      "https://money-chat.com/api/api/v1/static/faq/All"
     );
     setFaq(data?.data);
   }

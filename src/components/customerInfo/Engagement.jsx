@@ -16,21 +16,21 @@ const Engagement = ({ handleOpen, onClose, data }) => {
 
   const getAllEngagementMetrics = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllEngagementMetrics/ByUserId/${data?._id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getAllEngagementMetrics/ByUserId/${data?._id}`
     );
     console.log(appVisit);
     setAllMetrics(response?.data);
   };
   const getStoreVisitFrequency = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllVisitFrequency/ByUserId/${data?._id}?type=store`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getAllVisitFrequency/ByUserId/${data?._id}?type=store`
     );
     console.log(response);
     setStoreVisit(response?.data);
   };
   const getAppVisitFrequency = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAllVisitFrequency/ByUserId/${data?._id}?type=app`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getAllVisitFrequency/ByUserId/${data?._id}?type=app`
     );
     console.log(response);
     setAppVisit(response?.data);
@@ -72,7 +72,7 @@ const newStoreData = groupByOutletAndSortVisits(storeVisit)
 console.log(newStoreData)
 
   // const getAverageVisitFrequency = async ()=>{
-  //   const response = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getAverageVisitFrequency/ByUserId/${data?._id}`)
+  //   const response = await fetchApiData(`https://money-chat.com/api/api/v1/brandLoyalty/getAverageVisitFrequency/ByUserId/${data?._id}`)
   //   console.log(response)
   //   // setAllMetrics(response?.data)
   // }

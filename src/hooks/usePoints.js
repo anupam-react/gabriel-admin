@@ -22,7 +22,7 @@ const usePoints = () => {
 
   const getSpendMyPointById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getSpendMyPointById/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getSpendMyPointById/${id}`
     );
     setPointsData(data?.data);
   };
@@ -50,7 +50,7 @@ const usePoints = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createSpendMyPoint",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createSpendMyPoint",
         formData
       );
       getSpendMyPointById(response?.data?._id)

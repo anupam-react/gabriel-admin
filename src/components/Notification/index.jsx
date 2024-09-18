@@ -6,7 +6,7 @@ const Notification = () => {
 
   const getAllNotifications = async () => {
     const response = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/notification/allNotification`
+      `https://money-chat.com/api/api/v1/notification/allNotification`
     );
     console.log(response);
     setDataInfo(response?.data);

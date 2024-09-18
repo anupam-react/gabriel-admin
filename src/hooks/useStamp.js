@@ -20,7 +20,7 @@ const useStamp = () => {
 
   const getStampById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getStampSystemById/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getStampSystemById/${id}`
     );
     setSingleStampData(data?.data);
   };
@@ -28,7 +28,7 @@ const useStamp = () => {
 
   async function fetchCategory() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+      "https://money-chat.com/api/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
@@ -37,7 +37,7 @@ const useStamp = () => {
   async function fetchSubCategory(id) {
     if (id !== "") {
       const data = await fetchApiData(
-        `https://gabriel-backend.vercel.app/api/v1/SubCategory/allSubcategoryById/${id}`
+        `https://money-chat.com/api/api/v1/SubCategory/allSubcategoryById/${id}`
       );
       setSubcategory(data?.data);
     }
@@ -77,7 +77,7 @@ const useStamp = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createStampSystem",
+        "https://money-chat.com/api/api/v1/brandLoyalty/createStampSystem",
         formData
       );
       successToast("Create Successfully");

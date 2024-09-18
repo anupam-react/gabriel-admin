@@ -33,13 +33,13 @@ const useAccount = () => {
 
   async function getStaffByToken() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/Staff/getStaffByToken"
+      "https://money-chat.com/api/api/v1/Staff/getStaffByToken"
     );
     setStaff(data?.data);
   }
   async function getCardDetails() {
     const data = await fetchApiData(
-      'https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getUserPaymentMethod'
+      'https://money-chat.com/api/api/v1/brandLoyalty/getUserPaymentMethod'
     );
     setCardDetails(data?.cardSaved);
   }
@@ -62,7 +62,7 @@ const useAccount = () => {
 
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/Staff/addStaff",
+        "https://money-chat.com/api/api/v1/Staff/addStaff",
         formData
       );
 
@@ -82,7 +82,7 @@ const useAccount = () => {
     event.preventDefault();
     try {
       const response = await createApiData(
-        'https://gabriel-backend.vercel.app/api/v1/brandLoyalty/saveCardDetailsOnStripe',
+        'https://money-chat.com/api/api/v1/brandLoyalty/saveCardDetailsOnStripe',
       );
 
       const cardElement = elements.getElement(CardElement);

@@ -7,7 +7,7 @@ const useHeatMap = () => {
   const [singleOutlate, setSingleOutlate] = useState([])
 
   const getHeatMapByToken = async ()=>{
-    const data = await fetchApiData(`https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getHeatMapByToken`)
+    const data = await fetchApiData(`https://money-chat.com/api/api/v1/brandLoyalty/getHeatMapByToken`)
     setAllOutlate(data?.data)
   }
 

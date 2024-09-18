@@ -8,7 +8,7 @@ const useProductInfo = () => {
 
   const getProductById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductById/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProductById/${id}`
     );
     setProdInfo(data?.data);
     getCategorybyId(data?.data?.categoryId);
@@ -16,13 +16,13 @@ const useProductInfo = () => {
   };
   const getCategorybyId = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/admin/Category/getCategory/${id}`
+      `https://money-chat.com/api/api/v1/admin/Category/getCategory/${id}`
     );
     setCategotyInfo(data?.data);
   };
   const getSubcategoryById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/SubCategory/${id}`
+      `https://money-chat.com/api/api/v1/SubCategory/${id}`
     );
     setSubCategotyInfo(data?.data);
   };

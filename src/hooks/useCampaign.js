@@ -27,35 +27,35 @@ const useCampaign = () => {
 
   async function fetchCategory() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/admin/Category/allCategory"
+      "https://money-chat.com/api/api/v1/admin/Category/allCategory"
     );
     setCategory(data?.data);
   }
 
   async function getProduct() {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getProductByToken`
+      `https://money-chat.com/api/api/v1/brandLoyalty/getProductByToken`
     );
     setProduct(data?.data?.docs);
   }
 
   async function getMarketingCampaignByToken() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignByToken"
+      "https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaignByToken"
     );
 
     setCampaigns(data?.data);
   }
   async function getLiveMarketingCampaignByToken() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getLiveMarketingCampaignByToken"
+      "https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getLiveMarketingCampaignByToken"
     );
 
     setLiveCampaign(data?.data);
   }
   async function getPastMarketingCampaignByToken() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getPastMarketingCampaignByToken"
+      "https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getPastMarketingCampaignByToken"
     );
 
     setPastCampaign(data?.data);
@@ -63,7 +63,7 @@ const useCampaign = () => {
 
   const getMarketingCampaignById = async (id) => {
     const data = await fetchApiData(
-      `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaign/${id}`
+      `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/getMarketingCampaign/${id}`
     );
     console.log(data?.data);
     setCampaignData(data?.data);
@@ -128,7 +128,7 @@ const useCampaign = () => {
     
     try {
       const response = await createApiData(
-        "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/createMarketingCampaign",
+        "https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/createMarketingCampaign",
         formData
       );
 
@@ -164,7 +164,7 @@ const useCampaign = () => {
     if(campaignData?.categoryId?.length) formData.append('categoryId', campaignData?.categoryId );
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/updateMarketingCampaign/${id}`,
+        `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/updateMarketingCampaign/${id}`,
         formData
       );
       setCampaignData(response?.data);
@@ -180,7 +180,7 @@ const useCampaign = () => {
   
     try {
       const response = await updateApiData(
-        `https://gabriel-backend.vercel.app/api/v1/brandLoyalty/MarketingCampaign/pauseMarketingCampaign/${id}`
+        `https://money-chat.com/api/api/v1/brandLoyalty/MarketingCampaign/pauseMarketingCampaign/${id}`
       );
     } catch (error) {
       console.log(error);

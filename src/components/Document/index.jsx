@@ -28,7 +28,7 @@ const Document = () => {
     const formData = new FormData();
     formData.append("image", file);
     const data = await axios.post(
-      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      "https://money-chat.com/api/api/v1/user/get/ImageUrl",
       formData
     );
     successToast("Image Uplaod Successfully")
@@ -41,7 +41,7 @@ const Document = () => {
     const formData = new FormData();
     formData.append("image", file);
     const data = await axios.post(
-      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      "https://money-chat.com/api/api/v1/user/get/ImageUrl",
       formData
     );
     console.log(data?.data)
@@ -55,7 +55,7 @@ const Document = () => {
     const formData = new FormData();
     formData.append("image", file);
     const data = await axios.post(
-      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      "https://money-chat.com/api/api/v1/user/get/ImageUrl",
       formData
     );
     successToast("Image Uplaod Successfully")
@@ -67,7 +67,7 @@ const Document = () => {
     const formData = new FormData();
     formData.append("image", file);
     const data = await axios.post(
-      "https://gabriel-backend.vercel.app/api/v1/user/get/ImageUrl",
+      "https://money-chat.com/api/api/v1/user/get/ImageUrl",
       formData
     );
     successToast("Image Uplaod Successfully")

@@ -25,7 +25,7 @@ const useOutlate = () => {
 
   async function getOutlet() {
     const data = await fetchApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/getOutlet"
+      "https://money-chat.com/api/api/v1/brandLoyalty/getOutlet"
     );
     setOutlate(data?.data);
   }
@@ -54,7 +54,7 @@ const handleCreateOutlate = async (event) => {
 
   try {
     const response = await createApiData(
-      "https://gabriel-backend.vercel.app/api/v1/brandLoyalty/createOutlet",
+      "https://money-chat.com/api/api/v1/brandLoyalty/createOutlet",
       formData
     );
     successToast("Create Successfully");
